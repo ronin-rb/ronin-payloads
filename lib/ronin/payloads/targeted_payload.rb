@@ -20,7 +20,7 @@
 #
 
 require 'ronin/payloads/payload'
-require 'ronin/payloads/payloadtarget'
+require 'ronin/payloads/payload_target'
 
 module Ronin
   module Payloads
