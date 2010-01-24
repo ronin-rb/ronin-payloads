@@ -1,0 +1,7 @@
+    self.name = <%= options[:name].inspect %>
+    self.version = <%= options[:version].inspect %>
+    self.description = %{<%= options[:description] %>}
+
+    <% options[:authors].each do |author| %>
+    author(:name => <%= author.inspect %>)
+    <% end %>

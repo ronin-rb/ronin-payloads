@@ -1,0 +1,21 @@
+<%= template '_header.erb' %>
+
+require 'ronin/payloads/nops'
+
+ronin_nops do
+
+<%= template '_helpers.erb' %>
+  #
+  # Cacheable data.
+  #
+  cache do
+<%= template '_cache.erb' %>
+  end
+
+  #
+  # Builds the NOPs.
+  #
+  def build
+  end
+
+end

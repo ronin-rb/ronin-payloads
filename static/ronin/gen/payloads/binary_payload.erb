@@ -1,0 +1,27 @@
+<%= template '_header.erb' %>
+
+require 'ronin/payloads/binary_payload'
+
+ronin_binary_payload do
+
+<%= template '_helpers.erb' %>
+  #
+  # Cacheable data.
+  #
+  cache do
+<%= template '_cache.erb' %>
+  end
+
+  #
+  # Builds the binary payload.
+  #
+  def build
+  end
+
+  #
+  # Deploys the binary payload.
+  #
+  def deploy
+  end
+
+end
