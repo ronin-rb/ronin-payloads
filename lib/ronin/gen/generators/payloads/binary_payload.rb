@@ -19,15 +19,25 @@
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #
 
-require 'static_paths'
+require 'ronin/gen/generators/payloads/payload'
 
 module Ronin
   module Gen
-    module Payloads
-      module Config
-        include StaticPaths
+    module Generators
+      module Payloads
+        class BinaryPayload < Payload
 
-        register_static_dir File.join(File.dirname(__FILE__),'..','..','..','..','static')
+          #
+          # Generate a binary payload.
+          #
+          # @since 0.3.0
+          #
+          def generate
+            template File.join('ronin','gen','payloads','binary_payload.erb'),
+                     self.path
+          end
+
+        end
       end
     end
   end

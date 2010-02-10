@@ -19,23 +19,25 @@
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #
 
-require 'ronin/gen/payloads/payload'
+require 'ronin/gen/generators/payloads/binary_payload'
 
 module Ronin
   module Gen
-    module Payloads
-      class BinaryPayload < Payload
+    module Generators
+      module Payloads
+        class Nops < BinaryPayload
 
-        #
-        # Generate a binary payload.
-        #
-        # @since 0.3.0
-        #
-        def generate
-          template File.join('ronin','gen','payloads','binary_payload.erb'),
-                   self.path
+          #
+          # Generate a Nops payload.
+          #
+          # @since 0.3.0
+          #
+          def generate
+            template File.join('ronin','gen','payloads','nops.erb'),
+                     self.path
+          end
+
         end
-
       end
     end
   end

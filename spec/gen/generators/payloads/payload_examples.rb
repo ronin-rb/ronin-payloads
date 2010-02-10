@@ -2,11 +2,11 @@ require 'spec_helper'
 
 shared_examples_for "a Payload" do
   it "should set the name property" do
-    @payload.name.should == Gen::Payloads::Payload::DEFAULT_NAME
+    @payload.name.should == Gen::Generators::Payloads::Payload::DEFAULT_NAME
   end
 
   it "should set the description property" do
-    @payload.description.should == Gen::Payloads::Payload::DEFAULT_DESCRIPTION
+    @payload.description.should == Gen::Generators::Payloads::Payload::DEFAULT_DESCRIPTION
   end
 
   it "should defines an author" do

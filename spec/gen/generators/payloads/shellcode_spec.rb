@@ -1,17 +1,17 @@
-require 'ronin/gen/payloads/shellcode'
+require 'ronin/gen/generators/payloads/shellcode'
 require 'ronin/payloads/shellcode'
 
 require 'spec_helper'
-require 'gen/payloads/payload_examples'
+require 'gen/generators/payloads/payload_examples'
 
 require 'tmpdir'
 require 'fileutils'
 
-describe Gen::Payloads::Shellcode do
+describe Gen::Generators::Payloads::Shellcode do
   before(:all) do
     @path = File.join(Dir.tmpdir,'generated_payload.rb')
 
-    Gen::Payloads::Shellcode.generate(
+    Gen::Generators::Payloads::Shellcode.generate(
       {
         :control_methods => ['code_exec']
       },

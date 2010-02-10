@@ -19,5 +19,26 @@
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #
 
-require 'ronin/gen/payloads/config'
-require 'ronin/gen/payloads/payload'
+require 'ronin/gen/generators/payloads/binary_payload'
+
+module Ronin
+  module Gen
+    module Generators
+      module Payloads
+        class Shellcode < BinaryPayload
+
+          #
+          # Generate a Shellcode payload.
+          #
+          # @since 0.3.0
+          #
+          def generate
+            template File.join('ronin','gen','payloads','shellcode.erb'),
+              self.path
+          end
+
+        end
+      end
+    end
+  end
+end

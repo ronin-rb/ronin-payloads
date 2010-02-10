@@ -1,17 +1,17 @@
-require 'ronin/gen/payloads/payload'
+require 'ronin/gen/generators/payloads/payload'
 require 'ronin/payloads/payload'
 
 require 'spec_helper'
-require 'gen/payloads/payload_examples'
+require 'gen/generators/payloads/payload_examples'
 
 require 'tmpdir'
 require 'fileutils'
 
-describe Gen::Payloads::Payload do
+describe Gen::Generators::Payloads::Payload do
   before(:all) do
     @path = File.join(Dir.tmpdir,'generated_payload.rb')
 
-    Gen::Payloads::Payload.generate(
+    Gen::Generators::Payloads::Payload.generate(
       {
         :control_methods => ['code_exec']
       },

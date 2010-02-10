@@ -19,24 +19,14 @@
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #
 
-require 'ronin/gen/payloads/binary_payload'
+require 'static_paths'
 
 module Ronin
-  module Gen
-    module Payloads
-      class Nops < BinaryPayload
+  module Payloads
+    module Config
+      include StaticPaths
 
-        #
-        # Generate a Nops payload.
-        #
-        # @since 0.3.0
-        #
-        def generate
-          template File.join('ronin','gen','payloads','nops.erb'),
-                   self.path
-        end
-
-      end
+      register_static_dir File.join(File.dirname(__FILE__),'..','..','..','static')
     end
   end
 end

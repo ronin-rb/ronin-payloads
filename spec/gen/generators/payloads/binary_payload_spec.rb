@@ -1,17 +1,17 @@
-require 'ronin/gen/payloads/binary_payload'
+require 'ronin/gen/generators/payloads/binary_payload'
 require 'ronin/payloads/binary_payload'
 
 require 'spec_helper'
-require 'gen/payloads/payload_examples'
+require 'gen/generators/payloads/payload_examples'
 
 require 'tmpdir'
 require 'fileutils'
 
-describe Gen::Payloads::BinaryPayload do
+describe Gen::Generators::Payloads::BinaryPayload do
   before(:all) do
     @path = File.join(Dir.tmpdir,'generated_payload.rb')
 
-    Gen::Payloads::BinaryPayload.generate(
+    Gen::Generators::Payloads::BinaryPayload.generate(
       {
         :control_methods => ['code_exec']
       },
