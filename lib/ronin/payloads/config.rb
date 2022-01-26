@@ -20,14 +20,9 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'data_paths'
-
 module Ronin
   module Payloads
     module Config
-      include DataPaths
-
-      register_data_path File.join(File.dirname(__FILE__),'..','..','..','data')
     end
   end
 end
