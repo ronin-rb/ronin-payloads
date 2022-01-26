@@ -23,7 +23,6 @@
 require 'ronin/database/migrations/payloads/payload'
 require 'ronin/database/migrations/payloads/author_payload'
 require 'ronin/payloads/exceptions/unknown_helper'
-require 'ronin/payloads/helpers'
 require 'ronin/payloads/has_payload'
 require 'ronin/post_exploitation'
 require 'ronin/script'
