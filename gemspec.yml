@@ -1,0 +1,29 @@
+name: ronin-payloads
+summary: A Ruby micro-framework for writing and running exploit payloads
+description: |
+  ronin-payloads is a Ruby micro-framework for writing and running exploit
+  payloads.
+
+license: LGPL-3.0
+authors: Postmodern
+email: postmodern.mod3@gmail.com
+homepage: https://ronin-rb.dev/
+has_yard: true
+
+metadata:
+  documentation_uri: https://rubydoc.info/gems/ronin-payloads
+  source_code_uri:   https://github.com/ronin-rb/ronin-payloads
+  bug_tracker_uri:   https://github.com/ronin-rb/ronin-payloads/issues
+  changelog_uri:     https://github.com/ronin-rb/ronin-payloads/blob/master/ChangeLog.md
+
+# generated_files:
+#  - man/ronin-payloads.1
+
+required_ruby_version: ">= 2.7.0"
+
+dependencies:
+  # Ronin dependencies:
+  ronin-core: ~> 0.1
+
+development_dependencies:
+  bundler: ~> 2.0
