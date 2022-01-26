@@ -190,4 +190,4 @@ along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 
 [Ruby]: https://www.ruby-lang.org
 [ronin-core]: https://github.com/ronin-rb/ronin-core#readme
-[ronin-core]: https://github.com/ronin-rb/ronin-post_ex#readme
+[ronin-post_ex]: https://github.com/ronin-rb/ronin-post_ex#readme
