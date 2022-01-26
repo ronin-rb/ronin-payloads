@@ -138,6 +138,7 @@ end
 
 * [Ruby] >= 2.7.0
 * [ronin-core] ~> 0.1
+* [ronin-post_ex] ~> 0.1
 
 ## Install
 
@@ -189,3 +190,4 @@ along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 
 [Ruby]: https://www.ruby-lang.org
 [ronin-core]: https://github.com/ronin-rb/ronin-core#readme
+[ronin-core]: https://github.com/ronin-rb/ronin-post_ex#readme

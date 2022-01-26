@@ -6,8 +6,14 @@ gemspec
 
 gem 'jruby-openssl',	'~> 0.7', platforms: :jruby
 
+gem 'fake_io', '~> 0.1', github: 'postmodern/fake_io.rb',
+                         branch: 'main'
+
 # Ronin dependencies
 gem 'ronin-core',     '~> 0.1', git: "#{RONIN_URI}/ronin-core.git",
+                                branch: 'main'
+
+gem 'ronin-post_ex',  '~> 0.1', git: "#{RONIN_URI}/ronin-post_ex.git",
                                 branch: 'main'
 
 group :development do
