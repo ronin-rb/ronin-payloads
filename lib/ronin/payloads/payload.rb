@@ -22,7 +22,6 @@
 
 require 'ronin/payloads/exceptions/unknown_helper'
 require 'ronin/payloads/has_payload'
-require 'ronin/post_exploitation'
 require 'ronin/script'
 require 'ronin/behaviors/testable'
 require 'ronin/behaviors/buildable'
@@ -141,7 +140,6 @@ module Ronin
       include Model::TargetsArch
       include Model::TargetsOS
       include HasPayload
-      include PostExploitation::Mixin
 
       # Primary key of the payload
       property :id, Serial
