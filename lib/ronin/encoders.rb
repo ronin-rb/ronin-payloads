@@ -20,4 +20,5 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/encoders/encoders'
+require 'ronin/encoders/encoder'
+require 'ronin/encoders/xor'
