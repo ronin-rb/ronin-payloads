@@ -48,18 +48,6 @@ describe Payloads::Payload do
     expect(payload.os).to be_nil
   end
 
-  describe "helpers" do
-    it "should allow for the extending of Helper modules" do
-      expect(payload.instance_eval { helper :bind_shell }).to eq(true)
-    end
-
-    it "should raise an UnknownHelper when extending an unknown helper" do
-      expect {
-        payload.instance_eval { helper :obvious_not_there }
-      }.to raise_error(Payloads::UnknownHelper)
-    end
-  end
-
   it "should not have an exploit by default" do
     expect(payload.exploit).to be_nil
   end

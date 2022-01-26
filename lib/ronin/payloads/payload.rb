@@ -134,9 +134,6 @@ module Ronin
       # Primary key of the payload
       property :id, Serial
 
-      # The helpers used by the payload
-      attr_reader :helpers
-
       # The exploit to deploy with
       attr_accessor :exploit
 
@@ -151,8 +148,6 @@ module Ronin
       #
       def initialize(attributes={})
         super(attributes)
-
-        @helpers = Set[]
       end
 
       #
@@ -180,45 +175,6 @@ module Ronin
         end
 
         super(options,&block)
-      end
-
-      protected
-
-      #
-      # Loads a helper module from `ronin/payloads/helpers` and extends the
-      # payload with it.
-      #
-      # @param [Symbol, String] name
-      #   The underscored name of the payload helper to load and extend the
-      #   payload with.
-      #
-      # @return [Boolean]
-      #   Specifies whether the payload helper was successfully loaded.
-      #   Returns `false` if the payload helper has already been loaded.
-      #
-      # @raise [UnknownHelper]
-      #   No valid helper module could be found or loaded with the similar
-      #   name.
-      #
-      # @example
-      #   helper :shell
-      #
-      def helper(name)
-        name = name.to_sym
-
-        return false if @helpers.include?(name)
-
-        unless (helper_module = Helpers.require_const(name))
-          raise(UnknownHelper,"unknown helper #{name}",caller)
-        end
-
-        unless helper_module.kind_of?(Module)
-          raise(UnknownHelper,"unknown helper #{name}",caller)
-        end
-
-        @helpers << name
-        extend helper_module
-        return true
       end
 
     end
