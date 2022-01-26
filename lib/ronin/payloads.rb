@@ -20,7 +20,12 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/payloads/payloads'
-require 'ronin/config'
-
-Ronin::Config.load :payloads
+require 'ronin/payloads/payload'
+require 'ronin/payloads/binary_payload'
+require 'ronin/payloads/asm_payload'
+require 'ronin/payloads/shellcode'
+require 'ronin/payloads/nop'
+require 'ronin/payloads/web'
+require 'ronin/payloads/bind_shell'
+require 'ronin/payloads/rpc'
+require 'ronin/payloads/version'
