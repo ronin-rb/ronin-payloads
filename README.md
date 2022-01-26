@@ -75,6 +75,65 @@ $ ronin-payloads gen example_payload.rb \
 * `shellcode`
 * `nops`
 
+## Examples
+
+Define a `/bin/sh` shellcode payload:
+
+```ruby
+require 'ronin/payloads/shellcode'
+
+class BinShShellcode < Ronin::Payloads::Shellcode
+
+  register 'shellcode-linux-x86-bin-sh'
+  version '0.5'
+  description <<~DESC
+    Shellcode that spawns a local /bin/sh shell
+  DESC
+
+  targets_arch :x86
+  targets_os   'Linux'
+
+  build do
+    shellcode do
+      xor   eax, eax
+      push  eax
+      push  0x68732f2f
+      push  0x6e69622f
+      mov   esp, ebx
+      push  eax
+      push  ebx
+      mov   esp, ecx
+      xor   edx, edx
+      int   0xb
+    end
+  end
+
+end
+```
+
+Define a payload encoder class:
+
+```ruby
+require 'ronin/encoders/encoder'
+
+class Base64Encoder < Ronin::Encoders::Encoder
+
+  register 'text-base64'
+
+  description <<~DESC
+    Example base64 payload encoder
+  DESC
+
+  targets_arch :x86
+  targets_os   'Linux'
+
+  def encode(data)
+    data.to_s.base64_encode
+  end
+
+end
+```
+
 ## Requirements
 
 * [Ruby] >= 2.7.0
