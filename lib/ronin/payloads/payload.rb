@@ -21,7 +21,6 @@
 #
 
 require 'ronin/payloads/exceptions/unknown_helper'
-require 'ronin/payloads/has_payload'
 require 'ronin/model/targets_arch'
 require 'ronin/model/targets_os'
 require 'ronin/extensions/kernel'
@@ -131,7 +130,6 @@ module Ronin
 
       include Model::TargetsArch
       include Model::TargetsOS
-      include HasPayload
 
       # Primary key of the payload
       property :id, Serial
