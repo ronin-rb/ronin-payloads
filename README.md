@@ -139,6 +139,7 @@ end
 * [Ruby] >= 2.7.0
 * [ronin-post_ex] ~> 0.1
 * [ronin-core] ~> 0.1
+* [ronin-repos] ~> 0.1
 
 ## Install
 
