@@ -21,7 +21,6 @@
 #
 
 require 'ronin/payloads/payload'
-require 'ronin/payloads/helpers/rpc'
 
 module Ronin
   module Payloads
@@ -52,8 +51,6 @@ module Ronin
       #
       def initialize(attributes={})
         super(attributes)
-
-        helper :rpc
       end
 
     end

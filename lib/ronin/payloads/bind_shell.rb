@@ -21,7 +21,6 @@
 #
 
 require 'ronin/payloads/payload'
-require 'ronin/payloads/helpers/bind_shell'
 
 module Ronin
   module Payloads
@@ -51,8 +50,6 @@ module Ronin
       #
       def initialize(attributes={})
         super(attributes)
-
-        helper :bind_shell
       end
 
     end
