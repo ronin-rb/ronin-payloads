@@ -22,10 +22,6 @@
 
 require 'ronin/payloads/exceptions/unknown_helper'
 require 'ronin/payloads/has_payload'
-require 'ronin/script'
-require 'ronin/behaviors/testable'
-require 'ronin/behaviors/buildable'
-require 'ronin/behaviors/deployable'
 require 'ronin/model/targets_arch'
 require 'ronin/model/targets_os'
 require 'ronin/extensions/kernel'
@@ -133,10 +129,6 @@ module Ronin
     #
     class Payload
 
-      include Script
-      include Behaviors::Testable
-      include Behaviors::Buildable
-      include Behaviors::Deployable
       include Model::TargetsArch
       include Model::TargetsOS
       include HasPayload
