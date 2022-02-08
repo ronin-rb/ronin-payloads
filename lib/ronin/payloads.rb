@@ -29,3 +29,13 @@ require 'ronin/payloads/web'
 require 'ronin/payloads/bind_shell'
 require 'ronin/payloads/rpc'
 require 'ronin/payloads/version'
+
+require 'ronin/core/module_registry'
+
+module Ronin
+  module Payloads
+    include Core::ModuleRegistry
+
+    module_load_path 'ronin/payloads'
+  end
+end
