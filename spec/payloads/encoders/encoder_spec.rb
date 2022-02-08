@@ -1,7 +1,7 @@
 require 'spec_helper'
-require 'ronin/encoders/encoder'
+require 'ronin/payloads/encoders/encoder'
 
-describe Encoders::Encoder do
+describe Payloads::Encoders::Encoder do
   subject { described_class.new(name: 'test') }
 
   let(:data) { 'some data' }

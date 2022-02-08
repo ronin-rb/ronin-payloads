@@ -1,9 +1,9 @@
 # encoding: US-ASCII
 
 require 'spec_helper'
-require 'ronin/encoders/xor'
+require 'ronin/payloads/encoders/xor'
 
-describe Encoders::XOR do
+describe Payloads::Encoders::XOR do
   before(:all) do
     @data = "\x00\x01\x90ABC123[]{}'"
   end
