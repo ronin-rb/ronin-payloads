@@ -22,3 +22,15 @@
 
 require 'ronin/encoders/encoder'
 require 'ronin/encoders/xor'
+
+require 'ronin/core/module_registry'
+
+module Ronin
+  module Payloads
+    module Encoders
+      include Ronin::Core::ModuleRegistry
+
+      module_load_path 'ronin/payloads/encoders'
+    end
+  end
+end
