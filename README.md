@@ -136,7 +136,7 @@ end
 
 ## Requirements
 
-* [Ruby] >= 2.7.0
+* [Ruby] >= 3.0.0
 * [ronin-post_ex] ~> 0.1
 * [ronin-core] ~> 0.1
 * [ronin-repos] ~> 0.1
