@@ -1,7 +1,5 @@
 source 'https://rubygems.org'
 
-RONIN_URI = 'https://github.com/ronin-rb'
-
 gemspec
 
 gem 'jruby-openssl',	'~> 0.7', platforms: :jruby
@@ -10,16 +8,16 @@ gem 'jruby-openssl',	'~> 0.7', platforms: :jruby
 #                          branch: 'main'
 
 # Ronin dependencies
-gem 'ronin-support',  '~> 1.0', git: "#{RONIN_URI}/ronin-support.git",
+gem 'ronin-support',  '~> 1.0', github: "ronin-rb/ronin-support",
                                 branch: '1.0.0'
 
-gem 'ronin-post_ex',  '~> 0.1', git: "#{RONIN_URI}/ronin-post_ex.git",
+gem 'ronin-post_ex',  '~> 0.1', github: "ronin-rb/ronin-post_ex",
                                 branch: 'main'
 
-gem 'ronin-core',     '~> 0.1', git: "#{RONIN_URI}/ronin-core.git",
+gem 'ronin-core',     '~> 0.1', github: "ronin-rb/ronin-core",
                                 branch: 'main'
 
-gem 'ronin-repos',    '~> 0.1', git: "#{RONIN_URI}/ronin-repos.git",
+gem 'ronin-repos',    '~> 0.1', github: "ronin-rb/ronin-repos",
                                 branch: 'main'
 
 group :development do
