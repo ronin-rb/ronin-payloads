@@ -1,28 +1,34 @@
 require 'spec_helper'
 require 'ronin/payloads/encoders/encoder'
 
-describe Payloads::Encoders::Encoder do
-  subject { described_class.new(name: 'test') }
+describe Ronin::Payloads::Encoders::Encoder do
+  it "must include Ronin::Core::Metadata::ModuleName" do
+    expect(described_class).to include(Ronin::Core::Metadata::ModuleName)
+  end
 
-  let(:data) { 'some data' }
+  it "must include Ronin::Core::Metadata::Summary" do
+    expect(described_class).to include(Ronin::Core::Metadata::Summary)
+  end
 
-  it "should require a name" do
-    encoder = described_class.new
-    expect(encoder).not_to be_valid
+  it "must include Ronin::Core::Metadata::Description" do
+    expect(described_class).to include(Ronin::Core::Metadata::Description)
+  end
 
-    encoder = described_class.new(:name => 'encoder')
-    expect(encoder).to be_valid
+  it "must include Ronin::Core::Metadata::References" do
+    expect(described_class).to include(Ronin::Core::Metadata::References)
+  end
+
+  it "must include Ronin::Core::Params::Mixin" do
+    expect(described_class).to include(Ronin::Core::Params::Mixin)
   end
 
   describe "#encode" do
-    it { should respond_to(:encode) }
+    let(:data) { "data" }
 
-    it "should return the data to be encoded by default" do
-      expect(subject.encode(data)).to eq(data)
+    it "must raise NotImplementedError by default" do
+      expect {
+        subject.encode(data)
+      }.to raise_error(NotImplementedError,"#{described_class}#encode was not implemented")
     end
-  end
-
-  it "should have a custom inspect method" do
-    expect(subject.inspect).to eq('#<Ronin::Encoders::Encoder: test>')
   end
 end

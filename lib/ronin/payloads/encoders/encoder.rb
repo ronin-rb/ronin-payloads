@@ -20,21 +20,43 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/model/targets_arch'
-require 'ronin/model/targets_os'
-require 'ronin/script'
+require 'ronin/core/metadata/module_name'
+require 'ronin/core/metadata/authors'
+require 'ronin/core/metadata/summary'
+require 'ronin/core/metadata/description'
+require 'ronin/core/metadata/references'
+require 'ronin/core/params/mixin'
 
 module Ronin
   module Payloads
     module Encoders
+      #
+      # Base-class for all other payload encoders.
+      #
+      # ## Example
+      #
+      #     module Ronin
+      #       module Payloads
+      #         module Encoders
+      #           class MyEncoder < Encoder
+      #             
+      #           end
+      #         end
+      #       end
+      #     end
+      #
+      # @since 1.0.0
+      #
+      # @api public
+      #
       class Encoder
 
-        include Script
-        include Model::TargetsArch
-        include Model::TargetsOS
-
-        # Primary key of the payload
-        property :id, Serial
+        include Core::Metadata::ModuleName
+        include Core::Metadata::Authors
+        include Core::Metadata::Summary
+        include Core::Metadata::Description
+        include Core::Metadata::References
+        include Core::Params::Mixin
 
         #
         # Default method which will encode data.
@@ -45,37 +67,10 @@ module Ronin
         # @return [String]
         #   The encoded data.
         #
-        # @since 1.0.0
+        # @abstract
         #
         def encode(data)
-          data
-        end
-
-        #
-        # Converts the encoder to a String.
-        #
-        # @return [String]
-        #   The name of the payload encoder.
-        #
-        # @since 1.0.0
-        #
-        def to_s
-          self.name.to_s
-        end
-
-        #
-        # Inspects the contents of the payload encoder.
-        #
-        # @return [String]
-        #   The inspected encoder.
-        #
-        # @since 1.0.0
-        #
-        def inspect
-          str = "#{self.class}: #{self}"
-          str << " #{self.params.inspect}" unless self.params.empty?
-
-          return "#<#{str}>"
+          raise(NotImplementedError,"#{self.class}##{__method__} was not implemented")
         end
 
       end
