@@ -35,10 +35,17 @@ module Ronin
       #
       # ## Example
       #
+      #     # encoders/my_encoder.rb
       #     module Ronin
       #       module Payloads
       #         module Encoders
       #           class MyEncoder < Encoder
+      #
+      #             register 'my_encoder'
+      #
+      #             def encode(data)
+      #               return ...
+      #             end
       #             
       #           end
       #         end
@@ -59,6 +66,22 @@ module Ronin
         include Core::Params::Mixin
 
         #
+        # Registers the encoder with {Encoders}.
+        #
+        # @param [String] name
+        #   The module name for the encoder.
+        #
+        # @example
+        #   register 'js-base64'
+        #
+        # @note The given name _must_ match the file name.
+        #
+        def self.register(name)
+          module_name(name)
+          Encoders.register_module(name,self)
+        end
+
+        #
         # Default method which will encode data.
         #
         # @param [String] data
@@ -77,3 +100,5 @@ module Ronin
     end
   end
 end
+
+require 'ronin/payloads/encoders'
