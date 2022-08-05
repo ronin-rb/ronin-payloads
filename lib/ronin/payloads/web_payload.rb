@@ -32,7 +32,7 @@ module Ronin
     # A {Payload} class that represents payloads which are used to
     # compromise Web services.
     #
-    class Web < Payload
+    class WebPayload < Payload
 
       include Network::Mixins::HTTP
 
