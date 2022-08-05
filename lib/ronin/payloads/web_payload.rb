@@ -21,7 +21,6 @@
 #
 
 require 'ronin/payloads/payload'
-require 'ronin/network/mixins/http'
 require 'ronin/formatting/http'
 
 require 'uri/query_params'
@@ -33,8 +32,6 @@ module Ronin
     # compromise Web services.
     #
     class WebPayload < Payload
-
-      include Network::Mixins::HTTP
 
     end
   end
