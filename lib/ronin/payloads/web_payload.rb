@@ -21,7 +21,7 @@
 #
 
 require 'ronin/payloads/payload'
-require 'ronin/formatting/http'
+require 'ronin/format/http'
 
 require 'uri/query_params'
 
