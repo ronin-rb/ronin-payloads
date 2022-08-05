@@ -20,17 +20,18 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/encoders/encoder'
-require 'ronin/encoders/xor'
-
+require 'ronin/payloads/encoders/encoder'
 require 'ronin/core/module_registry'
+require 'ronin/repos/modules_dir'
 
 module Ronin
   module Payloads
     module Encoders
-      include Ronin::Core::ModuleRegistry
+      include Core::ModuleRegistry
+      include Repos::ModulesDir
 
-      module_load_path 'ronin/payloads/encoders'
+      modules_dir 'ronin/payloads/encoders/modules'
+      repo_modules_dir 'encoders'
     end
   end
 end
