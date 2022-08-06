@@ -20,5 +20,15 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/payloads/exceptions/unknown_helper'
-require 'ronin/payloads/exceptions/not_implemented'
+module Ronin
+  module Payloads
+    class PayloadError < RuntimeError
+    end
+
+    class IncompatibleEncoder < PayloadError
+    end
+
+    class PayloadNotBuilt < PayloadError
+    end
+  end
+end
