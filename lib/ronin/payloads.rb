@@ -20,22 +20,10 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
+require 'ronin/payloads/registry'
 require 'ronin/payloads/payload'
 require 'ronin/payloads/binary_payload'
 require 'ronin/payloads/asm_payload'
 require 'ronin/payloads/shellcode'
-require 'ronin/payloads/nop'
-require 'ronin/payloads/web'
-require 'ronin/payloads/bind_shell'
-require 'ronin/payloads/rpc'
+require 'ronin/payloads/web_payload'
 require 'ronin/payloads/version'
-
-require 'ronin/core/module_registry'
-
-module Ronin
-  module Payloads
-    include Core::ModuleRegistry
-
-    module_load_path 'ronin/payloads'
-  end
-end

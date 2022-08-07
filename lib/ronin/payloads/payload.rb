@@ -20,10 +20,18 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/payloads/exceptions/unknown_helper'
-require 'ronin/model/targets_arch'
-require 'ronin/model/targets_os'
-require 'ronin/extensions/kernel'
+require 'ronin/payloads/registry'
+require 'ronin/payloads/exceptions'
+require 'ronin/payloads/encoders/pipeline'
+
+require 'ronin/core/module_registry'
+require 'ronin/repos/modules_dir'
+require 'ronin/core/metadata/module_name'
+require 'ronin/core/metadata/authors'
+require 'ronin/core/metadata/summary'
+require 'ronin/core/metadata/description'
+require 'ronin/core/metadata/references'
+require 'ronin/core/params/mixin'
 
 require 'set'
 
@@ -36,146 +44,249 @@ module Ronin
     # payload. Payloads may also be coupled with exploits, or chained
     # together with other payloads.
     #
-    # # Metadata
+    # ## Payload API Methods
     #
-    # A {Payload} is described via metadata, which is cached into the
-    # Ronin Database. The cacheable metadata must be defined within a
-    # `cache` block, so that the metadata is set only before the payload
-    # is cached:
+    # * {Payload#initialize initialize} - Initializes a new instance of the
+    #   payload.
+    # * {Payload#build build} - contains the logic to build the payload. The
+    #   built payload must be stored in the `@payload` instance variable.
     #
-    #     cache do
-    #       self.name = 'BindShell payload'
-    #       self.version = '0.1'
-    #       self.description = %{
-    #         An assembly Bind Shell payload, which binds a shell to a
-    #         given port.
-    #       }
+    # ## Example
     #
-    #       # ...
+    #     module Ronin
+    #       module Payloads
+    #         class MyPayload < Payload
+    #     
+    #           register 'my_payload'
+    #     
+    #           summary 'My first payload'
+    #           description <<~EOS
+    #             This is my first payload.
+    #             Bla bla bla bla.
+    #           EOS
+    #     
+    #           author 'John Smith'
+    #           author 'John Smith', email: '...', twitter: '...'
+    #     
+    #           param :foo, desc: 'Simple param'
+    #           param :bar, Integer, desc: 'A param iwth a typo'
+    #     
+    #           def build
+    #             @payload = "..."
+    #           end
+    #     
+    #         end
+    #       end
     #     end
-    #
-    # ## License
-    #
-    # A {Payload} may associate with a specific software license using the
-    # `licensed_under` method:
-    #
-    #     cache do
-    #       # ...
-    #
-    #       licensed_under :cc_sa_by
-    #     end
-    #
-    # ## Authors
-    #
-    # A {Payload} may have one or more authors which contributed to the
-    # payload, using the `author` method:
-    #
-    #     cache do
-    #       # ...
-    #
-    #       author name: 'evoltech', organization: 'HackBloc'
-    #       author name: 'postmodern', organization: 'SophSec'
-    #     end
-    #
-    # ## Targeting
-    #
-    # A {Payload} may target a specific Architecture or Operating System.
-    # Targetting information can be set using the `arch` and `os!`
-    # methods.
-    #
-    #     cache do
-    #       # ...
-    #
-    #       arch! :i686
-    #       os! name: 'Linux'
-    #     end
-    #
-    # # Methods
-    #
-    # The functionality of a {Payload} is defined by three main methods:
-    #
-    # * `build` - Handles building the payload.
-    # * `test` - Optional method which handles testing a built payload.
-    # * `deploy` - Handles deploying a built and verified payload against a
-    #   host.
-    # * `evacuate` - Handles cleaning up after a deployed payload.
-    #
-    # The `build`, `test`, `deploy`, `evacuate` methods can be invoked
-    # individually using the `build!`, `test!`, `deploy!`, `evacuate!`
-    # methods, respectively.
-    #
-    # # Exploit/Payload Coupling
-    # 
-    # When an exploit is coupled with a {Payload}, the {#exploit} method 
-    # will contain the coupled exploit. When the payload is built
-    # along with the exploit, it will receive the same options given to
-    # the exploit.
-    #
-    # # Payload Chaining
-    #
-    # All {Payload} classes include the {HasPayload} module, which allows
-    # another payload to be chained together with a {Payload}.
-    #
-    # To chain a cached payload, from the Ronin Database, simply use the
-    # `use_payload!` method:
-    #
-    #     payload.use_payload!(:name.like '%Bind Shell%')
-    #
-    # In order to chain a payload, loaded directly from a file, call the 
-    # `use_payload_from!` method:
-    #
-    #     payload.use_payload_from!('path/to/my_payload.rb')
     #
     class Payload
 
-      include Model::TargetsArch
-      include Model::TargetsOS
+      include Core::ModuleRegistry
+      include Repos::ModulesDir
+      include Core::Metadata::ModuleName
+      include Core::Metadata::Authors
+      include Core::Metadata::Summary
+      include Core::Metadata::Description
+      include Core::Metadata::References
+      include Core::Params::Mixin
 
-      # Primary key of the payload
-      property :id, Serial
-
-      # The exploit to deploy with
-      attr_accessor :exploit
-
-      # The raw payload
-      attr_accessor :raw_payload
+      modules_dir 'modules'
+      repo_modules_dir 'payloads'
 
       #
-      # Creates a new Payload object.
+      # Registers the payload with {Payloads}.
       #
-      # @param [Array] attributes
-      #   Additional attributes to initialize the payload with.
+      # @param [String] name
+      #   The module name for the payload.
       #
-      def initialize(attributes={})
-        super(attributes)
+      # @example
+      #   register 'shellcode/x86_64/linux/binsh'
+      #
+      # @note The given name _must_ match the file name.
+      #
+      def self.register(name)
+        module_name(name)
+        Payloads.register_module(name,self)
+      end
+
+      #
+      # Gets or sets the payload encoder base class that is compatible with the
+      # payload.
+      #
+      # @param [Class<Encoders::Encoder>, nil] new_encoder_class
+      #   The optional new payload encoder base class to set.
+      #
+      # @return [Class<Encoders::Encoder>]
+      #   The exploit's compatible payload encoder base class.
+      #
+      def self.encoder_class(new_encoder_class=nil)
+        if new_encoder_class
+          @encoder_class = new_encoder_class
+        else
+          @encoder_class ||= if superclass < ClassMethods
+                               superclass.encoder_class
+                             else
+                               Encoders::Encoder
+                             end
+        end
+      end
+
+      # The built payload
+      attr_reader :payload
+
+      # The payload's encoder pipeline.
+      #
+      # @return [Encoders::Pipeline]
+      attr_reader :encoders
+
+      #
+      # Initializes the payload.
+      #
+      # @param [Array<Encoders::Encoder>, nil] encoders
+      #   The optional list of payload encoders to use.
+      #
+      # @raise [IncompatibleEncoder]
+      #   One of the encoders in `encoders:` was not compatible with the
+      #   payload's {encoder_class}.
+      #
+      def initialize(encoders: nil, **kwargs)
+        super(**kwargs)
+
+        @encoders = Encoders::Pipeline.new()
+
+        if encoders
+          encoders.each do |encoder|
+            unless encoder.kind_of?(self.class.encoder_class)
+              raise(IncompatibleEncoder,"encoder for payload #{self.class} was not of type #{self.class.encoder_class}: #{encoder.inspect}")
+            end
+
+            @encoders << encoder
+          end
+        end
       end
 
       #
       # Builds the payload.
       #
-      # @param [Hash] options
-      #   Additional options to build the payload with and use as
-      #   parameters.
+      # @abstract
       #
-      # @yield [payload]
-      #   If a block is given, it will be yielded the result of the
+      def build
+      end
+
       #
-      # @yieldparam [Payload] payload
+      # Determines whether the payload was built.
+      #
+      # @return [Boolean]
+      #
+      def built?
+        !(@payload.nil? || @payload.empty?)
+      end
+
+      #
+      # Builds the payload.
+      #
+      # @return [String]
       #   The built payload.
       #
-      # @note
-      #   Sets the `@raw_payload` instance variable to an empty String,
-      #   before building the payload.
+      # @note This method will return a new String each time it is called.
       #
-      def build!(options={},&block)
-        @raw_payload = ''
+      # @see #build
+      #
+      def build_payload
+        @payload = nil
+        build
+        return @payload
+      end
 
-        if @payload.respond_to?(:build!)
-          @payload.build!(options)
+      #
+      # The built payload String.
+      #
+      # @return [String]
+      #   The built payload String.
+      #
+      # @note This method will lazy-build the payload if unbuilt.
+      #
+      def built_payload
+        unless built?
+          build
+
+          unless built?
+            raise(PayloadNotBound,"the payload was not built for some reason: #{self.inspect}")
+          end
         end
 
-        super(options,&block)
+        return @payload
       end
+
+      #
+      # Forcibly rebuilds the payload.
+      #
+      # @return [String]
+      #   The re-built payload String.
+      #
+      def rebuild_payload
+        @payload = nil
+        built_payload
+      end
+
+      #
+      # Encodes the built payload.
+      #
+      # @return [String]
+      #   The encoded payload String.
+      #
+      # @note
+      #   This method will return a new, potentially different, String each
+      #   time.
+      #
+      def encode_payload
+        @encoders.encode(built_payload)
+      end
+
+      #
+      # The encoded payload.
+      #
+      # @return [String]
+      #   The encoded payload String.
+      #
+      # @note
+      #   This method will lazy build then lazy encode the payload and save the
+      #   result.
+      #
+      # @see #encode_payload
+      #
+      def encoded_payload
+        @encoded_payload ||= encode_payload
+      end
+
+      #
+      # Forcibly re-encodes the payload.
+      #
+      # @return [String]
+      #   The re-encoded payload String.
+      #
+      # @note
+      #   This will re-encode the built payload and update {#encoded_payload}.
+      #
+      # @see #encode_payload
+      #
+      def reencode_payload
+        @encoded_payload = encode_payload
+      end
+
+      #
+      # Converts the payload into a String.
+      #
+      # @return [String]
+      #   The built and encoded payload.
+      #
+      # @see #encoded_payload
+      #
+      def to_s
+        encoded_payload
+      end
+
+      alias to_str to_s
 
     end
   end

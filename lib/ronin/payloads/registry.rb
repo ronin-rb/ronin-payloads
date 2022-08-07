@@ -20,19 +20,15 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/payloads/payload'
-require 'ronin/support/format/http'
-
-require 'uri/query_params'
+require 'ronin/core/module_registry'
+require 'ronin/repos/modules_dir'
 
 module Ronin
   module Payloads
-    #
-    # A {Payload} class that represents payloads which are used to
-    # compromise Web services.
-    #
-    class WebPayload < Payload
+    include Core::ModuleRegistry
+    include Repos::ModulesDir
 
-    end
+    modules_dir 'ronin/payloads/modules'
+    repo_modules_dir 'payloads'
   end
 end

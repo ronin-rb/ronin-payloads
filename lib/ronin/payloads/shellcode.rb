@@ -31,37 +31,39 @@ module Ronin
     # ## Example
     #
     #     #!/usr/bin/env ronin-payload -f
-    #     
     #     require 'ronin/payloads/shellcode'
     #     
-    #     Ronin::Payloads::Shellcode.object do
+    #     module Ronin
+    #       module Payloads
+    #         class LinuxX86BinSh < Ronin::Payloads::Shellcode
     #     
-    #       cache do
-    #         self.name        = 'local_shell'
-    #         self.version     = '0.5'
-    #         self.description = %{
-    #           Shellcode that spawns a local /bin/sh shell
-    #         }
+    #           register 'shellcode/linux/x86/bin_sh'
+    #
+    #           summary 'x86 Linux /bin/sh shellcode'
+    #           description <<~EOS
+    #             Shellcode that spawns a local /bin/sh shell
+    #           EOS
     #     
-    #         targets_arch :x86
-    #         targets_os   'Linux'
-    #       end
+    #           arch :x86
+    #           os :linux
     #     
-    #       build do
-    #         shellcode do
-    #           xor   eax, eax
-    #           push  eax
-    #           push  0x68732f2f
-    #           push  0x6e69622f
-    #           mov   esp, ebx
-    #           push  eax
-    #           push  ebx
-    #           mov   esp, ecx
-    #           xor   edx, edx
-    #           int   0xb
+    #           def build
+    #             shellcode do
+    #               xor   eax, eax
+    #               push  eax
+    #               push  0x68732f2f
+    #               push  0x6e69622f
+    #               mov   esp, ebx
+    #               push  eax
+    #               push  ebx
+    #               mov   esp, ecx
+    #               xor   edx, edx
+    #               int   0xb
+    #             end
+    #           end
+    #
     #         end
     #       end
-    #     
     #     end
     #
     class Shellcode < ASMPayload
@@ -83,9 +85,7 @@ module Ronin
       # @see #assemble
       #
       def shellcode(define={},&block)
-        options = {format: :bin, define: define}
-
-        @raw_payload = assemble(options,&block)
+        @payload = assemble(format: :bin, define: define, &block)
       end
 
     end
