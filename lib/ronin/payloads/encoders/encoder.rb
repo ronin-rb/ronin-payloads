@@ -20,6 +20,7 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
+require 'ronin/payloads/encoders/registry'
 require 'ronin/core/metadata/module_name'
 require 'ronin/core/metadata/authors'
 require 'ronin/core/metadata/summary'
@@ -100,5 +101,3 @@ module Ronin
     end
   end
 end
-
-require 'ronin/payloads/encoders'
