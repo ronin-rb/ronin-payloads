@@ -138,6 +138,7 @@ end
 
 * [Ruby] >= 3.0.0
 * [ronin-support] ~> 1.0
+* [ronin-asm] ~> 0.1
 * [ronin-post_ex] ~> 0.1
 * [ronin-core] ~> 0.1
 * [ronin-repos] ~> 0.1
@@ -192,6 +193,7 @@ along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 
 [Ruby]: https://www.ruby-lang.org
 [ronin-support]: https://github.com/ronin-rb/ronin-support#readme
+[ronin-asm]: https://github.com/ronin-rb/ronin-asm#readme
 [ronin-core]: https://github.com/ronin-rb/ronin-core#readme
 [ronin-repos]: https://github.com/ronin-rb/ronin-repos#readme
 [ronin-post_ex]: https://github.com/ronin-rb/ronin-post_ex#readme
