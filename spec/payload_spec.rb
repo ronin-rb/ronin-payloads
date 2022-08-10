@@ -41,6 +41,30 @@ describe Ronin::Payloads::Payload do
     end
   end
 
+  describe "#prelaunch" do
+    subject { described_class.new }
+
+    it "must return nil by default" do
+      expect(subject.prelaunch).to be(nil)
+    end
+  end
+
+  describe "#launch" do
+    subject { described_class.new }
+
+    it "must return nil by default" do
+      expect(subject.launch).to be(nil)
+    end
+  end
+
+  describe "#cleanup" do
+    subject { described_class.new }
+
+    it "must return nil by default" do
+      expect(subject.cleanup).to be(nil)
+    end
+  end
+
   module TestPayload
     class TestPayload < Ronin::Payloads::Payload
 

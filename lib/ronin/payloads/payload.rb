@@ -275,6 +275,30 @@ module Ronin
       end
 
       #
+      # Place holder method that s called before the payload is launched.
+      #
+      # @abstract
+      #
+      def prelaunch
+      end
+
+      #
+      # Place holder method that launches the payload.
+      #
+      # @abstract
+      #
+      def launch
+      end
+
+      #
+      # Place holder method that cleans up after the payload has deployed.
+      #
+      # @abstract
+      #
+      def cleanup
+      end
+
+      #
       # Converts the payload into a String.
       #
       # @return [String]
