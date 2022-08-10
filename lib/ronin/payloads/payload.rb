@@ -24,8 +24,6 @@ require 'ronin/payloads/registry'
 require 'ronin/payloads/exceptions'
 require 'ronin/payloads/encoders/pipeline'
 
-require 'ronin/core/module_registry'
-require 'ronin/repos/modules_dir'
 require 'ronin/core/metadata/module_name'
 require 'ronin/core/metadata/authors'
 require 'ronin/core/metadata/summary'
@@ -81,17 +79,12 @@ module Ronin
     #
     class Payload
 
-      include Core::ModuleRegistry
-      include Repos::ModulesDir
       include Core::Metadata::ModuleName
       include Core::Metadata::Authors
       include Core::Metadata::Summary
       include Core::Metadata::Description
       include Core::Metadata::References
       include Core::Params::Mixin
-
-      modules_dir 'modules'
-      repo_modules_dir 'payloads'
 
       #
       # Registers the payload with {Payloads}.
