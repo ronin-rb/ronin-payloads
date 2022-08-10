@@ -49,11 +49,11 @@ describe Ronin::Payloads::Payload do
     end
   end
 
-  describe "#launch" do
+  describe "#launched" do
     subject { described_class.new }
 
     it "must return nil by default" do
-      expect(subject.launch).to be(nil)
+      expect(subject.launched).to be(nil)
     end
   end
 

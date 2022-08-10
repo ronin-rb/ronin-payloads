@@ -283,11 +283,11 @@ module Ronin
       end
 
       #
-      # Place holder method that launches the payload.
+      # Place holder method that for when the payload successfully launches.
       #
       # @abstract
       #
-      def launch
+      def launched
       end
 
       #
