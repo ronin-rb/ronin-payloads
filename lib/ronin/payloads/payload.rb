@@ -99,7 +99,7 @@ module Ronin
       #
       def self.register(name)
         module_name(name)
-        Payloads.register_module(name,self)
+        Payloads.register(name,self)
       end
 
       #

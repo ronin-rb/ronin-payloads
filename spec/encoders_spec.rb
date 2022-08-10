@@ -2,19 +2,19 @@ require 'spec_helper'
 require 'ronin/payloads/encoders'
 
 describe Ronin::Payloads::Encoders do
-  it "must include Ronin::Core::ModuleRegistry" do
-    expect(subject).to include(Ronin::Core::ModuleRegistry)
+  it "must include Ronin::Core::ClassRegistry" do
+    expect(subject).to include(Ronin::Core::ClassRegistry)
   end
 
-  it "must include Ronin::Repos::ModuleDir" do
-    expect(subject).to include(Ronin::Repos::ModulesDir)
+  it "must include Ronin::Repos::ClassDir" do
+    expect(subject).to include(Ronin::Repos::ClassDir)
   end
 
-  it "must set .modules_dir to 'ronin/payloads/encoders/modules'" do
-    expect(subject.modules_dir).to eq('ronin/payloads/encoders/modules')
+  it "must set .class_dir to 'ronin/payloads/encoders/classes'" do
+    expect(subject.class_dir).to eq('ronin/payloads/encoders/classes')
   end
 
-  it "must set .repo_modules_dir to 'encoders'" do
-    expect(subject.repo_modules_dir).to eq('encoders')
+  it "must set .repo_class_dir to 'encoders'" do
+    expect(subject.repo_class_dir).to eq('encoders')
   end
 end

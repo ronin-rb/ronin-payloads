@@ -38,7 +38,7 @@ describe Ronin::Payloads::Encoders::Encoder do
     end
 
     it "must register the Encoder class with Encoders.module_registry" do
-      expect(Ronin::Payloads::Encoders.module_registry['test_encoder']).to be(subject)
+      expect(Ronin::Payloads::Encoders.registry['test_encoder']).to be(subject)
     end
   end
 

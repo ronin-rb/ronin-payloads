@@ -20,15 +20,15 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/core/module_registry'
-require 'ronin/repos/modules_dir'
+require 'ronin/core/class_registry'
+require 'ronin/repos/class_dir'
 
 module Ronin
   module Payloads
-    include Core::ModuleRegistry
-    include Repos::ModulesDir
+    include Core::ClassRegistry
+    include Repos::ClassDir
 
-    modules_dir 'ronin/payloads/modules'
-    repo_modules_dir 'payloads'
+    class_dir 'ronin/payloads/classes'
+    repo_class_dir 'payloads'
   end
 end

@@ -20,17 +20,17 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/core/module_registry'
-require 'ronin/repos/modules_dir'
+require 'ronin/core/class_registry'
+require 'ronin/repos/class_dir'
 
 module Ronin
   module Payloads
     module Encoders
-      include Core::ModuleRegistry
-      include Repos::ModulesDir
+      include Core::ClassRegistry
+      include Repos::ClassDir
 
-      modules_dir 'ronin/payloads/encoders/modules'
-      repo_modules_dir 'encoders'
+      class_dir 'ronin/payloads/encoders/classes'
+      repo_class_dir 'encoders'
     end
   end
 end

@@ -79,7 +79,7 @@ module Ronin
         #
         def self.register(name)
           module_name(name)
-          Encoders.register_module(name,self)
+          Encoders.register(name,self)
         end
 
         #
