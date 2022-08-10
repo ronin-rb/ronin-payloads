@@ -88,22 +88,22 @@ module Ronin
         end
 
         #
-        # Fetches an encoder at the given index or by it's module name.
+        # Fetches an encoder at the given index or by the encoder's `id`.
         #
-        # @param [Integer, String] name_or_index
-        #   The index or the encoder's module name to look up.
+        # @param [Integer, String] id_or_index
+        #   The index or the encoder's `id` to look up.
         #
         # @return [Encoder, nil]
-        #   The encoder at the given index or with the matching module name.
+        #   The encoder at the given index or with the matching `id`.
         #
-        def [](name_or_index)
-          case name_or_index
+        def [](id_or_index)
+          case id_or_index
           when String
-            name = name_or_index
+            id = id_or_index
 
-            @encoders.find { |encoder| encoder.module_name == name }
+            @encoders.find { |encoder| encoder.class_id == id }
           else
-            index = name_or_index
+            index = id_or_index
 
             @encoders[index]
           end

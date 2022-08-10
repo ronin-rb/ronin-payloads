@@ -21,7 +21,7 @@
 #
 
 require 'ronin/payloads/encoders/registry'
-require 'ronin/core/metadata/module_name'
+require 'ronin/core/metadata/id'
 require 'ronin/core/metadata/authors'
 require 'ronin/core/metadata/summary'
 require 'ronin/core/metadata/description'
@@ -59,7 +59,7 @@ module Ronin
       #
       class Encoder
 
-        include Core::Metadata::ModuleName
+        include Core::Metadata::ID
         include Core::Metadata::Authors
         include Core::Metadata::Summary
         include Core::Metadata::Description
@@ -69,17 +69,17 @@ module Ronin
         #
         # Registers the encoder with {Encoders}.
         #
-        # @param [String] name
-        #   The module name for the encoder.
+        # @param [String] encoder_id
+        #   The encoder's `id`.
         #
         # @example
-        #   register 'js-base64'
+        #   register 'js/eval_base64'
         #
-        # @note The given name _must_ match the file name.
+        # @note The given `id` _must_ match the file name.
         #
-        def self.register(name)
-          module_name(name)
-          Encoders.register(name,self)
+        def self.register(encoder_id)
+          id(encoder_id)
+          Encoders.register(encoder_id,self)
         end
 
         #

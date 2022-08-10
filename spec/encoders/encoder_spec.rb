@@ -2,8 +2,8 @@ require 'spec_helper'
 require 'ronin/payloads/encoders/encoder'
 
 describe Ronin::Payloads::Encoders::Encoder do
-  it "must include Ronin::Core::Metadata::ModuleName" do
-    expect(described_class).to include(Ronin::Core::Metadata::ModuleName)
+  it "must include Ronin::Core::Metadata::ID" do
+    expect(described_class).to include(Ronin::Core::Metadata::ID)
   end
 
   it "must include Ronin::Core::Metadata::Summary" do
@@ -33,12 +33,12 @@ describe Ronin::Payloads::Encoders::Encoder do
   describe ".register" do
     subject { TestEncoders::TestEncoder }
 
-    it "must set .module_name" do
-      expect(subject.module_name).to eq('test_encoder')
-    end
-
     it "must register the Encoder class with Encoders.module_registry" do
       expect(Ronin::Payloads::Encoders.registry['test_encoder']).to be(subject)
+    end
+
+    it "must also set .id" do
+      expect(subject.id).to eq('test_encoder')
     end
   end
 

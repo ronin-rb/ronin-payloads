@@ -3,8 +3,8 @@ require 'ronin/payloads/payload'
 require 'ronin/payloads/encoders/encoder'
 
 describe Ronin::Payloads::Payload do
-  it "must include Ronin::Core::Metadata::ModuleName" do
-    expect(described_class).to include(Ronin::Core::Metadata::ModuleName)
+  it "must include Ronin::Core::Metadata::ID" do
+    expect(described_class).to include(Ronin::Core::Metadata::ID)
   end
 
   it "must include Ronin::Core::Metadata::Authors" do
@@ -85,6 +85,10 @@ describe Ronin::Payloads::Payload do
 
     it "must register the payload class into Payloads.module_registry" do
       expect(Ronin::Payloads.registry['test_payload']).to eq(test_class)
+    end
+
+    it "must also set .id" do
+      expect(subject.id).to eq('test_payload')
     end
   end
 

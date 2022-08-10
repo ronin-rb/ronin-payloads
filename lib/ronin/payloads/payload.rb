@@ -24,7 +24,7 @@ require 'ronin/payloads/registry'
 require 'ronin/payloads/exceptions'
 require 'ronin/payloads/encoders/pipeline'
 
-require 'ronin/core/metadata/module_name'
+require 'ronin/core/metadata/id'
 require 'ronin/core/metadata/authors'
 require 'ronin/core/metadata/summary'
 require 'ronin/core/metadata/description'
@@ -79,7 +79,7 @@ module Ronin
     #
     class Payload
 
-      include Core::Metadata::ModuleName
+      include Core::Metadata::ID
       include Core::Metadata::Authors
       include Core::Metadata::Summary
       include Core::Metadata::Description
@@ -89,17 +89,17 @@ module Ronin
       #
       # Registers the payload with {Payloads}.
       #
-      # @param [String] name
-      #   The module name for the payload.
+      # @param [String] payload_id
+      #   The payload's ID.
       #
       # @example
       #   register 'shellcode/x86_64/linux/binsh'
       #
-      # @note The given name _must_ match the file name.
+      # @note The given `id` _must_ match the file name.
       #
-      def self.register(name)
-        module_name(name)
-        Payloads.register(name,self)
+      def self.register(payload_id)
+        id(payload_id)
+        Payloads.register(payload_id,self)
       end
 
       #

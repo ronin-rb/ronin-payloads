@@ -6,7 +6,7 @@ describe Ronin::Payloads::Encoders::Pipeline do
   module TestEncoderPipeline
     class EncoderA < Ronin::Payloads::Encoders::Encoder
 
-      module_name 'encoder_a'
+      id 'encoder_a'
 
       def encode(data)
         "AAA#{data}"
@@ -16,7 +16,7 @@ describe Ronin::Payloads::Encoders::Pipeline do
 
     class EncoderB < Ronin::Payloads::Encoders::Encoder
 
-      module_name 'encoder_b'
+      id 'encoder_b'
 
       def encode(data)
         "#{data}BBB"
@@ -26,7 +26,7 @@ describe Ronin::Payloads::Encoders::Pipeline do
 
     class BadEncoder < Ronin::Payloads::Encoders::Encoder
 
-      module_name 'bad_encoder'
+      id 'bad_encoder'
 
       def encode(data)
       end
@@ -104,12 +104,12 @@ describe Ronin::Payloads::Encoders::Pipeline do
     end
 
     context "when given a String" do
-      it "must return the encoder with the matching module_name" do
-        expect(subject['encoder_a'].module_name).to eq('encoder_a')
-        expect(subject['encoder_b'].module_name).to eq('encoder_b')
+      it "must return the encoder with the matching id" do
+        expect(subject['encoder_a'].class_id).to eq('encoder_a')
+        expect(subject['encoder_b'].class_id).to eq('encoder_b')
       end
 
-      context "but there is no encoder with the matching module_name" do
+      context "but there is no encoder with the matching id" do
         it "must return nil" do
           expect(subject['foo']).to be(nil)
         end
