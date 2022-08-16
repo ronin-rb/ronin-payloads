@@ -41,22 +41,6 @@ describe Ronin::Payloads::Payload do
     end
   end
 
-  describe "#prelaunch" do
-    subject { described_class.new }
-
-    it "must return nil by default" do
-      expect(subject.prelaunch).to be(nil)
-    end
-  end
-
-  describe "#launched" do
-    subject { described_class.new }
-
-    it "must return nil by default" do
-      expect(subject.launched).to be(nil)
-    end
-  end
-
   describe "#cleanup" do
     subject { described_class.new }
 
@@ -108,9 +92,22 @@ describe Ronin::Payloads::Payload do
     end
   end
 
-  describe "#build_payload" do
-    it "must return the built payload" do
-      expect(subject.build_payload).to eq("the payload")
+  describe "#perform_build" do
+    subject { described_class.new }
+
+    it "must call #build and then check #built?" do
+      expect(subject).to receive(:build)
+      expect(subject).to receive(:built?).and_return(true)
+
+      subject.perform_build
+    end
+
+    context "when the #build method did not set @payload" do
+      it do
+        expect {
+          subject.perform_build
+        }.to raise_error(Ronin::Payloads::PayloadNotBuilt,/^the payload was not built for some reason: /)
+      end
     end
   end
 
@@ -192,6 +189,34 @@ describe Ronin::Payloads::Payload do
 
       expect(subject.encoded_payload).to eq(previously_encoded_payload)
       expect(subject.encoded_payload).to_not be(previously_encoded_payload)
+    end
+  end
+
+  describe "#perform_prelaunch" do
+    subject { described_class.new }
+
+    it "must call #prelaunch" do
+      expect(subject).to receive(:prelaunch)
+
+      subject.perform_prelaunch
+    end
+  end
+
+  describe "#perform_cleanup" do
+    subject { described_class.new }
+
+    it "must call #cleanup" do
+      expect(subject).to receive(:cleanup)
+
+      subject.perform_cleanup
+    end
+
+    it "must set @payload to nil" do
+      subject.instance_variable_set('@payload',"foo")
+
+      subject.perform_cleanup
+
+      expect(subject.instance_variable_get('@payload')).to be(nil)
     end
   end
 

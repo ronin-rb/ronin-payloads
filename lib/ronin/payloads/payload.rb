@@ -48,6 +48,10 @@ module Ronin
     #   payload.
     # * {Payload#build build} - contains the logic to build the payload. The
     #   built payload must be stored in the `@payload` instance variable.
+    # * {Payload#prelaunch prelaunch} - contains additional logic that runs
+    #   before the payload has been launched by the exploit.
+    # * {Payload#cleanup cleanup} - contains additional logic to cleanup or
+    #   shutdown the payload.
     #
     # ## Example
     #
@@ -71,6 +75,14 @@ module Ronin
     #     
     #           def build
     #             @payload = "..."
+    #           end
+    #
+    #           def prelaunch
+    #             # ...
+    #           end
+    #
+    #           def cleanup
+    #             # ...
     #           end
     #     
     #         end
@@ -178,17 +190,18 @@ module Ronin
       #
       # Builds the payload.
       #
-      # @return [String]
-      #   The built payload.
-      #
-      # @note This method will return a new String each time it is called.
-      #
       # @see #build
       #
-      def build_payload
+      # @api semipublic
+      #
+      def perform_build
         @payload = nil
+
         build
-        return @payload
+
+        unless built?
+          raise(PayloadNotBuilt,"the payload was not built for some reason: #{inspect}")
+        end
       end
 
       #
@@ -200,13 +213,7 @@ module Ronin
       # @note This method will lazy-build the payload if unbuilt.
       #
       def built_payload
-        unless built?
-          build
-
-          unless built?
-            raise(PayloadNotBound,"the payload was not built for some reason: #{self.inspect}")
-          end
-        end
+        perform_build unless built?
 
         return @payload
       end
@@ -219,7 +226,7 @@ module Ronin
       #
       def rebuild_payload
         @payload = nil
-        built_payload
+        perform_build
       end
 
       #
@@ -268,7 +275,8 @@ module Ronin
       end
 
       #
-      # Place holder method that s called before the payload is launched.
+      # Placeholder method that runs before the payload is launched by the
+      # exploit.
       #
       # @abstract
       #
@@ -276,19 +284,34 @@ module Ronin
       end
 
       #
-      # Place holder method that for when the payload successfully launches.
+      # Performs the prelaunch step.
       #
-      # @abstract
+      # @see #prelaunch
       #
-      def launched
+      # @api semipublic
+      #
+      def perform_prelaunch
+        prelaunch
       end
 
       #
-      # Place holder method that cleans up after the payload has deployed.
+      # Placeholder method to clean up the payload.
       #
       # @abstract
       #
       def cleanup
+      end
+
+      #
+      # Performs the cleanup step.
+      #
+      # @see #cleanup
+      #
+      # @api semipublic
+      #
+      def perform_cleanup
+        cleanup
+        @payload = nil
       end
 
       #
