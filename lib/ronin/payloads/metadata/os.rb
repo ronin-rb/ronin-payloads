@@ -71,10 +71,10 @@ module Ronin
           #
           # Gets or sets the payload's targeted Operating System (OS) version.
           #
-          # @param [Symbol, nil] new_os_version
+          # @param [String, nil] new_os_version
           #   The optional new Operating System (OS) version to set.
           #
-          # @return [Symbol, nil]
+          # @return [String, nil]
           #   The payload's Operating System (OS) version.
           #
           # @example
