@@ -93,6 +93,28 @@ module Ronin
             end
           end
         end
+
+        #
+        # The Operating System (OS) that the payload targets.
+        #
+        # @return [Symbol, nil]
+        #
+        # @see ClassMethods#os
+        #
+        def os
+          self.class.os
+        end
+
+        #
+        # The Operating System (OS) version that the payload targets.
+        #
+        # @return [String, nil]
+        #
+        # @see ClassMethods#os_version
+        #
+        def os_version
+          self.class.os_version
+        end
       end
     end
   end
