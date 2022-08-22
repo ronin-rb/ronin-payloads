@@ -67,8 +67,8 @@ describe Ronin::Payloads::Payload do
   describe ".register" do
     subject { test_class }
 
-    it "must register the payload class into Payloads.module_registry" do
-      expect(Ronin::Payloads.registry['test_payload']).to eq(test_class)
+    it "must register the payload class into Payloads.registry" do
+      expect(Ronin::Payloads.registry['test_payload']).to eq(subject)
     end
 
     it "must also set .id" do
