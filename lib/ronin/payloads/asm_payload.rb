@@ -38,15 +38,17 @@ module Ronin
       # @yield []
       #   The given block represents the instructions of the ASM Program.
       #
-      # @param [Hash] options
-      #   Options for `Ronin::ASM::Program#initialize` and
-      #   `Ronin::ASM::Program#assemble`.
-      #
-      # @option options [Symbol, String] :arch (self.arch.name)
+      # @param [Symbol] arch
       #   The architecture for the ASM Program.
       #
-      # @option options [Symbol, String] :os (self.os.name)
+      # @param [Symbol] os
       #   The Operating System for the ASM Program.
+      #
+      # @param [Hash{Symbol => Object}] define
+      #   Constants to define in the program.
+      #
+      # @param [Hash{Symbol => Object}] kwargs
+      #   Additional keyword arguments for `Ronin::ASM::Program#assemble`.
       #
       # @return [String]
       #   The assembled program.
@@ -54,18 +56,13 @@ module Ronin
       # @raise [Behaviors::BuildFailed]
       #   An Arch must be targeted for the Assembly payload.
       #
-      def assemble(options={},&block)
-        unless self.arch
+      def assemble(arch: self.arch, os: self.os, define: {}, **kwargs, &block)
+        unless arch
           build_failed! "Must target an Arch for Assembly payload"
         end
 
-        program_options = {arch: self.arch.name.to_sym}
-
-        if self.os
-          program_options[:os] = self.os.name.to_sym
-        end
-
-        return ASM::Program.new(program_options,&block).assemble(options)
+        program = ASM::Program.new(arch: arch, os: os, define: define, &block)
+        program.assemble(**kwargs)
       end
 
     end
