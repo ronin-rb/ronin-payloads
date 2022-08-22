@@ -27,8 +27,6 @@ module Ronin
       # Metadata mixin that allows a payload to define which architecture it
       # specifically targets.
       #
-      # @api private
-      #
       module Arch
         #
         # Adds an {ClassMethods#arch arch} metadata attribute to the payload.

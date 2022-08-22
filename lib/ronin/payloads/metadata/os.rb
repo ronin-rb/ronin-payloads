@@ -27,8 +27,6 @@ module Ronin
       # Metadata mixin that allows a payload to define which
       # Operating System (OS) it specifically targets.
       #
-      # @api private
-      #
       module OS
         #
         # Adds an {ClassMethods#os os} and {ClassMethods#os_version os_version}
