@@ -21,6 +21,7 @@
 #
 
 require 'ronin/payloads/binary_payload'
+require 'ronin/payloads/exceptions'
 require 'ronin/asm/program'
 
 module Ronin
@@ -51,12 +52,12 @@ module Ronin
       # @return [String]
       #   The assembled program.
       #
-      # @raise [Behaviors::BuildFailed]
-      #   An Arch must be targeted for the Assembly payload.
+      # @raise [BuildFailed]
+      #   The payload class did not set {arch Metadata::ClassMethods#arch}.
       #
       def assemble(arch: self.arch, os: self.os, define: {}, **kwargs, &block)
         unless arch
-          build_failed! "Must target an Arch for Assembly payload"
+          raise(BuildFailed,"#{self.class}.arch not set")
         end
 
         program = ASM::Program.new(arch: arch, os: os, define: define, &block)
