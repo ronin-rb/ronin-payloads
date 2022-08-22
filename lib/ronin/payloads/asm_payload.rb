@@ -30,8 +30,6 @@ module Ronin
     #
     class ASMPayload < BinaryPayload
 
-      protected
-
       #
       # Creates an ASM Program.
       #
