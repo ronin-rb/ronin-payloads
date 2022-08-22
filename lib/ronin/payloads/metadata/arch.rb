@@ -67,6 +67,20 @@ module Ronin
             end
           end
         end
+
+        #
+        # The architecture that the payload targets.
+        #
+        # @return [Symbol, nil]
+        #   The payload's architecture.
+        #
+        # @see ClassMethods#arch
+        #
+        # @api public
+        #
+        def arch
+          self.class.arch
+        end
       end
     end
   end
