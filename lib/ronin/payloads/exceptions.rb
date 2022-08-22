@@ -28,6 +28,9 @@ module Ronin
     class IncompatibleEncoder < PayloadError
     end
 
+    class BuildFailed < PayloadError
+    end
+
     class PayloadNotBuilt < PayloadError
     end
   end
