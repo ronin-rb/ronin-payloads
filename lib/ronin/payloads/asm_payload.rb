@@ -20,7 +20,7 @@
 
 require 'ronin/payloads/binary_payload'
 require 'ronin/payloads/exceptions'
-require 'ronin/asm/program'
+require 'ronin/code/asm/program'
 
 module Ronin
   module Payloads
@@ -58,7 +58,10 @@ module Ronin
           raise(BuildFailed,"#{self.class}.arch not set")
         end
 
-        program = ASM::Program.new(arch: arch, os: os, define: define, &block)
+        program = Code::ASM::Program.new(arch:   arch,
+                                         os:     os,
+                                         define: define,
+                                         &block)
         program.assemble(**kwargs)
       end
 
