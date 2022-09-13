@@ -25,7 +25,7 @@ module Ronin
   module Payloads
     class CLI
       module Commands
-        class Payloads < ResourcesCommand
+        class List < ResourcesCommand
 
           summary 'Lists the available Payloads'
 
