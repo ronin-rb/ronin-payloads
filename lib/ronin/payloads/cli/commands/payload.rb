@@ -23,7 +23,7 @@ require 'ronin/payloads/payload'
 require 'ronin/formatting/binary'
 
 module Ronin
-  module UI
+  module Payloads
     module CLI
       module Commands
         class Payload < ScriptCommand

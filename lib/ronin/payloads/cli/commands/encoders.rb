@@ -22,7 +22,7 @@ require 'ronin/ui/cli/resources_command'
 require 'ronin/encoders/encoder'
 
 module Ronin
-  module UI
+  module Payloads
     module CLI
       module Commands
         class Exploits < ResourcesCommand

@@ -22,7 +22,7 @@ require 'ronin/ui/cli/script_command'
 require 'ronin/encoders'
 
 module Ronin
-  module UI
+  module Payloads
     module CLI
       module Commands
         #
