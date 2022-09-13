@@ -24,7 +24,7 @@ require 'ronin/formatting/binary'
 
 module Ronin
   module Payloads
-    module CLI
+    class CLI
       module Commands
         class Payload < ScriptCommand
 

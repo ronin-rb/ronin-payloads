@@ -23,7 +23,7 @@ require 'ronin/payloads/payload'
 
 module Ronin
   module Payloads
-    module CLI
+    class CLI
       module Commands
         class Payloads < ResourcesCommand
 
