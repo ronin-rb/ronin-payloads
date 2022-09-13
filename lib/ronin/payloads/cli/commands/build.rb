@@ -26,7 +26,7 @@ module Ronin
   module Payloads
     class CLI
       module Commands
-        class Payload < ScriptCommand
+        class Build < ScriptCommand
 
           summary 'Builds the specified Payload'
 
