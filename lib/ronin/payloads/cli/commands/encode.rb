@@ -28,7 +28,7 @@ module Ronin
         #
         # @since 1.0.0
         #
-        class Encoder < ScriptCommand
+        class Encode < ScriptCommand
 
           summary 'Encodes data uses an Encoder'
 
