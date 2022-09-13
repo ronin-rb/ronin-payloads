@@ -20,7 +20,7 @@
 
 require 'ronin/payloads/payload'
 require 'ronin/payloads/encoders/javascript_encoder'
-require 'ronin/support/format/js'
+require 'ronin/support/encoding/js'
 
 module Ronin
   module Payloads
