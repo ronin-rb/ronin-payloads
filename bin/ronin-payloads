@@ -19,8 +19,6 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'rubygems'
-
 root = File.expand_path(File.join(File.dirname(__FILE__),'..'))
 if File.file?(File.join(root,'Gemfile.lock'))
   Dir.chdir(root) do
