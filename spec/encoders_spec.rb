@@ -10,8 +10,8 @@ describe Ronin::Payloads::Encoders do
     expect(subject).to include(Ronin::Repos::ClassDir)
   end
 
-  it "must set .class_dir to 'ronin/payloads/encoders/classes'" do
-    expect(subject.class_dir).to eq('ronin/payloads/encoders/classes')
+  it "must set .class_dir to 'ronin/payloads/encoders/builtin'" do
+    expect(subject.class_dir).to eq('ronin/payloads/encoders/builtin')
   end
 
   it "must set .repo_class_dir to 'encoders'" do
