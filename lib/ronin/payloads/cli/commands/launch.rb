@@ -20,15 +20,14 @@
 
 require 'ronin/ui/cli/script_command'
 require 'ronin/payloads/payload'
-require 'ronin/formatting/binary'
 
 module Ronin
   module Payloads
     class CLI
       module Commands
-        class Build < ScriptCommand
+        class Launch < ScriptCommand
 
-          summary 'Builds the specified Payload'
+          summary 'Launches the specified Payload'
 
           script_class Ronin::Payloads::Payload
 
@@ -39,23 +38,6 @@ module Ronin
           query_option :targeting_os, type:  String,
                                       flag:  '-o',
                                       usage: 'OS'
-
-          option :print, type:        true,
-                         default:     true,
-                         description: 'Prints the raw payload'
-
-          option :string, type:        true,
-                          default:     true,
-                          flag:        '-s',
-                          description: 'Prints the raw payload as a String'
-
-          option :raw, type:        true,
-                       flag:        '-r',
-                       description: 'Prints the raw payload'
-
-          option :hex, type:        true,
-                       flag:        '-x',
-                       description: 'Prints the raw payload in hex'
 
           #
           # Sets up the Payload command.
@@ -80,27 +62,26 @@ module Ronin
               exit -1
             end
 
-            print_payload!
+            launch_payload
           end
 
-          protected
-
           #
-          # Prints the built payload.
+          # Launches the built payload.
           #
-          def print_payload
-            raw_payload = @payload.raw_payload
-
-            if raw?
-              # Write the raw payload
-              write raw_payload
-            elsif hex?
-              # Prints the raw payload as a hex String
-              puts raw_payload.hex_escape
-            else
-              # Prints the raw payload as a String
-              puts raw_payload.dump
+          def launch_payload
+            begin
+              @payload.deploy!
+            rescue Behaviors::TestFailed, Payloads::Exception => e
+              print_exception(e)
+              exit -1
             end
+
+            if shell?      then @payload.shell.console
+            elsif fs?      then @payload.fs.console
+            elsif console? then UI::Console.start(@payload)
+            end
+
+            @payload.evacuate!
           end
 
         end
