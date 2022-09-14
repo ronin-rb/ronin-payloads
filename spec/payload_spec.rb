@@ -76,6 +76,14 @@ describe Ronin::Payloads::Payload do
     end
   end
 
+  describe "#validate" do
+    it "must call #validate_params" do
+      expect(subject).to receive(:validate_params)
+
+      subject.validate
+    end
+  end
+
   describe "#built?" do
     context "when @payload is set by #build" do
       before { subject.build }

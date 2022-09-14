@@ -169,6 +169,18 @@ module Ronin
       end
 
       #
+      # Validates that the payload is ready to be built.
+      #
+      # @raise [Ronin::Core::Params::RequiredParam]
+      #   One of the required params was not set.
+      #
+      # @api semipublic
+      #
+      def validate
+        validate_params
+      end
+
+      #
       # Builds the payload.
       #
       # @abstract
