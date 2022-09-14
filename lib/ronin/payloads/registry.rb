@@ -26,7 +26,7 @@ module Ronin
     include Core::ClassRegistry
     include Repos::ClassDir
 
-    class_dir 'ronin/payloads/classes'
+    class_dir 'ronin/payloads/builtin'
     repo_class_dir 'payloads'
   end
 end
