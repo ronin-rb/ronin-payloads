@@ -81,6 +81,18 @@ module Ronin
         end
 
         #
+        # Validates that all required params have been set.
+        #
+        # @raise [Ronin::Core::Params::RequiredParam]
+        #   One of the required params was not set.
+        #
+        # @api semipublic
+        #
+        def validate
+          validate_params
+        end
+
+        #
         # Default method which will encode data.
         #
         # @param [String] data

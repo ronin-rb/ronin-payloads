@@ -42,6 +42,14 @@ describe Ronin::Payloads::Encoders::Encoder do
     end
   end
 
+  describe "#validate" do
+    it "must call #validate_params" do
+      expect(subject).to receive(:validate_params)
+
+      subject.validate
+    end
+  end
+
   describe "#encode" do
     let(:data) { "data" }
 
