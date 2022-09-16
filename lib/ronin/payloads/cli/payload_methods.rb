@@ -19,6 +19,7 @@
 #
 
 require 'ronin/payloads/registry'
+require 'ronin/core/params/exceptions'
 
 module Ronin
   module Payloads
@@ -42,6 +43,24 @@ module Ronin
             else         Payloads.load_class(name)
             end
           rescue Payloads::ClassNotFound => error
+            print_error error.message
+            exit(1)
+          end
+        end
+
+        #
+        # Initializes the payload class.
+        #
+        # @param [Class<Payload>] payload_class
+        #   The encoder class.
+        #
+        # @param [Hash{Symbol => Object}] kwargs
+        #   Additional keyword arguments for {Payload#initialize}.
+        #
+        def initialize_payload(payload_class,**kwargs)
+          begin
+            payload_class.new(**kwargs)
+          rescue Core::Params::ParamError => error
             print_error error.message
             exit(1)
           end
