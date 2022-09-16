@@ -134,7 +134,8 @@ describe Ronin::Payloads::CLI::EncoderMethods do
   end
 
   describe "#initialie_encoder" do
-    let(:encoder_class) { double('Encoder class') }
+    let(:encoder_id)    { 'test' }
+    let(:encoder_class) { double('Encoder class', id: encoder_id) }
 
     it "must return a new instance of the given encoder class" do
       expect(encoder_class).to receive(:new)
@@ -165,6 +166,21 @@ describe Ronin::Payloads::CLI::EncoderMethods do
         expect {
           subject.initialize_encoder(encoder_class)
         }.to output("#{subject.command_name}: #{message}#{$/}").to_stderr
+      end
+    end
+
+    context "when another type of exception is raised" do
+      let(:message)   { "unexpected error" }
+      let(:exception) { RuntimeError.new(message) }
+
+      it "must print the exception, an error message, and exit with -1" do
+        expect(encoder_class).to receive(:new).and_raise(exception)
+        expect(subject).to receive(:print_exception).with(exception)
+        expect(subject).to receive(:exit).with(-1)
+
+        expect {
+          subject.initialize_encoder(encoder_class)
+        }.to output("#{subject.command_name}: an unhandled exception occurred while initializing encoder #{encoder_id}#{$/}").to_stderr
       end
     end
   end

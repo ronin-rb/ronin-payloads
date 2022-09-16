@@ -67,7 +67,8 @@ describe Ronin::Payloads::CLI::PayloadMethods do
   end
 
   describe "#initialie_payload" do
-    let(:payload_class) { double('Encoder class') }
+    let(:payload_id)    { 'test' }
+    let(:payload_class) { double('Encoder class', id: payload_id) }
 
     it "must return a new instance of the given payload class" do
       expect(payload_class).to receive(:new)
@@ -98,6 +99,21 @@ describe Ronin::Payloads::CLI::PayloadMethods do
         expect {
           subject.initialize_payload(payload_class)
         }.to output("#{subject.command_name}: #{message}#{$/}").to_stderr
+      end
+    end
+
+    context "when another type of exception is raised" do
+      let(:message)   { "unexpected error" }
+      let(:exception) { RuntimeError.new(message) }
+
+      it "must print the exception, an error message, and exit with -1" do
+        expect(payload_class).to receive(:new).and_raise(exception)
+        expect(subject).to receive(:print_exception).with(exception)
+        expect(subject).to receive(:exit).with(-1)
+
+        expect {
+          subject.initialize_payload(payload_class)
+        }.to output("#{subject.command_name}: an unhandled exception occurred while initializing payload #{payload_id}#{$/}").to_stderr
       end
     end
   end

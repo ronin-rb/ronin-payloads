@@ -67,6 +67,10 @@ module Ronin
           rescue Encoders::ClassNotFound => error
             print_error error.message
             exit(1)
+          rescue => error
+            print_exception(error)
+            print_error "an unhandled exception occurred while loading encoder #{name}"
+            exit(1)
           end
         end
 
@@ -85,6 +89,10 @@ module Ronin
           rescue Core::Params::ParamError => error
             print_error error.message
             exit(1)
+          rescue => error
+            print_exception(error)
+            print_error "an unhandled exception occurred while initializing encoder #{encoder_class.id}"
+            exit(-1)
           end
         end
 

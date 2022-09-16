@@ -45,6 +45,10 @@ module Ronin
           rescue Payloads::ClassNotFound => error
             print_error error.message
             exit(1)
+          rescue => error
+            print_exception(error)
+            print_error "an unhandled exception occurred while loading payload #{name}"
+            exit(-1)
           end
         end
 
@@ -63,6 +67,10 @@ module Ronin
           rescue Core::Params::ParamError => error
             print_error error.message
             exit(1)
+          rescue => error
+            print_exception(error)
+            print_error "an unhandled exception occurred while initializing payload #{payload_class.id}"
+            exit(-1)
           end
         end
       end
