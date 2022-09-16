@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'ronin/payloads/encoders'
+require 'ronin/payloads/root'
 
 describe Ronin::Payloads::Encoders do
   it "must include Ronin::Core::ClassRegistry" do
@@ -11,7 +12,11 @@ describe Ronin::Payloads::Encoders do
   end
 
   it "must set .class_dir to 'ronin/payloads/encoders/builtin'" do
-    expect(subject.class_dir).to eq('ronin/payloads/encoders/builtin')
+    expect(subject.class_dir).to eq(
+      File.join(
+        Ronin::Payloads::ROOT, 'lib', 'ronin', 'payloads', 'encoders', 'builtin'
+      )
+    )
   end
 
   it "must set .repo_class_dir to 'encoders'" do

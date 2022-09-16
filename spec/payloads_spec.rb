@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'ronin/payloads'
+require 'ronin/payloads/root'
 
 describe Ronin::Payloads do
   it "should have a version" do
@@ -15,7 +16,11 @@ describe Ronin::Payloads do
   end
 
   it "must set .class_dir to 'ronin/payloads/builtin'" do
-    expect(subject.class_dir).to eq('ronin/payloads/builtin')
+    expect(subject.class_dir).to eq(
+      File.join(
+        Ronin::Payloads::ROOT, 'lib', 'ronin', 'payloads', 'builtin'
+      )
+    )
   end
 
   it "must set .repo_class_dir to 'payloads'" do
