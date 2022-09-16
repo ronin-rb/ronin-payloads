@@ -19,6 +19,7 @@
 #
 
 require 'ronin/payloads/registry'
+require 'ronin/payloads/exceptions'
 require 'ronin/core/params/exceptions'
 
 module Ronin
@@ -79,6 +80,32 @@ module Ronin
             exit(-1)
           end
         end
+
+        #
+        # Validates the loaded payload.
+        #
+        # @param [Payload] payload
+        #   The payload to validate.
+        #
+        # @raise [Ronin::Core::Params::RequiredParam]
+        #   One of the required params was not set.
+        #
+        # @raise [ValidationError]
+        #   Another payload validation error occurred.
+        #
+        def validate_payload(payload)
+          begin
+            payload.validate
+          rescue Core::Params::ParamError, ValidationError => error
+            print_error "failed to validate the payload #{payload.class_id}: #{error.message}"
+            exit(1)
+          rescue => error
+            print_exception(error)
+            print_error "an unhandled exception occurred while validating the payload #{payload.class_id}"
+            exit(-1)
+          end
+        end
+
       end
     end
   end

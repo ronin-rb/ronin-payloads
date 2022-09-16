@@ -147,4 +147,60 @@ describe Ronin::Payloads::CLI::PayloadMethods do
       end
     end
   end
+
+  describe "#validate_payload" do
+    let(:payload_id) { 'test' }
+    let(:payload)    { double('Encoder instance', class_id: payload_id) }
+
+    it "must return a new instance of the given payload class" do
+      expect(payload).to receive(:validate)
+
+      subject.validate_payload(payload)
+    end
+
+    context "when a Core::Params::ParamError is raised" do
+      let(:message)   { "param foo was not set" }
+      let(:exception) { Ronin::Core::Params::RequiredParam.new(message) }
+
+      it "must print an error message and exit with 1" do
+        expect(payload).to receive(:validate).and_raise(exception)
+        expect(subject).to receive(:exit).with(1)
+
+        expect {
+          subject.validate_payload(payload)
+        }.to output("#{subject.command_name}: failed to validate the payload #{payload_id}: #{message}#{$/}").to_stderr
+      end
+    end
+
+    context "when a Ronin::Payloads::ValidationError is raised" do
+      let(:message)   { "param foo was not set" }
+      let(:exception) do
+        Ronin::Payloads::ValidationError.new(message)
+      end
+
+      it "must print an error message and exit with 1" do
+        expect(payload).to receive(:validate).and_raise(exception)
+        expect(subject).to receive(:exit).with(1)
+
+        expect {
+          subject.validate_payload(payload)
+        }.to output("#{subject.command_name}: failed to validate the payload #{payload_id}: #{message}#{$/}").to_stderr
+      end
+    end
+
+    context "when another type of exception is raised" do
+      let(:message)   { "unexpected error" }
+      let(:exception) { RuntimeError.new(message) }
+
+      it "must print the exception, an error message, and exit with -1" do
+        expect(payload).to receive(:validate).and_raise(exception)
+        expect(subject).to receive(:print_exception).with(exception)
+        expect(subject).to receive(:exit).with(-1)
+
+        expect {
+          subject.validate_payload(payload)
+        }.to output("#{subject.command_name}: an unhandled exception occurred while validating the payload #{payload_id}#{$/}").to_stderr
+      end
+    end
+  end
 end
