@@ -106,6 +106,9 @@ module Ronin
         #
         # Validates the loaded encoder.
         #
+        # @param [Encoders::Encoder] encoder
+        #   The encoder to validate.
+        #
         # @raise [Ronin::Core::Params::RequiredParam]
         #   One of the required params was not set.
         #
