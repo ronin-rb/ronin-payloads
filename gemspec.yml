@@ -22,6 +22,7 @@ generated_files:
   - man/ronin-payloads-encode.1
   - man/ronin-payloads-encoder.1
   - man/ronin-payloads-encoders.1
+  - man/ronin-payloads-list.1
 
 required_ruby_version: ">= 3.0.0"
 

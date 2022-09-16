@@ -18,92 +18,47 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/ui/cli/resources_command'
-require 'ronin/payloads/payload'
+require 'ronin/payloads/cli/command'
+require 'ronin/payloads/registry'
 
 module Ronin
   module Payloads
     class CLI
       module Commands
-        class List < ResourcesCommand
+        class List < Command
 
-          summary 'Lists the available Payloads'
+          include Core::CLI::Printing::Metadata
+          include Printing::Metadata
+          include PayloadMethods
 
-          model Ronin::Payloads::Payload
+          usage '[options] [NAME]'
 
-          query_option :named, type:  String,
-                               flag:  '-n',
-                               usage: 'NAME'
+          argument :name, required: false,
+                          desc:     'The optional payload name to list'
 
-          query_option :revision, type:  String,
-                                  flag:  '-v',
-                                  usage: 'VERSION'
+          description 'Lists the available payloads'
 
-          query_option :describing, type:  String,
-                                    flag:  '-d',
-                                    usage: 'TEXT'
+          man_page 'ronin-payloads-list.1'
 
-          query_option :licensed_under, type:  String,
-                                        flag:  '-l',
-                                        usage: 'LICENSE'
+          #
+          # Runs the `ronin-payloads list` command.
+          #
+          # @param [String, nil] dir
+          #   The optional payload directory to list.
+          #
+          def run(dir=nil)
+            files = if dir
+                      dir = "#{dir}/" unless name.end_with?('/')
 
-          query_option :targeting_arch, type:  String,
-                                        flag:  '-a',
-                                        usage: 'x86|x86_64|ia64|ppc|ppc64|sparc|sparc64|mips|mips_le|arm|arm_le'
+                      Payloads.list_files.select do |file|
+                        file.start_with?(dir)
+                      end
+                    else
+                      Payloads.list_files
+                    end
 
-          query_option :targeting_os, type:  String,
-                                      flag:  '-o',
-                                      usage: 'Linux|FreeBSD|OpenBSD|NetBSD|OSX|Solaris|Windows|UNIX'
-
-          protected
-
-          def print_resource(payload)
-            unless verbose?
-              puts "  #{payload}"
-              return
-            end
-
-            print_section "Payload: #{payload}" do
-              puts "Name: #{payload.name}"
-              puts "Version: #{payload.version}"
-              puts "Type: #{payload.type}" if verbose?
-              puts "Status: #{payload.status}"
-              puts "Released: #{payload.released}"
-              puts "Reported: #{payload.reported}"
-              puts "License: #{payload.license}" if payload.license
-              puts "Arch: #{payload.arch}"       if payload.arch
-              puts "OS: #{payload.os}"           if payload.os
-
-              spacer
-
-              if payload.description
-                puts "Description:"
-                spacer
-
-                indent do
-                  payload.description.each_line { |line| puts line }
-                end
-
-                spacer
-              end
-
-              unless payload.authors.empty?
-                print_section "Authors" do
-                  payload.authors.each do |author|
-                    payload.authors.each { |author| puts author }
-                  end
-                end
-              end
-
-              begin
-                payload.load_script!
-              rescue Exception => error
-                print_exception error
-              end
-
-              unless payload.params.empty?
-                print_array payload.params.values, title: 'Parameters'
-              end
+            files.each do |file|
+              puts "  #{file}"
             end
           end
 
