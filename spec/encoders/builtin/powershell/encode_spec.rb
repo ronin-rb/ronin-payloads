@@ -1,7 +1,7 @@
 require 'spec_helper'
-require 'ronin/payloads/encoders/builtin/powershell_encode'
+require 'ronin/payloads/encoders/builtin/powershell/encode'
 
-describe Ronin::Payloads::Encoders::PowerShellEncode do
+describe Ronin::Payloads::Encoders::PowerShell::Encode do
   it "must inherit from Ronin::Payloads::Encoders::PowerShellEncoder" do
     expect(described_class).to be < Ronin::Payloads::Encoders::PowerShellEncoder
   end

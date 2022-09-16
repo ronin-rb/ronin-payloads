@@ -1,7 +1,7 @@
 require 'spec_helper'
-require 'ronin/payloads/encoders/builtin/html_encode'
+require 'ronin/payloads/encoders/builtin/html/encode'
 
-describe Ronin::Payloads::Encoders::HTMLEncode do
+describe Ronin::Payloads::Encoders::HTML::Encode do
   it "must inherit from Ronin::Payloads::Encoders::HTMLEncoder" do
     expect(described_class).to be < Ronin::Payloads::Encoders::HTMLEncoder
   end

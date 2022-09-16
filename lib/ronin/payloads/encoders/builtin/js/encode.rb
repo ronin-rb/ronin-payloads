@@ -24,30 +24,32 @@ require 'ronin/support/encoding/js'
 module Ronin
   module Payloads
     module Encoders
-      class JSEncode < JavaScriptEncoder
+      module JS
+        class Encode < JavaScriptEncoder
 
-        register 'js_encode'
+          register 'js/encode'
 
-        summary 'Encodes every character as a JavaScript special character'
+          summary 'Encodes every character as a JavaScript special character'
 
-        description <<~DESC
-          Encodes every character in the given String as an JavaScript special character:
+          description <<~DESC
+            Encodes every character in the given String as an JavaScript special character:
 
-            hello world -> \\x68\\x65\\x6C\\x6C\\x6F\\x20\\x77\\x6F\\x72\\x6C\\x64
+              hello world -> \\x68\\x65\\x6C\\x6C\\x6F\\x20\\x77\\x6F\\x72\\x6C\\x64
 
-        DESC
+          DESC
 
-        #
-        # JS encodes the given data.
-        #
-        # @param [String] data
-        #
-        # @return [String]
-        #
-        def encode(data)
-          Support::Encoding::JS.encode(data)
+          #
+          # JS encodes the given data.
+          #
+          # @param [String] data
+          #
+          # @return [String]
+          #
+          def encode(data)
+            Support::Encoding::JS.encode(data)
+          end
+
         end
-
       end
     end
   end

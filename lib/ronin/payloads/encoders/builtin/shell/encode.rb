@@ -18,36 +18,38 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/payloads/encoders/html_encoder'
-require 'ronin/support/encoding/html'
+require 'ronin/payloads/encoders/shell_encoder'
+require 'ronin/support/encoding/shell'
 
 module Ronin
   module Payloads
     module Encoders
-      class HTMLEncode < HTMLEncoder
+      module Shell
+        class Encode < ShellEncoder
 
-        register 'html_encode'
+          register 'shell/encode'
 
-        summary 'Encodes every character as a HTML special character'
+          summary 'Encodes every character as a Shell special character'
 
-        description <<~DESC
-          Encodes every character in the given String as an HTML special character:
+          description <<~DESC
+            Encodes every character in the given String as an Shell special character:
 
-            hello world -> &#104;&#101;&#108;&#108;&#111;&#32;&#119;&#111;&#114;&#108;&#100;
+              hello world -> \\x68\\x65\\x6c\\x6c\\x6f\\x20\\x77\\x6f\\x72\\x6c\\x64
 
-        DESC
+          DESC
 
-        #
-        # HTML encodes the given data.
-        #
-        # @param [String] data
-        #
-        # @return [String]
-        #
-        def encode(data)
-          Support::Encoding::HTML.encode(data)
+          #
+          # Shell encodes the given data.
+          #
+          # @param [String] data
+          #
+          # @return [String]
+          #
+          def encode(data)
+            Support::Encoding::Shell.encode(data)
+          end
+
         end
-
       end
     end
   end

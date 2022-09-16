@@ -18,36 +18,38 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/payloads/encoders/shell_encoder'
-require 'ronin/support/encoding/shell'
+require 'ronin/payloads/encoders/powershell_encoder'
+require 'ronin/support/encoding/powershell'
 
 module Ronin
   module Payloads
     module Encoders
-      class ShellEncode < ShellEncoder
+      module PowerShell
+        class Encode < PowerShellEncoder
 
-        register 'shell_encode'
+          register 'powershell/encode'
 
-        summary 'Encodes every character as a Shell special character'
+          summary 'Encodes every character as a PowerShell special character'
 
-        description <<~DESC
-          Encodes every character in the given String as an Shell special character:
+          description <<~DESC
+            Encodes every character in the given String as an PowerShell special character:
 
-            hello world -> \\x68\\x65\\x6c\\x6c\\x6f\\x20\\x77\\x6f\\x72\\x6c\\x64
+              hello world -> $([char]0x68)$([char]0x65)$([char]0x6c)$([char]0x6c)$([char]0x6f)$([char]0x20)$([char]0x77)$([char]0x6f)$([char]0x72)$([char]0x6c)$([char]0x64)
 
-        DESC
+          DESC
 
-        #
-        # Shell encodes the given data.
-        #
-        # @param [String] data
-        #
-        # @return [String]
-        #
-        def encode(data)
-          Support::Encoding::Shell.encode(data)
+          #
+          # HTML encodes the given data.
+          #
+          # @param [String] data
+          #
+          # @return [String]
+          #
+          def encode(data)
+            Support::Encoding::PowerShell.encode(data)
+          end
+
         end
-
       end
     end
   end

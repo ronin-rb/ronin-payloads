@@ -1,7 +1,7 @@
 require 'spec_helper'
-require 'ronin/payloads/encoders/builtin/xml_encode'
+require 'ronin/payloads/encoders/builtin/xml/encode'
 
-describe Ronin::Payloads::Encoders::XMLEncode do
+describe Ronin::Payloads::Encoders::XML::Encode do
   it "must inherit from Ronin::Payloads::Encoders::XMLEncoder" do
     expect(described_class).to be < Ronin::Payloads::Encoders::XMLEncoder
   end

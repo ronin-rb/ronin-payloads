@@ -1,7 +1,7 @@
 require 'spec_helper'
-require 'ronin/payloads/encoders/builtin/js_encode'
+require 'ronin/payloads/encoders/builtin/js/encode'
 
-describe Ronin::Payloads::Encoders::JSEncode do
+describe Ronin::Payloads::Encoders::JS::Encode do
   it "must inherit from Ronin::Payloads::Encoders::JavaScriptEncoder" do
     expect(described_class).to be < Ronin::Payloads::Encoders::JavaScriptEncoder
   end

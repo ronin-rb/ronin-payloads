@@ -1,7 +1,7 @@
 require 'spec_helper'
-require 'ronin/payloads/encoders/builtin/shell_encode'
+require 'ronin/payloads/encoders/builtin/shell/encode'
 
-describe Ronin::Payloads::Encoders::ShellEncode do
+describe Ronin::Payloads::Encoders::Shell::Encode do
   it "must inherit from Ronin::Payloads::Encoders::ShellEncoder" do
     expect(described_class).to be < Ronin::Payloads::Encoders::ShellEncoder
   end

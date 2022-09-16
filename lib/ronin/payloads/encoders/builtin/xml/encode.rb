@@ -24,30 +24,32 @@ require 'ronin/support/encoding/xml'
 module Ronin
   module Payloads
     module Encoders
-      class XMLEncode < XMLEncoder
+      module XML
+        class Encode < XMLEncoder
 
-        register 'xml_encode'
+          register 'xml/encode'
 
-        summary 'Encodes every character as a XML special character'
+          summary 'Encodes every character as a XML special character'
 
-        description <<~DESC
-          Encodes every character in the given String as an XML special character:
+          description <<~DESC
+            Encodes every character in the given String as an XML special character:
 
-            hello world -> &#104;&#101;&#108;&#108;&#111;&#32;&#119;&#111;&#114;&#108;&#100;"
+              hello world -> &#104;&#101;&#108;&#108;&#111;&#32;&#119;&#111;&#114;&#108;&#100;"
 
-        DESC
+          DESC
 
-        #
-        # XML encodes the given data.
-        #
-        # @param [String] data
-        #
-        # @return [String]
-        #
-        def encode(data)
-          Support::Encoding::XML.encode(data)
+          #
+          # XML encodes the given data.
+          #
+          # @param [String] data
+          #
+          # @return [String]
+          #
+          def encode(data)
+            Support::Encoding::XML.encode(data)
+          end
+
         end
-
       end
     end
   end
