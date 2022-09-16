@@ -18,112 +18,155 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/ui/cli/script_command'
-require 'ronin/encoders'
+require 'ronin/payloads/cli/command'
+require 'ronin/payloads/cli/format_option'
+require 'ronin/payloads/cli/encoder_methods'
+require 'ronin/payloads/encoders/pipeline'
 
 module Ronin
   module Payloads
     class CLI
       module Commands
         #
-        # @since 1.0.0
+        # Encodes data using the encoder(s).
         #
-        class Encode < ScriptCommand
+        # ## Usage
+        #
+        # ## Options
+        #
+        # ## Arguments
+        #
+        class Encode < Command
 
-          summary 'Encodes data uses an Encoder'
+          include FormatOption
+          include EncoderMethods
 
-          script_class Ronin::Encoders::Encoder
+          usage '[options] {--string STRING | FILE}'
 
-          # encoder options
-          option :input, type:  String,
-                         flag:  '-I',
-                         usage: 'DATA'
+          option :encoder, short: '-E',
+                           value: {
+                             type:  String,
+                             usage: 'ENCODER'
+                           },
+                           desc: 'The encoder name to load' do |name|
+                             @encoders << name
+                           end
 
-          option :input_file, type:  String,
-                              flag:  '-i',
-                              usage: 'FILE'
+          option :param, short: '-p',
+                         value: {
+                           type: /\A[^\.=]+\.[^=]++=.+\z/,
+                           usage: 'ENCODER.NAME=VALUE'
+                         },
+                         desc: 'Sets a param on an encoder' do |str|
+                           name, value              = str.split('=',2)
+                           ecndoer_name, param_name = name.split('.',2)
 
-          option :output, type:  String,
-                          flag:  '-o',
-                          usage: 'FILE'
+                           @params[encoder_name][param_name] = value
+                         end
 
-          option :raw, type: true,
-                       flag: '-r'
+          option :string, short: '-s',
+                          value: {
+                            type:  String,
+                            usage: 'STRING',
+                          },
+                          desc: 'The string to encode'
+
+          argument :file, required: false,
+                          desc:     'The optional file to read and encode'
+
+          description 'Encodes data using the encoder(s)'
+
+          man_page 'ronin-payloads-encode.1'
+
+          # The encoder names to load.
+          #
+          # @return [Array<String>]
+          attr_reader :encoders
+
+          # The params for the encoders.
+          #
+          # @return [Hash{String => Hash{String => String}}]
+          attr_reader :params
+
+          # The encoder pipeline.
+          #
+          # @return [Encoders::Pipeline, nil]
+          attr_reader :pipeline
 
           #
-          # Sets up the Encoder command.
+          # Initializes the `ronin-payloads encode` command.
           #
-          def setup
-            super
+          # @param [Hash{Symbol => Object}] kwargs
+          #   Additional keyword arguments.
+          #
+          def initialize(**kwargs)
+            super(**kwargs)
 
-            # silence all output, if we are to print the raw data
-            UI::Output.silent! if raw?
+            @encoders = []
+            @params   = Hash.new { |hash,key| hash[key] = {} }
           end
 
           #
-          # Runs the input data through the encoder.
+          # Runs the `ronin-payloads encode` command.
           #
-          def execute
-            unless (@encoder = load_script)
-              print_error "Could not find the specified encoder"
-              exit -1
+          # @param [String, nil] file
+          #   The optional file to read data from and encode.
+          #
+          def run(file=nil)
+            build_pipeline
+
+            print_data(encode_data(load_data(file)))
+          end
+
+          #
+          # Builds the encoder pipeline.
+          #
+          def build_pipeline
+            @pipeline = Encoders::Pipeline.new
+
+            @encoders.each do |encoder_name|
+              encoder_class = load_encoder(encoder_name)
+              encoder = encoder_class.new(params: @params[encoder_name])
+
+              @pipeline << encoder
             end
+          end
 
-            open_input do |input|
-              encoded = begin
-                          @encoder.encode(input)
-                        rescue Behaviors::Exception => e
-                          print_exception(e)
-                          exit -1
-                        end
-
-              open_output do |output|
-                if options.raw?
-                  output.write(encoded)
-                else
-                  output.puts(encoded.inspect)
-                end
+          #
+          # Loads the data to encode.
+          #
+          # @return [String]
+          #
+          def load_data(file=nil)
+            if file
+              unless File.file?(file)
+                print_error "No such file or directory: #{file}"
+                exit(-1)
               end
-            end
-          end
 
-          protected
-
-          #
-          # Opens the input stream and reads the data.
-          #
-          # @yield [data]
-          #   The input data will be passed to the block.
-          #
-          # @yield [String] data
-          #   The data read from the input stream.
-          #
-          def open_input
-            if @input
-              yield @input
-            elsif @input_file
-              File.open(@input_file,'rb') do |file|
-                yield file.read
-              end
+              File.binread(file)
+            elsif options[:string]
+              options[:string]
             else
-              yield STDIN.read
+              print_error "must specify either FILE or --string"
+              exit(-1)
             end
           end
 
           #
-          # Opens the output stream.
+          # Encodes the data.
           #
-          # @yield [output]
-          #   The block will be passed the opened output stream.
+          # @param [String] data
           #
-          # @yield [IO] output
-          #   The output stream.
+          # @return [String]
           #
-          def open_output(&block)
-            if @output
-              File.open(@output,'wb',&block)
-            else
-              yield STDOUT
+          def encode_data(data)
+            begin
+              @pipeline.encode(data)
+            rescue => error
+              print_error "unhandled exception occurred while encoding data"
+              print_exception(error)
+              exit(1)
             end
           end
 
