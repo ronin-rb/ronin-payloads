@@ -18,6 +18,7 @@ metadata:
 
 generated_files:
   - man/ronin-payloads.1
+  - man/ronin-payloads-console.1
 
 required_ruby_version: ">= 3.0.0"
 
