@@ -138,8 +138,33 @@ module Ronin
             @encoders.each do |encoder_id|
               encoder_class = load_encoder(encoder_id)
               params        = @params[encoder_id]
+              encoder       = initialize_encoder(encoder_class, params: params)
 
-              @pipeline << initialize_encoder(encoder_class, params: params)
+              validate_encoder(encoder)
+
+              @pipeline << encoder
+            end
+          end
+
+          #
+          # Validates the loaded encoders.
+          #
+          # @raise [Ronin::Core::Params::RequiredParam]
+          #   One of the required params was not set.
+          #
+          # @raise [ValidationError]
+          #   Another encoder validation error occurred.
+          #
+          def validate_encoder(encoder)
+            begin
+              encoder.validate
+            rescue Core::Params::ParamError, ValidationError => error
+              print_error "failed to validate the encoder #{encoder.class_id}: #{error.message}"
+              exit(1)
+            rescue => error
+              print_error "an unhandled exception occurred while validating the encoder #{encoder.class_id}"
+              print_exception(error)
+              exit(-1)
             end
           end
 
