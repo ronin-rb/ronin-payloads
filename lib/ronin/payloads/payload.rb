@@ -48,6 +48,8 @@ module Ronin
     #   built payload must be stored in the `@payload` instance variable.
     # * {Payload#prelaunch prelaunch} - contains additional logic that runs
     #   before the payload has been launched by the exploit.
+    # * {Payload#postlaunch postlaunch} - contains additional logic that runs
+    #   after the payload has been launched by the exploit.
     # * {Payload#cleanup cleanup} - contains additional logic to cleanup or
     #   shutdown the payload.
     #
@@ -76,6 +78,10 @@ module Ronin
     #           end
     #
     #           def prelaunch
+    #             # ...
+    #           end
+    #
+    #           def postlaunch
     #             # ...
     #           end
     #
@@ -306,6 +312,26 @@ module Ronin
       #
       def perform_prelaunch
         prelaunch
+      end
+
+      #
+      # Placeholder method that runs after the payload is launched by the
+      # exploit.
+      #
+      # @abstract
+      #
+      def postlaunch
+      end
+
+      #
+      # Performs the post-launch step.
+      #
+      # @see #postlaunch
+      #
+      # @api semipublic
+      #
+      def perform_postlaunch
+        postlaunch
       end
 
       #

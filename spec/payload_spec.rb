@@ -224,6 +224,16 @@ describe Ronin::Payloads::Payload do
     end
   end
 
+  describe "#perform_postlaunch" do
+    subject { described_class.new }
+
+    it "must call #postlaunch" do
+      expect(subject).to receive(:postlaunch)
+
+      subject.perform_postlaunch
+    end
+  end
+
   describe "#perform_cleanup" do
     subject { described_class.new }
 
