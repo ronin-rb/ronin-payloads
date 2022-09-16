@@ -38,6 +38,7 @@ module Ronin
 
       command_name 'ronin-payloads'
 
+      command_aliases['ls']   = 'list'
       command_aliases['info'] = 'show'
 
     end
