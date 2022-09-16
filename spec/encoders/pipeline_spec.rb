@@ -95,6 +95,15 @@ describe Ronin::Payloads::Encoders::Pipeline do
     end
   end
 
+  describe "#validate" do
+    it "must also call #validate on each encoder in #encoders" do
+      expect(encoder_a).to receive(:validate)
+      expect(encoder_b).to receive(:validate)
+
+      subject.validate
+    end
+  end
+
   describe "#[]" do
     context "when given an Integer" do
       it "must return the encoder at the given index" do

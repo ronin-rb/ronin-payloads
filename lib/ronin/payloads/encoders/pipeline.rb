@@ -86,6 +86,19 @@ module Ronin
         end
 
         #
+        # Validates all encoders in the pipeline.
+        #
+        # @raise [Ronin::Core::Params::RequiredParam]
+        #   One of the required params was not set.
+        #
+        # @raise [ValidationError]
+        #   Another encoder validation error occurred.
+        #
+        def validate
+          each(&:validate)
+        end
+
+        #
         # Fetches an encoder at the given index or by the encoder's `id`.
         #
         # @param [Integer, String] id_or_index
