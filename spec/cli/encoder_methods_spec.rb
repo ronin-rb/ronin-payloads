@@ -132,4 +132,40 @@ describe Ronin::Payloads::CLI::EncoderMethods do
       end
     end
   end
+
+  describe "#initialie_encoder" do
+    let(:encoder_class) { double('Encoder class') }
+
+    it "must return a new instance of the given encoder class" do
+      expect(encoder_class).to receive(:new)
+
+      subject.initialize_encoder(encoder_class)
+    end
+
+    context "when additional keyword arguments are given" do
+      let(:kwargs) do
+        {foo: 1, bar: 2}
+      end
+
+      it "must pass them to new()" do
+        expect(encoder_class).to receive(:new).with(**kwargs)
+
+        subject.initialize_encoder(encoder_class,**kwargs)
+      end
+    end
+
+    context "when a Core::Params::ParamError is raised" do
+      let(:message)   { "param foo was not set" }
+      let(:exception) { Ronin::Core::Params::RequiredParam.new(message) }
+
+      it "must print an error message and exit with 1" do
+        expect(encoder_class).to receive(:new).and_raise(exception)
+        expect(subject).to receive(:exit).with(1)
+
+        expect {
+          subject.initialize_encoder(encoder_class)
+        }.to output("#{subject.command_name}: #{message}#{$/}").to_stderr
+      end
+    end
+  end
 end

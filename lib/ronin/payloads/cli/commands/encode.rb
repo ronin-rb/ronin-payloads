@@ -137,14 +137,9 @@ module Ronin
 
             @encoders.each do |encoder_id|
               encoder_class = load_encoder(encoder_id)
-              encoder = begin
-                          encoder_class.new(params: @params[encoder_id])
-                        rescue Core::Params::ParamError => error
-                          print_error error.message
-                          exit(1)
-                        end
+              params        = @params[encoder_id]
 
-              @pipeline << encoder
+              @pipeline << initialize_encoder(encoder_class, params: params)
             end
           end
 

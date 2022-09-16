@@ -24,6 +24,7 @@ require 'ronin/payloads/encoders/javascript_encoder'
 require 'ronin/payloads/encoders/shell_encoder'
 require 'ronin/payloads/encoders/powershell_encoder'
 require 'ronin/payloads/encoders/sql_encoder'
+require 'ronin/core/params/exceptions'
 
 module Ronin
   module Payloads
@@ -68,6 +69,25 @@ module Ronin
             exit(1)
           end
         end
+
+        #
+        # Initializes an encoder.
+        #
+        # @param [Class<Encoders::Encoder>] encoder_class
+        #   The encoder class.
+        #
+        # @param [Hash{Symbol => Object}] kwargs
+        #   Additional keyword arguments for {Encoders::Encoder#initialize}.
+        #
+        def initialize_encoder(encoder_class,**kwargs)
+          begin
+            encoder_class.new(**kwargs)
+          rescue Core::Params::ParamError => error
+            print_error error.message
+            exit(1)
+          end
+        end
+
       end
     end
   end
