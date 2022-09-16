@@ -59,8 +59,8 @@ module Ronin
                              type:  String,
                              usage: 'ENCODER'
                            },
-                           desc: 'The encoder name to load' do |name|
-                             @encoders << name
+                           desc: 'The encoder name to load' do |id|
+                             @encoders << id
                            end
 
           option :param, short: '-p',
@@ -135,10 +135,10 @@ module Ronin
           def build_pipeline
             @pipeline = Encoders::Pipeline.new
 
-            @encoders.each do |encoder_name|
-              encoder_class = load_encoder(encoder_name)
+            @encoders.each do |encoder_id|
+              encoder_class = load_encoder(encoder_id)
               encoder = begin
-                          encoder_class.new(params: @params[encoder_name])
+                          encoder_class.new(params: @params[encoder_id])
                         rescue Core::Params::ParamError => error
                           print_error error.message
                           exit(1)
