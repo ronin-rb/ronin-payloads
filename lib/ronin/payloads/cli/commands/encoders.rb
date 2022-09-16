@@ -18,87 +18,58 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/ui/cli/resources_command'
-require 'ronin/encoders/encoder'
+require 'ronin/payloads/cli/command'
+require 'ronin/payloads/encoders/registry'
 
 module Ronin
   module Payloads
     class CLI
       module Commands
-        class Exploits < ResourcesCommand
+        #
+        # Lists available anecoders or a specific encoder.
+        #
+        # ## Usage
+        #
+        #     ronin-payloads encoders [options] [DIR]
+        #
+        # ## Options
+        #
+        #     -h, --help                       Print help information
+        #
+        # ## Arguments
+        #
+        #     [DIR]                            The optional directory to list
+        #
+        class Encoders < Command
 
-          summary 'Lists available encoders'
+          usage '[options] [DIR]'
 
-          model Ronin::Encoders::Encoder
+          argument :dir, required: false,
+                         desc:     'The optional directory to list'
 
-          query_option :named, type:  String,
-                               flag:  '-n',
-                               usage: 'NAME'
+          description 'Lists available anecoders or a specific encoder'
 
-          query_option :revision, type:  String,
-                                  flag:  '-V',
-                                  usage: 'VERSION'
+          man_page 'ronin-payloads-encoders.1'
 
-          query_option :describing, type:  String,
-                                    flag:  '-d',
-                                    usage: 'TEXT'
+          #
+          # Runs the `ronin-payloads encoders` command.
+          #
+          # @param [String, nil] name
+          #   The optional encoder name or directory to list.
+          #
+          def run(dir=nil)
+            files = if dir
+                      dir = "#{dir}/" unless name.end_with?('/')
 
-          query_option :status, type:  String,
-                                flag:  '-s',
-                                usage: 'potential|proven|weaponized'
+                      Payloads::Encoders.list_files.select do |file|
+                        file.start_with?(dir)
+                      end
+                    else
+                      Payloads::Encoders.list_files
+                    end
 
-          query_option :licensed_under, type:  String,
-                                        flag:  '-l',
-                                        usage: 'LICENSE'
-
-          option :verbose, type: true,
-                           flag: '-v'
-
-          protected
-
-          def print_resource(encoder)
-            unless verbose?
-              puts "  #{encoder}"
-              return
-            end
-
-            print_section "Encoder: #{encoder}" do
-              puts "Name: #{encoder.name}"
-              puts "Version: #{encoder.version}"
-              puts "Type: #{encoder.type}"       if verbose?
-              puts "License: #{encoder.license}" if encoder.license
-
-              puts "Targets Arch: #{encoder.arch}" if encoder.arch
-              puts "Targets OS: #{encoder.os}"     if encoder.os
-
-              spacer
-
-              if encoder.description
-                puts "Description:"
-                spacer
-
-                indent do
-                  encoder.description.each_line { |line| puts line }
-                end
-
-                spacer
-              end
-
-              unless encoder.authors.empty?
-                print_section "Authors" do
-                  encoder.authors.each { |author| puts author }
-                end
-              end
-
-              begin
-                encoder.load_script!
-              rescue Exception => error
-                print_exception error
-              end
-
-              unless encoder.params.empty?
-                print_array encoder.params.values, title: 'Parameters'
-              end
+            files.each do |file|
+              puts "  #{file}"
             end
           end
 
