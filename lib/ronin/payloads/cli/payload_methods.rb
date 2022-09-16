@@ -47,7 +47,13 @@ module Ronin
             exit(1)
           rescue => error
             print_exception(error)
-            print_error "an unhandled exception occurred while loading payload #{name}"
+
+            if file
+              print_error "an unhandled exception occurred while loading payload #{name} from file #{file}"
+            else
+              print_error "an unhandled exception occurred while loading payload #{name}"
+            end
+
             exit(-1)
           end
         end

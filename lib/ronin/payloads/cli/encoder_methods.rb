@@ -69,8 +69,14 @@ module Ronin
             exit(1)
           rescue => error
             print_exception(error)
-            print_error "an unhandled exception occurred while loading encoder #{name}"
-            exit(1)
+
+            if file
+              print_error "an unhandled exception occurred while loading encoder #{name} from file #{file}"
+            else
+              print_error "an unhandled exception occurred while loading encoder #{name}"
+            end
+
+            exit(-1)
           end
         end
 

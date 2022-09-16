@@ -13,13 +13,13 @@ describe Ronin::Payloads::CLI::PayloadMethods do
   subject { command_class.new }
 
   describe "#load_payload" do
-    let(:name) { 'html/encode' }
+    let(:payload_id) { 'html/encode' }
 
     it "must call Payloads.load_class with the given ID" do
-      expect(Ronin::Payloads).to receive(:load_class).with(name)
+      expect(Ronin::Payloads).to receive(:load_class).with(payload_id)
       expect(subject).to_not receive(:exit)
 
-      subject.load_payload(name)
+      subject.load_payload(payload_id)
     end
 
     context "when Ronin::Payloads::ClassNotfound is raised" do
@@ -29,12 +29,27 @@ describe Ronin::Payloads::CLI::PayloadMethods do
       end
 
       it "must print an error message and exit with an error code" do
-        expect(Ronin::Payloads).to receive(:load_class).with(name).and_raise(exception)
+        expect(Ronin::Payloads).to receive(:load_class).with(payload_id).and_raise(exception)
         expect(subject).to receive(:exit).with(1)
 
         expect {
-          subject.load_payload(name)
+          subject.load_payload(payload_id)
         }.to output("#{subject.command_name}: #{message}#{$/}").to_stderr
+      end
+    end
+
+    context "when another type of exception is raised" do
+      let(:message)   { "unexpected error" }
+      let(:exception) { RuntimeError.new(message) }
+
+      it "must print the exception, an error message, and exit with -1" do
+        expect(Ronin::Payloads).to receive(:load_class).with(payload_id).and_raise(exception)
+        expect(subject).to receive(:print_exception).with(exception)
+        expect(subject).to receive(:exit).with(-1)
+
+        expect {
+          subject.load_payload(payload_id)
+        }.to output("#{subject.command_name}: an unhandled exception occurred while loading payload #{payload_id}#{$/}").to_stderr
       end
     end
 
@@ -42,10 +57,10 @@ describe Ronin::Payloads::CLI::PayloadMethods do
       let(:file) { '/path/to/html/encode.rb' }
 
       it "must call Payloads.load_class with the given ID and file" do
-        expect(Ronin::Payloads).to receive(:load_class_from_file).with(name,file)
+        expect(Ronin::Payloads).to receive(:load_class_from_file).with(payload_id,file)
         expect(subject).to_not receive(:exit)
 
-        subject.load_payload(name,file)
+        subject.load_payload(payload_id,file)
       end
 
       context "when Ronin::Payloads::ClassNotfound is raised" do
@@ -55,12 +70,27 @@ describe Ronin::Payloads::CLI::PayloadMethods do
         end
 
         it "must print an error message and exit with an error code" do
-          expect(Ronin::Payloads).to receive(:load_class_from_file).with(name,file).and_raise(exception)
+          expect(Ronin::Payloads).to receive(:load_class_from_file).with(payload_id,file).and_raise(exception)
           expect(subject).to receive(:exit).with(1)
 
           expect {
-            subject.load_payload(name,file)
+            subject.load_payload(payload_id,file)
           }.to output("#{subject.command_name}: #{message}#{$/}").to_stderr
+        end
+      end
+
+      context "when another type of exception is raised" do
+        let(:message)   { "unexpected error" }
+        let(:exception) { RuntimeError.new(message) }
+
+        it "must print the exception, an error message, and exit with -1" do
+          expect(Ronin::Payloads).to receive(:load_class_from_file).with(payload_id,file).and_raise(exception)
+          expect(subject).to receive(:print_exception).with(exception)
+          expect(subject).to receive(:exit).with(-1)
+
+          expect {
+            subject.load_payload(payload_id,file)
+          }.to output("#{subject.command_name}: an unhandled exception occurred while loading payload #{payload_id} from file #{file}#{$/}").to_stderr
         end
       end
     end
