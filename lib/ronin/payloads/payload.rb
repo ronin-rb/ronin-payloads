@@ -178,6 +178,7 @@ module Ronin
       #
       def validate
         validate_params
+        @encoders.each(&:validate)
       end
 
       #

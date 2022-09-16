@@ -50,6 +50,14 @@ describe Ronin::Payloads::Payload do
   end
 
   module TestPayload
+    class TestEncoder < Ronin::Payloads::Encoders::Encoder
+
+      def encode(payload)
+        payload.upcase
+      end
+
+    end
+
     class TestPayload < Ronin::Payloads::Payload
 
       register 'test_payload'
@@ -60,6 +68,9 @@ describe Ronin::Payloads::Payload do
 
     end
   end
+
+  let(:test_encoder_class) { TestPayload::TestEncoder }
+  let(:test_encoder)       { test_encoder_class.new   }
 
   let(:test_class) { TestPayload::TestPayload }
   subject { test_class.new }
@@ -81,6 +92,21 @@ describe Ronin::Payloads::Payload do
       expect(subject).to receive(:validate_params)
 
       subject.validate
+    end
+
+    context "when #encoders is populated" do
+      let(:encoder1) { test_encoder_class.new }
+      let(:encoder2) { test_encoder_class.new }
+
+      subject { test_class.new(encoders: [encoder1, encoder2]) }
+
+      it "must also call #validate on each #encoder" do
+        expect(encoder1).to receive(:validate)
+        expect(encoder2).to receive(:validate)
+        expect(subject).to receive(:validate_params)
+
+        subject.validate
+      end
     end
   end
 
@@ -141,18 +167,6 @@ describe Ronin::Payloads::Payload do
       expect(subject.payload).to_not be(previously_built_payload)
     end
   end
-
-  module TestPayload
-    class TestEncoder < Ronin::Payloads::Encoders::Encoder
-
-      def encode(payload)
-        payload.upcase
-      end
-
-    end
-  end
-
-  let(:test_encoder) { TestPayload::TestEncoder.new }
 
   describe "#encode_payload" do
     subject { test_class.new(encoders: [test_encoder]) }
