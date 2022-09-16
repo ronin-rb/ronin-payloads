@@ -104,7 +104,7 @@ module Ronin
         end
 
         #
-        # Validates the loaded encoders.
+        # Validates the loaded encoder.
         #
         # @raise [Ronin::Core::Params::RequiredParam]
         #   One of the required params was not set.
@@ -119,8 +119,8 @@ module Ronin
             print_error "failed to validate the encoder #{encoder.class_id}: #{error.message}"
             exit(1)
           rescue => error
-            print_error "an unhandled exception occurred while validating the encoder #{encoder.class_id}"
             print_exception(error)
+            print_error "an unhandled exception occurred while validating the encoder #{encoder.class_id}"
             exit(-1)
           end
         end
