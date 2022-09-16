@@ -174,6 +174,9 @@ module Ronin
       # @raise [Ronin::Core::Params::RequiredParam]
       #   One of the required params was not set.
       #
+      # @raise [ValidationError]
+      #   Another payload validation error occurred.
+      #
       # @api semipublic
       #
       def validate
