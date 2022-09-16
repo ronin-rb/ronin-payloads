@@ -27,10 +27,6 @@ module Ronin
       module Commands
         class List < Command
 
-          include Core::CLI::Printing::Metadata
-          include Printing::Metadata
-          include PayloadMethods
-
           usage '[options] [NAME]'
 
           argument :name, required: false,
