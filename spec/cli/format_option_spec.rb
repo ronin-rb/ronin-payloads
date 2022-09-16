@@ -2,6 +2,8 @@ require 'spec_helper'
 require 'ronin/payloads/cli/format_option'
 require 'ronin/payloads/cli/command'
 
+require 'stringio'
+
 describe Ronin::Payloads::CLI::FormatOption do
   module TestFormatOption
     class TestCommand < Ronin::Payloads::CLI::Command
@@ -99,23 +101,54 @@ describe Ronin::Payloads::CLI::FormatOption do
   describe "#print_data" do
     let(:data) { "hello world" }
 
-    context "when #format is set" do
-      before { subject.parse_options(%w[--format html]) }
+    let(:stdout) { StringIO.new }
+    subject { command_class.new(stdout: stdout) }
 
-      it "must print the formatted data" do
-        expect {
+    context "when stdout is a TTY" do
+      before { expect(stdout).to receive(:tty?).and_return(true) }
+
+      context "when #format is set" do
+        before { subject.parse_options(%w[--format html]) }
+
+        it "must print the formatted data" do
           subject.print_data(data)
-        }.to output(
-          "#{Ronin::Support::Encoding::HTML.escape(data)}#{$/}"
-        ).to_stdout
+
+          expect(stdout.string).to eq(
+            "#{Ronin::Support::Encoding::HTML.escape(data)}#{$/}"
+          )
+        end
+      end
+
+      context "when #format is not set" do
+        it "must print the unformatted data" do
+          subject.print_data(data)
+
+          expect(stdout.string).to eq("#{data}#{$/}")
+        end
       end
     end
 
-    context "when #format is not set" do
-      it "must print the data" do
-        expect {
+    context "when stdout not is a TTY" do
+      before { expect(stdout).to receive(:tty?).and_return(false) }
+
+      context "when #format is set" do
+        before { subject.parse_options(%w[--format html]) }
+
+        it "must print the formatted data without a newline" do
           subject.print_data(data)
-        }.to output("#{data}#{$/}").to_stdout
+
+          expect(stdout.string).to eq(
+            "#{Ronin::Support::Encoding::HTML.escape(data)}"
+          )
+        end
+      end
+
+      context "when #format is not set" do
+        it "must print the unformatted data without a newline" do
+          subject.print_data(data)
+
+          expect(stdout.string).to eq(data)
+        end
       end
     end
   end

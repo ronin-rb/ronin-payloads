@@ -100,9 +100,14 @@ module Ronin
         # Formats and prints the given data.
         #
         # @param [String] data
+        #   The raw data to format and print.
         #
         def print_data(data)
-          puts format_data(data)
+          formatted_data = format_data(data)
+
+          if stdout.tty? then puts formatted_data
+          else                stdout.write(formatted_data)
+          end
         end
       end
     end
