@@ -24,6 +24,7 @@ require 'ronin/payloads/encoders/javascript_encoder'
 require 'ronin/payloads/encoders/shell_encoder'
 require 'ronin/payloads/encoders/powershell_encoder'
 require 'ronin/payloads/encoders/sql_encoder'
+require 'ronin/payloads/encoders/exceptions'
 require 'ronin/core/params/exceptions'
 
 module Ronin
@@ -102,6 +103,27 @@ module Ronin
           end
         end
 
+        #
+        # Validates the loaded encoders.
+        #
+        # @raise [Ronin::Core::Params::RequiredParam]
+        #   One of the required params was not set.
+        #
+        # @raise [ValidationError]
+        #   Another encoder validation error occurred.
+        #
+        def validate_encoder(encoder)
+          begin
+            encoder.validate
+          rescue Core::Params::ParamError, Encoders::ValidationError => error
+            print_error "failed to validate the encoder #{encoder.class_id}: #{error.message}"
+            exit(1)
+          rescue => error
+            print_error "an unhandled exception occurred while validating the encoder #{encoder.class_id}"
+            print_exception(error)
+            exit(-1)
+          end
+        end
       end
     end
   end

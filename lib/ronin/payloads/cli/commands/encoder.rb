@@ -110,6 +110,7 @@ module Ronin
               print_authors(encoder_class)
               print_description(encoder_class)
               print_references(encoder_class)
+              print_params(encoder_class)
             end
           end
 
