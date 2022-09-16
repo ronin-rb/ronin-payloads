@@ -32,9 +32,20 @@ module Ronin
         #
         # ## Usage
         #
+        #     ronin-payloads encode [options] {--string STRING | FILE}
+        #
         # ## Options
         #
+        #     -F c|shell|html|js|xml|ruby,     Formats the outputed data
+        #         --format
+        #     -E, --encoder ENCODER            The encoder name to load
+        #     -p, --param ENCODER.NAME=VALUE   Sets a param on an encoder
+        #     -s, --string STRING              The string to encode
+        #     -h, --help                       Print help information
+        #
         # ## Arguments
+        #
+        #     [FILE]                           The optional file to read and encode
         #
         class Encode < Command
 
@@ -148,8 +159,7 @@ module Ronin
             elsif options[:string]
               options[:string]
             else
-              print_error "must specify either FILE or --string"
-              exit(-1)
+              stdin.read
             end
           end
 
