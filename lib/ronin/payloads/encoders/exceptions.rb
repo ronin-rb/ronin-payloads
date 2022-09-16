@@ -26,6 +26,9 @@ module Ronin
       class EncoderError < PayloadError
       end
 
+      class ValidationError < EncoderError
+      end
+
       class BadEncoder < EncoderError
       end
     end
