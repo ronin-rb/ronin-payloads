@@ -59,6 +59,4 @@ describe Ronin::Payloads::Encoders::Encoder do
       }.to raise_error(NotImplementedError,"#{described_class}#encode was not implemented")
     end
   end
-
-  after(:all) { Ronin::Payloads::Encoders.registry.clear }
 end

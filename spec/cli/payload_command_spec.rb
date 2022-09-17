@@ -5,7 +5,7 @@ require 'ronin/payloads/payload'
 describe Ronin::Payloads::CLI::PayloadCommand do
   module TestPayloadCommand
     class TestPayload < Ronin::Payloads::Payload
-      register 'test'
+      register 'test_payload_command'
     end
 
     class TestCommand < Ronin::Payloads::CLI::PayloadCommand
@@ -43,6 +43,4 @@ describe Ronin::Payloads::CLI::PayloadCommand do
       expect(subject.payload).to be_kind_of(payload_class)
     end
   end
-
-  after(:all) { Ronin::Payloads.registry.clear }
 end

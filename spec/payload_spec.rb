@@ -259,6 +259,4 @@ describe Ronin::Payloads::Payload do
       expect(subject.to_s).to eq(subject.encoded_payload)
     end
   end
-
-  after(:all) { Ronin::Payloads.registry.clear }
 end
