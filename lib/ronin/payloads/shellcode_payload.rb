@@ -64,7 +64,7 @@ module Ronin
     #       end
     #     end
     #
-    class Shellcode < ASMPayload
+    class ShellcodePayload < ASMPayload
 
       protected
 
