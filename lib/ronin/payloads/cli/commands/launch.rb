@@ -18,70 +18,72 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/ui/cli/script_command'
-require 'ronin/payloads/payload'
+require 'ronin/payloads/cli/payload_command'
+require 'ronin/payloads/cli/console'
+require 'ronin/core/cli/param_option'
+require 'ronin/core/cli/logging'
 
 module Ronin
   module Payloads
     class CLI
       module Commands
-        class Launch < ScriptCommand
+        #
+        # Launches a payload.
+        #
+        # ## Usage
+        #
+        #     ronin-payloads launch [options] {-f FILE | NAME}
+        #
+        # ## Options
+        # 
+        #     -f, --file FILE                  The payload file to load
+        #     -p, --param NAME=VALUE           Sets a param
+        #     -h, --help                       Print help information
+        #
+        # ## Arguments
+        #
+        #     [NAME]                           The payload name to load
+        #
+        class Launch < PayloadCommand
 
-          summary 'Launches the specified Payload'
+          include Core::CLI::ParamOption
+          include Core::CLI::Logging
 
-          script_class Ronin::Payloads::Payload
+          description 'Launches a payload'
 
-          query_option :targeting_arch, type:  String,
-                                        flag:  '-a',
-                                        usage: 'ARCH'
-
-          query_option :targeting_os, type:  String,
-                                      flag:  '-o',
-                                      usage: 'OS'
+          man_page 'ronin-payloads-launch.1'
 
           #
-          # Sets up the Payload command.
+          # Performs the prelaunch or postlaunch steps of a payload.
           #
-          def setup
-            super
-
-            # silence all output, if we are to print the built payload
-            UI::Output.silent! if raw?
-          end
-
+          # @param [String, nil] name
+          #   The name of the payload to load.
           #
-          # Builds and optionally deploys the loaded payload.
-          #
-          def execute
-            begin
-              # Build the payload
-              @payload.build!
-            rescue Behaviors::Exception,
-                   Payloads::Exception => error
-              print_error error.message
-              exit -1
-            end
+          def run(name=nil)
+            super(name)
 
+            initialize_payload(params: @params)
             launch_payload
           end
 
           #
-          # Launches the built payload.
+          # Launches the loaded payload.
           #
           def launch_payload
+            log_info "Launching payload #{@payload.class_id} ..."
+
             begin
-              @payload.deploy!
-            rescue Behaviors::TestFailed, Payloads::Exception => e
-              print_exception(e)
-              exit -1
+              @payload.perform_prelaunch
+              @payload.perform_postlaunch
+            rescue => error
+              print_exception(error)
+              print_error "an unhandled exception occurred while launching payload #{@payload.class_id}"
+              exit(-1)
             end
 
-            if shell?      then @payload.shell.console
-            elsif fs?      then @payload.fs.console
-            elsif console? then UI::Console.start(@payload)
-            end
+            log_info "Launched payload #{@payload.class_id}"
 
-            @payload.evacuate!
+            Console.start(context: @payload)
           end
 
         end

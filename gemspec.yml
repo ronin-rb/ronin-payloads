@@ -23,6 +23,7 @@ generated_files:
   - man/ronin-payloads-encode.1
   - man/ronin-payloads-encoder.1
   - man/ronin-payloads-encoders.1
+  - man/ronin-payloads-launch.1
   - man/ronin-payloads-list.1
   - man/ronin-payloads-show.1
 
