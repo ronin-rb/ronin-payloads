@@ -31,7 +31,7 @@ payloads.
 
 ## Synopsis
 
-List available payloads:
+List available commands:
 
 ```shell
 $ ronin-payloads
@@ -40,40 +40,46 @@ $ ronin-payloads
 Print information about a payload:
 
 ```shell
-$ ronin-payloads list -n NAME -v
+$ ronin-payloads list
+```
+
+Print additional information about a specific payload:
+
+```shell
+$ ronin-payloads show NAME
+```
+
+List available payload encoders:
+
+```shell
+$ ronin-payloads encoders
+```
+
+Print additional information about a specific encoder:
+
+```shell
+$ ronin-payloads encoder NAME
 ```
 
 Build and output a payload:
 
 ```shell
-$ ronin-payload build NAME
-```
-
-Build and output a raw un-escaped payload:
-
- ```shell
-$ ronin-payload build NAME --raw
+$ ronin-payloads build NAME
 ```
 
 Load a payload from a file, then build and output it:
 
 ```shell
-$ ronin-payload build -f FILE
+$ ronin-payloads build -f FILE NAME
 ```
 
 Generate a boilerplate payload file, with some custom information:
 
 ```shell
-$ ronin-payloads gen example_payload.rb \
-                     --name Example --arch i686 --os Linux \
-                     --authors Postmodern --description "This is an example."
+$ ronin-payloadss new example_payload.rb \
+                      --name Example --arch i686 --os Linux \
+                      --authors Postmodern --description "This is an example."
 ```
-
-**Note:** The list of available payload templates are:
-
-* `binary_payload`
-* `shellcode`
-* `nops`
 
 ## Examples
 
