@@ -18,89 +18,178 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/ui/cli/script_command'
-require 'ronin/payloads/payload'
-require 'ronin/formatting/binary'
+require 'ronin/payloads/cli/payload_command'
+require 'ronin/payloads/cli/format_option'
+require 'ronin/payloads/cli/encoder_methods'
+require 'ronin/core/cli/param_option'
 
 module Ronin
   module Payloads
     class CLI
       module Commands
-        class Build < ScriptCommand
+        #
+        # Loads and builds a payload.
+        #
+        # ## Usage
+        #
+        #     ronin-payloads build [options] {-f FILE | NAME}
+        #
+        # ## Options
+        #
+        #     -f, --file FILE                  The payload file to load
+        #     -F c|shell|html|js|xml|ruby,     Formats the outputed data
+        #         --format
+        #     -p, --param NAME=VALUE           Sets a param
+        #     -o, --output FILE                Output file to write the built payload to
+        #     -e, --encoder ENCODER            Adds the encoder to the payload
+        #         --encoder-param ENCODER.NAME=VALUE
+        #                                      Sets a param for one of the encoders
+        #     -h, --help                       Print help information
+        #
+        # ## Arguments
+        #
+        #     [NAME]                           The payload name to load
+        #
+        class Build < PayloadCommand
 
-          summary 'Builds the specified Payload'
+          include FormatOption
+          include EncoderMethods
+          include Core::CLI::ParamOption
 
-          script_class Ronin::Payloads::Payload
+          option :output, short: '-o',
+                          value: {
+                            type:  String,
+                            usage: 'FILE'
+                          },
+                          desc: 'Output file to write the built payload to'
 
-          query_option :targeting_arch, type:  String,
-                                        flag:  '-a',
-                                        usage: 'ARCH'
+          option :encoder, short: '-e',
+                           value: {
+                             type:  String,
+                             usage: 'ENCODER'
+                           },
+                           desc: 'Adds the encoder to the payload' do |name|
+                             @encoder_ids << name
+                           end
 
-          query_option :targeting_os, type:  String,
-                                      flag:  '-o',
-                                      usage: 'OS'
+          option :encoder_param, value: {
+                                   type: /\A[^\.=]+\.[^=]++=.+\z/,
+                                   usage: 'ENCODER.NAME=VALUE'
+                                 },
+                                 desc: 'Sets a param for one of the encoders' do |str|
+                                   name, value              = str.split('=',2)
+                                   ecndoer_name, param_name = name.split('.',2)
 
-          option :print, type:        true,
-                         default:     true,
-                         description: 'Prints the raw payload'
+                                   @encoder_params[encoder_name][param_name] = value
+                                 end
 
-          option :string, type:        true,
-                          default:     true,
-                          flag:        '-s',
-                          description: 'Prints the raw payload as a String'
+          description 'Loads and builds a payload'
 
-          option :raw, type:        true,
-                       flag:        '-r',
-                       description: 'Prints the raw payload'
+          man_page 'ronin-payloads-build.1'
 
-          option :hex, type:        true,
-                       flag:        '-x',
-                       description: 'Prints the raw payload in hex'
+          # The encoder names to load.
+          #
+          # @return [Array<String>]
+          attr_reader :encoder_ids
+
+          # The params for the encoders.
+          #
+          # @return [Hash{String => Hash{String => String}}]
+          attr_reader :encoder_params
 
           #
-          # Sets up the Payload command.
+          # Initializes the `ronin-payloads build` command.
           #
-          def setup
-            super
+          # @param [Hash{Symbol => Object}] kwargs
+          #   Additional keyword arguments.
+          #
+          def initialize(**kwargs)
+            super(**kwargs)
 
-            # silence all output, if we are to print the built payload
-            UI::Output.silent! if raw?
+            @encoder_ids    = []
+            @encoder_params = Hash.new { |hash,key| hash[key] = {} }
           end
 
           #
-          # Builds and optionally deploys the loaded payload.
+          # Runs the `ronin-payloads build` command.
           #
-          def execute
-            begin
-              # Build the payload
-              @payload.build!
-            rescue Behaviors::Exception,
-                   Payloads::Exception => error
-              print_error error.message
-              exit -1
+          # @param [String, nil] name
+          #   The name of the payload to load.
+          #
+          def run(name=nil)
+            super(name)
+
+            load_encoders
+            initialize_payload(params: @params, encoders: @encoders)
+            validate_payload
+            build_payload
+
+            if options[:output] then write_payload
+            else                     print_payload
             end
-
-            print_payload!
           end
 
-          protected
+          #
+          # Loads the {#encoders} using {#encoder_ids} which are populated by
+          # the `-E,--encoder` option.
+          #
+          def load_encoders
+            @encoders = @encoder_ids.map do |encoder_id|
+              encoder_class = load_encoder(encoder_id)
+              params        = @encoder_params[encoder_id]
+              encoder       = initialize_encoder(encoder_class, params: params)
+
+              validate_encoder(encoder)
+              encoder
+            end
+          end
 
           #
-          # Prints the built payload.
+          # Builds the {#payload}.
+          #
+          def build_payload
+            begin
+              @payload.perform_build
+            rescue PayloadError => error
+              print_error "failed to build the payload #{@payload_class.id}: #{error.message}"
+              exit(-1)
+            rescue => error
+              print_exception(error)
+              print_error "an unhandled exception occurred while building the payload #{@payload.class_id}"
+              exit(-1)
+            end
+          end
+
+          #
+          # The built payload.
+          #
+          # @return [String]
+          #
+          def built_payload
+            @payload.built_payload
+          end
+
+          #
+          # The built and encoded payload.
+          #
+          # @return [String]
+          #
+          def encoded_payload
+            @payload.encoded_payload
+          end
+
+          #
+          # Writes the built and optionally encoded payload to the output file.
+          #
+          def write_payload
+            File.binwrite(options[:output],format_data(encoded_payload))
+          end
+
+          #
+          # Prints the built and optionally encoded payload.
           #
           def print_payload
-            raw_payload = @payload.raw_payload
-
-            if raw?
-              # Write the raw payload
-              write raw_payload
-            elsif hex?
-              # Prints the raw payload as a hex String
-              puts raw_payload.hex_escape
-            else
-              # Prints the raw payload as a String
-              puts raw_payload.dump
-            end
+            print_data(@payload.encode_payload)
           end
 
         end
