@@ -20,7 +20,6 @@
 
 require 'ronin/payloads/cli/command'
 require 'ronin/payloads/cli/payload_methods'
-require 'ronin/core/cli/param_option'
 
 module Ronin
   module Payloads
@@ -30,7 +29,6 @@ module Ronin
       #
       class PayloadCommand < Command
 
-        include Core::CLI::ParamOption
         include PayloadMethods
 
         usage '[options] {-f FILE | NAME}'
