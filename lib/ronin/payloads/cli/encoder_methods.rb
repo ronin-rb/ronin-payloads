@@ -49,7 +49,7 @@ module Ronin
         end
 
         #
-        # Loads the encoder.
+        # Loads a encoder class.
         #
         # @param [String] name
         #   The encoder name to load.
@@ -60,27 +60,35 @@ module Ronin
         # @return [Class<Encoders::Encoder>]
         #   The loaded encoder class.
         #
-        def load_encoder(name,file=nil)
-          begin
-            if file
-              Encoders.load_class_from_file(name,File.expand_path(file))
-            else
-              Encoders.load_class(name)
-            end
-          rescue Encoders::ClassNotFound => error
-            print_error error.message
-            exit(1)
-          rescue => error
-            print_exception(error)
+        def load_encoder(name)
+            Payloads::Encoders.load_class(name)
+        rescue Payloads::ClassNotFound => error
+          print_error error.message
+          exit(1)
+        rescue => error
+          print_exception(error)
+          print_error "an unhandled exception occurred while loading encoder #{name}"
+          exit(-1)
+        end
 
-            if file
-              print_error "an unhandled exception occurred while loading encoder #{name} from file #{file}"
-            else
-              print_error "an unhandled exception occurred while loading encoder #{name}"
-            end
-
-            exit(-1)
-          end
+        #
+        # Loads the encoder from a given file.
+        #
+        # @param [String] file
+        #   The file to load the encoder class from.
+        #
+        # @return [Class<Encoders::Encoder>]
+        #   The loaded encoder class.
+        #
+        def load_encoder_from(file)
+          Payloads::Encoders.load_class_from_file(file)
+        rescue Payloads::ClassNotFound => error
+          print_error error.message
+          exit(1)
+        rescue => error
+          print_exception(error)
+          print_error "an unhandled exception occurred while loading encoder from file #{file}"
+          exit(-1)
         end
 
         #

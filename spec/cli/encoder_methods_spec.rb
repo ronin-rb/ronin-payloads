@@ -119,58 +119,48 @@ describe Ronin::Payloads::CLI::EncoderMethods do
         }.to output("#{subject.command_name}: an unhandled exception occurred while loading encoder #{encoder_id}#{$/}").to_stderr
       end
     end
+  end
 
-    context "when also given a file path" do
-      let(:file) { '/path/to/html/encode.rb' }
+  describe "#load_encoder_from" do
+    let(:file) { '/path/to/html/encode.rb' }
 
-      it "must call Encoders.load_class with the given ID and file" do
-        expect(Ronin::Payloads::Encoders).to receive(:load_class_from_file).with(encoder_id,file)
-        expect(subject).to_not receive(:exit)
+    it "must call Payloads.load_class with the given ID and file" do
+      expect(Ronin::Payloads::Encoders).to receive(:load_class_from_file).with(file)
+      expect(subject).to_not receive(:exit)
 
-        subject.load_encoder(encoder_id,file)
+      subject.load_encoder_from(file)
+    end
+
+    context "when Ronin::Payloads::ClassNotfound is raised" do
+      let(:message) { "class not found" }
+      let(:exception) do
+        Ronin::Payloads::ClassNotFound.new(message)
       end
 
-      context "when the file path is relative" do
-        let(:relative_path) { 'path/to/file.rb' }
-        let(:absolute_path) { File.expand_path(relative_path) }
+      it "must print an error message and exit with an error code" do
+        expect(Ronin::Payloads::Encoders).to receive(:load_class_from_file).with(file).and_raise(exception)
+        expect(subject).to receive(:exit).with(1)
 
-        it "must expand the file path to prevent relative requires" do
-          expect(Ronin::Payloads::Encoders).to receive(:load_class_from_file).with(encoder_id,absolute_path)
-          expect(subject).to_not receive(:exit)
-
-          subject.load_encoder(encoder_id,relative_path)
-        end
+        expect {
+          subject.load_encoder_from(file)
+        }.to output("#{subject.command_name}: #{message}#{$/}").to_stderr
       end
+    end
 
-      context "when Ronin::Payloads::Encoders::ClassNotfound is raised" do
-        let(:message) { "class not found" }
-        let(:exception) do
-          Ronin::Payloads::Encoders::ClassNotFound.new(message)
-        end
+    context "when another type of exception is raised" do
+      let(:message)   { "unexpected error" }
+      let(:exception) { RuntimeError.new(message) }
 
-        it "must print an error message and exit with an error code" do
-          expect(Ronin::Payloads::Encoders).to receive(:load_class_from_file).with(encoder_id,file).and_raise(exception)
-          expect(subject).to receive(:exit).with(1)
+      it "must print the exception, an error message, and exit with -1" do
+        expect(Ronin::Payloads::Encoders).to receive(:load_class_from_file).with(file).and_raise(exception)
+        expect(subject).to receive(:print_exception).with(exception)
+        expect(subject).to receive(:exit).with(-1)
 
-          expect {
-            subject.load_encoder(encoder_id,file)
-          }.to output("#{subject.command_name}: #{message}#{$/}").to_stderr
-        end
-      end
-
-      context "when another type of exception is raised" do
-        let(:message)   { "unexpected error" }
-        let(:exception) { RuntimeError.new(message) }
-
-        it "must print the exception, an error message, and exit with -1" do
-          expect(Ronin::Payloads::Encoders).to receive(:load_class_from_file).with(encoder_id,file).and_raise(exception)
-          expect(subject).to receive(:print_exception).with(exception)
-          expect(subject).to receive(:exit).with(-1)
-
-          expect {
-            subject.load_encoder(encoder_id,file)
-          }.to output("#{subject.command_name}: an unhandled exception occurred while loading encoder #{encoder_id} from file #{file}#{$/}").to_stderr
-        end
+        expect {
+          subject.load_encoder_from(file)
+        }.to output(
+          "#{subject.command_name}: an unhandled exception occurred while loading encoder from file #{file}#{$/}"
+        ).to_stderr
       end
     end
   end

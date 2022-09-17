@@ -38,27 +38,35 @@ module Ronin
         # @return [Class<Payload>]
         #   The loaded payload class.
         #
-        def load_payload(name,file=nil)
-          begin
-            if file
-              Payloads.load_class_from_file(name,File.expand_path(file))
-            else
-              Payloads.load_class(name)
-            end
-          rescue Payloads::ClassNotFound => error
-            print_error error.message
-            exit(1)
-          rescue => error
-            print_exception(error)
+        def load_payload(name)
+            Payloads.load_class(name)
+        rescue Payloads::ClassNotFound => error
+          print_error error.message
+          exit(1)
+        rescue => error
+          print_exception(error)
+          print_error "an unhandled exception occurred while loading payload #{name}"
+          exit(-1)
+        end
 
-            if file
-              print_error "an unhandled exception occurred while loading payload #{name} from file #{file}"
-            else
-              print_error "an unhandled exception occurred while loading payload #{name}"
-            end
-
-            exit(-1)
-          end
+        #
+        # Loads the payload from a given file.
+        #
+        # @param [String] file
+        #   The file to load the payload class from.
+        #
+        # @return [Class<Payload>]
+        #   The loaded payload class.
+        #
+        def load_payload_from(file)
+          Payloads.load_class_from_file(file)
+        rescue Payloads::ClassNotFound => error
+          print_error error.message
+          exit(1)
+        rescue => error
+          print_exception(error)
+          print_error "an unhandled exception occurred while loading payload from file #{file}"
+          exit(-1)
         end
 
         #
