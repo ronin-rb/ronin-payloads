@@ -22,6 +22,8 @@ require 'ronin/payloads/binary_payload'
 require 'ronin/payloads/exceptions'
 require 'ronin/code/asm/program'
 
+require 'tempfile'
+
 module Ronin
   module Payloads
     #
@@ -62,7 +64,10 @@ module Ronin
                                          os:     os,
                                          define: define,
                                          &block)
-        program.assemble(**kwargs)
+
+        tempfile = Tempfile.new('ronin-payloads')
+        program.assemble(tempfile.path,**kwargs)
+        return tempfile.read
       end
 
     end
