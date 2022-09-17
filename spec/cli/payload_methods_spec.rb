@@ -63,6 +63,18 @@ describe Ronin::Payloads::CLI::PayloadMethods do
         subject.load_payload(payload_id,file)
       end
 
+      context "when the file path is relative" do
+        let(:relative_path) { 'path/to/file.rb' }
+        let(:absolute_path) { File.expand_path(relative_path) }
+
+        it "must expand the file path to prevent relative requires" do
+          expect(Ronin::Payloads).to receive(:load_class_from_file).with(payload_id,absolute_path)
+          expect(subject).to_not receive(:exit)
+
+          subject.load_payload(payload_id,relative_path)
+        end
+      end
+
       context "when Ronin::Payloads::ClassNotfound is raised" do
         let(:message) { "class not found" }
         let(:exception) do

@@ -130,6 +130,18 @@ describe Ronin::Payloads::CLI::EncoderMethods do
         subject.load_encoder(encoder_id,file)
       end
 
+      context "when the file path is relative" do
+        let(:relative_path) { 'path/to/file.rb' }
+        let(:absolute_path) { File.expand_path(relative_path) }
+
+        it "must expand the file path to prevent relative requires" do
+          expect(Ronin::Payloads::Encoders).to receive(:load_class_from_file).with(encoder_id,absolute_path)
+          expect(subject).to_not receive(:exit)
+
+          subject.load_encoder(encoder_id,relative_path)
+        end
+      end
+
       context "when Ronin::Payloads::Encoders::ClassNotfound is raised" do
         let(:message) { "class not found" }
         let(:exception) do

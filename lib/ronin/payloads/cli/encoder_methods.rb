@@ -62,8 +62,10 @@ module Ronin
         #
         def load_encoder(name,file=nil)
           begin
-            if file then Encoders.load_class_from_file(name,file)
-            else         Encoders.load_class(name)
+            if file
+              Encoders.load_class_from_file(name,File.expand_path(file))
+            else
+              Encoders.load_class(name)
             end
           rescue Encoders::ClassNotFound => error
             print_error error.message

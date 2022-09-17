@@ -40,8 +40,10 @@ module Ronin
         #
         def load_payload(name,file=nil)
           begin
-            if file then Payloads.load_class_from_file(name,file)
-            else         Payloads.load_class(name)
+            if file
+              Payloads.load_class_from_file(name,File.expand_path(file))
+            else
+              Payloads.load_class(name)
             end
           rescue Payloads::ClassNotFound => error
             print_error error.message
