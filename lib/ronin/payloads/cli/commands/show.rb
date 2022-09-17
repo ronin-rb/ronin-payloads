@@ -18,9 +18,8 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/payloads/cli/command'
+require 'ronin/payloads/cli/payload_command'
 require 'ronin/payloads/cli/printing/metadata'
-require 'ronin/payloads/cli/payload_methods'
 require 'ronin/payloads/metadata/arch'
 require 'ronin/payloads/metadata/os'
 require 'ronin/core/cli/printing/metadata'
@@ -34,35 +33,22 @@ module Ronin
         #
         # ## Usage
         #
-        #     ronin-payloads show [options] NAME
+        #     ronin-payloads show [options] {--file FILE | NAME}
         #
         # ## Options
         #
-        #     -v, --verbose                    Enables verbose output
         #     -f, --file FILE                  The optional file to load the payload from
+        #     -v, --verbose                    Enables verbose output
         #     -h, --help                       Print help information
         #
         # ## Arguments
         #
         #     NAME                             The name of the payload to load
         #
-        class Show < Command
+        class Show < PayloadCommand
 
-          include PayloadMethods
           include Core::CLI::Printing::Metadata
           include Printing::Metadata
-
-          usage '[options] NAME'
-
-          option :file, short: '-f',
-                        value: {
-                          type:  String,
-                          usage: 'FILE'
-                        },
-                        desc: 'The optional file to load the payload from'
-
-          argument :name, required: true,
-                          desc:     'The name of the payload to load'
 
           description 'Prints information about a payload'
 
@@ -74,8 +60,10 @@ module Ronin
           # @param [String] name
           #   The optional name of the payload to load and print metadata about.
           #
-          def run(name)
-            print_payload(load_payload(name))
+          def run(name=nil)
+            super(name)
+
+            print_payload(payload_class)
           end
 
           #

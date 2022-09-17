@@ -33,7 +33,7 @@ module Ronin
         include Core::CLI::ParamOption
         include PayloadMethods
 
-        usage '[options] NAME'
+        usage '[options] {-f FILE | NAME}'
 
         option :file, short: '-f',
                       value: {
@@ -42,7 +42,7 @@ module Ronin
                       },
                       desc: 'The payload file to load'
 
-        argument :name, required: true,
+        argument :name, required: false,
                         desc:     'The payload name to load'
 
         # The loaded payload class.
@@ -56,13 +56,38 @@ module Ronin
         attr_reader :payload
 
         #
+        # Loads the payload.
+        #
+        # @param [String, nil] name
+        #   The optional payload name to load.
+        #
+        def run(name=nil)
+          if    name           then load_payload(name)
+          elsif options[:file] then load_payload_from(options[:file])
+          else
+            print_error "must specify --file or a NAME"
+            exit(-1)
+          end
+        end
+
+        #
         # Loads the payload and sets {#payload_class}.
         #
         # @param [String] id
         #   The payload name to load.
         #
         def load_payload(id)
-          @payload_class = super(id,options[:file])
+          @payload_class = super(id)
+        end
+
+        #
+        # Loads the payload from the given file and sets {#payload_class}.
+        #
+        # @param [String] file
+        #   The file to load the payload from.
+        #
+        def load_payload_from(file)
+          @payload_class = super(file)
         end
 
         #
