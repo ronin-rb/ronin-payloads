@@ -19,6 +19,10 @@ describe Ronin::Payloads::CLI::PayloadCommand do
   describe "#load_payload" do
     let(:id) { payload_class.id }
 
+    before do
+      expect(Ronin::Payloads).to receive(:load_class).with(id).and_return(payload_class)
+    end
+
     it "must load the payload class and return the payload class" do
       expect(subject.load_payload(id)).to be(payload_class)
     end
@@ -29,6 +33,24 @@ describe Ronin::Payloads::CLI::PayloadCommand do
       expect(subject.payload_class).to be(payload_class)
     end
   end
+
+  describe "#load_payload_from" do
+    let(:file) { "path/to/payload/file.rb" }
+
+    before do
+      expect(Ronin::Payloads).to receive(:load_class_from_file).with(file).and_return(payload_class)
+    end
+
+    it "must load the payload class and return the payload class" do
+      expect(subject.load_payload_from(file)).to be(payload_class)
+    end
+
+    it "must also set #payload_class" do
+      subject.load_payload_from(file)
+
+      expect(subject.payload_class).to be(payload_class)
+    end
+ end
 
   describe "#initialize_payload" do
     before { subject.load_payload(payload_class.id) }
