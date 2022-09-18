@@ -19,8 +19,6 @@
 #
 
 require 'ronin/payloads/root'
-require 'ronin/payloads/registry'
-
 require 'ronin/core/cli/command'
 
 module Ronin
