@@ -35,7 +35,7 @@ module Ronin
         #
         # ## Options
         # 
-        #     -t asm|shellcode|c|shell|powershell|html|javascript|java|sql|php|nodejs,
+        #     -t asm|shellcode|c|shell|powershell|html|javascript|typescript|java|sql|php|nodejs,
         #         --type                       The type for the new payload
         #     -S, --summary TEXT               One sentence summary for the payload
         #     -D, --description TEXT           Longer description for the payload
@@ -88,6 +88,11 @@ module Ronin
             javascript: {
               class_file: 'javascript_payload',
               class_name: 'JavaScriptPayload'
+            },
+
+            typpescript: {
+              class_file: 'typescript_payload',
+              class_name: 'TypeScriptPayload'
             },
 
             java: {
