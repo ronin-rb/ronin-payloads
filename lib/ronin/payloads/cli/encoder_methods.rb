@@ -101,16 +101,14 @@ module Ronin
         #   Additional keyword arguments for {Encoders::Encoder#initialize}.
         #
         def initialize_encoder(encoder_class,**kwargs)
-          begin
-            encoder_class.new(**kwargs)
-          rescue Core::Params::ParamError => error
-            print_error error.message
-            exit(1)
-          rescue => error
-            print_exception(error)
-            print_error "an unhandled exception occurred while initializing encoder #{encoder_class.id}"
-            exit(-1)
-          end
+          encoder_class.new(**kwargs)
+        rescue Core::Params::ParamError => error
+          print_error error.message
+          exit(1)
+        rescue => error
+          print_exception(error)
+          print_error "an unhandled exception occurred while initializing encoder #{encoder_class.id}"
+          exit(-1)
         end
 
         #
@@ -126,16 +124,14 @@ module Ronin
         #   Another encoder validation error occurred.
         #
         def validate_encoder(encoder)
-          begin
-            encoder.validate
-          rescue Core::Params::ParamError, Encoders::ValidationError => error
-            print_error "failed to validate the encoder #{encoder.class_id}: #{error.message}"
-            exit(1)
-          rescue => error
-            print_exception(error)
-            print_error "an unhandled exception occurred while validating the encoder #{encoder.class_id}"
-            exit(-1)
-          end
+          encoder.validate
+        rescue Core::Params::ParamError, Encoders::ValidationError => error
+          print_error "failed to validate the encoder #{encoder.class_id}: #{error.message}"
+          exit(1)
+        rescue => error
+          print_exception(error)
+          print_error "an unhandled exception occurred while validating the encoder #{encoder.class_id}"
+          exit(-1)
         end
       end
     end

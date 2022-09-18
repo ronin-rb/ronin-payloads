@@ -79,16 +79,14 @@ module Ronin
         #   Additional keyword arguments for {Payload#initialize}.
         #
         def initialize_payload(payload_class,**kwargs)
-          begin
-            payload_class.new(**kwargs)
-          rescue Core::Params::ParamError => error
-            print_error error.message
-            exit(1)
-          rescue => error
-            print_exception(error)
-            print_error "an unhandled exception occurred while initializing payload #{payload_class.id}"
-            exit(-1)
-          end
+          payload_class.new(**kwargs)
+        rescue Core::Params::ParamError => error
+          print_error error.message
+          exit(1)
+        rescue => error
+          print_exception(error)
+          print_error "an unhandled exception occurred while initializing payload #{payload_class.id}"
+          exit(-1)
         end
 
         #
@@ -104,16 +102,14 @@ module Ronin
         #   Another payload validation error occurred.
         #
         def validate_payload(payload)
-          begin
-            payload.validate
-          rescue Core::Params::ParamError, ValidationError => error
-            print_error "failed to validate the payload #{payload.class_id}: #{error.message}"
-            exit(1)
-          rescue => error
-            print_exception(error)
-            print_error "an unhandled exception occurred while validating the payload #{payload.class_id}"
-            exit(-1)
-          end
+          payload.validate
+        rescue Core::Params::ParamError, ValidationError => error
+          print_error "failed to validate the payload #{payload.class_id}: #{error.message}"
+          exit(1)
+        rescue => error
+          print_exception(error)
+          print_error "an unhandled exception occurred while validating the payload #{payload.class_id}"
+          exit(-1)
         end
       end
     end
