@@ -26,6 +26,27 @@ module Ronin
     # A {Payload} class that represents Java payloads.
     #
     class JavaPayload < Payload
+
+      #
+      # The default Java compiler.
+      #
+      # @return [String]
+      #
+      def self.javac
+        ENV['JAVAC'] || 'javac'
+      end
+
+      param :javac, required: true,
+                    default:  ->{ javac },
+                    desc:     'The Java compiler to use'
+
+      #
+      # Compiles one or more source files using `javac`.
+      #
+      def compile(*arguments)
+        system(params[:javac],*arguments)
+      end
+
     end
   end
 end
