@@ -39,7 +39,7 @@ module Ronin
         #   The loaded payload class.
         #
         def load_payload(name)
-            Payloads.load_class(name)
+          Payloads.load_class(name)
         rescue Payloads::ClassNotFound => error
           print_error error.message
           exit(1)
@@ -115,7 +115,6 @@ module Ronin
             exit(-1)
           end
         end
-
       end
     end
   end

@@ -61,7 +61,7 @@ module Ronin
         #   The loaded encoder class.
         #
         def load_encoder(name)
-            Payloads::Encoders.load_class(name)
+          Payloads::Encoders.load_class(name)
         rescue Payloads::ClassNotFound => error
           print_error error.message
           exit(1)
