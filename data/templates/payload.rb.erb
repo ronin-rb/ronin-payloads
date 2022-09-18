@@ -27,6 +27,18 @@ module Ronin
       #   FIX ME
       # DESC
       <%- end -%>
+      <%- unless @references.empty? -%>
+      references [
+        <%- @references.each_with_index do |url,index| -%>
+        <%=   url.inspect -%><% if index < @references.length-1 %>,<% end %>
+        <%- end -%>
+      ]
+      <%- else -%>
+      # references [
+      #   "https:/...",
+      #   "https:/..."
+      # ]
+      <%- end -%>
 
       def build
         # @payload = ...

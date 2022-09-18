@@ -24,6 +24,9 @@ Generates a new payload file.
 `-D`, `--description` *TEXT*
   The description text for the new payload.
 
+`-R`, `--reference` *URL*
+  Adds a reference URL to the new payload.
+
 `-h`, `--help`
   Print help information
 

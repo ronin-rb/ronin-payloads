@@ -39,6 +39,7 @@ module Ronin
         #         --type                       The type for the new payload
         #     -S, --summary TEXT               One sentence summary for the payload
         #     -D, --description TEXT           Longer description for the payload
+        #     -R, --reference URL              Adds a reference to the payload
         #     -h, --help                       Print help information
         #
         # ## Arguments
@@ -140,11 +141,37 @@ module Ronin
                                },
                                desc: 'Longer description for the payload'
 
+          option :reference, short: '-R',
+                             value: {
+                               type: String,
+                               usage: 'URL'
+                             },
+                             desc: 'Adds a reference to the payload' do |url|
+                               @references << url
+                             end
+
           argument :path, desc: 'The path to the new payload file'
 
           description 'Creates a new payload file'
 
           man_page 'ronin-payloads-new.1'
+
+          # The references to add to the payload.
+          #
+          # @return [Array<String>]
+          attr_reader :references
+
+          #
+          # Initializes the `ronin-payloads new` command.
+          #
+          # @param [Hash{Symbol => Object}] kwargs
+          #   Additional keyword arguments.
+          #
+          def initialize(**kwargs)
+            super(**kwargs)
+
+            @references = []
+          end
 
           #
           # Runs the `ronin-payloads new` command.
