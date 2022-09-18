@@ -27,4 +27,4 @@ Postmodern <postmodern.mod3@gmail.com>
 
 ## SEE ALSO
 
-ronin-payloads-encoders(1), ronin-payloads-encode(1)
+ronin-payloads-encoders(1) ronin-payloads-encode(1)

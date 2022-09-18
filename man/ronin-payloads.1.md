@@ -47,4 +47,4 @@ Postmodern <postmodern.mod3@gmail.com>
 
 ## SEE ALSO
 
-ronin-payloads-console(1), ronin-payloads-build(1), ronin-payloads-encode(1), ronin-payloads-encoders(1), ronin-payloads-launch(1), ronin-payloads-list(1)
+ronin-payloads-console(1) ronin-payloads-build(1) ronin-payloads-encode(1) ronin-payloads-encoders(1) ronin-payloads-launch(1) ronin-payloads-list(1)

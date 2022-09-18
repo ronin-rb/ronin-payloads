@@ -42,4 +42,4 @@ Postmodern <postmodern.mod3@gmail.com>
 
 ## SEE ALSO
 
-ronin-payloads-list(1), ronin-payloads-show(1), ronin-payloads-launch(1)
+ronin-payloads-list(1) ronin-payloads-show(1) ronin-payloads-launch(1)
