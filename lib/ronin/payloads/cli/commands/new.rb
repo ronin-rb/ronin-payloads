@@ -35,7 +35,7 @@ module Ronin
         #
         # ## Options
         # 
-        #     -t asm|shellcode|shell|powershell|html|javascript|java|sql|php|nodejs,
+        #     -t asm|shellcode|c|shell|powershell|html|javascript|java|sql|php|nodejs,
         #         --type                       The type for the new payload
         #     -S, --summary TEXT               One sentence summary for the payload
         #     -D, --description TEXT           Longer description for the payload
@@ -63,6 +63,11 @@ module Ronin
             shellcode: {
               class_file: 'shellcode_payload',
               class_name: 'ShellcodePayload'
+            },
+
+            c: {
+              class_file: 'c_payload',
+              class_name: 'CPayload'
             },
 
             shell: {
@@ -112,7 +117,7 @@ module Ronin
 
           option :type, short: '-t',
                         value: {
-                          type: [:asm, :shellcode, :shell, :powershell, :html, :javascript, :java, :sql, :php, :nodejs]
+                          type: [:asm, :shellcode, :c, :shell, :powershell, :html, :javascript, :java, :sql, :php, :nodejs]
                         },
                         desc: 'The type for the new payload'
 

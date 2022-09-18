@@ -15,7 +15,7 @@ Generates a new payload file.
 
 ## OPTIONS
 
-`-t`, `--type` `asm|shellcode|shell|powershell|html|javascript|java|sql|php|nodejs`
+`-t`, `--type` `asm|shellcode|c|shell|powershell|html|javascript|java|sql|php|nodejs`
   The type of payload to generate.
 
 `-S`, `--summary` *TEXT*
