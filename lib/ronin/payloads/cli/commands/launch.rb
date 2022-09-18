@@ -76,6 +76,9 @@ module Ronin
             begin
               @payload.perform_prelaunch
               @payload.perform_postlaunch
+            rescue  PayloadError => error
+              print_error("failed to launch payload #{@payload.class_id}: #{error.message}")
+              exit(1)
             rescue => error
               print_exception(error)
               print_error "an unhandled exception occurred while launching payload #{@payload.class_id}"
