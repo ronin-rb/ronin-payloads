@@ -43,6 +43,12 @@ module Ronin
       #
       # Compiles one or more source files using `javac`.
       #
+      # @param [Array<String>] arguments
+      #   Additional arguments for the `javac` command.
+      #
+      # @return [Boolean, nil]
+      #   Indicates whether the `javac` command succeeded or failed.
+      #
       def compile(*arguments)
         system(params[:javac],*arguments)
       end

@@ -43,6 +43,18 @@ module Ronin
       #
       # Compiles one or more source files using `cc`.
       #
+      # @param [Array<String>] source_files
+      #   The source file(s) to compile.
+      #
+      # @param [String] output
+      #   The output file path.
+      #
+      # @param [Array<String>, nil] defs
+      #   Additional macro definitions to pass to the compiler.
+      #
+      # @return [Boolean, nil]
+      #   Indicates whether the C compiler command succeeded or failed.
+      #
       def compile(*source_files, output: , defs: nil)
         args = ['-o', output]
 
