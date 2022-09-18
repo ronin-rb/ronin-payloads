@@ -10,7 +10,7 @@ describe Ronin::Payloads::JavaPayload do
     subject { described_class }
 
     context "when ENV['JAVAC'] is set" do
-      let(:javac) { 'gjavac' }
+      let(:javac) { '/path/to/javac' }
 
       before { ENV['JAVAC'] = javac }
 
