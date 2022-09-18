@@ -43,8 +43,18 @@ module Ronin
       #
       # Compiles one or more source files using `cc`.
       #
-      def compile(*source_files, output: )
-        system(params[:cc],'-o',output,*source_files)
+      def compile(*source_files, output: , defs: nil)
+        args = ['-o', output]
+
+        if defs
+          defs.each do |value|
+            args << "-D#{value}"
+          end
+        end
+
+        args.concat(source_files)
+
+        system(params[:cc],*args)
       end
 
     end

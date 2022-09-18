@@ -58,5 +58,19 @@ describe Ronin::Payloads::CPayload do
 
       subject.compile(*source_files, output: output)
     end
+
+    context "when the defs: keyword argument is given" do
+      let(:def1) { 'foo' }
+      let(:def2) { 'bar=baz' }
+      let(:defs) { [def1, def2] }
+
+      it "must append the values with '-D' flags" do
+        expect(subject).to receive(:system).with(
+          subject.params[:cc],'-o',output,"-D#{def1}","-D#{def2}",*source_files
+        )
+
+        subject.compile(*source_files, output: output, defs: defs)
+      end
+    end
   end
 end
