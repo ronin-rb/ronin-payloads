@@ -44,8 +44,10 @@ module Ronin
       # Compiles one or more source files.
       #
       # @param [Array<String>] source_files
+      #   The source files to compile.
       #
       # @return [Boolean, nil]
+      #   Indicates whether the `tsc` command succeeded or failed.
       #
       def compile(*source_files)
         system(params[:tsc],*source_files)
