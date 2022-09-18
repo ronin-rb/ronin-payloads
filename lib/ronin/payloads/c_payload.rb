@@ -26,6 +26,27 @@ module Ronin
     # A {Payload} class that represents all C payloads.
     #
     class CPayload < Payload
+
+      #
+      # The default C compiler.
+      #
+      # @return [String]
+      #
+      def self.cc
+        ENV['CC'] || 'cc'
+      end
+
+      param :cc, required: true,
+                 default:  ->{ cc },
+                 desc:     'The C compiler to use'
+
+      #
+      # Compiles one or more source files using `cc`.
+      #
+      def compile(*source_files, output: )
+        system(params[:cc],'-o',output,*source_files)
+      end
+
     end
   end
 end
