@@ -1,0 +1,47 @@
+#!/usr/bin/env -S ronin-payloads build -f
+
+require 'ronin/payloads/<%= @payload_class_file -%>'
+
+module Ronin
+  module Payloads
+    class <%= @class_name -%> < <%= @payload_class_name %>
+
+      register '<%= @file_name -%>'
+
+      <%- if @author_email -%>
+      author '<%= @author_name %>', email: '<%= @author_email -%>'
+      <%- else -%>
+      author '<%= @author_name %>'
+      <%- end -%>
+      <%- if @summary -%>
+      summary "<%= @summary %>"
+      <%- else -%>
+      # summary "FIX ME"
+      <%- end -%>
+      <%- if @description -%>
+      description <<~DESC
+        <%= @description %>
+      DESC
+      <%- else -%>
+      # description <<~DESC
+      #   FIX ME
+      # DESC
+      <%- end -%>
+
+      def build
+        # @payload = ...
+      end
+
+      # Optional prelaunch hook:
+      #
+      # def prelaunch
+      # end
+      #
+      # Optional postlaunch hook:
+      #
+      # def postlaunch
+      # end
+
+    end
+  end
+end
