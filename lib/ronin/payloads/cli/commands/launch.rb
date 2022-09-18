@@ -64,6 +64,7 @@ module Ronin
 
             initialize_payload(params: @params)
             launch_payload
+            start_console
           end
 
           #
@@ -80,10 +81,15 @@ module Ronin
               print_error "an unhandled exception occurred while launching payload #{@payload.class_id}"
               exit(-1)
             end
+          end
 
+          #
+          # Starts the interactive console for the payload.
+          #
+          def stat_console
             log_info "Launched payload #{@payload.class_id}"
 
-            Console.start(context: @payload)
+            Console.start(name: @payload.class.name, context: @payload)
           end
 
         end
