@@ -67,19 +67,6 @@ module Ronin
           end
 
           #
-          # Loads a payload class.
-          #
-          # @param [String] name
-          #   The payload ID to load.
-          #
-          # @return [Class<Payload>]
-          #   The loaded payload class.
-          #
-          def load_payload(name)
-            super(name,options[:file])
-          end
-
-          #
           # Prints the mdatadata for a payload class.
           #
           # @param [Class<Payload>] payload
