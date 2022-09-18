@@ -69,10 +69,10 @@ module Ronin
                            usage: 'ENCODER.NAME=VALUE'
                          },
                          desc: 'Sets a param on an encoder' do |str|
-                           name, value              = str.split('=',2)
-                           ecndoer_name, param_name = name.split('.',2)
+                           prefix, value = str.split('=',2)
+                           ecndoer, name = prefix.split('.',2)
 
-                           @params[encoder_name][param_name] = value
+                           @params[encoder][name] = value
                          end
 
           option :string, short: '-s',
