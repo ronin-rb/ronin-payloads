@@ -18,7 +18,12 @@
 require 'ronin/payloads/cli/command'
 require 'ronin/payloads/cli/generator/payload_types'
 require 'ronin/payloads/root'
+
 require 'ronin/core/cli/generator'
+require 'ronin/core/cli/generator/options/author'
+require 'ronin/core/cli/generator/options/summary'
+require 'ronin/core/cli/generator/options/description'
+require 'ronin/core/cli/generator/options/reference'
 require 'ronin/core/git'
 
 require 'command_kit/inflector'
@@ -40,9 +45,9 @@ module Ronin
         #         --type                       The type for the new payload
         #     -a, --author NAME                The name of the author
         #     -e, --author-email EMAIL         The email address of the author
-        #     -S, --summary TEXT               One sentence summary for the payload
-        #     -D, --description TEXT           Longer description for the payload
-        #     -R, --reference URL              Adds a reference to the payload
+        #     -S, --summary TEXT               One sentence summary
+        #     -D, --description TEXT           Longer description
+        #     -R, --reference URL              Adds a reference URL
         #     -h, --help                       Print help information
         #
         # ## Arguments
@@ -64,52 +69,10 @@ module Ronin
                           @payload_type = PAYLOAD_TYPES.fetch(type)
                         end
 
-          option :author, short: '-a',
-                          value: {
-                            type:  String,
-                            usage: 'NAME',
-                            default: Core::Git.user_name || ENV['USERNAME']
-                          },
-                          desc: 'The name of the author' do |author|
-                            @author_name = author
-                          end
-
-          option :author_email, short: '-e',
-                                value: {
-                                  type:  String,
-                                  usage: 'EMAIL',
-                                  default: Core::Git.user_email
-                                },
-                                desc: 'The email address of the author' do |email|
-                                  @author_email = email
-                                end
-
-          option :summary, short: '-S',
-                           value: {
-                             type: String,
-                             usage: 'TEXT'
-                           },
-                           desc: 'One sentence summary for the payload' do |text|
-                             @summary = text
-                           end
-
-          option :description, short: '-D',
-                               value: {
-                                 type: String,
-                                 usage: 'TEXT'
-                               },
-                               desc: 'Longer description for the payload' do |text|
-                                 @description = text
-                               end
-
-          option :reference, short: '-R',
-                             value: {
-                               type: String,
-                               usage: 'URL'
-                             },
-                             desc: 'Adds a reference to the payload' do |url|
-                               @references << url
-                             end
+          include Core::CLI::Generator::Options::Author
+          include Core::CLI::Generator::Options::Summary
+          include Core::CLI::Generator::Options::Description
+          include Core::CLI::Generator::Options::Reference
 
           argument :path, desc: 'The path to the new payload file'
 
@@ -132,7 +95,6 @@ module Ronin
             super(**kwargs)
 
             @payload_type = PAYLOAD_TYPES.fetch(:payload)
-            @references   = []
           end
 
           #
