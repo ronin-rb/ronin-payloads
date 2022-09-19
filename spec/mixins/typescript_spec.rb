@@ -1,10 +1,15 @@
 require 'spec_helper'
-require 'ronin/payloads/typescript_payload'
+require 'ronin/payloads/mixins/typescript'
+require 'ronin/payloads/javascript_payload'
 
-describe Ronin::Payloads::TypeScriptPayload do
-  it "must inherit from Ronin::Payloads::JavaScriptPayload" do
-    expect(described_class).to be < Ronin::Payloads::JavaScriptPayload
+describe Ronin::Payloads::Mixins::TypeScript do
+  module TestTypeScriptMixin
+    class TestPayload < Ronin::Payloads::JavaScriptPayload
+      include Ronin::Payloads::Mixins::TypeScript
+    end
   end
+
+  let(:payload_class) { TestTypeScriptMixin::TestPayload }
 
   describe ".tsc" do
     subject { described_class }
@@ -36,16 +41,18 @@ describe Ronin::Payloads::TypeScriptPayload do
   end
 
   describe "params" do
-    subject { described_class }
+    subject { payload_class }
 
     it "must define a :tsc param" do
       expect(subject.params[:tsc]).to_not be_nil
     end
 
     it "must default the :tsc param to #{described_class}.tsc" do
-      expect(subject.params[:tsc].default_value).to eq(subject.tsc)
+      expect(subject.params[:tsc].default_value).to eq(described_class.tsc)
     end
   end
+
+  subject { payload_class.new }
 
   describe "#compile" do
     let(:source_files) { %w[foo.ts bar.ts baz.ts] }
