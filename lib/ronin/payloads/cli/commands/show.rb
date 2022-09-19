@@ -19,7 +19,7 @@
 #
 
 require 'ronin/payloads/cli/payload_command'
-require 'ronin/payloads/cli/printing/metadata'
+require 'ronin/payloads/cli/printing'
 require 'ronin/payloads/metadata/arch'
 require 'ronin/payloads/metadata/os'
 require 'ronin/core/cli/printing/metadata'
@@ -52,7 +52,7 @@ module Ronin
           include Core::CLI::Printing::Metadata
           include Core::CLI::Printing::Arch
           include Core::CLI::Printing::OS
-          include Printing::Metadata
+          include Printing
 
           description 'Prints information about a payload'
 
@@ -81,6 +81,7 @@ module Ronin
 
             indent do
               fields = {}
+              fields['Type']    = payload_type(payload)
               fields['Summary'] = payload.summary if payload.summary
 
               if payload.include?(Metadata::Arch)
