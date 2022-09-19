@@ -16,6 +16,7 @@
 #
 
 require 'ronin/payloads/cli/command'
+require 'ronin/payloads/cli/generator'
 require 'ronin/payloads/root'
 require 'ronin/core/cli/generator'
 require 'ronin/core/git'
@@ -49,82 +50,14 @@ module Ronin
         class New < Command
 
           include Core::CLI::Generator
-
-          PAYLOAD_TYPES = {
-            nil => {
-              class_file: 'payload',
-              class_name: 'Payload'
-            },
-
-            asm: {
-              class_file: 'asm_payload',
-              class_name: 'ASMPayload'
-            },
-
-            shellcode: {
-              class_file: 'shellcode_payload',
-              class_name: 'ShellcodePayload'
-            },
-
-            c: {
-              class_file: 'c_payload',
-              class_name: 'CPayload'
-            },
-
-            shell: {
-              class_file: 'shell_payload',
-              class_name: 'ShellPayload'
-            },
-
-            powershell: {
-              class_file: 'powershell_payload',
-              class_name: 'PowerShellPayload'
-            },
-
-            html: {
-              class_file: 'html_payload',
-              class_name: 'HTMLPayload'
-            },
-
-            javascript: {
-              class_file: 'javascript_payload',
-              class_name: 'JavaScriptPayload'
-            },
-
-            typpescript: {
-              class_file: 'typescript_payload',
-              class_name: 'TypeScriptPayload'
-            },
-
-            java: {
-              class_file: 'java_payload',
-              class_name: 'JavaPayload'
-            },
-
-            sql: {
-              class_file: 'sql_payload',
-              class_name: 'SQLPayload'
-            },
-
-            php: {
-              class_file: 'php_payload',
-              class_name: 'PHPPayload'
-            },
-
-            nodejs: {
-              class_file: 'node_js_payload',
-              class_name: 'NodeJSPayload'
-            }
-          }
+          include Payloads::CLI::Generator
 
           template_dir File.join(ROOT,'data','templates')
 
           usage '[options] FILE'
 
           option :type, short: '-t',
-                        value: {
-                          type: [:asm, :shellcode, :c, :shell, :powershell, :html, :javascript, :java, :sql, :php, :nodejs]
-                        },
+                        value: {type: PAYLOAD_TYPES.keys},
                         desc: 'The type for the new payload'
 
           option :summary, short: '-S',
