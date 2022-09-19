@@ -62,9 +62,16 @@ module Ronin
           def run(name=nil)
             super(name)
 
-            initialize_payload(params: @params)
+            initialize_payload
             launch_payload
             start_console
+          end
+
+          #
+          # Initializes the payload with {#params}.
+          #
+          def initialize_payload
+            super(params: @params)
           end
 
           #
