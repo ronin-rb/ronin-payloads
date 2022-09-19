@@ -18,6 +18,13 @@ Generates a new payload file.
 `-t`, `--type` `asm|shellcode|c|shell|powershell|html|javascript|typescript|java|sql|php|nodejs`
   The type of payload to generate.
 
+`-a`, `--author` *NAME*
+  The name of the author. Defaults to the configured git author name or the
+  `USERNAME` environment variable.
+
+`-e`, `--author-email` *EMAIL*
+  The email address of the author. Defaults to the configured git author email.
+
 `-S`, `--summary` *TEXT*
   The summary text for the new payload.
 

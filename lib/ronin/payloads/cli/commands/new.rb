@@ -38,6 +38,8 @@ module Ronin
         # 
         #     -t asm|shellcode|c|shell|powershell|html|javascript|typescript|java|sql|php|nodejs,
         #         --type                       The type for the new payload
+        #     -a, --author NAME                The name of the author
+        #     -e, --author-email EMAIL         The email address of the author
         #     -S, --summary TEXT               One sentence summary for the payload
         #     -D, --description TEXT           Longer description for the payload
         #     -R, --reference URL              Adds a reference to the payload
@@ -61,6 +63,22 @@ module Ronin
                         desc: 'The type for the new payload' do |type|
                           @payload_type = PAYLOAD_TYPES.fetch(type)
                         end
+
+          option :author, short: '-a',
+                          value: {
+                            type:  String,
+                            usage: 'NAME',
+                            default: Core::Git.user_name || ENV['USERNAME']
+                          },
+                          desc: 'The name of the author'
+
+          option :author_email, short: '-e',
+                                value: {
+                                  type:  String,
+                                  usage: 'EMAIL',
+                                  default: Core::Git.user_email
+                                },
+                                desc: 'The email address of the author'
 
           option :summary, short: '-S',
                            value: {
@@ -119,8 +137,8 @@ module Ronin
             @file_name  = File.basename(file,File.extname(file))
             @class_name = CommandKit::Inflector.camelize(@file_name)
 
-            @author_name  = Core::Git.user_name || ENV['USERNAME']
-            @author_email = Core::Git.user_email
+            @author_name  = options[:author]
+            @author_email = options[:author_email]
 
             @summary     = options[:summary]
             @description = options[:description]
