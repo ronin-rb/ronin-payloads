@@ -19,11 +19,12 @@
 #
 
 require 'ronin/payloads/cli/command'
-require 'ronin/payloads/cli/printing/metadata'
 require 'ronin/payloads/cli/encoder_methods'
 require 'ronin/payloads/metadata/arch'
 require 'ronin/payloads/metadata/os'
 require 'ronin/core/cli/printing/metadata'
+require 'ronin/core/cli/printing/arch'
+require 'ronin/core/cli/printing/os'
 
 module Ronin
   module Payloads
@@ -35,7 +36,8 @@ module Ronin
         class Encoder < Command
 
           include Core::CLI::Printing::Metadata
-          include Printing::Metadata
+          include Core::CLI::Printing::Arch
+          include Core::CLI::Printing::OS
           include EncoderMethods
 
           usage '[options] [NAME]'
