@@ -70,7 +70,9 @@ module Ronin
                             usage: 'NAME',
                             default: Core::Git.user_name || ENV['USERNAME']
                           },
-                          desc: 'The name of the author'
+                          desc: 'The name of the author' do |author|
+                            @author_name = author
+                          end
 
           option :author_email, short: '-e',
                                 value: {
@@ -78,21 +80,27 @@ module Ronin
                                   usage: 'EMAIL',
                                   default: Core::Git.user_email
                                 },
-                                desc: 'The email address of the author'
+                                desc: 'The email address of the author' do |email|
+                                  @author_email = email
+                                end
 
           option :summary, short: '-S',
                            value: {
                              type: String,
                              usage: 'TEXT'
                            },
-                           desc: 'One sentence summary for the payload'
+                           desc: 'One sentence summary for the payload' do |text|
+                             @summary = text
+                           end
 
           option :description, short: '-D',
                                value: {
                                  type: String,
                                  usage: 'TEXT'
                                },
-                               desc: 'Longer description for the payload'
+                               desc: 'Longer description for the payload' do |text|
+                                 @description = text
+                               end
 
           option :reference, short: '-R',
                              value: {
@@ -136,12 +144,6 @@ module Ronin
           def run(file)
             @file_name  = File.basename(file,File.extname(file))
             @class_name = CommandKit::Inflector.camelize(@file_name)
-
-            @author_name  = options[:author]
-            @author_email = options[:author_email]
-
-            @summary     = options[:summary]
-            @description = options[:description]
 
             erb "payload.rb.erb", file
             chmod '+x', file
