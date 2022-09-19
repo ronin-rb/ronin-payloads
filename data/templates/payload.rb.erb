@@ -1,10 +1,10 @@
 #!/usr/bin/env -S ronin-payloads build -f
 
-require 'ronin/payloads/<%= @payload_class_file -%>'
+require 'ronin/payloads/<%= @payload_type[:file] -%>'
 
 module Ronin
   module Payloads
-    class <%= @class_name -%> < <%= @payload_class_name %>
+    class <%= @class_name -%> < <%= @payload_type[:class]  %>
 
       register '<%= @file_name -%>'
 

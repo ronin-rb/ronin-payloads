@@ -16,7 +16,7 @@
 #
 
 require 'ronin/payloads/cli/command'
-require 'ronin/payloads/cli/generator'
+require 'ronin/payloads/cli/generator/payload_types'
 require 'ronin/payloads/root'
 require 'ronin/core/cli/generator'
 require 'ronin/core/git'
@@ -58,7 +58,9 @@ module Ronin
 
           option :type, short: '-t',
                         value: {type: PAYLOAD_TYPES.keys},
-                        desc: 'The type for the new payload'
+                        desc: 'The type for the new payload' do |type|
+                          @payload_type = PAYLOAD_TYPES.fetch(type)
+                        end
 
           option :summary, short: '-S',
                            value: {
@@ -103,7 +105,8 @@ module Ronin
           def initialize(**kwargs)
             super(**kwargs)
 
-            @references = []
+            @payload_type = PAYLOAD_TYPES.fetch(:payload)
+            @references   = []
           end
 
           #
@@ -115,10 +118,6 @@ module Ronin
           def run(file)
             @file_name  = File.basename(file,File.extname(file))
             @class_name = CommandKit::Inflector.camelize(@file_name)
-
-            payload_type        = PAYLOAD_TYPES.fetch(options[:type])
-            @payload_class_file = payload_type.fetch(:class_file)
-            @payload_class_name = payload_type.fetch(:class_name)
 
             @author_name  = Core::Git.user_name || ENV['USERNAME']
             @author_email = Core::Git.user_email
