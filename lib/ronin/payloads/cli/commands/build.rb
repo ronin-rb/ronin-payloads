@@ -21,7 +21,7 @@
 require 'ronin/payloads/cli/payload_command'
 require 'ronin/payloads/cli/format_option'
 require 'ronin/payloads/cli/encoder_methods'
-require 'ronin/core/cli/param_option'
+require 'ronin/core/cli/options/param'
 
 module Ronin
   module Payloads
@@ -54,7 +54,7 @@ module Ronin
 
           include FormatOption
           include EncoderMethods
-          include Core::CLI::ParamOption
+          include Core::CLI::Options::Param
 
           option :output, short: '-o',
                           value: {

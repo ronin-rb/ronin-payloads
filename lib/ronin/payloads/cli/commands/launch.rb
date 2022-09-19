@@ -20,7 +20,7 @@
 
 require 'ronin/payloads/cli/payload_command'
 require 'ronin/payloads/cli/console'
-require 'ronin/core/cli/param_option'
+require 'ronin/core/cli/options/param'
 require 'ronin/core/cli/logging'
 
 module Ronin
@@ -46,7 +46,7 @@ module Ronin
         #
         class Launch < PayloadCommand
 
-          include Core::CLI::ParamOption
+          include Core::CLI::Options::Param
           include Core::CLI::Logging
 
           description 'Launches a payload'
