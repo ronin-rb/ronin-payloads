@@ -120,7 +120,7 @@ module Ronin
             super(name)
 
             load_encoders
-            initialize_payload(params: @params, encoders: @encoders)
+            initialize_payload
             validate_payload
             build_payload
 
@@ -142,6 +142,13 @@ module Ronin
               validate_encoder(encoder)
               encoder
             end
+          end
+
+          #
+          # Initializes the payload with {#params} and {#encoders}.
+          #
+          def initialize_payload
+            super(params: @params, encoders: @encoders)
           end
 
           #
