@@ -19,7 +19,6 @@
 #
 
 require 'ronin/payloads/cli/payload_command'
-require 'ronin/payloads/cli/printing'
 require 'ronin/payloads/metadata/arch'
 require 'ronin/payloads/metadata/os'
 require 'ronin/core/cli/printing/metadata'
@@ -55,7 +54,6 @@ module Ronin
           include Core::CLI::Printing::Arch
           include Core::CLI::Printing::OS
           include CommandKit::Printing::Fields
-          include Printing
 
           description 'Prints information about a payload'
 
@@ -105,6 +103,65 @@ module Ronin
               print_authors(payload)
               print_description(payload)
               print_references(payload)
+            end
+          end
+
+          #
+          # Returns the printable payload type for the payload class.
+          #
+          # @param [Class<Payload>] payload_class
+          #   The payload class.
+          #
+          # @return [String]
+          #   The printable payload type (ex: 'ASM' or 'shellcode').
+          #
+          def payload_type(payload_class)
+            if    defined?(HTMLPayload) && payload_class < HTMLPayload
+              'HTML'
+            elsif defined?(XMLPayload) && payload_class < XMLPayload
+              'XML'
+            elsif defined?(SQLPayload) && payload_class < SQLPayload
+              'SQL'
+            elsif defined?(ShellPayload) && payload_class < ShellPayload
+              'shell'
+            elsif defined?(PowerShellPayload) &&
+                  payload_class < PowerShellPayload
+              'PowerShell'
+            elsif defined?(CPayload) && payload_class < CPayload
+              'C'
+            elsif defined?(JavaPayload) && payload_class < JavaPayload
+              'Java'
+            elsif defined?(ColdFusionPayload) &&
+                  payload_class < ColdFusionPayload
+              'ColdFusion'
+            elsif defined?(PHPPayload) && payload_class < PHPPayload
+              'PHP'
+            elsif defined?(NodeJSPayload) && payload_class < NodeJSPayload
+              if defined?(Mixins::TypeScript) &&
+                  payload_class.include?(Mixins::TypeScript)
+                'Node.js (TypeScript)'
+              else
+                'Node.js'
+              end
+            elsif defined?(JavaScriptPayload) &&
+                  payload_class < JavaScriptPayload
+              if defined?(Mixins::TypeScript) &&
+                  payload_class.include?(Mixins::TypeScript)
+                'JavaScript (TypeScript)'
+              else
+                'JavaScript'
+              end
+            elsif defined?(BinaryPayload) &&
+                  payload_class < BinaryPayload
+              if defined?(ShellcodePayload) && payload_class < ShellcodePayload
+                'shellcode'
+              elsif defined?(ASMPayload) && payload_class < ASMPayload
+                'ASM'
+              else
+                'binary'
+              end
+            else
+              'custom'
             end
           end
 
