@@ -26,6 +26,8 @@ require 'ronin/core/cli/printing/metadata'
 require 'ronin/core/cli/printing/arch'
 require 'ronin/core/cli/printing/os'
 
+require 'command_kit/printing/fields'
+
 module Ronin
   module Payloads
     class CLI
@@ -39,6 +41,7 @@ module Ronin
           include Core::CLI::Printing::Arch
           include Core::CLI::Printing::OS
           include EncoderMethods
+          include CommandKit::Printing::Fields
 
           usage '[options] [NAME]'
 
