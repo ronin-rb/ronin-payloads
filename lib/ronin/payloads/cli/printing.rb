@@ -18,22 +18,6 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/payloads/binary_payload'
-require 'ronin/payloads/asm_payload'
-require 'ronin/payloads/shellcode_payload'
-require 'ronin/payloads/c_payload'
-require 'ronin/payloads/java_payload'
-require 'ronin/payloads/javascript_payload'
-require 'ronin/payloads/node_js_payload'
-require 'ronin/payloads/shell_payload'
-require 'ronin/payloads/powershell_payload'
-require 'ronin/payloads/coldfusion_payload'
-require 'ronin/payloads/php_payload'
-require 'ronin/payloads/sql_payload'
-require 'ronin/payloads/html_payload'
-require 'ronin/payloads/xml_payload'
-require 'ronin/payloads/mixins/typescript'
-
 module Ronin
   module Payloads
     class CLI
@@ -48,31 +32,45 @@ module Ronin
         #   The printable payload type (ex: 'ASM' or 'shellcode').
         #
         def payload_type(payload_class)
-          if    payload_class < HTMLPayload       then 'HTML'
-          elsif payload_class < XMLPayload        then 'XML'
-          elsif payload_class < SQLPayload        then 'SQL'
-          elsif payload_class < ShellPayload      then 'shell'
-          elsif payload_class < PowerShellPayload then 'PowerShell'
-          elsif payload_class < CPayload          then 'C'
-          elsif payload_class < JavaPayload       then 'Java'
-          elsif payload_class < ColdFusionPayload then 'ColdFusion'
-          elsif payload_class < PHPPayload        then 'PHP'
-          elsif payload_class < NodeJSPayload
-            if payload_class.include?(Mixins::TypeScript)
+          if    defined?(HTMLPayload) && payload_class < HTMLPayload
+            'HTML'
+          elsif defined?(XMLPayload) && payload_class < XMLPayload
+            'XML'
+          elsif defined?(SQLPayload) && payload_class < SQLPayload
+            'SQL'
+          elsif defined?(ShellPayload) && payload_class < ShellPayload
+            'shell'
+          elsif defined?(PowerShellPayload) && payload_class < PowerShellPayload
+            'PowerShell'
+          elsif defined?(CPayload) && payload_class < CPayload
+            'C'
+          elsif defined?(JavaPayload) && payload_class < JavaPayload
+            'Java'
+          elsif defined?(ColdFusionPayload) && payload_class < ColdFusionPayload
+            'ColdFusion'
+          elsif defined?(PHPPayload) && payload_class < PHPPayload
+            'PHP'
+          elsif defined?(NodeJSPayload) && payload_class < NodeJSPayload
+            if defined?(Mixins::TypeScript) &&
+               payload_class.include?(Mixins::TypeScript)
               'Node.js (TypeScript)'
             else
               'Node.js'
             end
-          elsif payload_class < JavaScriptPayload
-            if payload_class.include?(Mixins::TypeScript)
+          elsif defined?(JavaScriptPayload) && payload_class < JavaScriptPayload
+            if defined?(Mixins::TypeScript) &&
+               payload_class.include?(Mixins::TypeScript)
               'JavaScript (TypeScript)'
             else
               'JavaScript'
             end
-          elsif payload_class < BinaryPayload
-            if    payload_class < ShellcodePayload then 'shellcode'
-            elsif payload_class < ASMPayload       then 'ASM'
-            else                                        'binary'
+          elsif defined?(BinaryPayload) && payload_class < BinaryPayload
+            if defined?(ShellcodePayload) && payload_class < ShellcodePayload
+              'shellcode'
+            elsif defined?(ASMPayload) && payload_class < ASMPayload
+              'ASM'
+            else
+              'binary'
             end
           else
             'custom'
