@@ -30,6 +30,20 @@ module Ronin
 
       encoder_class Encoders::PowerShellEncoder
 
+      #
+      # Returns the type or kind of payload.
+      #
+      # @return [Symbol]
+      #
+      # @note
+      #   This is used internally to map an payload class to a printable type.
+      #
+      # @api private
+      #
+      def self.payload_type
+        :powershell
+      end
+
     end
   end
 end

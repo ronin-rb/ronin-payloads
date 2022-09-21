@@ -67,6 +67,20 @@ module Ronin
     class ShellcodePayload < ASMPayload
 
       #
+      # Returns the type or kind of payload.
+      #
+      # @return [Symbol]
+      #
+      # @note
+      #   This is used internally to map an payload class to a printable type.
+      #
+      # @api private
+      #
+      def self.payload_type
+        :shellcode
+      end
+
+      #
       # Assembles Shellcode and sets the `@payload` instance variable.
       #
       # @param [Hash{Symbol => Object}] define

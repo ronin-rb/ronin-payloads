@@ -26,6 +26,21 @@ module Ronin
     # A {Payload} class that represents all Node.js payloads.
     #
     class NodeJSPayload < Payload
+
+      #
+      # Returns the type or kind of payload.
+      #
+      # @return [Symbol]
+      #
+      # @note
+      #   This is used internally to map an payload class to a printable type.
+      #
+      # @api private
+      #
+      def self.payload_type
+        :node_js
+      end
+
     end
   end
 end

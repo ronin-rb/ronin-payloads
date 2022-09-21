@@ -32,6 +32,20 @@ module Ronin
       include Metadata::Arch
       include Metadata::OS
 
+      #
+      # Returns the type or kind of payload.
+      #
+      # @return [Symbol]
+      #
+      # @note
+      #   This is used internally to map an payload class to a printable type.
+      #
+      # @api private
+      #
+      def self.payload_type
+        :binary
+      end
+
     end
   end
 end

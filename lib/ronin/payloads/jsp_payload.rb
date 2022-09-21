@@ -26,6 +26,21 @@ module Ronin
     # A {Payload} class that represents Java Servlet Page (JSP) payloads.
     #
     class JSPPayload < Payload
+
+      #
+      # Returns the type or kind of payload.
+      #
+      # @return [Symbol]
+      #
+      # @note
+      #   This is used internally to map an payload class to a printable type.
+      #
+      # @api private
+      #
+      def self.payload_type
+        :jsp
+      end
+
     end
   end
 end

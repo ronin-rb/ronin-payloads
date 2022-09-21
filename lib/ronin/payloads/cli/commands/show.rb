@@ -106,6 +106,32 @@ module Ronin
             end
           end
 
+          # Known payload types and their printable names.
+          PAYLOAD_TYPES = {
+            payload: 'Custom',
+
+            binary:    'Binary',
+            asm:       'ASM',
+            shellcode: 'Shellcode',
+
+            c:    'C',
+            java: 'Java',
+
+            shell:      'Shell',
+            powershell: 'PowerShell',
+
+            coldfusion: 'ColdFusion',
+            jsp:        'JSP',
+            php:        'PHP',
+
+            javascript: 'JavaScript',
+            node_js:    'Node.js',
+
+            sql:  'SQL',
+            html: 'HTML',
+            xml:  'XML'
+          }
+
           #
           # Returns the printable payload type for the payload class.
           #
@@ -116,53 +142,7 @@ module Ronin
           #   The printable payload type (ex: 'ASM' or 'shellcode').
           #
           def payload_type(payload_class)
-            if    defined?(HTMLPayload) && payload_class < HTMLPayload
-              'HTML'
-            elsif defined?(XMLPayload) && payload_class < XMLPayload
-              'XML'
-            elsif defined?(SQLPayload) && payload_class < SQLPayload
-              'SQL'
-            elsif defined?(ShellPayload) && payload_class < ShellPayload
-              'shell'
-            elsif defined?(PowerShellPayload) &&
-                  payload_class < PowerShellPayload
-              'PowerShell'
-            elsif defined?(CPayload) && payload_class < CPayload
-              'C'
-            elsif defined?(JavaPayload) && payload_class < JavaPayload
-              'Java'
-            elsif defined?(ColdFusionPayload) &&
-                  payload_class < ColdFusionPayload
-              'ColdFusion'
-            elsif defined?(PHPPayload) && payload_class < PHPPayload
-              'PHP'
-            elsif defined?(NodeJSPayload) && payload_class < NodeJSPayload
-              if defined?(Mixins::TypeScript) &&
-                  payload_class.include?(Mixins::TypeScript)
-                'Node.js (TypeScript)'
-              else
-                'Node.js'
-              end
-            elsif defined?(JavaScriptPayload) &&
-                  payload_class < JavaScriptPayload
-              if defined?(Mixins::TypeScript) &&
-                  payload_class.include?(Mixins::TypeScript)
-                'JavaScript (TypeScript)'
-              else
-                'JavaScript'
-              end
-            elsif defined?(BinaryPayload) &&
-                  payload_class < BinaryPayload
-              if defined?(ShellcodePayload) && payload_class < ShellcodePayload
-                'shellcode'
-              elsif defined?(ASMPayload) && payload_class < ASMPayload
-                'ASM'
-              else
-                'binary'
-              end
-            else
-              'custom'
-            end
+            PAYLOAD_TYPES.fetch(payload_class.payload_type,'Unknown')
           end
 
         end

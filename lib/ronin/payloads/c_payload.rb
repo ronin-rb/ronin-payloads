@@ -28,6 +28,20 @@ module Ronin
     class CPayload < Payload
 
       #
+      # Returns the type or kind of payload.
+      #
+      # @return [Symbol]
+      #
+      # @note
+      #   This is used internally to map an payload class to a printable type.
+      #
+      # @api private
+      #
+      def self.payload_type
+        :c
+      end
+
+      #
       # The default C compiler.
       #
       # @return [String]

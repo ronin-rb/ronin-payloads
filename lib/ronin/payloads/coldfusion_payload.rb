@@ -26,6 +26,21 @@ module Ronin
     # A {Payload} class that represents ColdFusion payloads.
     #
     class ColdFusionPayload < Payload
+
+      #
+      # Returns the type or kind of payload.
+      #
+      # @return [Symbol]
+      #
+      # @note
+      #   This is used internally to map an payload class to a printable type.
+      #
+      # @api private
+      #
+      def self.payload_type
+        :coldfusion
+      end
+
     end
   end
 end
