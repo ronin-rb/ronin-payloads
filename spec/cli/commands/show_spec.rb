@@ -18,32 +18,4 @@ require 'ronin/payloads/xml_payload'
 require 'ronin/payloads/mixins/typescript'
 
 describe Ronin::Payloads::CLI::Commands::Show do
-  describe "#payload_type" do
-    {
-      Ronin::Payloads::HTMLPayload         => 'HTML',
-      Ronin::Payloads::XMLPayload          => 'XML',
-      Ronin::Payloads::JavaScriptPayload   => 'JavaScript',
-      Ronin::Payloads::NodeJSPayload       => 'Node.js',
-      Ronin::Payloads::SQLPayload          => 'SQL',
-      Ronin::Payloads::ShellPayload        => 'Shell',
-      Ronin::Payloads::PowerShellPayload   => 'PowerShell',
-      Ronin::Payloads::CPayload            => 'C',
-      Ronin::Payloads::JavaPayload         => 'Java',
-      Ronin::Payloads::ColdFusionPayload   => 'ColdFusion',
-      Ronin::Payloads::PHPPayload          => 'PHP',
-      Ronin::Payloads::ASMPayload          => 'ASM',
-      Ronin::Payloads::ShellcodePayload    => 'Shellcode',
-      Ronin::Payloads::BinaryPayload       => 'Binary',
-      Ronin::Payloads::Payload             => 'Custom'
-    }.each do |payload_class,type|
-      context "when the class inherits from #{payload_class}" do
-        let(:klass) { Class.new(payload_class) }
-        let(:type)  { type }
-
-        it "must return '#{type}'" do
-          expect(subject.payload_type(klass)).to eq(type)
-        end
-      end
-    end
-  end
 end

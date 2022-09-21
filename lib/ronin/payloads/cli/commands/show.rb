@@ -19,6 +19,7 @@
 #
 
 require 'ronin/payloads/cli/payload_command'
+require 'ronin/payloads/cli/printing'
 require 'ronin/payloads/metadata/arch'
 require 'ronin/payloads/metadata/os'
 require 'ronin/core/cli/printing/metadata'
@@ -54,6 +55,7 @@ module Ronin
           include Core::CLI::Printing::Arch
           include Core::CLI::Printing::OS
           include CommandKit::Printing::Fields
+          include Printing
 
           description 'Prints information about a payload'
 
@@ -104,45 +106,6 @@ module Ronin
               print_description(payload)
               print_references(payload)
             end
-          end
-
-          # Known payload types and their printable names.
-          PAYLOAD_TYPES = {
-            payload: 'Custom',
-
-            binary:    'Binary',
-            asm:       'ASM',
-            shellcode: 'Shellcode',
-
-            c:    'C',
-            java: 'Java',
-
-            shell:      'Shell',
-            powershell: 'PowerShell',
-
-            coldfusion: 'ColdFusion',
-            jsp:        'JSP',
-            php:        'PHP',
-
-            javascript: 'JavaScript',
-            node_js:    'Node.js',
-
-            sql:  'SQL',
-            html: 'HTML',
-            xml:  'XML'
-          }
-
-          #
-          # Returns the printable payload type for the payload class.
-          #
-          # @param [Class<Payload>] payload_class
-          #   The payload class.
-          #
-          # @return [String]
-          #   The printable payload type (ex: 'ASM' or 'shellcode').
-          #
-          def payload_type(payload_class)
-            PAYLOAD_TYPES.fetch(payload_class.payload_type,'Unknown')
           end
 
         end
