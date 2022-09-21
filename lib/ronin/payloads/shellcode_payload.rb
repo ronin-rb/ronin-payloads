@@ -66,8 +66,6 @@ module Ronin
     #
     class ShellcodePayload < ASMPayload
 
-      protected
-
       #
       # Assembles Shellcode and sets the `@payload` instance variable.
       #
