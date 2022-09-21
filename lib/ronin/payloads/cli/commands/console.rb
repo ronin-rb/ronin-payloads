@@ -26,7 +26,7 @@ module Ronin
     class CLI
       module Commands
         #
-        # Start an interactive ruby console.
+        # Start an interactive Ruby console.
         #
         # ## Usage
         #
@@ -38,7 +38,7 @@ module Ronin
         #
         class Console < Command
 
-          description "Start an interactive ruby console"
+          description "Start an interactive Ruby console"
 
           man_page 'ronin-payloads-console.1'
 
