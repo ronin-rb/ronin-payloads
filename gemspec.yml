@@ -19,7 +19,7 @@ metadata:
 generated_files:
   - man/ronin-payloads.1
   - man/ronin-payloads-build.1
-  - man/ronin-payloads-console.1
+  - man/ronin-payloads-irb.1
   - man/ronin-payloads-encode.1
   - man/ronin-payloads-encoder.1
   - man/ronin-payloads-encoders.1

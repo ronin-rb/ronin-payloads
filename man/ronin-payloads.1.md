@@ -20,9 +20,6 @@ Runs a `ronin-payloads` *COMMAND*.
 
 ## COMMANDS
 
-*console*
-  Starts ronin-payload's interactive ruby console.
-
 *build*
   Builds a payload.
 
@@ -31,6 +28,9 @@ Runs a `ronin-payloads` *COMMAND*.
 
 *encoders*
   Lists available encoders.
+
+*irb*
+  Starts ronin-payload's interactive ruby shell.
 
 *launch*
   Launches a payload.
@@ -47,4 +47,4 @@ Postmodern <postmodern.mod3@gmail.com>
 
 ## SEE ALSO
 
-ronin-payloads-console(1) ronin-payloads-build(1) ronin-payloads-encode(1) ronin-payloads-encoders(1) ronin-payloads-launch(1) ronin-payloads-list(1)
+ronin-payloads-irb(1) ronin-payloads-build(1) ronin-payloads-encode(1) ronin-payloads-encoders(1) ronin-payloads-launch(1) ronin-payloads-list(1)

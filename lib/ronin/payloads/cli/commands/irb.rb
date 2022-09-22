@@ -19,35 +19,35 @@
 #
 
 require 'ronin/payloads/cli/command'
-require 'ronin/payloads/cli/console'
+require 'ronin/payloads/cli/ruby_shell'
 
 module Ronin
   module Payloads
     class CLI
       module Commands
         #
-        # Start an interactive Ruby console.
+        # Start an interactive Ruby shell.
         #
         # ## Usage
         #
-        #     ronin-payloads console [options]
+        #     ronin-payloads irb [options]
         #
         # ## Options
         #
         #     -h, --help                       Print help information
         #
-        class Console < Command
+        class Irb < Command
 
-          description "Start an interactive Ruby console"
+          description "Start an interactive Ruby shell"
 
-          man_page 'ronin-payloads-console.1'
+          man_page 'ronin-payloads-irb.1'
 
           #
-          # Starts the `ronin-payloads console` command.
+          # Starts the `ronin-payloads irb` command.
           #
           def run
             require 'ronin/payloads'
-            CLI::Console.start
+            CLI::RubyShell.start
           end
 
         end

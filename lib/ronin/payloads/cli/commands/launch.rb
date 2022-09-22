@@ -19,7 +19,7 @@
 #
 
 require 'ronin/payloads/cli/payload_command'
-require 'ronin/payloads/cli/console'
+require 'ronin/payloads/cli/ruby_shell'
 require 'ronin/core/cli/options/param'
 require 'ronin/core/cli/logging'
 
@@ -64,7 +64,7 @@ module Ronin
 
             initialize_payload
             launch_payload
-            start_console
+            start_shell
           end
 
           #
@@ -94,12 +94,12 @@ module Ronin
           end
 
           #
-          # Starts the interactive console for the payload.
+          # Starts the interactive Ruby shell for the payload.
           #
-          def stat_console
+          def stat_shell
             log_info "Launched payload #{@payload.class_id}"
 
-            Console.start(name: @payload.class.name, context: @payload)
+            RubyShell.start(name: @payload.class.name, context: @payload)
           end
 
         end

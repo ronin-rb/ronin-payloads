@@ -18,21 +18,21 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/core/cli/console'
+require 'ronin/core/cli/ruby_shell'
 
 module Ronin
   module Payloads
     class CLI
       #
-      # The interactive Ruby console for {Ronin::Payloads} or a payload class.
+      # The interactive Ruby shell for {Ronin::Payloads} or a payload class.
       #
-      class Console < Core::CLI::Console
+      class RubyShell < Core::CLI::RubyShell
 
         #
-        # Initializes the `ronin-payloads` console.
+        # Initializes the `ronin-payloads` shell.
         #
         # @param [String] name
-        #   The name of the IRB console.
+        #   The name of the IRB shell.
         #
         # @param [Object] context
         #   Custom context to launch IRB from within.

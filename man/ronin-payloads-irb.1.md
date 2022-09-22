@@ -1,12 +1,12 @@
-# ronin-payloads-console 1 "May 2022" Ronin "User Manuals"
+# ronin-payloads-irb 1 "May 2022" Ronin "User Manuals"
 
 ## SYNOPSIS
 
-`ronin-payloads console` [*options*]
+`ronin-payloads irb` [*options*]
 
 ## DESCRIPTION
 
-Starts an interactive ruby console with `ronin-payloads` loaded.
+Starts an interactive ruby shell with `ronin-payloads` loaded.
 
 ## OPTIONS
 
