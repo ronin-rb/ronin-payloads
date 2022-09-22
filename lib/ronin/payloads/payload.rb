@@ -189,6 +189,16 @@ module Ronin
       end
 
       #
+      # Place holder method for additional validation logic.
+      #
+      # @api public
+      #
+      # @abstract
+      #
+      def validate
+      end
+
+      #
       # Validates that the payload is ready to be built.
       #
       # @raise [Ronin::Core::Params::RequiredParam]
@@ -199,9 +209,10 @@ module Ronin
       #
       # @api semipublic
       #
-      def validate
+      def perform_validate
         validate_params
         @encoders.validate
+        validate
       end
 
       #

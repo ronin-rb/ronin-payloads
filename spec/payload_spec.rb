@@ -87,11 +87,17 @@ describe Ronin::Payloads::Payload do
     end
   end
 
-  describe "#validate" do
+  describe "#perform_validate" do
     it "must call #validate_params" do
       expect(subject).to receive(:validate_params)
 
-      subject.validate
+      subject.perform_validate
+    end
+
+    it "must also call #validate" do
+      expect(subject).to receive(:validate)
+
+      subject.perform_validate
     end
 
     context "when #encoders is populated" do
@@ -105,7 +111,7 @@ describe Ronin::Payloads::Payload do
         expect(encoder2).to receive(:validate)
         expect(subject).to receive(:validate_params)
 
-        subject.validate
+        subject.perform_validate
       end
     end
   end

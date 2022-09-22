@@ -154,8 +154,8 @@ describe Ronin::Payloads::CLI::PayloadMethods do
     let(:payload_id) { 'test' }
     let(:payload)    { double('Encoder instance', class_id: payload_id) }
 
-    it "must return a new instance of the given payload class" do
-      expect(payload).to receive(:validate)
+    it "must call #perform_validate on #payload" do
+      expect(payload).to receive(:perform_validate)
 
       subject.validate_payload(payload)
     end
@@ -165,7 +165,7 @@ describe Ronin::Payloads::CLI::PayloadMethods do
       let(:exception) { Ronin::Core::Params::RequiredParam.new(message) }
 
       it "must print an error message and exit with 1" do
-        expect(payload).to receive(:validate).and_raise(exception)
+        expect(payload).to receive(:perform_validate).and_raise(exception)
         expect(subject).to receive(:exit).with(1)
 
         expect {
@@ -181,7 +181,7 @@ describe Ronin::Payloads::CLI::PayloadMethods do
       end
 
       it "must print an error message and exit with 1" do
-        expect(payload).to receive(:validate).and_raise(exception)
+        expect(payload).to receive(:perform_validate).and_raise(exception)
         expect(subject).to receive(:exit).with(1)
 
         expect {
@@ -195,7 +195,7 @@ describe Ronin::Payloads::CLI::PayloadMethods do
       let(:exception) { RuntimeError.new(message) }
 
       it "must print the exception, an error message, and exit with -1" do
-        expect(payload).to receive(:validate).and_raise(exception)
+        expect(payload).to receive(:perform_validate).and_raise(exception)
         expect(subject).to receive(:print_exception).with(exception)
         expect(subject).to receive(:exit).with(-1)
 

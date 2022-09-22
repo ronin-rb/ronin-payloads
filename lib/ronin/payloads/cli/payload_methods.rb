@@ -102,7 +102,7 @@ module Ronin
         #   Another payload validation error occurred.
         #
         def validate_payload(payload)
-          payload.validate
+          payload.perform_validate
         rescue Core::Params::ParamError, ValidationError => error
           print_error "failed to validate the payload #{payload.class_id}: #{error.message}"
           exit(1)
