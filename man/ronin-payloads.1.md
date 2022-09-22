@@ -30,7 +30,7 @@ Runs a `ronin-payloads` *COMMAND*.
   Lists available encoders.
 
 *irb*
-  Starts ronin-payload's interactive ruby shell.
+  Starts ronin-payload's interactive Ruby shell.
 
 *launch*
   Launches a payload.

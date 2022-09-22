@@ -6,7 +6,7 @@
 
 ## DESCRIPTION
 
-Starts an interactive ruby shell with `ronin-payloads` loaded.
+Starts an interactive Ruby shell with `ronin-payloads` loaded.
 
 ## OPTIONS
 
