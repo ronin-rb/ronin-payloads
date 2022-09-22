@@ -189,16 +189,6 @@ module Ronin
       end
 
       #
-      # Place holder method for additional validation logic.
-      #
-      # @api public
-      #
-      # @abstract
-      #
-      def validate
-      end
-
-      #
       # Validates that the payload is ready to be built.
       #
       # @raise [Ronin::Core::Params::RequiredParam]
@@ -213,14 +203,6 @@ module Ronin
         validate_params
         @encoders.validate
         validate
-      end
-
-      #
-      # Builds the payload.
-      #
-      # @abstract
-      #
-      def build
       end
 
       #
@@ -320,15 +302,6 @@ module Ronin
       end
 
       #
-      # Placeholder method that runs before the payload is launched by the
-      # exploit.
-      #
-      # @abstract
-      #
-      def prelaunch
-      end
-
-      #
       # Performs the prelaunch step.
       #
       # @see #prelaunch
@@ -340,15 +313,6 @@ module Ronin
       end
 
       #
-      # Placeholder method that runs after the payload is launched by the
-      # exploit.
-      #
-      # @abstract
-      #
-      def postlaunch
-      end
-
-      #
       # Performs the post-launch step.
       #
       # @see #postlaunch
@@ -357,14 +321,6 @@ module Ronin
       #
       def perform_postlaunch
         postlaunch
-      end
-
-      #
-      # Placeholder method to clean up the payload.
-      #
-      # @abstract
-      #
-      def cleanup
       end
 
       #
@@ -392,6 +348,54 @@ module Ronin
       end
 
       alias to_str to_s
+
+      #
+      # @group Payload API Methods
+      #
+
+      #
+      # Place holder method for additional validation logic.
+      #
+      # @api public
+      #
+      # @abstract
+      #
+      def validate
+      end
+
+      #
+      # Builds the payload.
+      #
+      # @abstract
+      #
+      def build
+      end
+
+      #
+      # Placeholder method that runs before the payload is launched by the
+      # exploit.
+      #
+      # @abstract
+      #
+      def prelaunch
+      end
+
+      #
+      # Placeholder method that runs after the payload is launched by the
+      # exploit.
+      #
+      # @abstract
+      #
+      def postlaunch
+      end
+
+      #
+      # Placeholder method to clean up the payload.
+      #
+      # @abstract
+      #
+      def cleanup
+      end
 
     end
   end
