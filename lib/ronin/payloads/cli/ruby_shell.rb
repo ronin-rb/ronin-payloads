@@ -29,7 +29,7 @@ module Ronin
       class RubyShell < Core::CLI::RubyShell
 
         #
-        # Initializes the `ronin-payloads` shell.
+        # Initializes the `ronin-payloads` Ruby shell.
         #
         # @param [String] name
         #   The name of the IRB shell.
