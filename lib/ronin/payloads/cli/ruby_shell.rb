@@ -39,7 +39,7 @@ module Ronin
         #
         # @param [Hash{Symbol => Object}] kwargs
         #   Additional keyword arguments for
-        #   `Ronin::Core::CLI::Console#initialize`.
+        #   `Ronin::Core::CLI::RubyShell#initialize`.
         #
         def initialize(name: 'ronin-payloads', context: Ronin::Payloads, **kwargs)
           super(name: name, context: context, **kwargs)
