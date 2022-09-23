@@ -40,5 +40,51 @@ describe Ronin::Payloads::RustPayload do
         subject.compile(*source_files, target: target)
       end
     end
+
+    context "when the cfg: keyword is given" do
+      context "and it's a Hash" do
+        let(:key1)   { 'foo' }
+        let(:value1) { 42    }
+        let(:key2)   { 'bar' }
+        let(:value2) { "baz" }
+        let(:cfg) do
+          {key1 => value1, key2 => value2}
+        end
+
+        it "must call system with 'rustc', --cfg='key=value' arguments, and the source files" do
+          expect(subject).to receive(:system).with(
+            'rustc', '--cfg', "#{key1}=\"#{value1}\"",
+                     '--cfg', "#{key2}=\"#{value2}\"",
+                     *source_files
+          )
+
+          subject.compile(*source_files, cfg: cfg)
+        end
+      end
+
+      context "and it's an Array" do
+        let(:value1) { :foo  }
+        let(:value2) { "baz" }
+        let(:cfg)    { [value1, value2] }
+
+        it "must call system with 'rustc', --cfg='key=value' arguments, and the source files" do
+          expect(subject).to receive(:system).with(
+            'rustc', '--cfg', value1.to_s, '--cfg', value2.to_s, *source_files
+          )
+
+          subject.compile(*source_files, cfg: cfg)
+        end
+      end
+
+      context "but it's not a Hash or an Array" do
+        let(:cfg) { Object.new }
+
+        it do
+          expect {
+            subject.compile(*source_files, cfg: cfg)
+          }.to raise_error(ArgumentError,"cfg value must be either a Hash or an Array: #{cfg.inspect}")
+        end
+      end
+    end
   end
 end

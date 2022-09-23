@@ -53,10 +53,16 @@ module Ronin
       # @param [String, nil] target
       #   Target triple to compile for.
       #
+      # @param [Hash, Array, nil] cfg
+      #   Additional configuration flags to pass to `rustc`.
+      #
       # @return [Boolean, nil]
       #   Indicates whether the Rust compiler command succeeded or failed.
       #
-      def compile(*source_files, output: nil, target: nil)
+      # @raise [ArgumentError]
+      #   The `cfg` value was not a Hash or an Array.
+      #
+      def compile(*source_files, output: nil, target: nil, cfg: nil)
         args = []
 
         if output
@@ -65,6 +71,21 @@ module Ronin
 
         if target
           args << '--target' << target
+        end
+
+        if cfg
+          case cfg
+          when Hash
+            cfg.each do |key,value|
+              args << '--cfg' << "#{key}=\"#{value}\""
+            end
+          when Array
+            cfg.each do |value|
+              args << '--cfg' << value.to_s
+            end
+          else
+            raise(ArgumentError,"cfg value must be either a Hash or an Array: #{cfg.inspect}")
+          end
         end
 
         args.concat(source_files)
