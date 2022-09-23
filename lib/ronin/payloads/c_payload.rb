@@ -18,14 +18,14 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/payloads/payload'
+require 'ronin/payloads/binary_payload'
 
 module Ronin
   module Payloads
     #
     # A {Payload} class that represents all C payloads.
     #
-    class CPayload < Payload
+    class CPayload < BinaryPayload
 
       #
       # Returns the type or kind of payload.
