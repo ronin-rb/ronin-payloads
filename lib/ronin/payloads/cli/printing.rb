@@ -32,6 +32,7 @@ module Ronin
 
           c:    'C',
           go:   'Go',
+          rust: 'Rust',
           java: 'Java',
 
           command:    'Command',

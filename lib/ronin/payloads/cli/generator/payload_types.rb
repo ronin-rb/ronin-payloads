@@ -46,6 +46,11 @@ module Ronin
             class: 'GoPayload'
           },
 
+          rust: {
+            file:  'rust_payload',
+            class: 'RustPayload'
+          },
+
           shell: {
             file:  'shell_payload',
             class: 'ShellPayload'
