@@ -18,15 +18,15 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/payloads/payload'
+require 'ronin/payloads/command_payload'
 require 'ronin/payloads/encoders/shell_encoder'
 
 module Ronin
   module Payloads
     #
-    # A {Payload} class that represents shell script or command payloads.
+    # A {Payload} class that represents UNIX shell script or command payloads.
     #
-    class ShellPayload < Payload
+    class ShellPayload < CommandPayload
 
       encoder_class Encoders::ShellEncoder
 

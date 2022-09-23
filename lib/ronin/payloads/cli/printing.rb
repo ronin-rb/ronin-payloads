@@ -33,6 +33,7 @@ module Ronin
           c:    'C',
           java: 'Java',
 
+          command:    'Command',
           shell:      'Shell',
           powershell: 'PowerShell',
 

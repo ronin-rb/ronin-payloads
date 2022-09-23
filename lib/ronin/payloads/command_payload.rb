@@ -18,17 +18,15 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/payloads/command_payload'
-require 'ronin/payloads/encoders/powershell_encoder'
+require 'ronin/payloads/payload'
 
 module Ronin
   module Payloads
     #
-    # A {Payload} class that represents PowerShell command payloads.
+    # A {Payload} base class that represents generic commands (UNIX or
+    # PowerShell).
     #
-    class PowerShellPayload < CommandPayload
-
-      encoder_class Encoders::PowerShellEncoder
+    class CommandPayload < Payload
 
       #
       # Returns the type or kind of payload.
@@ -41,7 +39,7 @@ module Ronin
       # @api private
       #
       def self.payload_type
-        :powershell
+        :command
       end
 
     end

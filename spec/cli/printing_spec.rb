@@ -9,6 +9,7 @@ require 'ronin/payloads/c_payload'
 require 'ronin/payloads/java_payload'
 require 'ronin/payloads/javascript_payload'
 require 'ronin/payloads/node_js_payload'
+require 'ronin/payloads/command_payload'
 require 'ronin/payloads/shell_payload'
 require 'ronin/payloads/powershell_payload'
 require 'ronin/payloads/coldfusion_payload'
@@ -35,6 +36,7 @@ describe Ronin::Payloads::CLI::Printing do
       Ronin::Payloads::JavaScriptPayload   => 'JavaScript',
       Ronin::Payloads::NodeJSPayload       => 'Node.js',
       Ronin::Payloads::SQLPayload          => 'SQL',
+      Ronin::Payloads::CommandPayload      => 'Command',
       Ronin::Payloads::ShellPayload        => 'Shell',
       Ronin::Payloads::PowerShellPayload   => 'PowerShell',
       Ronin::Payloads::CPayload            => 'C',
