@@ -10,7 +10,6 @@ describe Ronin::Payloads::Mixins::ReverseShell do
   end
 
   let(:payload_class) { TestReverseShellMixin::TestPayload }
-  subject { payload_class.new }
 
   describe ".included" do
     subject { payload_class }
@@ -27,6 +26,25 @@ describe Ronin::Payloads::Mixins::ReverseShell do
       expect(subject.params[:port].type).to be_kind_of(Ronin::Core::Params::Types::Integer)
       expect(subject.params[:port].required?).to be(true)
       expect(subject.params[:port].desc).to eq('The port to connect back to')
+    end
+  end
+
+  let(:host) { '127.0.0.1' }
+  let(:port) { 1337 }
+
+  subject do
+    payload_class.new(params: {host: host, port: port})
+  end
+
+  describe "#host" do
+    it "must return the 'host' param value" do
+      expect(subject.host).to eq(host)
+    end
+  end
+
+  describe "#port" do
+    it "must return the 'port' param value" do
+      expect(subject.port).to eq(port)
     end
   end
 end

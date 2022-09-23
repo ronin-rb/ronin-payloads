@@ -40,6 +40,24 @@ module Ronin
           payload.param :port, Integer, required: true,
                                         desc:     'The port to connect back to'
         end
+
+        #
+        # The host param value.
+        #
+        # @return [String]
+        #
+        def host
+          params[:host]
+        end
+
+        #
+        # The port param value.
+        #
+        # @return [Integer]
+        #
+        def port
+          params[:port]
+        end
       end
     end
   end
