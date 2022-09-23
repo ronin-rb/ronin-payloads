@@ -6,6 +6,7 @@ require 'ronin/payloads/binary_payload'
 require 'ronin/payloads/asm_payload'
 require 'ronin/payloads/shellcode_payload'
 require 'ronin/payloads/c_payload'
+require 'ronin/payloads/go_payload'
 require 'ronin/payloads/java_payload'
 require 'ronin/payloads/javascript_payload'
 require 'ronin/payloads/node_js_payload'
@@ -40,6 +41,7 @@ describe Ronin::Payloads::CLI::Printing do
       Ronin::Payloads::ShellPayload        => 'Shell',
       Ronin::Payloads::PowerShellPayload   => 'PowerShell',
       Ronin::Payloads::CPayload            => 'C',
+      Ronin::Payloads::GoPayload           => 'Go',
       Ronin::Payloads::JavaPayload         => 'Java',
       Ronin::Payloads::ColdFusionPayload   => 'ColdFusion',
       Ronin::Payloads::PHPPayload          => 'PHP',

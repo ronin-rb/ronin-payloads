@@ -41,6 +41,11 @@ module Ronin
             class: 'CPayload'
           },
 
+          go: {
+            file:  'go_payload',
+            class: 'GoPayload'
+          },
+
           shell: {
             file:  'shell_payload',
             class: 'ShellPayload'

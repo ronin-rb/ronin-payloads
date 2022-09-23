@@ -31,6 +31,7 @@ module Ronin
           shellcode: 'Shellcode',
 
           c:    'C',
+          go:   'Go',
           java: 'Java',
 
           command:    'Command',
