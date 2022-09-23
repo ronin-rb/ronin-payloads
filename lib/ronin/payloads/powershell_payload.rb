@@ -18,7 +18,7 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/payloads/command_payload'
+require 'ronin/payloads/payload'
 require 'ronin/payloads/encoders/powershell_encoder'
 
 module Ronin
@@ -26,7 +26,7 @@ module Ronin
     #
     # A {Payload} class that represents PowerShell command payloads.
     #
-    class PowerShellPayload < CommandPayload
+    class PowerShellPayload < Payload
 
       encoder_class Encoders::PowerShellEncoder
 
