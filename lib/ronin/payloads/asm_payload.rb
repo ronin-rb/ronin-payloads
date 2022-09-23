@@ -19,6 +19,8 @@
 #
 
 require 'ronin/payloads/binary_payload'
+require 'ronin/payloads/metadata/arch'
+require 'ronin/payloads/metadata/os'
 require 'ronin/payloads/exceptions'
 require 'ronin/code/asm/program'
 
@@ -30,6 +32,9 @@ module Ronin
     # A {Payload} class that represents payloads written in Assembly (ASM).
     #
     class ASMPayload < BinaryPayload
+
+      include Metadata::Arch
+      include Metadata::OS
 
       #
       # Returns the type or kind of payload.

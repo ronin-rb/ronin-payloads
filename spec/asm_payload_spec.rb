@@ -6,6 +6,14 @@ describe Ronin::Payloads::ASMPayload do
     expect(described_class.superclass).to be(Ronin::Payloads::BinaryPayload)
   end
 
+  it "must include Ronin::Payloads::Metadata::Arch" do
+    expect(described_class).to include(Ronin::Payloads::Metadata::Arch)
+  end
+
+  it "must include Ronin::Payloads::Metadata::OS" do
+    expect(described_class).to include(Ronin::Payloads::Metadata::OS)
+  end
+
   describe "#assemble" do
     it "must return the assembled program" do
       output = subject.assemble(arch: :x86, os: :linux) do

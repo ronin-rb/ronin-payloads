@@ -19,8 +19,6 @@
 #
 
 require 'ronin/payloads/payload'
-require 'ronin/payloads/metadata/arch'
-require 'ronin/payloads/metadata/os'
 
 module Ronin
   module Payloads
@@ -28,9 +26,6 @@ module Ronin
     # A {Payload} class that represents payloads which contain binary data.
     #
     class BinaryPayload < Payload
-
-      include Metadata::Arch
-      include Metadata::OS
 
       #
       # Returns the type or kind of payload.
