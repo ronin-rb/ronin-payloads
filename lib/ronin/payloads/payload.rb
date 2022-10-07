@@ -28,6 +28,7 @@ require 'ronin/core/metadata/summary'
 require 'ronin/core/metadata/description'
 require 'ronin/core/metadata/references'
 require 'ronin/core/params/mixin'
+require 'ronin/support/cli/printing'
 
 require 'set'
 
@@ -101,6 +102,7 @@ module Ronin
       include Core::Metadata::Description
       include Core::Metadata::References
       include Core::Params::Mixin
+      include Support::CLI::Printing
 
       #
       # Registers the payload with {Payloads}.

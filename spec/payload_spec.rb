@@ -27,6 +27,10 @@ describe Ronin::Payloads::Payload do
     expect(described_class).to include(Ronin::Core::Params::Mixin)
   end
 
+  it "must include Ronin::Support::CLI::Printing" do
+    expect(described_class).to include(Ronin::Support::CLI::Printing)
+  end
+
   describe "#build" do
     subject { described_class.new }
 
