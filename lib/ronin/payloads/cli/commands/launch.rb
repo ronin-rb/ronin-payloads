@@ -38,6 +38,7 @@ module Ronin
         # 
         #     -f, --file FILE                  The payload file to load
         #     -p, --param NAME=VALUE           Sets a param
+        #     -D, --debug                      Enables debugging messages
         #     -h, --help                       Print help information
         #
         # ## Arguments
@@ -48,6 +49,11 @@ module Ronin
 
           include Core::CLI::Options::Param
           include Core::CLI::Logging
+
+          option :debug, short: '-D',
+                         desc: 'Enables debugging messages' do
+                           Support::CLI::Printing.debug = true
+                         end
 
           description 'Launches a payload'
 

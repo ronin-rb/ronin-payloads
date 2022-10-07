@@ -18,6 +18,9 @@ Launches a payload.
 `-f`, `--file` *FILE*
   Optionally loads the payload from the file.
 
+`-D`, `--debug`
+  Enables debugging messages.
+
 `-h`, `--help`
   Print help information
 

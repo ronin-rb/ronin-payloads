@@ -44,6 +44,7 @@ module Ronin
         #     -e, --encoder ENCODER            Adds the encoder to the payload
         #         --encoder-param ENCODER.NAME=VALUE
         #                                      Sets a param for one of the encoders
+        #     -D, --debug                      Enables debugging messages
         #     -h, --help                       Print help information
         #
         # ## Arguments
@@ -82,6 +83,11 @@ module Ronin
 
                                    @encoder_params[encoder_name][param_name] = value
                                  end
+
+          option :debug, short: '-D',
+                         desc: 'Enables debugging messages' do
+                           Support::CLI::Printing.debug = true
+                         end
 
           description 'Loads and builds a payload'
 

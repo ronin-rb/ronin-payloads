@@ -33,6 +33,9 @@ Loads and builds a payload.
 `--encoder-param` *ENCODER*`.`*NAME*`.`*VALUE*
   Sets a param on the given encoder.
 
+`-D`, `--debug`
+  Enables debugging messages.
+
 `-h`, `--help`
   Print help information
 
