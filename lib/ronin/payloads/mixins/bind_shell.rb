@@ -18,6 +18,8 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
+require 'socket'
+
 module Ronin
   module Payloads
     module Mixins
@@ -57,6 +59,31 @@ module Ronin
         #
         def port
           params[:port]
+        end
+
+        #
+        # Connects to the remote bind shell on {#host} and {#port}, then
+        # performs additional post-launch steps.
+        #
+        def perform_postlaunch
+          print_info "Connecting to #{host}:#{port} ..."
+          @socket = TCPSocket.new(host,port)
+          print_info "Connected to #{host}:#{port}!"
+
+          super
+        end
+
+        #
+        # Performs additional cleanup steps and closes the connection to the
+        # remote bind shell.
+        #
+        def cleanup
+          super
+
+          if @socket
+            @socket.close
+            @socket = nil
+          end
         end
       end
     end

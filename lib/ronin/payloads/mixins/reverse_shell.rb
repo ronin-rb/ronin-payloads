@@ -18,6 +18,8 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
+require 'socket'
+
 module Ronin
   module Payloads
     module Mixins
@@ -58,6 +60,50 @@ module Ronin
         def port
           params[:port]
         end
+
+        #
+        # Opens a server socket using {#host} and {#port}, then performs
+        # additional pre-launch steps.
+        #
+        def perform_prelaunch
+          @server = TCPServer.new(port,host)
+          @server.listen(1)
+
+          super
+        end
+
+        #
+        # Waits for an incoming connect on {#host} and {#port}, then performs
+        # additional post-launch steps.
+        #
+        def perform_postlaunch
+          print_info "Waiting for connection on #{host}:#{port} ..."
+          @socket = @server.accept
+
+          addrinfo = @socket.remote_address
+          print_info "Accepted connection from #{addrinfo.ip_address}:#{addrinfo.ip_port}!"
+
+          super
+        end
+
+        #
+        # Performs additional cleanup steps, then closes any connections and the
+        # server socket.
+        #
+        def perform_cleanup
+          super
+
+          if @socket
+            @socket.close
+            @socket = nil
+          end
+
+          if @server
+            @server.close
+            @server = nil
+          end
+        end
+
       end
     end
   end
