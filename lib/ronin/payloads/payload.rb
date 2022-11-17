@@ -338,6 +338,10 @@ module Ronin
       end
 
       #
+      # @group String Methods
+      #
+
+      #
       # The number of characters in the payload.
       #
       # @return [Integer]
