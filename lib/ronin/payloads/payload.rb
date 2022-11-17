@@ -338,6 +338,15 @@ module Ronin
       end
 
       #
+      # The size of the payload in bytes.
+      #
+      # @return [Integer]
+      #
+      def bytesize
+        encoded_payload.bytesize
+      end
+
+      #
       # Converts the payload into a String.
       #
       # @return [String]

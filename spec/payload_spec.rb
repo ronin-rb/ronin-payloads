@@ -262,6 +262,14 @@ describe Ronin::Payloads::Payload do
     end
   end
 
+  describe "#bytesize" do
+    subject { test_class.new(encoders: [test_encoder]) }
+
+    it "must return the size of the encoded payload in bytes" do
+      expect(subject.bytesize).to eq(subject.encoded_payload.bytesize)
+    end
+  end
+
   describe "#to_s" do
     subject { test_class.new(encoders: [test_encoder]) }
 
