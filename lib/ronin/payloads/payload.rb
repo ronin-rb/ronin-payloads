@@ -338,6 +338,15 @@ module Ronin
       end
 
       #
+      # The number of characters in the payload.
+      #
+      # @return [Integer]
+      #
+      def length
+        encoded_payload.length
+      end
+
+      #
       # The size of the payload in bytes.
       #
       # @return [Integer]
