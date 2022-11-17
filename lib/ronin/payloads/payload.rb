@@ -346,6 +346,8 @@ module Ronin
         encoded_payload.bytesize
       end
 
+      alias size bytesize
+
       #
       # Converts the payload into a String.
       #
