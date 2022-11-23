@@ -75,6 +75,12 @@ List available payloads:
 $ ronin-payloads list
 ```
 
+Install a 3rd-party repository of payloads:
+
+```shell
+$ ronin-repos install https://github.com/user/payloads.git
+```
+
 Print additional information about a specific payload:
 
 ```shell
