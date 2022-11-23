@@ -91,6 +91,11 @@ module Ronin
             class: 'PHPPayload'
           },
 
+          python: {
+            file:  'python_payload',
+            class: 'PythonPayload'
+          },
+
           ruby: {
             file:  'ruby_payload',
             class: 'RubyPayload'
