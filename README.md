@@ -43,6 +43,8 @@ research and development.
   * HTML
   * URL
 * Supports adding additional encoders to payloads for further obfuscation.
+* Has 86% documentation coverage.
+* Has 97% test coverage.
 
 ## Synopsis
 
