@@ -43,6 +43,7 @@ research and development.
   * HTML
   * URL
 * Supports adding additional encoders to payloads for further obfuscation.
+* Integrates with the [Ronin Post-Exploitation][ronin-post_ex] library.
 * Has 86% documentation coverage.
 * Has 97% test coverage.
 
