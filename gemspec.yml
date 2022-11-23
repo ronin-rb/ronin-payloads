@@ -2,7 +2,9 @@ name: ronin-payloads
 summary: A Ruby micro-framework for writing and running exploit payloads
 description:
   ronin-payloads is a Ruby micro-framework for writing and running exploit
-  payloads.
+  payloads. ronin-payloads allows one to write payloads as plain old Ruby
+  classes. ronin-payloads can be distributed as Ruby files or in git
+  repositories that can be installed with ronin-repos.
 
 license: LGPL-3.0
 authors: Postmodern
