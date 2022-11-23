@@ -91,6 +91,11 @@ module Ronin
             class: 'PHPPayload'
           },
 
+          ruby: {
+            file:  'ruby_payload',
+            class: 'RubyPayload'
+          },
+
           nodejs: {
             file:  'node_js_payload',
             class: 'NodeJSPayload'

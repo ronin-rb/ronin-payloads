@@ -42,6 +42,7 @@ module Ronin
           coldfusion: 'ColdFusion',
           jsp:        'JSP',
           php:        'PHP',
+          ruby:       'Ruby',
 
           javascript: 'JavaScript',
           node_js:    'Node.js',
