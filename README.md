@@ -14,30 +14,62 @@
 ## Description
 
 ronin-payloads is a Ruby micro-framework for writing and running exploit
-payloads.
+payloads. ronin-payloads allows one to write payloads as plain old Ruby classes.
+ronin-payloads can be distributed as Ruby files or in git repositories that can
+be installed with [ronin-repos].
+
+ronin-exploits is part of the [ronin-rb] project, a [Ruby] toolkit for security
+research and development.
 
 ## Features
 
 * Allows defining Payloads as plain-Ruby Classes.
-* Provides base classes for a variety of common payloads:
-  * {Ronin::Payloads::Payload}
-  * {Ronin::Payloads::BinaryPayload}
-  * {Ronin::Payloads::ASMPayload}
-  * {Ronin::Payloads::Nops}
-  * {Ronin::Payloads::Shellcode}
-  * {Ronin::Payloads::BindShell}
-* Provides classes for various payload-encoding techniques.
-* Allows adding additional encoders to payloads.
+* Provides base classes for a variety of languages and payload types:
+  * ASM
+  * Shellcode
+  * C
+  * Go
+  * Rust
+  * Java
+  * JSP
+  * PHP
+  * Python
+  * Ruby
+  * NodeJS
+  * Shell
+  * PowerShell
+  * SQL
+  * XML
+  * HTML
+  * URL
+* Supports adding additional encoders to payloads for further obfuscation.
 
 ## Synopsis
 
-List available commands:
+```
+Usage: ronin-payloads [options] [COMMAND [ARGS...]]
 
-```shell
-$ ronin-payloads
+Options:
+    -h, --help                       Print help information
+
+Arguments:
+    [COMMAND]                        The command name to run
+    [ARGS ...]                       Additional arguments for the command
+
+Commands:
+    build
+    encode
+    encoder
+    encoders
+    help
+    irb
+    launch
+    list, ls
+    new
+    show, info
 ```
 
-Print information about a payload:
+List available payloads:
 
 ```shell
 $ ronin-payloads list
