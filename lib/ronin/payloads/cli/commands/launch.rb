@@ -74,7 +74,7 @@ module Ronin
           end
 
           #
-          # Initializes the payload with {#params}.
+          # Initializes the payload with the `--param` options.
           #
           def initialize_payload
             super(params: @params)

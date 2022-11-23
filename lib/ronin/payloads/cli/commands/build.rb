@@ -136,7 +136,7 @@ module Ronin
           end
 
           #
-          # Loads the {#encoders} using {#encoder_ids} which are populated by
+          # Loads the encoders using {#encoder_ids} which are populated by
           # the `-E,--encoder` option.
           #
           def load_encoders
@@ -151,7 +151,7 @@ module Ronin
           end
 
           #
-          # Initializes the payload with {#params} and {#encoders}.
+          # Initializes the payload with `--param` and `--encoder` options.
           #
           def initialize_payload
             super(params: @params, encoders: @encoders)

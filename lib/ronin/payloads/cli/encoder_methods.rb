@@ -95,7 +95,7 @@ module Ronin
         #   The encoder class.
         #
         # @param [Hash{Symbol => Object}] kwargs
-        #   Additional keyword arguments for {Encoders::Encoder#initialize}.
+        #   Additional keyword arguments for {Ronin::Payloads::Encoders::Encoder#initialize}.
         #
         def initialize_encoder(encoder_class,**kwargs)
           encoder_class.new(**kwargs)
