@@ -54,9 +54,6 @@ module Ronin
         # @param [String] name
         #   The encoder name to load.
         #
-        # @param [String, nil] fie
-        #   The optional explicit file to load the encoder from.
-        #
         # @return [Class<Encoders::Encoder>]
         #   The loaded encoder class.
         #

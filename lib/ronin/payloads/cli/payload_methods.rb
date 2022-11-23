@@ -32,9 +32,6 @@ module Ronin
         # @param [String] name
         #   The payload name to load.
         #
-        # @param [String, nil] fie
-        #   The optional explicit file to load the payload from.
-        #
         # @return [Class<Payload>]
         #   The loaded payload class.
         #

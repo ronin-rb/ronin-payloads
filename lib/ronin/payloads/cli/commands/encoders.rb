@@ -54,7 +54,7 @@ module Ronin
           #
           # Runs the `ronin-payloads encoders` command.
           #
-          # @param [String, nil] name
+          # @param [String, nil] dir
           #   The optional encoder name or directory to list.
           #
           def run(dir=nil)
