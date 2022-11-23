@@ -2,7 +2,7 @@
 
 ## SYNOPSIS
 
-`ronin-payloads build` [*options*] {--file *FILE* \| *NAME*}
+`ronin-payloads build` [*options*] {`--file` *FILE* \| *NAME*}
 
 ## DESCRIPTION
 
@@ -18,7 +18,7 @@ Loads and builds a payload.
 `-f`, `--file` *FILE*
   Optionally loads the payload from the file.
 
-`-F`, `--format` `c|shell|html|js|xml|ruby`
+`-F`, `--format` `c`\|`shell`\|`html`\|`js`\|`xml`\|`ruby`
   Formats the built payload for another programming language.
 
 `-p`, `--param` *NAME*`=`*VALUE*

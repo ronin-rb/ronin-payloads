@@ -2,7 +2,7 @@
 
 ## SYNOPSIS
 
-`ronin-payloads launch` [*options*] {--file *FILE* \| *NAME*}
+`ronin-payloads launch` [*options*] {`--file` *FILE* \| *NAME*}
 
 ## DESCRIPTION
 

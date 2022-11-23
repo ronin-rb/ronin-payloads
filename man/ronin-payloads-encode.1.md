@@ -15,13 +15,13 @@ Encodes data using one or more encoders.
 
 ## OPTIONS
 
-`-F`, `--format` `c|shell|html|js|xml|ruby`
+`-F`, `--format` `c`\|`shell`\|`html`\|`js`\|`xml`\|`ruby`
   Formats the encoded data.
 
-`-E`, `--encode ENCODER`
+`-E`, `--encode` *ENCODER*
   Loads the encoder with the given name.
 
-`-p`, `--param` *ENCODER*.*NAME*=*VALUE*
+`-p`, `--param` *ENCODER*`.`*NAME*`=`*VALUE*
   Sets a param on one of the loaded encoders.
 
 `-s`, `--string` *STRING*
