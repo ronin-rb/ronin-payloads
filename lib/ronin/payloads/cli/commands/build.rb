@@ -37,7 +37,7 @@ module Ronin
         # ## Options
         #
         #     -f, --file FILE                  The payload file to load
-        #     -F c|shell|powershell|xml|html|js|ruby,
+        #     -F hex|c|shell|powershell|xml|html|js|ruby,
         #         --format                     Formats the outputed data
         #     -p, --param NAME=VALUE           Sets a param
         #     -o, --output FILE                Output file to write the built payload to

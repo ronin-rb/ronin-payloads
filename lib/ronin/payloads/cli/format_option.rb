@@ -22,11 +22,16 @@ module Ronin
   module Payloads
     class CLI
       #
-      # Adds a `-F,--format c|shell|powershell|xml|html|js|ruby` option.
+      # Adds a `-F,--format hex|c|shell|powershell|xml|html|js|ruby` option.
       #
       module FormatOption
         # Available formats.
         FORMATS = {
+          hex: -> {
+            require 'ronin/support/encoding/hex'
+            Support::Encoding::Hex.method(:escape)
+          },
+
           c: -> {
             require 'ronin/support/encoding/c'
             Support::Encoding::C.method(:quote)
@@ -64,7 +69,7 @@ module Ronin
         }
 
         #
-        # Adds the `-F,--format c|shell|powershell|xml|html|js|ruby` option.
+        # Adds the `-F,--format hex|c|shell|powershell|xml|html|js|ruby` option.
         #
         # @param [Class<Command>] command
         #   The command class including {FormatOption}.
