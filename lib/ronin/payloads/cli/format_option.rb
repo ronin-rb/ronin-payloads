@@ -29,37 +29,37 @@ module Ronin
         FORMATS = {
           c: -> {
             require 'ronin/support/encoding/c'
-            Support::Encoding::C
+            Support::Encoding::C.method(:quote)
           },
 
           shell: -> {
             require 'ronin/support/encoding/shell'
-            Support::Encoding::Shell
+            Support::Encoding::Shell.method(:quote)
           },
 
           powershell: -> {
             require 'ronin/support/encoding/powershell'
-            Support::Encoding::PowerShell
+            Support::Encoding::PowerShell.method(:quote)
           },
 
           xml: -> {
             require 'ronin/support/encoding/xml'
-            Support::Encoding::XML
+            Support::Encoding::XML.method(:encode)
           },
 
           html: -> {
             require 'ronin/support/encoding/html'
-            Support::Encoding::HTML
+            Support::Encoding::HTML.method(:encode)
           },
 
           js: -> {
             require 'ronin/support/encoding/js'
-            Support::Encoding::JS
+            Support::Encoding::JS.method(:quote)
           },
 
           ruby: -> {
             require 'ronin/support/encoding/ruby'
-            Support::Encoding::Ruby
+            Support::Encoding::Ruby.method(:quote)
           }
         }
 
@@ -79,12 +79,7 @@ module Ronin
 
         # The format to encode data with.
         #
-        # @return [Ronin::Suppprt::Encoding::C,
-        #          Ronin::Suppprt::Encoding::Shell,
-        #          Ronin::Suppprt::Encoding::PowerShell,
-        #          Ronin::Suppprt::Encoding::JS,
-        #          Ronin::Suppprt::Encoding::Ruby,
-        #          nil]
+        # @return [Proc, nil]
         attr_reader :format
 
         #
@@ -97,7 +92,7 @@ module Ronin
         #   The formatted data.
         #
         def format_data(data)
-          if @format then @format.quote(data)
+          if @format then @format.call(data)
           else            data
           end
         end
