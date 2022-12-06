@@ -22,58 +22,90 @@ describe Ronin::Payloads::CLI::FormatOption do
       expect(subject.options[:format].short).to eq('-F')
       expect(subject.options[:format].value).to_not be(nil)
       expect(subject.options[:format].value.type).to eq(
-        [:c, :shell, :html, :js, :xml, :ruby]
+        [:hex, :c, :shell, :powershell, :xml, :html, :js, :ruby]
       )
       expect(subject.options[:format].desc).to eq('Formats the outputed data')
     end
   end
 
   describe "parse_options" do
+    context "when given '--format hex'" do
+      before { subject.parse_options(%w[--format hex]) }
+
+      it "must set #format to Ronin::Support::Encoding::Hex.escape" do
+        expect(subject.format).to eq(
+          Ronin::Support::Encoding::Hex.method(:escape)
+        )
+      end
+    end
+
     context "when given '--format c'" do
       before { subject.parse_options(%w[--format c]) }
 
-      it "must set #format to Ronin::Support::Encoding::C" do
-        expect(subject.format).to be(Ronin::Support::Encoding::C)
+      it "must set #format to Ronin::Support::Encoding::C.quote" do
+        expect(subject.format).to eq(
+          Ronin::Support::Encoding::C.method(:quote)
+        )
       end
     end
 
     context "when given '--format shell'" do
       before { subject.parse_options(%w[--format shell]) }
 
-      it "must set #format to Ronin::Support::Encoding::Shell" do
-        expect(subject.format).to be(Ronin::Support::Encoding::Shell)
+      it "must set #format to Ronin::Support::Encoding::Shell.quote" do
+        expect(subject.format).to eq(
+          Ronin::Support::Encoding::Shell.method(:quote)
+        )
       end
     end
 
-    context "when given '--format html'" do
-      before { subject.parse_options(%w[--format html]) }
+    context "when given '--format powershell'" do
+      before { subject.parse_options(%w[--format powershell]) }
 
-      it "must set #format to Ronin::Support::Encoding::HTML" do
-        expect(subject.format).to be(Ronin::Support::Encoding::HTML)
-      end
-    end
-
-    context "when given '--format js'" do
-      before { subject.parse_options(%w[--format js]) }
-
-      it "must set #format to Ronin::Support::Encoding::JS" do
-        expect(subject.format).to be(Ronin::Support::Encoding::JS)
+      it "must set #format to Ronin::Support::Encoding::PowerShell.quote" do
+        expect(subject.format).to eq(
+          Ronin::Support::Encoding::PowerShell.method(:quote)
+        )
       end
     end
 
     context "when given '--format xml'" do
       before { subject.parse_options(%w[--format xml]) }
 
-      it "must set #format to Ronin::Support::Encoding::XML" do
-        expect(subject.format).to be(Ronin::Support::Encoding::XML)
+      it "must set #format to Ronin::Support::Encoding::XML.escape" do
+        expect(subject.format).to eq(
+          Ronin::Support::Encoding::XML.method(:escape)
+        )
+      end
+    end
+
+    context "when given '--format html'" do
+      before { subject.parse_options(%w[--format html]) }
+
+      it "must set #format to Ronin::Support::Encoding::HTML.escape" do
+        expect(subject.format).to eq(
+          Ronin::Support::Encoding::HTML.method(:escape)
+        )
+      end
+    end
+
+    context "when given '--format js'" do
+      before { subject.parse_options(%w[--format js]) }
+
+      it "must set #format to Ronin::Support::Encoding::JS.quote" do
+        expect(subject.format).to eq(
+          Ronin::Support::Encoding::JS.method(:quote)
+        )
       end
     end
 
     context "when given '--format ruby'" do
       before { subject.parse_options(%w[--format ruby]) }
 
-      it "must set #format to Ronin::Support::Encoding::Ruby" do
-        expect(subject.format).to be(Ronin::Support::Encoding::Ruby)
+      it "must set #format to Ronin::Support::Encoding::Ruby.quote" do
+        expect(subject.format).to eq(
+          Ronin::Support::Encoding::Ruby.method(:quote)
+        )
       end
     end
   end
