@@ -49,12 +49,12 @@ module Ronin
 
           xml: -> {
             require 'ronin/support/encoding/xml'
-            Support::Encoding::XML.method(:encode)
+            Support::Encoding::XML.method(:escape)
           },
 
           html: -> {
             require 'ronin/support/encoding/html'
-            Support::Encoding::HTML.method(:encode)
+            Support::Encoding::HTML.method(:escape)
           },
 
           js: -> {
