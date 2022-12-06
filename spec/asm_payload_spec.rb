@@ -23,5 +23,14 @@ describe Ronin::Payloads::ASMPayload do
 
       expect(output).to_not be_empty
     end
+
+    it "must return an ASCII-8bit encoded String" do
+      output = subject.assemble(arch: :x86, os: :linux) do
+        mov   al, syscalls[:exit]
+        int   0xb
+      end
+
+      expect(output.encoding).to eq(Encoding::ASCII_8BIT)
+    end
   end
 end

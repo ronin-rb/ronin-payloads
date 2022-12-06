@@ -84,7 +84,7 @@ module Ronin
                                          define: define,
                                          &block)
 
-        tempfile = Tempfile.new('ronin-payloads')
+        tempfile = Tempfile.new('ronin-payloads', encoding: Encoding::ASCII_8BIT)
         program.assemble(tempfile.path,**kwargs)
         return tempfile.read
       end
