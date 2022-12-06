@@ -51,42 +51,43 @@ module Ronin
       end
 
       #
-      # Creates an ASM Program.
-      #
-      # @yield []
-      #   The given block represents the instructions of the ASM Program.
-      #
-      # @param [Symbol] arch
-      #   The architecture for the ASM Program.
-      #
-      # @param [Symbol] os
-      #   The Operating System for the ASM Program.
-      #
-      # @param [Hash{Symbol => Object}] define
-      #   Constants to define in the program.
-      #
-      # @param [Hash{Symbol => Object}] kwargs
-      #   Additional keyword arguments for `Ronin::ASM::Program#assemble`.
+      # The default assembler.
       #
       # @return [String]
-      #   The assembled program.
       #
-      # @raise [BuildFailed]
-      #   The payload class did not set {arch Metadata::ClassMethods#arch}.
+      def self.assembler
+        ENV['AS'] || 'as'
+      end
+
+      param :assembler, required: true,
+                        default:  ->{ assembler },
+                        desc:     'The assmebler command to use'
+
       #
-      def assemble(arch: self.arch, os: self.os, define: {}, **kwargs, &block)
-        unless arch
-          raise(BuildFailed,"#{self.class}.arch not set")
+      # Assembles one or more source files using `as`.
+      #
+      # @param [Array<String>] source_files
+      #   The source file(s) to assemble.
+      #
+      # @param [String] output
+      #   The output file path.
+      #
+      # @param [Hash{Symbol => Object}] defs
+      #   Additional symbols to define in the program.
+      #
+      # @return [Boolean, nil]
+      #   Indicates whether the assembler command succeeded or failed.
+      #
+      def assemble(*source_files, output: , defs: {})
+        args = ['-o', output]
+
+        defs.each do |name,value|
+          args << "--defsym" << "#{name}=#{value}"
         end
 
-        program = Code::ASM::Program.new(arch:   arch,
-                                         os:     os,
-                                         define: define,
-                                         &block)
+        args.concat(source_files)
 
-        tempfile = Tempfile.new('ronin-payloads', encoding: Encoding::ASCII_8BIT)
-        program.assemble(tempfile.path,**kwargs)
-        return tempfile.read
+        system(params[:assembler],*args)
       end
 
     end

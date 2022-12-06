@@ -20,6 +20,8 @@
 
 require 'ronin/payloads/asm_payload'
 
+require 'ronin/code/asm/shellcode'
+
 module Ronin
   module Payloads
     #
@@ -107,7 +109,7 @@ module Ronin
       end
 
       #
-      # Assembles Shellcode and sets the `@payload` instance variable.
+      # Assembles shellcode and sets the `@payload` instance variable.
       #
       # @param [Hash{Symbol => Object}] define
       #   Constants to define in the shellcode.
@@ -118,10 +120,13 @@ module Ronin
       # @return [String]
       #   The assembled shellcode.
       #
-      # @see #assemble
-      #
       def shellcode(define={},&block)
-        @payload = assemble(format: :bin, define: define, &block)
+        @payload = Code::ASM::Shellcode.new(
+          arch:   arch,
+          os:     os,
+          define: define,
+          &block
+        ).assemble
       end
 
     end

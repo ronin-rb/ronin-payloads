@@ -14,23 +14,77 @@ describe Ronin::Payloads::ASMPayload do
     expect(described_class).to include(Ronin::Payloads::Metadata::OS)
   end
 
-  describe "#assemble" do
-    it "must return the assembled program" do
-      output = subject.assemble(arch: :x86, os: :linux) do
-        mov   al, syscalls[:exit]
-        int   0xb
-      end
-
-      expect(output).to_not be_empty
+  describe ".assembler" do
+    before do
+      @as = ENV['AS']
+      ENV.delete('AS')
     end
 
-    it "must return an ASCII-8bit encoded String" do
-      output = subject.assemble(arch: :x86, os: :linux) do
-        mov   al, syscalls[:exit]
-        int   0xb
+    subject { described_class }
+
+    context "when ENV['AS'] is set" do
+      let(:as) { 'arm-linux-gnu-as' }
+
+      before { ENV['AS'] = as }
+
+      it "must return ENV['AS']" do
+        expect(subject.assembler).to eq(as)
       end
 
-      expect(output.encoding).to eq(Encoding::ASCII_8BIT)
+      after { ENV.delete('AS') }
+    end
+
+    context "when ENV['AS'] is not set" do
+      it "must return 'as'" do
+        expect(subject.assembler).to eq('as')
+      end
+    end
+
+    after { ENV['AS'] = @as if @as }
+  end
+
+  describe "params" do
+    subject { described_class }
+
+    it "must define a :as param" do
+      expect(subject.params[:assembler]).to_not be_nil
+    end
+
+    it "must default the :as param to #{described_class}.as" do
+      expect(subject.params[:assembler].default_value).to eq(subject.assembler)
+    end
+  end
+
+  describe "#assemble" do
+    let(:source_files) { %w[foo.s bar.s baz.s] }
+    let(:output)       { 'output.o' } 
+
+    it "must call system with params[:assembler], the output and source files" do
+      expect(subject).to receive(:system).with(
+        subject.params[:assembler],'-o',output,*source_files
+      )
+
+      subject.assemble(*source_files, output: output)
+    end
+
+    context "when the defs: keyword argument is given" do
+      let(:name1)  { "foo" }
+      let(:value1) { "1"   }
+      let(:name2)  { "bar" }
+      let(:value2) { "2"   }
+      let(:defs)   { {name1 => value1, name2 => value2} }
+
+      it "must append the values with '--defsym' flags" do
+        expect(subject).to receive(:system).with(
+          subject.params[:assembler],
+          '-o', output,
+          "--defsym", "#{name1}=#{value1}",
+          "--defsym", "#{name2}=#{value2}",
+          *source_files
+        )
+
+        subject.assemble(*source_files, output: output, defs: defs)
+      end
     end
   end
 end
