@@ -28,7 +28,7 @@ module Ronin
     #
     # ## Example
     #
-    #     #!/usr/bin/env ronin-payload -f
+    #     #!/usr/bin/env -S ronin-payload build -f
     #     require 'ronin/payloads/shellcode'
     #     
     #     module Ronin
