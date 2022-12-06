@@ -36,8 +36,8 @@ module Ronin
         #
         # ## Options
         #
-        #     -F c|shell|xml|html|js|ruby,     Formats the outputed data
-        #         --format
+        #     -F c|shell|powershell|xml|html|js|ruby,
+        #         --format                     Formats the outputed data
         #     -E, --encoder ENCODER            The encoder name to load
         #     -p, --param ENCODER.NAME=VALUE   Sets a param on an encoder
         #     -s, --string STRING              The string to encode
