@@ -23,6 +23,8 @@ research and development.
 
 ## Features
 
+* Provides a succinct syntax and API for writing payloads in as few lines as
+  possible.
 * Allows defining Payloads as plain-Ruby Classes.
 * Provides base classes for a variety of languages and payload types:
   * ASM
