@@ -84,7 +84,7 @@ module Ronin
 
         # The format to encode data with.
         #
-        # @return [Proc, nil]
+        # @return [Method, nil]
         attr_reader :format
 
         #
