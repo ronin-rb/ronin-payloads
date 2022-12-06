@@ -60,16 +60,55 @@ describe Ronin::Payloads::CPayload do
     end
 
     context "when the defs: keyword argument is given" do
-      let(:def1) { 'foo' }
-      let(:def2) { 'bar=baz' }
-      let(:defs) { [def1, def2] }
+      context "and it's an Array" do
+        let(:def1) { 'foo' }
+        let(:def2) { 'bar=baz' }
+        let(:defs) { [def1, def2] }
 
-      it "must append the values with '-D' flags" do
-        expect(subject).to receive(:system).with(
-          subject.params[:cc],'-o',output,"-D#{def1}","-D#{def2}",*source_files
-        )
+        it "must append the values with '-D' flags" do
+          expect(subject).to receive(:system).with(
+            subject.params[:cc],
+            '-o', output,
+            "-D#{def1}",
+            "-D#{def2}",
+            *source_files
+          )
 
-        subject.compile(*source_files, output: output, defs: defs)
+          subject.compile(*source_files, output: output, defs: defs)
+        end
+      end
+
+      context "and it's a Hash" do
+        let(:name1)  { "foo" }
+        let(:value1) { "1"   }
+        let(:name2)  { "bar" }
+        let(:value2) { "2"   }
+
+        let(:def1) { "#{name1}=#{value1}" }
+        let(:def2) { "#{name2}=#{value2}" }
+        let(:defs) { {name1 => value1, name2 => value2} }
+
+        it "must append the values with '-D' flags" do
+          expect(subject).to receive(:system).with(
+            subject.params[:cc],
+            '-o', output,
+            "-D#{def1}",
+            "-D#{def2}",
+            *source_files
+          )
+
+          subject.compile(*source_files, output: output, defs: defs)
+        end
+      end
+
+      context "but it's not an Array or a Hash" do
+        let(:defs) { Object.new }
+
+        it do
+          expect {
+            subject.compile(*source_files, output: output, defs: defs)
+          }.to raise_error(ArgumentError,"defs must be either an Array or a Hash: #{defs.inspect}")
+        end
       end
     end
   end

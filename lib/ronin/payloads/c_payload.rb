@@ -63,18 +63,30 @@ module Ronin
       # @param [String] output
       #   The output file path.
       #
-      # @param [Array<String>, nil] defs
+      # @param [Array<String>, Hash{Symbol,String => String}, nil] defs
       #   Additional macro definitions to pass to the compiler.
       #
       # @return [Boolean, nil]
       #   Indicates whether the C compiler command succeeded or failed.
       #
+      # @raise [ArgumentError]
+      #   `defs` was not an Array or a Hash.
+      #
       def compile(*source_files, output: , defs: nil)
         args = ['-o', output]
 
         if defs
-          defs.each do |value|
-            args << "-D#{value}"
+          case defs
+          when Array
+            defs.each do |value|
+              args << "-D#{value}"
+            end
+          when Hash
+            defs.each do |name,value|
+              args << "-D#{name}=#{value}"
+            end
+          else
+            raise(ArgumentError,"defs must be either an Array or a Hash: #{defs.inspect}")
           end
         end
 
