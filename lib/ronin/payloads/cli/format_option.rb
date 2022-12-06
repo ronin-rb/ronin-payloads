@@ -91,7 +91,7 @@ module Ronin
         #   The formatted data.
         #
         def format_data(data)
-          if @format then @format.escape(data)
+          if @format then @format.quote(data)
           else            data
           end
         end
