@@ -9,6 +9,11 @@ describe Ronin::Payloads::CPayload do
   describe ".cc" do
     subject { described_class }
 
+    before do
+      @cc = ENV['CC']
+      ENV.delete('CC')
+    end
+
     context "when ENV['CC'] is set" do
       let(:cc) { 'gcc' }
 
@@ -17,22 +22,17 @@ describe Ronin::Payloads::CPayload do
       it "must return ENV['CC']" do
         expect(subject.cc).to eq(cc)
       end
+
+      after { ENV.delete('CC') }
     end
 
     context "when ENV['CC'] is not set" do
-      before(:all) do
-        @cc = ENV['CC']
-        ENV.delete('CC')
-      end
-
       it "must return 'cc'" do
         expect(subject.cc).to eq('cc')
       end
-
-      after(:all) do
-        ENV['CC'] = @cc if @cc
-      end
     end
+
+    after { ENV['CC'] = @cc if @cc }
   end
 
   describe "params" do
