@@ -135,7 +135,7 @@ require 'ronin/payloads/shellcode_payload'
 
 module Ronin
   module Payloads
-    class LinuxX86BinSh < Ronin::Payloads::ShellcodePayload
+    class LinuxX86BinSh < ShellcodePayload
 
       register 'shellcode/linux/x86/bin_sh'
 
@@ -165,7 +165,7 @@ module Ronin
     module Shellcode
       module Linux
         module X86
-          class BinSh < Ronin::Payloads::ShellcodePayload
+          class BinSh < ShellcodePayload
 
             register 'shellcode/linux/x86/bin_sh'
             description <<~DESC

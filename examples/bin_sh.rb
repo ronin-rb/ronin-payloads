@@ -4,7 +4,7 @@ require 'ronin/payloads/shellcode_payload'
 
 module Ronin
   module Payloads
-    class BinSh < Ronin::Payloads::ShellcodePayload
+    class BinSh < ShellcodePayload
 
       register 'examples/bin_sh'
       description <<~DESC

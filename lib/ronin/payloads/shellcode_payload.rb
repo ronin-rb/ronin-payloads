@@ -33,7 +33,7 @@ module Ronin
     #     
     #     module Ronin
     #       module Payloads
-    #         class LinuxX86BinSh < Ronin::Payloads::ShellcodePayload
+    #         class LinuxX86BinSh < ShellcodePayload
     #     
     #           register 'shellcode/linux/x86/bin_sh'
     #
@@ -59,7 +59,7 @@ module Ronin
     #     
     #     module Ronin
     #       module Payloads
-    #         class LinuxX86BinSh < Ronin::Payloads::ShellcodePayload
+    #         class LinuxX86BinSh < ShellcodePayload
     #     
     #           register 'shellcode/linux/x86/bin_sh'
     #
