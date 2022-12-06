@@ -22,7 +22,7 @@ module Ronin
   module Payloads
     class CLI
       #
-      # Adds a `-F,--format c|shell|js|ruby` option.
+      # Adds a `-F,--format c|shell|xml|html|js|ruby` option.
       #
       module FormatOption
         # Available formats.
@@ -37,6 +37,11 @@ module Ronin
             Support::Encoding::Shell
           },
 
+          xml: -> {
+            require 'ronin/support/encoding/xml'
+            Support::Encoding::XML
+          },
+
           html: -> {
             require 'ronin/support/encoding/html'
             Support::Encoding::HTML
@@ -47,11 +52,6 @@ module Ronin
             Support::Encoding::JS
           },
 
-          xml: -> {
-            require 'ronin/support/encoding/xml'
-            Support::Encoding::XML
-          },
-
           ruby: -> {
             require 'ronin/support/encoding/ruby'
             Support::Encoding::Ruby
@@ -59,7 +59,7 @@ module Ronin
         }
 
         #
-        # Adds the `-F,--format c|shell|js|ruby` option.
+        # Adds the `-F,--format c|shell|xml|html|js|ruby` option.
         #
         # @param [Class<Command>] command
         #   The command class including {FormatOption}.

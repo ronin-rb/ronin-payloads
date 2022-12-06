@@ -15,7 +15,7 @@ Encodes data using one or more encoders.
 
 ## OPTIONS
 
-`-F`, `--format` `c`\|`shell`\|`html`\|`js`\|`xml`\|`ruby`
+`-F`, `--format` `c`\|`shell`\|`xml`\|`html`\|`js`\|`ruby`
   Formats the encoded data.
 
 `-E`, `--encode` *ENCODER*

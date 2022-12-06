@@ -36,7 +36,7 @@ module Ronin
         #
         # ## Options
         #
-        #     -F c|shell|html|js|xml|ruby,     Formats the outputed data
+        #     -F c|shell|xml|html|js|ruby,     Formats the outputed data
         #         --format
         #     -E, --encoder ENCODER            The encoder name to load
         #     -p, --param ENCODER.NAME=VALUE   Sets a param on an encoder
