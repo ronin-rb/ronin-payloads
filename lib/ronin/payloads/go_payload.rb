@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 #
 # ronin-payloads - A Ruby micro-framework for writing and running exploit
 # payloads.
