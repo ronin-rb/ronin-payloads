@@ -25,7 +25,7 @@ research and development.
 
 * Provides a succinct syntax and API for writing payloads in as few lines as
   possible.
-* Allows defining Payloads as plain-Ruby Classes.
+* Supports defining Payloads as plain old Ruby classes.
 * Provides base classes for a variety of languages and payload types:
   * ASM
   * Shellcode
