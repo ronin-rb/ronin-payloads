@@ -6,6 +6,14 @@ describe Ronin::Payloads::Test::OpenRedirect do
     expect(described_class).to be < Ronin::Payloads::URLPayload
   end
 
+  describe ".id" do
+    subject { described_class }
+
+    it "must equal 'test/open_redirect'" do
+      expect(subject.id).to eq('test/open_redirect')
+    end
+  end
+
   describe "#build" do
     before { subject.build }
 

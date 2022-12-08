@@ -6,6 +6,14 @@ describe Ronin::Payloads::Test::XSS do
     expect(described_class).to be < Ronin::Payloads::JavaScriptPayload
   end
 
+  describe ".id" do
+    subject { described_class }
+
+    it "must equal 'test/xss'" do
+      expect(subject.id).to eq('test/xss')
+    end
+  end
+
   describe "#build" do
     before { subject.build }
 
