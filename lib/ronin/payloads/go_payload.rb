@@ -51,11 +51,11 @@ module Ronin
       # @param [String, nil] output
       #   The output file path.
       #
-      # @return [Boolean, nil]
-      #   Indicates whether the Go compiler command succeeded or failed.
+      # @raise [BuildFailed]
+      #   The `go build` command failed or is not installed.
       #
       def compile(*source_files, output: nil)
-        args = []
+        args = ['go', 'build']
 
         if output
           args << '-o' <<  output
@@ -63,7 +63,12 @@ module Ronin
 
         args.concat(source_files)
 
-        system('go','build',*args)
+        case system(*args)
+        when false
+          raise(BuildFailed,"go command failed: #{args.join(' ')}")
+        when nil
+          raise(BuildFailed,"go command not installed")
+        end
       end
 
     end

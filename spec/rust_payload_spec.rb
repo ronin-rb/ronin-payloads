@@ -12,7 +12,7 @@ describe Ronin::Payloads::RustPayload do
     it "must call system with `rustc` and source files" do
       expect(subject).to receive(:system).with(
         'rustc', *source_files
-      )
+      ).and_return(true)
 
       subject.compile(*source_files)
     end
@@ -23,7 +23,7 @@ describe Ronin::Payloads::RustPayload do
       it "must call system with 'rustc', the output, and source files" do
         expect(subject).to receive(:system).with(
           'rustc','-o', output, *source_files
-        )
+        ).and_return(true)
 
         subject.compile(*source_files, output: output)
       end
@@ -35,7 +35,7 @@ describe Ronin::Payloads::RustPayload do
       it "must call system with 'rustc', the target, and source files" do
         expect(subject).to receive(:system).with(
           'rustc','--target', target, *source_files
-        )
+        ).and_return(true)
 
         subject.compile(*source_files, target: target)
       end
@@ -56,7 +56,7 @@ describe Ronin::Payloads::RustPayload do
             'rustc', '--cfg', "#{key1}=\"#{value1}\"",
                      '--cfg', "#{key2}=\"#{value2}\"",
                      *source_files
-          )
+          ).and_return(true)
 
           subject.compile(*source_files, cfg: cfg)
         end
@@ -70,7 +70,7 @@ describe Ronin::Payloads::RustPayload do
         it "must call system with 'rustc', --cfg='key=value' arguments, and the source files" do
           expect(subject).to receive(:system).with(
             'rustc', '--cfg', value1.to_s, '--cfg', value2.to_s, *source_files
-          )
+          ).and_return(true)
 
           subject.compile(*source_files, cfg: cfg)
         end
@@ -84,6 +84,30 @@ describe Ronin::Payloads::RustPayload do
             subject.compile(*source_files, cfg: cfg)
           }.to raise_error(ArgumentError,"cfg value must be either a Hash or an Array: #{cfg.inspect}")
         end
+      end
+    end
+
+    context "when system() returns false" do
+      let(:source_file) { 'foo.rs' }
+
+      it do
+        allow(subject).to receive(:system).and_return(false)
+
+        expect {
+          subject.compile(source_file, output: output)
+        }.to raise_error(Ronin::Payloads::BuildFailed,"rustc command failed: rustc -o #{output} #{source_file}")
+      end
+    end
+
+    context "when system() returns nil" do
+      let(:source_file) { 'foo.rs' }
+
+      it do
+        allow(subject).to receive(:system).and_return(nil)
+
+        expect {
+          subject.compile(source_file, output: output)
+        }.to raise_error(Ronin::Payloads::BuildFailed,"rustc command not installed")
       end
     end
   end

@@ -67,14 +67,14 @@ module Ronin
       # @param [Array<String>, Hash{Symbol,String => String}, nil] defs
       #   Additional macro definitions to pass to the compiler.
       #
-      # @return [Boolean, nil]
-      #   Indicates whether the C compiler command succeeded or failed.
-      #
       # @raise [ArgumentError]
       #   `defs` was not an Array or a Hash.
       #
+      # @raise [BuildFailed]
+      #   The `cc` command failed or is not installed.
+      #
       def compile(*source_files, output: , defs: nil)
-        args = ['-o', output]
+        args = [params[:cc], '-o', output]
 
         if defs
           case defs
@@ -93,7 +93,12 @@ module Ronin
 
         args.concat(source_files)
 
-        system(params[:cc],*args)
+        case system(*args)
+        when false
+          raise(BuildFailed,"cc command failed: #{args.join(' ')}")
+        when nil
+          raise(BuildFailed,"cc command not installed")
+        end
       end
 
     end

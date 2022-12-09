@@ -64,15 +64,20 @@ module Ronin
       # @param [String, nil] dest_dir
       #   The destination directory that class files will be written to.
       #
-      # @return [Boolean, nil]
-      #   Indicates whether the `javac` command succeeded or failed.
+      # @raise [BuildFailed]
+      #   The `javac` command failed or is not installed.
       #
       def compile(*source_files, dest_dir: nil)
-        args = []
+        args = [params[:javac]]
         args << '-d' << dest_dir if dest_dir
         args.concat(source_files)
 
-        system(params[:javac],*args)
+        case system(*args)
+        when false
+          raise(BuildFailed,"javac command failed: #{args.join(' ')}")
+        when nil
+          raise(BuildFailed,"javac command not installed")
+        end
       end
 
     end

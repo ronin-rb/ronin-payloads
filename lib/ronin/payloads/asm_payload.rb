@@ -80,7 +80,7 @@ module Ronin
       #   Indicates whether the assembler command succeeded or failed.
       #
       def assemble(*source_files, output: , defs: {})
-        args = ['-o', output]
+        args = [params[:assembler], '-o', output]
 
         defs.each do |name,value|
           args << "--defsym" << "#{name}=#{value}"
@@ -88,7 +88,12 @@ module Ronin
 
         args.concat(source_files)
 
-        system(params[:assembler],*args)
+        case system(*args)
+        when false
+          raise(BuildFailed,"assembler command failed: #{args.join(' ')}")
+        when nil
+          raise(BuildFailed,"assembler command not installed")
+        end
       end
 
     end

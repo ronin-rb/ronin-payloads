@@ -54,7 +54,7 @@ describe Ronin::Payloads::CPayload do
     it "must call system with params[:cc], the output and source files" do
       expect(subject).to receive(:system).with(
         subject.params[:cc],'-o',output,*source_files
-      )
+      ).and_return(true)
 
       subject.compile(*source_files, output: output)
     end
@@ -72,7 +72,7 @@ describe Ronin::Payloads::CPayload do
             "-D#{def1}",
             "-D#{def2}",
             *source_files
-          )
+          ).and_return(true)
 
           subject.compile(*source_files, output: output, defs: defs)
         end
@@ -95,7 +95,7 @@ describe Ronin::Payloads::CPayload do
             "-D#{def1}",
             "-D#{def2}",
             *source_files
-          )
+          ).and_return(true)
 
           subject.compile(*source_files, output: output, defs: defs)
         end
@@ -109,6 +109,30 @@ describe Ronin::Payloads::CPayload do
             subject.compile(*source_files, output: output, defs: defs)
           }.to raise_error(ArgumentError,"defs must be either an Array or a Hash: #{defs.inspect}")
         end
+      end
+    end
+
+    context "when system() returns false" do
+      let(:source_file) { 'foo.go' }
+
+      it do
+        allow(subject).to receive(:system).and_return(false)
+
+        expect {
+          subject.compile(source_file, output: output)
+        }.to raise_error(Ronin::Payloads::BuildFailed,"cc command failed: #{subject.params[:cc]} -o #{output} #{source_file}")
+      end
+    end
+
+    context "when system() returns nil" do
+      let(:source_file) { 'foo.go' }
+
+      it do
+        allow(subject).to receive(:system).and_return(nil)
+
+        expect {
+          subject.compile(source_file, output: output)
+        }.to raise_error(Ronin::Payloads::BuildFailed,"cc command not installed")
       end
     end
   end

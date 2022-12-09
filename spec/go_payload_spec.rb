@@ -12,7 +12,7 @@ describe Ronin::Payloads::GoPayload do
     it "must call system with `go build` and source files" do
       expect(subject).to receive(:system).with(
         'go', 'build', *source_files
-      )
+      ).and_return(true)
 
       subject.compile(*source_files)
     end
@@ -23,9 +23,33 @@ describe Ronin::Payloads::GoPayload do
       it "must call system with 'go build', the output, and source files" do
         expect(subject).to receive(:system).with(
           'go', 'build','-o', output, *source_files
-        )
+        ).and_return(true)
 
         subject.compile(*source_files, output: output)
+      end
+    end
+
+    context "when system() returns false" do
+      let(:source_file) { 'foo.go' }
+
+      it do
+        allow(subject).to receive(:system).and_return(false)
+
+        expect {
+          subject.compile(source_file)
+        }.to raise_error(Ronin::Payloads::BuildFailed,"go command failed: go build #{source_file}")
+      end
+    end
+
+    context "when system() returns nil" do
+      let(:source_file) { 'foo.go' }
+
+      it do
+        allow(subject).to receive(:system).and_return(nil)
+
+        expect {
+          subject.compile(source_file)
+        }.to raise_error(Ronin::Payloads::BuildFailed,"go command not installed")
       end
     end
   end

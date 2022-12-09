@@ -60,9 +60,33 @@ describe Ronin::Payloads::Mixins::TypeScript do
     it "must call system with params[:tsc] and additional source files" do
       expect(subject).to receive(:system).with(
         subject.params[:tsc], *source_files
-      )
+      ).and_return(true)
 
       subject.compile(*source_files)
+    end
+
+    context "when system() returns false" do
+      let(:source_file) { 'foo.ts' }
+
+      it do
+        allow(subject).to receive(:system).and_return(false)
+
+        expect {
+          subject.compile(source_file)
+        }.to raise_error(Ronin::Payloads::BuildFailed,"tsc command failed: #{subject.params[:tsc]} #{source_file}")
+      end
+    end
+
+    context "when system() returns nil" do
+      let(:source_file) { 'foo.rs' }
+
+      it do
+        allow(subject).to receive(:system).and_return(nil)
+
+        expect {
+          subject.compile(source_file)
+        }.to raise_error(Ronin::Payloads::BuildFailed,"tsc command not installed")
+      end
     end
   end
 end

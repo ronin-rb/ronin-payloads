@@ -57,14 +57,14 @@ module Ronin
       # @param [Hash, Array, nil] cfg
       #   Additional configuration flags to pass to `rustc`.
       #
-      # @return [Boolean, nil]
-      #   Indicates whether the Rust compiler command succeeded or failed.
-      #
       # @raise [ArgumentError]
       #   The `cfg` value was not a Hash or an Array.
       #
+      # @raise [BuildFailed]
+      #   The `rustc` command failed or is not installed.
+      #
       def compile(*source_files, output: nil, target: nil, cfg: nil)
-        args = []
+        args = ['rustc']
 
         if output
           args << '-o' <<  output
@@ -91,7 +91,12 @@ module Ronin
 
         args.concat(source_files)
 
-        system('rustc',*args)
+        case system(*args)
+        when false
+          raise(BuildFailed,"rustc command failed: #{args.join(' ')}")
+        when nil
+          raise(BuildFailed,"rustc command not installed")
+        end
       end
 
     end

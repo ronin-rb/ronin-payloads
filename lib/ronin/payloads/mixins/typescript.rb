@@ -56,13 +56,20 @@ module Ronin
         # @param [Array<String>] source_files
         #   The source files to compile.
         #
-        # @return [Boolean, nil]
-        #   Indicates whether the `tsc` command succeeded or failed.
+        # @raise [BuildFailed]
+        #   The `tsc` command failed or is not installed.
         #
         def compile(*source_files)
-          system(params[:tsc],*source_files)
-        end
+          args = [params[:tsc]]
+          args.concat(source_files)
 
+          case system(*args)
+          when false
+            raise(BuildFailed,"tsc command failed: #{args.join(' ')}")
+          when nil
+            raise(BuildFailed,"tsc command not installed")
+          end
+        end
       end
     end
   end

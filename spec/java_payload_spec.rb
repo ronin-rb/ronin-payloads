@@ -53,7 +53,7 @@ describe Ronin::Payloads::JavaPayload do
     it "must call system with params[:javac] and additional arguments" do
       expect(subject).to receive(:system).with(
         subject.params[:javac], *source_files
-      )
+      ).and_return(true)
 
       subject.compile(*source_files)
     end
@@ -64,9 +64,33 @@ describe Ronin::Payloads::JavaPayload do
       it "must pass the `-d` option to the `javac` command" do
         expect(subject).to receive(:system).with(
           subject.params[:javac], '-d', dest_dir, *source_files
-        )
+        ).and_return(true)
 
         subject.compile(*source_files, dest_dir: dest_dir)
+      end
+    end
+
+    context "when system() returns false" do
+      let(:source_file) { 'Foo.java' }
+
+      it do
+        allow(subject).to receive(:system).and_return(false)
+
+        expect {
+          subject.compile(source_file)
+        }.to raise_error(Ronin::Payloads::BuildFailed,"javac command failed: #{subject.params[:javac]} #{source_file}")
+      end
+    end
+
+    context "when system() returns nil" do
+      let(:source_file) { 'Foo.java' }
+
+      it do
+        allow(subject).to receive(:system).and_return(nil)
+
+        expect {
+          subject.compile(source_file)
+        }.to raise_error(Ronin::Payloads::BuildFailed,"javac command not installed")
       end
     end
   end
