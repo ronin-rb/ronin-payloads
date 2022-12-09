@@ -58,14 +58,21 @@ module Ronin
       #
       # Compiles one or more source files using `javac`.
       #
-      # @param [Array<String>] arguments
-      #   Additional arguments for the `javac` command.
+      # @param [Array<String>] source_files
+      #   The source files for the `javac` command.
+      #
+      # @param [String, nil] dest_dir
+      #   The destination directory that class files will be written to.
       #
       # @return [Boolean, nil]
       #   Indicates whether the `javac` command succeeded or failed.
       #
-      def compile(*arguments)
-        system(params[:javac],*arguments)
+      def compile(*source_files, dest_dir: nil)
+        args = []
+        args << '-d' << dest_dir if dest_dir
+        args.concat(source_files)
+
+        system(params[:javac],*args)
       end
 
     end

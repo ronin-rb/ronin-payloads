@@ -48,14 +48,26 @@ describe Ronin::Payloads::JavaPayload do
   end
 
   describe "#compile" do
-    let(:arguments) { %w[foo.java bar.java baz.java] }
+    let(:source_files) { %w[foo.java bar.java baz.java] }
 
     it "must call system with params[:javac] and additional arguments" do
       expect(subject).to receive(:system).with(
-        subject.params[:javac], *arguments
+        subject.params[:javac], *source_files
       )
 
-      subject.compile(*arguments)
+      subject.compile(*source_files)
+    end
+
+    context "when the dest_dir: keyword argument is given" do
+      let(:dest_dir) { '/path/to/dest/dir' }
+
+      it "must pass the `-d` option to the `javac` command" do
+        expect(subject).to receive(:system).with(
+          subject.params[:javac], '-d', dest_dir, *source_files
+        )
+
+        subject.compile(*source_files, dest_dir: dest_dir)
+      end
     end
   end
 end
