@@ -98,49 +98,4 @@ describe Ronin::Payloads::Mixins::FileBuilder do
       end
     end
   end
-
-  describe "#tempdir" do
-    context "when given a block" do
-      it "must yield a new temporary directory" do
-        expect { |b|
-          subject.tempdir(&b)
-        }.to yield_with_args(%r{\A/tmp/ronin-payloads-\d+-\d+-[a-z0-9]+\z})
-      end
-
-      it "must create the new temporary directory" do
-        subject.tempdir do |dir|
-          expect(File.directory?(dir)).to be(true)
-        end
-      end
-
-      context "when given a directory name" do
-        let(:name) { 'foo' }
-
-        it "must append it to 'ronin-payloads-'" do
-          expect { |b|
-            subject.tempdir(name,&b)
-          }.to yield_with_args(%r{\A/tmp/ronin-payloads-#{name}-\d+-\d+-[a-z0-9]+\z})
-        end
-      end
-    end
-
-    context "when no block is given" do
-      it "must return a new temporary directory" do
-        tmpdir = subject.tempdir
-
-        expect(tmpdir).to match(%r{\A/tmp/ronin-payloads-\d+-\d+-[a-z0-9]+\z})
-        expect(File.directory?(tmpdir)).to be(true)
-      end
-
-      context "when given a directory name" do
-        let(:name) { 'foo' }
-
-        it "must append it to 'ronin-payloads-'" do
-          tmpdir = subject.tempdir(name)
-
-          expect(tmpdir).to match(%r{\A/tmp/ronin-payloads-#{name}-\d+-\d+-[a-z0-9]+\z})
-        end
-      end
-    end
-  end
 end

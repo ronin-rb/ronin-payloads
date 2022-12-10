@@ -22,7 +22,6 @@
 require 'ronin/payloads/mixins/erb'
 
 require 'tempfile'
-require 'tmpdir'
 
 module Ronin
   module Payloads
@@ -62,23 +61,6 @@ module Ronin
                      end
 
           Tempfile.open([basename, ext],&block)
-        end
-
-        #
-        # Creates a new temporary directory to work within.
-        #
-        # @param [String, nil]
-        #   The optional name for the temp directory.
-        #
-        # @return [String]
-        #   The path to the temporary directory.
-        #
-        def tempdir(name=nil,&block)
-          basename = if name then "ronin-payloads-#{name}-"
-                     else         'ronin-payloads-'
-                     end
-
-          Dir.mktmpdir(basename,&block)
         end
       end
     end
