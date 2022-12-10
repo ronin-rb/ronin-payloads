@@ -36,7 +36,7 @@ describe Ronin::Payloads::Mixins::FileBuilder do
 
         it "must add the file name to the tempfile name" do
           subject.tempfile(name) do |tempfile|
-            expect(tempfile.path).to match(%r{\A/tmp/ronin-payloads-#{name}-\d{8}-\d{5}-[a-z0-9]{5,6}\z})
+            expect(tempfile.path).to match(%r{\A/tmp/ronin-payloads-#{name}-\d+-\d+-[a-z0-9]+\z})
           end
         end
 
@@ -45,7 +45,7 @@ describe Ronin::Payloads::Mixins::FileBuilder do
 
           it "must also append the file extension to the tempfile name" do
             subject.tempfile(name, ext: ext) do |tempfile|
-              expect(tempfile.path).to match(%r{\A/tmp/ronin-payloads-#{name}-\d{8}-\d{5}-[a-z0-9]{5,6}#{ext}\z})
+              expect(tempfile.path).to match(%r{\A/tmp/ronin-payloads-#{name}-\d+-\d+-[a-z0-9]+#{Regexp.escape(ext)}\z})
             end
           end
         end
@@ -56,7 +56,7 @@ describe Ronin::Payloads::Mixins::FileBuilder do
 
         it "must append the file extension to the tempfile name" do
           subject.tempfile(ext: ext) do |tempfile|
-            expect(tempfile.path).to match(%r{\A/tmp/ronin-payloads-\d{8}-\d{5}-[a-z0-9]{5,6}#{ext}\z})
+            expect(tempfile.path).to match(%r{\A/tmp/ronin-payloads-\d+-\d+-[a-z0-9]+#{Regexp.escape(ext)}\z})
           end
         end
       end
@@ -73,7 +73,7 @@ describe Ronin::Payloads::Mixins::FileBuilder do
         it "must add the file name to the tempfile name" do
           tempfile = subject.tempfile(name)
 
-          expect(tempfile.path).to match(%r{\A/tmp/ronin-payloads-#{name}-\d{8}-\d{5}-[a-z0-9]{5,6}\z})
+          expect(tempfile.path).to match(%r{\A/tmp/ronin-payloads-#{name}-\d+-\d+-[a-z0-9]+\z})
         end
 
         context "when given the ext: keyword argument" do
@@ -82,7 +82,7 @@ describe Ronin::Payloads::Mixins::FileBuilder do
           it "must also append the file extension to the tempfile name" do
             tempfile = subject.tempfile(name, ext: ext)
 
-            expect(tempfile.path).to match(%r{\A/tmp/ronin-payloads-#{name}-\d{8}-\d{5}-[a-z0-9]{5,6}#{ext}\z})
+            expect(tempfile.path).to match(%r{\A/tmp/ronin-payloads-#{name}-\d+-\d+-[a-z0-9]+#{Regexp.escape(ext)}\z})
           end
         end
       end
@@ -93,7 +93,7 @@ describe Ronin::Payloads::Mixins::FileBuilder do
         it "must append the file extension to the tempfile name" do
           tempfile = subject.tempfile(ext: ext)
 
-          expect(tempfile.path).to match(%r{\A/tmp/ronin-payloads-\d{8}-\d{5}-[a-z0-9]{5,6}#{ext}\z})
+          expect(tempfile.path).to match(%r{\A/tmp/ronin-payloads-\d+-\d+-[a-z0-9]+#{Regexp.escape(ext)}\z})
         end
       end
     end
@@ -104,7 +104,7 @@ describe Ronin::Payloads::Mixins::FileBuilder do
       it "must yield a new temporary directory" do
         expect { |b|
           subject.tempdir(&b)
-        }.to yield_with_args(%r{\A/tmp/ronin-payloads-\d{8}-\d{5}-[a-z0-9]{5,6}\z})
+        }.to yield_with_args(%r{\A/tmp/ronin-payloads-\d+-\d+-[a-z0-9]+\z})
       end
 
       it "must create the new temporary directory" do
@@ -119,7 +119,7 @@ describe Ronin::Payloads::Mixins::FileBuilder do
         it "must append it to 'ronin-payloads-'" do
           expect { |b|
             subject.tempdir(name,&b)
-          }.to yield_with_args(%r{\A/tmp/ronin-payloads-#{name}-\d{8}-\d{5}-[a-z0-9]{5,6}\z})
+          }.to yield_with_args(%r{\A/tmp/ronin-payloads-#{name}-\d+-\d+-[a-z0-9]+\z})
         end
       end
     end
@@ -128,7 +128,7 @@ describe Ronin::Payloads::Mixins::FileBuilder do
       it "must return a new temporary directory" do
         tmpdir = subject.tempdir
 
-        expect(tmpdir).to match(%r{\A/tmp/ronin-payloads-\d{8}-\d{5}-[a-z0-9]{5,6}\z})
+        expect(tmpdir).to match(%r{\A/tmp/ronin-payloads-\d+-\d+-[a-z0-9]+\z})
         expect(File.directory?(tmpdir)).to be(true)
       end
 
@@ -138,7 +138,7 @@ describe Ronin::Payloads::Mixins::FileBuilder do
         it "must append it to 'ronin-payloads-'" do
           tmpdir = subject.tempdir(name)
 
-          expect(tmpdir).to match(%r{\A/tmp/ronin-payloads-#{name}-\d{8}-\d{5}-[a-z0-9]{5,6}\z})
+          expect(tmpdir).to match(%r{\A/tmp/ronin-payloads-#{name}-\d+-\d+-[a-z0-9]+\z})
         end
       end
     end
