@@ -319,6 +319,8 @@ You should have received a copy of the GNU Lesser General Public License
 along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 
 [Ruby]: https://www.ruby-lang.org
+[ronin-rb]: https://ronin-rb.dev
+
 [ronin-support]: https://github.com/ronin-rb/ronin-support#readme
 [ronin-code-asm]: https://github.com/ronin-rb/ronin-code-asm#readme
 [ronin-core]: https://github.com/ronin-rb/ronin-core#readme
