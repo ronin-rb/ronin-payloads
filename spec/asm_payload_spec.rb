@@ -62,7 +62,7 @@ describe Ronin::Payloads::ASMPayload do
     it "must call system with params[:assembler], the output and source files" do
       expect(subject).to receive(:system).with(
         subject.params[:assembler],'-o',output,*source_files
-      )
+      ).and_return(true)
 
       subject.assemble(*source_files, output: output)
     end
@@ -81,9 +81,33 @@ describe Ronin::Payloads::ASMPayload do
           "--defsym", "#{name1}=#{value1}",
           "--defsym", "#{name2}=#{value2}",
           *source_files
-        )
+        ).and_return(true)
 
         subject.assemble(*source_files, output: output, defs: defs)
+      end
+    end
+
+    context "when system() returns false" do
+      let(:source_file) { 'foo.s' }
+
+      it do
+        allow(subject).to receive(:system).and_return(false)
+
+        expect {
+          subject.assemble(source_file, output: output)
+        }.to raise_error(Ronin::Payloads::BuildFailed,"assembler command failed: #{subject.params[:assembler]} -o #{output} #{source_file}")
+      end
+    end
+
+    context "when system() returns nil" do
+      let(:source_file) { 'foo.s' }
+
+      it do
+        allow(subject).to receive(:system).and_return(nil)
+
+        expect {
+          subject.assemble(source_file, output: output)
+        }.to raise_error(Ronin::Payloads::BuildFailed,"assembler command not installed")
       end
     end
   end
