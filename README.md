@@ -26,24 +26,9 @@ research and development.
 * Provides a succinct syntax and API for writing payloads in as few lines as
   possible.
 * Supports defining Payloads as plain old Ruby classes.
-* Provides base classes for a variety of languages and payload types:
-  * ASM
-  * Shellcode
-  * C
-  * Go
-  * Rust
-  * Java
-  * JSP
-  * PHP
-  * Python
-  * Ruby
-  * NodeJS
-  * Shell
-  * PowerShell
-  * SQL
-  * XML
-  * HTML
-  * URL
+* Provides base classes for a variety of languages and payload types
+ (ASM, Shellcode, C, Go, Rust, Java, JSP, PHP, Python, Ruby, NodeJS, Shell,
+  PowerShell, SQL, XML, HTML, URL).
 * Supports adding additional encoders to payloads for further obfuscation.
 * Integrates with the [Ronin Post-Exploitation][ronin-post_ex] library.
 * Provides a simple CLI for building, encoding, launching, and generating new
