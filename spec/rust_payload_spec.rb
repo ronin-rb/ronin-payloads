@@ -88,6 +88,7 @@ describe Ronin::Payloads::RustPayload do
     end
 
     context "when system() returns false" do
+      let(:output)      { 'output' } 
       let(:source_file) { 'foo.rs' }
 
       it do
@@ -100,6 +101,7 @@ describe Ronin::Payloads::RustPayload do
     end
 
     context "when system() returns nil" do
+      let(:output)      { 'output' } 
       let(:source_file) { 'foo.rs' }
 
       it do
