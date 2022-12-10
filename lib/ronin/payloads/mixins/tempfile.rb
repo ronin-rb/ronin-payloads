@@ -19,8 +19,6 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/payloads/mixins/erb'
-
 require 'tempfile'
 
 module Ronin
@@ -31,9 +29,7 @@ module Ronin
       #
       # @api public
       #
-      module FileBuilder
-        include ERB
-
+      module Tempfile
         #
         # Opens a new temporary file.
         #
@@ -60,7 +56,7 @@ module Ronin
                      else         'ronin-payloads-'
                      end
 
-          Tempfile.open([basename, ext],&block)
+          ::Tempfile.open([basename, ext],&block)
         end
       end
     end

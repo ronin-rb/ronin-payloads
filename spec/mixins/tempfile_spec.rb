@@ -1,21 +1,17 @@
 require 'spec_helper'
-require 'ronin/payloads/mixins/file_builder'
+require 'ronin/payloads/mixins/tempfile'
 
 require 'ronin/payloads/payload'
 
-describe Ronin::Payloads::Mixins::FileBuilder do
+describe Ronin::Payloads::Mixins::Tempfile do
   module TestFileBuilderMixin
     class TestPayload < Ronin::Payloads::Payload
-      include Ronin::Payloads::Mixins::FileBuilder
+      include Ronin::Payloads::Mixins::Tempfile
     end
   end
 
   let(:payload_class) { TestFileBuilderMixin::TestPayload }
   subject { payload_class.new }
-
-  it "must include Ronin::Payloads::Mixins::ERB" do
-    expect(payload_class).to include(Ronin::Payloads::Mixins::ERB)
-  end
 
   describe "#tempfile" do
     context "when given a block" do
