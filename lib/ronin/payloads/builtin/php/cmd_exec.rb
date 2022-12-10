@@ -30,6 +30,13 @@ module Ronin
 
         register 'php/cmd_exec'
 
+        summary 'PHP command exec payload'
+        description <<~DESC
+        A basic injectable PHP payload which executes a command passed in via a
+        URL query parameter. The output of the commend will be returned in the
+        response body wrapped in `<exec>...</exec>` tags.
+        DESC
+
         param :query_param, String, default: 'cmd',
                                     desc:    'The URL query param to use'
 
