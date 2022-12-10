@@ -29,6 +29,31 @@ research and development.
 * Provides base classes for a variety of languages and payload types
  (ASM, Shellcode, C, Go, Rust, Java, JSP, PHP, Python, Ruby, NodeJS, Shell,
   PowerShell, SQL, XML, HTML, URL).
+* Provides built-in common payloads:
+  * Command-line reverse shells:
+    * Awk
+    * Bash
+    * Lua
+    * NodeJS
+    * OpenSSL
+    * Perl
+    * PHP
+    * PowerShell
+    * Python
+    * Ruby
+  * Java
+    * Reverse shell
+  * Shellcode:
+    * Linux (ARM, MIPS, PPC, x86, x86-64):
+      * `execve() /bin/sh`
+    * FreeBSD (x86, x86-64):
+      * `execve() /bin/sh`
+    * macOS (x86-64):
+      * `execve() /bin/sh`
+    * NetBSD (x86):
+      * `execve() /bin/sh`
+    * OpenBSD (x86):
+      * `execve() /bin/sh`
 * Supports adding additional encoders to payloads for further obfuscation.
 * Integrates with the [Ronin Post-Exploitation][ronin-post_ex] library.
 * Provides a simple CLI for building, encoding, launching, and generating new
@@ -65,6 +90,30 @@ List available payloads:
 
 ```shell
 $ ronin-payloads list
+  cmd/awk/reverse_shell
+  cmd/bash/reverse_shell
+  cmd/lua/reverse_shell
+  cmd/node/reverse_shell
+  cmd/openssl/reverse_shell
+  cmd/perl/reverse_shell
+  cmd/php/reverse_shell
+  cmd/powershell/reverse_shell
+  cmd/python/reverse_shell
+  cmd/ruby/reverse_shell
+  java/reverse_shell
+  shellcode/freebsd/x86/execve
+  shellcode/freebsd/x86_64/execve
+  shellcode/linux/arm/execve
+  shellcode/linux/mips/execve
+  shellcode/linux/ppc/execve
+  shellcode/linux/x86/execve
+  shellcode/linux/x86_64/execve
+  shellcode/macos/x86_64/execve
+  shellcode/netbsd/x86/execve
+  shellcode/openbsd/x86/execve
+  shellcode/windows/x86_64/cmd
+  test/open_redirect
+  test/xss
 ```
 
 Install a 3rd-party repository of payloads:
