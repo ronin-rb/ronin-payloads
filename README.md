@@ -43,6 +43,8 @@ research and development.
     * Ruby
   * Java
     * Reverse shell
+  * PHP
+    * Command exec.
   * Shellcode:
     * Linux (ARM, MIPS, PPC, x86, x86-64):
       * `execve() /bin/sh`
@@ -101,6 +103,7 @@ $ ronin-payloads list
   cmd/python/reverse_shell
   cmd/ruby/reverse_shell
   java/reverse_shell
+  php/cmd_exec
   shellcode/freebsd/x86/execve
   shellcode/freebsd/x86_64/execve
   shellcode/linux/arm/execve
