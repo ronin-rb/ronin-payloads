@@ -38,7 +38,7 @@ module Ronin
 
             summary 'Windows x86-64 cmd shellcode'
             description <<~DESC
-            Linux x8664 shellcode that executes "cmd"
+            Windows x86-64 shellcode that executes "cmd"
             DESC
 
             references [
