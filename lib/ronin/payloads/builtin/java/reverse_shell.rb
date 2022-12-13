@@ -40,6 +40,7 @@ module Ronin
 
         register 'java/reverse_shell'
 
+        # Path to the `Payload.java.erb` ERB template file.
         TEMPLATE = File.join(__dir__,'reverse_shell','Payload.java.erb')
 
         # The path to the generated `.java` file.

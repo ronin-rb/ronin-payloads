@@ -25,6 +25,10 @@ module Ronin
   module Payloads
     module Encoders
       module XML
+        #
+        # An XML encoder that encodes every character as a XML special
+        # character.
+        #
         class Encode < XMLEncoder
 
           register 'xml/encode'

@@ -25,6 +25,10 @@ module Ronin
   module Payloads
     module Encoders
       module HTML
+        #
+        # A HTML encoder that encodes every character in the given String as an
+        # HTML special character.
+        #
         class Encode < HTMLEncoder
 
           register 'html/encode'

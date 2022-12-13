@@ -39,6 +39,10 @@ module Ronin
           payload.extend ClassMethods
         end
 
+        #
+        # Class methods which will be added to the payload class which includes
+        # {OS}.
+        #
         module ClassMethods
           #
           # Gets or sets the payload's targeted Operating System (OS).

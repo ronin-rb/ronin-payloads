@@ -26,6 +26,21 @@ module Ronin
   module Payloads
     class CLI
       module Commands
+        #
+        # Lists the available payloads.
+        #
+        # ## Usage
+        #
+        #     ronin-payloads list [options] [NAME]
+        #
+        # ## Options
+        #
+        #     -h, --help                       Print help information
+        #
+        # ## Arguments
+        #
+        #     [NAME]                           The optional payload name to list
+        #
         class List < Command
 
           usage '[options] [NAME]'

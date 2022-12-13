@@ -22,6 +22,9 @@
 module Ronin
   module Payloads
     class CLI
+      #
+      # Common methods for printing payload metadata.
+      #
       module Printing
         # Known payload types and their printable names.
         PAYLOAD_TYPES = {

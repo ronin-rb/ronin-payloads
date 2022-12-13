@@ -25,6 +25,10 @@ module Ronin
   module Payloads
     module Encoders
       module JS
+        #
+        # A JavaScript encoder that encodes every character in the given String
+        # as an JavaScript special character.
+        #
         class Encode < JavaScriptEncoder
 
           register 'js/encode'

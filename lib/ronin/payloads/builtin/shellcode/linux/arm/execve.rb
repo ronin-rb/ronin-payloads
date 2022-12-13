@@ -26,6 +26,9 @@ module Ronin
     module Shellcode
       module Linux
         module ARM
+          #
+          # Linux ARM shellcode that calls `execve()` with `/bin/sh`.
+          #
           class Execve < ShellcodePayload
 
             register 'shellcode/linux/arm/execve'

@@ -26,6 +26,9 @@ module Ronin
     module Shellcode
       module NetBSD
         module X86
+          #
+          # NetBSD x86 shellcode that calls `execve()` with `/bin/sh`.
+          #
           class Execve < ShellcodePayload
 
             register 'shellcode/netbsd/x86/execve'

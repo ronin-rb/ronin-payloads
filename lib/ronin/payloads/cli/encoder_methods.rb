@@ -30,6 +30,9 @@ require 'ronin/core/params/exceptions'
 module Ronin
   module Payloads
     class CLI
+      #
+      # Common methods for handling encoders.
+      #
       module EncoderMethods
         #
         # Returns the encoder type for the encoder class.

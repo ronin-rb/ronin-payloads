@@ -26,6 +26,9 @@ module Ronin
     module Shellcode
       module MacOS
         module X86_64
+          #
+          # macOS x86-64 shellcode that calls `execve()` with `/bin/sh`.
+          #
           class Execve < ShellcodePayload
 
             register 'shellcode/macos/x86_64/execve'

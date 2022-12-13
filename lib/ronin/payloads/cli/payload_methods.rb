@@ -26,6 +26,9 @@ require 'ronin/core/params/exceptions'
 module Ronin
   module Payloads
     class CLI
+      #
+      # Common methods for working with payloads.
+      #
       module PayloadMethods
         #
         # Loads a payload class.

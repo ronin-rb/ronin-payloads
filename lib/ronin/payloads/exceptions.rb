@@ -20,18 +20,33 @@
 
 module Ronin
   module Payloads
+    #
+    # Exception base class for all `ronin-payload` exceptions.
+    #
     class PayloadError < RuntimeError
     end
 
+    #
+    # Indicates that an incompatible encoder was added to the payload.
+    #
     class IncompatibleEncoder < PayloadError
     end
 
+    #
+    # Indicates a validation error was encountered while validating the payload.
+    #
     class ValidationError < PayloadError
     end
 
+    #
+    # Indicates the payload failed to build for some reason.
+    #
     class BuildFailed < PayloadError
     end
 
+    #
+    # Indicates the payload was not actually built.
+    #
     class PayloadNotBuilt < PayloadError
     end
   end

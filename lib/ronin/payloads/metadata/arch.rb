@@ -38,6 +38,10 @@ module Ronin
           payload.extend ClassMethods
         end
 
+        #
+        # Class methods which will be added to the payload class which includes
+        # {Arch}.
+        #
         module ClassMethods
           #
           # Gets or sets the payload's architecture.

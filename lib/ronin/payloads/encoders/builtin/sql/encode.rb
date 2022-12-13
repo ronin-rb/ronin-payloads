@@ -25,6 +25,9 @@ module Ronin
   module Payloads
     module Encoders
       module SQL
+        #
+        # A SQL encoder that encodes the given String as a SQL hex string.
+        #
         class Encode < SQLEncoder
 
           register 'sql/encode'

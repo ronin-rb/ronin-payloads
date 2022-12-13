@@ -23,12 +23,21 @@ require 'ronin/payloads/exceptions'
 module Ronin
   module Payloads
     module Encoders
+      #
+      # Base class for all encoder errors.
+      #
       class EncoderError < PayloadError
       end
 
+      #
+      # Indicates a validation error during the validation phase of the encoder.
+      #
       class ValidationError < EncoderError
       end
 
+      #
+      # Indicates the encoder did not actually encode the given data.
+      #
       class BadEncoder < EncoderError
       end
     end

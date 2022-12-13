@@ -26,6 +26,9 @@ module Ronin
     module Shellcode
       module FreeBSD
         module X86_64
+          #
+          # FreeBSD x86-64 shellcode that calls `execve()` with `/bin/sh`.
+          #
           class Execve < ShellcodePayload
 
             register 'shellcode/freebsd/x86_64/execve'

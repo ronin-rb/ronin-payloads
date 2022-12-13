@@ -25,6 +25,10 @@ module Ronin
   module Payloads
     module Encoders
       module PowerShell
+        #
+        # A PowerShell encoder that encodes every character in the given String
+        # as an PowerShell special character.
+        #
         class Encode < PowerShellEncoder
 
           register 'powershell/encode'

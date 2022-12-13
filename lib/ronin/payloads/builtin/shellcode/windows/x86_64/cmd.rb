@@ -26,6 +26,9 @@ module Ronin
     module Shellcode
       module Windows
         module X86_64
+          #
+          # Windows x86-64 shellcode that executes "cmd".
+          #
           class CMD < ShellcodePayload
 
             register 'shellcode/windows/x86_64/cmd'

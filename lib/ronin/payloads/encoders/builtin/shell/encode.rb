@@ -25,6 +25,10 @@ module Ronin
   module Payloads
     module Encoders
       module Shell
+        #
+        # A shell encoder that encodes every character in the given String as
+        # an Shell special character.
+        #
         class Encode < ShellEncoder
 
           register 'shell/encode'

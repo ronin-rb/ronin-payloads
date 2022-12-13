@@ -26,6 +26,9 @@ module Ronin
     module Shellcode
       module Linux
         module X86
+          #
+          # Linux x86 shellcode that calls `execve()` with `/bin/sh`.
+          #
           class Execve < ShellcodePayload
 
             register 'shellcode/linux/x86/execve'
