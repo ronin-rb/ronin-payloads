@@ -163,6 +163,21 @@ $ ronin-payloadss new example_payload.rb \
                       --authors Postmodern --description "This is an example."
 ```
 
+Generate a ronin repository of your own payloads (or exploits):
+
+```shell
+$ ronin-repos new my-payloads
+$ cd my-payloads/
+$ mkdir payloads
+$ ronin-payloadss new payloads/my_payload.rb \
+                      --name MyPayload --arch i686 --os Linux \
+                      --authors You --description "This is my payload."
+$ vim payloads/my_payload.rb
+$ git add payloads/my_payload.rb
+$ git commit
+$ git push
+```
+
 ## Examples
 
 Define a `/bin/sh` shellcode payload:
