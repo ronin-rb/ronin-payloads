@@ -126,7 +126,7 @@ module Ronin
           host = params[:host]
 
           if host =~ IPAddr::RE_IPV4ADDRLIKE
-            raise(ValidationError,"host must be a hostname or an IPv6 address, was an IPv4 address: #{host.inspect}")
+            ["::ffff:#{host}"]
           elsif host =~ IPAddr::RE_IPV6ADDRLIKE_COMPRESSED ||
                 host =~ IPAddr::RE_IPV6ADDRLIKE_FULL
             [host]

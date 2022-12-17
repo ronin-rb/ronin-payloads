@@ -250,10 +250,8 @@ describe Ronin::Payloads::Mixins::ResolveHost do
     context "when the host is an IPv4 address" do
       let(:host) { '127.0.0.1' }
 
-      it do
-        expect {
-          subject.host_ipv6_addresses
-        }.to raise_error(Ronin::Payloads::ValidationError,"host must be a hostname or an IPv6 address, was an IPv4 address: #{host.inspect}")
+      it "must return an IPv6-to-IPv4 mapped address" do
+        expect(subject.host_ipv6_addresses).to eq(["::ffff:#{host}"])
       end
     end
 
@@ -292,10 +290,8 @@ describe Ronin::Payloads::Mixins::ResolveHost do
     context "when the host is an IPv4 address" do
       let(:host) { '127.0.0.1' }
 
-      it do
-        expect {
-          subject.host_ipv6_addresses
-        }.to raise_error(Ronin::Payloads::ValidationError,"host must be a hostname or an IPv6 address, was an IPv4 address: #{host.inspect}")
+      it "must return an IPv6-to-IPv4 mapped address" do
+        expect(subject.host_ipv6_address).to eq("::ffff:#{host}")
       end
     end
 
