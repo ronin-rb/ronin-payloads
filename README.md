@@ -47,15 +47,15 @@ research and development.
     * Command exec.
   * Shellcode:
     * Linux (ARM, MIPS, PPC, x86, x86-64):
-      * `execve() /bin/sh`
+      * `execve(/bin/sh)`
     * FreeBSD (x86, x86-64):
-      * `execve() /bin/sh`
+      * `execve(/bin/sh)`
     * macOS (x86-64):
-      * `execve() /bin/sh`
+      * `execve(/bin/sh)`
     * NetBSD (x86):
-      * `execve() /bin/sh`
+      * `execve(/bin/sh)`
     * OpenBSD (x86):
-      * `execve() /bin/sh`
+      * `execve(/bin/sh)`
 * Supports adding additional encoders to payloads for further obfuscation.
 * Integrates with the [Ronin Post-Exploitation][ronin-post_ex] library.
 * Provides a simple CLI for building, encoding, launching, and generating new
