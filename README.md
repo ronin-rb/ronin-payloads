@@ -46,16 +46,12 @@ research and development.
   * PHP
     * Command exec.
   * Shellcode:
-    * Linux (ARM, MIPS, PPC, x86, x86-64):
-      * `execve(/bin/sh)`
-    * FreeBSD (x86, x86-64):
-      * `execve(/bin/sh)`
-    * macOS (x86-64):
-      * `execve(/bin/sh)`
-    * NetBSD (x86):
-      * `execve(/bin/sh)`
-    * OpenBSD (x86):
-      * `execve(/bin/sh)`
+    * `execve(/bin/sh)`:
+      * Linux (ARM, MIPS, PPC, x86, x86-64)
+      * FreeBSD (x86, x86-64)
+      * macOS (x86-64)
+      * NetBSD (x86)
+      * OpenBSD (x86)
 * Supports adding additional encoders to payloads for further obfuscation.
 * Integrates with the [Ronin Post-Exploitation][ronin-post_ex] library.
 * Provides a simple CLI for building, encoding, launching, and generating new
