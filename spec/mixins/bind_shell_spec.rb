@@ -18,7 +18,7 @@ describe Ronin::Payloads::Mixins::BindShell do
       expect(subject.params[:host]).to_not be_nil
       expect(subject.params[:host].type).to be_kind_of(Ronin::Core::Params::Types::String)
       expect(subject.params[:host].required?).to be(true)
-      expect(subject.params[:host].desc).to eq('The host interface to listen on')
+      expect(subject.params[:host].desc).to eq('The host to connect to')
     end
 
     it "must add a required 'port' param" do

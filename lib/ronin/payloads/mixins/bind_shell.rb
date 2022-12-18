@@ -38,7 +38,7 @@ module Ronin
         #
         def self.included(payload)
           payload.param :host, String, required: true,
-                                       desc:     'The host interface to listen on'
+                                       desc:     'The host to connect to'
 
           payload.param :port, Integer, required: true,
                                         desc:     'The port to listen on'
