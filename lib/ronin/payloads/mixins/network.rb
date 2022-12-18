@@ -36,19 +36,23 @@ module Ronin
         # @param [String] ip
         #   The IPv4 address to pack.
         #
+        # @param [Boolean] negate
+        #   Inverts the bits of the IP address.
+        #
         # @return [String]
         #   The packed IP address in network byte-order.
         #
         # @raise [ArgumentError]
         #   The given IP address was not an IPv4 address.
         #
-        def pack_ipv4(ip)
+        def pack_ipv4(ip, negate: false)
           ipaddr = IPAddr.new(ip)
 
           unless ipaddr.ipv4?
             raise(ArgumentError,"IP must be an IPv4 address: #{ip.inspect}")
           end
 
+          ipaddr = ~ipaddr if negate
           ipaddr.hton
         end
 
@@ -58,16 +62,20 @@ module Ronin
         # @param [String] ip
         #   The IPv6 address to pack.
         #
+        # @param [Boolean] negate
+        #   Inverts the bits of the IP address.
+        #
         # @return [String]
         #   The packed IPv6 address in network byte-order.
         #
-        def pack_ipv6(ip)
+        def pack_ipv6(ip, negate: false)
           ipaddr = IPAddr.new(ip)
 
           unless ipaddr.ipv6?
             raise(ArgumentError,"IP must be an IPv6 address: #{ip.inspect}")
           end
 
+          ipaddr = ~ipaddr if negate
           ipaddr.hton
         end
 
@@ -77,10 +85,14 @@ module Ronin
         # @param [Integer] port
         #   The port number to pack.
         #
+        # @param [Boolean] negate
+        #   Inverts the bits of the port number.
+        #
         # @return [String]
         #   The packed port number in network byte-order.
         #
-        def pack_port(port)
+        def pack_port(port, negate: false)
+          port = ~port if negate
           [port].pack('n')
         end
       end

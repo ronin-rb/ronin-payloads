@@ -20,6 +20,12 @@ describe Ronin::Payloads::Mixins::Network do
       it "must pack the IPv4 address as a 32bit integer in network byte-order" do
         expect(subject.pack_ipv4(ip)).to eq("\x01\x02\x03\x04".b)
       end
+
+      context "when given the `negate: true` keyword argument" do
+        it "must invert the bits of the packed IPv4 address" do
+          expect(subject.pack_ipv4(ip, negate: true)).to eq("\xfe\xfd\xfc\xfb".b)
+        end
+      end
     end
 
     context "when given an IPv6 address" do
@@ -39,6 +45,12 @@ describe Ronin::Payloads::Mixins::Network do
 
       it "must pack the IPv6 address as a 128bit integer in network byte-order" do
         expect(subject.pack_ipv6(ip)).to eq("\x11\x11\x22\x22\x33\x33\x44\x44\x55\x55\x66\x66\x77\x77\x88\x88".b)
+      end
+
+      context "when given the `negate: true` keyword argument" do
+        it "must invert the bits of the packed IPv4 address" do
+          expect(subject.pack_ipv6(ip, negate: true)).to eq("\xee\xee\xdd\xdd\xcc\xcc\xbb\xbb\xaa\xaa\x99\x99\x88\x88\x77\x77".b)
+        end
       end
     end
 

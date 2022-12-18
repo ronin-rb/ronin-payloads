@@ -37,6 +37,14 @@ describe Ronin::Payloads::Shellcode::ReverseShellPayload do
       it "must return the packed IPv4 address in network byte-order" do
         expect(subject.packed_ipv4).to eq(IPAddr.new('93.184.216.34').hton)
       end
+
+      context "when given the `negate: true` keyword argument" do
+        it "must invert the bits of the packed IPv4 address" do
+          expect(subject.packed_ipv4(negate: true)).to eq(
+            (~IPAddr.new('93.184.216.34')).hton
+          )
+        end
+      end
     end
 
     context "when the 'host' param is an IPv4 address" do
@@ -76,6 +84,14 @@ describe Ronin::Payloads::Shellcode::ReverseShellPayload do
         expect(subject.packed_ipv6).to eq(
           IPAddr.new('2607:5300:203:17db::6789').hton
         )
+      end
+
+      context "when given the `negate: true` keyword argument" do
+        it "must invert the bits of the packed IPv4 address" do
+          expect(subject.packed_ipv6(negate: true)).to eq(
+            (~IPAddr.new('2607:5300:203:17db::6789')).hton
+          )
+        end
       end
     end
 

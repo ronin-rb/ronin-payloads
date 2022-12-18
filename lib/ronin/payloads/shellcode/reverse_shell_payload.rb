@@ -41,6 +41,12 @@ module Ronin
         #
         # The reverse shell host's packed IPv4 address in network byte-order.
         #
+        # @param [Hash{Symbol => Object}] kwargs
+        #   Additional keyword arguments for {#pack_ipv4}.
+        #
+        # @option kwargs [Boolean] :negate
+        #   Inverts the bits of the IP address.
+        #
         # @return [String]
         #   The packed IPv4 address in network byte-order.
         #
@@ -48,16 +54,22 @@ module Ronin
         #   The payload's `host` param either has no IPv4 addresses or was not
         #   an IPv4 address.
         #
-        def packed_ipv4
+        def packed_ipv4(**kwargs)
           unless (ip = host_ipv4_address)
             raise(BuildFailed,"host name has no IPv4 addresses: #{params[:host].inspect}")
           end
 
-          pack_ipv4(ip)
+          pack_ipv4(ip,**kwargs)
         end
 
         #
         # The reverse shell host's packed IPv6 address in network byte-order.
+        #
+        # @param [Hash{Symbol => Object}] kwargs
+        #   Additional keyword arguments for {#pack_ipv6}.
+        #
+        # @option kwargs [Boolean] :negate
+        #   Inverts the bits of the IP address.
         #
         # @return [String]
         #   The packed IPv6 address in network byte-order.
@@ -66,7 +78,7 @@ module Ronin
         #   The payload's `host` param either has no IP addresses or was not
         #   an IP address.
         #
-        def packed_ipv6
+        def packed_ipv6(**kwargs)
           unless (ip = host_ipv6_address)
             unless (ip = host_ipv4_address)
               raise(BuildFailed,"host name has no IP addresses: #{params[:host].inspect}")
@@ -75,17 +87,23 @@ module Ronin
             ip = "::ffff:#{ip}"
           end
 
-          pack_ipv6(ip)
+          pack_ipv6(ip,**kwargs)
         end
 
         #
         # The reverse shell's packed port number in network byte-order.
         #
+        # @param [Hash{Symbol => Object}] kwargs
+        #   Additional keyword arguments for {#pack_port}.
+        #
+        # @option kwargs [Boolean] :negate
+        #   Inverts the bits of the port number.
+        #
         # @return [String]
         #   The packed port number in the payload's targeted architecture.
         #
-        def packed_port
-          pack_port(port)
+        def packed_port(**kwargs)
+          pack_port(port,**kwargs)
         end
 
       end
