@@ -100,7 +100,7 @@ module Ronin
         #   Inverts the bits of the port number.
         #
         # @return [String]
-        #   The packed port number in the payload's targeted architecture.
+        #   The packed port number in network byte-order.
         #
         def packed_port(**kwargs)
           pack_port(port,**kwargs)
