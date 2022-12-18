@@ -52,6 +52,15 @@ research and development.
       * macOS (x86-64)
       * NetBSD (x86)
       * OpenBSD (x86)
+    * bind shell:
+      * Linux (ARM, MIPS, x86, x86-64)
+      * FreeBSD (x86)
+      * OpenBSD (x86)
+    * reverse shell:
+      * Linux (ARM, MIPS, PPC, x86, x86-64)
+      * macOS (x86-64)
+      * FreeBSD (x86)
+      * NetBSD (x86)
 * Supports adding additional encoders to payloads for further obfuscation.
 * Integrates with the [Ronin Post-Exploitation][ronin-post_ex] library.
 * Provides a simple CLI for building, encoding, launching, and generating new
@@ -100,15 +109,30 @@ $ ronin-payloads list
   cmd/ruby/reverse_shell
   java/reverse_shell
   php/cmd_exec
+  php/download_exec
+  shellcode/freebsd/x86/bind_shell
   shellcode/freebsd/x86/execve
+  shellcode/freebsd/x86/reverse_shell
   shellcode/freebsd/x86_64/execve
+  shellcode/linux/arm/bind_shell
   shellcode/linux/arm/execve
+  shellcode/linux/arm/reverse_shell
+  shellcode/linux/mips/bind_shell
   shellcode/linux/mips/execve
+  shellcode/linux/mips/reverse_shell
   shellcode/linux/ppc/execve
+  shellcode/linux/ppc/reverse_shell
+  shellcode/linux/x86/bind_shell
   shellcode/linux/x86/execve
+  shellcode/linux/x86/reverse_shell
+  shellcode/linux/x86_64/bind_shell
   shellcode/linux/x86_64/execve
+  shellcode/linux/x86_64/reverse_shell
   shellcode/macos/x86_64/execve
+  shellcode/macos/x86_64/reverse_shell
   shellcode/netbsd/x86/execve
+  shellcode/netbsd/x86/reverse_shell
+  shellcode/openbsd/x86/bind_shell
   shellcode/openbsd/x86/execve
   shellcode/windows/x86_64/cmd
   test/open_redirect
