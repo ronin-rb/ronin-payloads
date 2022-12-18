@@ -60,7 +60,7 @@ module Ronin
           #
           def run(dir=nil)
             files = if dir
-                      dir = "#{dir}/" unless name.end_with?('/')
+                      dir = "#{dir}/" unless dir.end_with?('/')
 
                       Payloads.list_files.select do |file|
                         file.start_with?(dir)
