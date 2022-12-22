@@ -29,9 +29,9 @@ module Ronin
           #
           # Linux PPC shellcode that calls `execve()` with `/bin/sh`.
           #
-          class Execve < ShellcodePayload
+          class ExecShell < ShellcodePayload
 
-            register 'shellcode/linux/ppc/execve'
+            register 'shellcode/linux/ppc/exec_shell'
 
             arch :ppc
             os :linux

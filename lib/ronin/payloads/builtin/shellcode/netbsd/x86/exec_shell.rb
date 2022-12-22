@@ -29,9 +29,9 @@ module Ronin
           #
           # NetBSD x86 shellcode that calls `execve()` with `/bin/sh`.
           #
-          class Execve < ShellcodePayload
+          class ExecShell < ShellcodePayload
 
-            register 'shellcode/netbsd/x86/execve'
+            register 'shellcode/netbsd/x86/exec_shell'
 
             arch :x86
             os :netbsd

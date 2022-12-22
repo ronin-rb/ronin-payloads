@@ -29,9 +29,9 @@ module Ronin
           #
           # Linux MIPS shellcode that calls `execve()` with `/bin/sh`.
           #
-          class Execve < ShellcodePayload
+          class ExecShell < ShellcodePayload
 
-            register 'shellcode/linux/mips/execve'
+            register 'shellcode/linux/mips/exec_shell'
 
             arch :mips
             os :linux

