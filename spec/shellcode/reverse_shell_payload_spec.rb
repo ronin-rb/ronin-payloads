@@ -78,18 +78,18 @@ describe Ronin::Payloads::Shellcode::ReverseShellPayload do
 
   describe "#packed_ipv6" do
     context "when the 'host' param has an IPv6 address" do
-      let(:host) { 'ipv6.wtfismyip.com' }
+      let(:host) { 'icann.org' }
 
       it "must return the packed IPv6 address in network byte-order" do
         expect(subject.packed_ipv6).to eq(
-          IPAddr.new('2607:5300:203:17db::6789').hton
+          IPAddr.new('2001:500:88:200::7').hton
         )
       end
 
       context "when given the `negate: true` keyword argument" do
         it "must invert the bits of the packed IPv4 address" do
           expect(subject.packed_ipv6(negate: true)).to eq(
-            (~IPAddr.new('2607:5300:203:17db::6789')).hton
+            (~IPAddr.new('2001:500:88:200::7')).hton
           )
         end
       end
