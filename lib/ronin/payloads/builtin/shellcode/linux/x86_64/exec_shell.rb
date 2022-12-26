@@ -19,7 +19,7 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/payloads/shellcode_payload'
+require 'ronin/payloads/shellcode/exec_shell_payload'
 
 module Ronin
   module Payloads
@@ -29,7 +29,7 @@ module Ronin
           #
           # Linux x86-64 shellcode that calls `execve()` with `/bin/sh`.
           #
-          class ExecShell < ShellcodePayload
+          class ExecShell < ExecShellPayload
 
             register 'shellcode/linux/x86_64/exec_shell'
 

@@ -2,8 +2,8 @@ require 'spec_helper'
 require 'ronin/payloads/builtin/shellcode/windows/x86_64/cmd'
 
 describe Ronin::Payloads::Shellcode::Windows::X86_64::CMD do
-  it "must inherit from Ronin::Payloads::ShellcodePayload" do
-    expect(described_class).to be < Ronin::Payloads::ShellcodePayload
+  it "must inherit from Ronin::Payloads::Shellcode::ExecShellPayload" do
+    expect(described_class).to be < Ronin::Payloads::Shellcode::ExecShellPayload
   end
 
   describe ".id" do

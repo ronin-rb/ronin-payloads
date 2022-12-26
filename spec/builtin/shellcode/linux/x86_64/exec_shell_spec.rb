@@ -2,8 +2,8 @@ require 'spec_helper'
 require 'ronin/payloads/builtin/shellcode/linux/x86_64/exec_shell'
 
 describe Ronin::Payloads::Shellcode::Linux::X86_64::ExecShell do
-  it "must inherit from Ronin::Payloads::ShellcodePayload" do
-    expect(described_class).to be < Ronin::Payloads::ShellcodePayload
+  it "must inherit from Ronin::Payloads::Shellcode::ExecShellPayload" do
+    expect(described_class).to be < Ronin::Payloads::Shellcode::ExecShellPayload
   end
 
   describe ".id" do

@@ -19,7 +19,7 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/payloads/shellcode_payload'
+require 'ronin/payloads/shellcode/exec_shell_payload'
 
 module Ronin
   module Payloads
@@ -29,7 +29,7 @@ module Ronin
           #
           # Windows x86-64 shellcode that executes "cmd".
           #
-          class CMD < ShellcodePayload
+          class CMD < ExecShellPayload
 
             register 'shellcode/windows/x86_64/cmd'
 
