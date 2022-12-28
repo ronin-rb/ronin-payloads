@@ -68,6 +68,13 @@ research and development.
 * Has 86% documentation coverage.
 * Has 99% test coverage.
 
+## Anti-Features
+
+* No magic: exploits are defined as classes in files.
+* Not a big bulky framework, just a library.
+* Not a central repository. Additional [ronin-payloads] can be hosted in other
+  git repositories. This prevents censorship of offensive security tools.
+
 ## Synopsis
 
 ```
