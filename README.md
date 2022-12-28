@@ -66,7 +66,7 @@ research and development.
 * Provides a simple CLI for building, encoding, launching, and generating new
   payloads.
 * Has 86% documentation coverage.
-* Has 97% test coverage.
+* Has 99% test coverage.
 
 ## Synopsis
 
