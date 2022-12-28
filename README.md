@@ -339,6 +339,15 @@ gem.add_dependency 'ronin-payloads', '~> 0.1'
 7. `bundle exec rake spec`
 8. `git push origin my_feature`
 
+## Disclaimer
+
+ronin-payloads only contains basic or generic exploit payloads that can be
+easily found online or in other Open Source security tools. ronin-payloads
+**does not** contain by default any weaponized payloads. These payloads are
+themselves not harmful without an exploit to deliver them. Therefor,
+ronin-payloads **must not** and **should not** be considered to be
+malicious software (malware) or malicious in nature.
+
 ## License
 
 Copyright (c) 2007-2022 Hal Brodigan (postmodern.mod3 at gmail.com)
