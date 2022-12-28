@@ -11,6 +11,10 @@ describe Ronin::Payloads::Mixins::BindShell do
 
   let(:payload_class) { TestBindShellMixin::TestPayload }
 
+  it "must also include Ronin::Payloads::Mixins::PostEx" do
+    expect(payload_class).to include(Ronin::Payloads::Mixins::PostEx)
+  end
+
   describe ".included" do
     subject { payload_class }
 
@@ -29,7 +33,7 @@ describe Ronin::Payloads::Mixins::BindShell do
     end
   end
 
-  let(:host) { '127.0.0.1' }
+  let(:host) { 'example.com' }
   let(:port) { 1337 }
 
   subject do
@@ -45,6 +49,25 @@ describe Ronin::Payloads::Mixins::BindShell do
   describe "#port" do
     it "must return the 'port' param value" do
       expect(subject.port).to eq(port)
+    end
+  end
+
+  describe "#perform_postlaunch" do
+    let(:addrinfo) { Addrinfo.tcp(host,port) }
+    let(:socket)   { double('TCPSocket') }
+
+    before { allow(socket).to receive(:remote_address).and_return(addrinfo) }
+
+    let(:session) { Ronin::PostEx::Sessions::BindShell.new(socket) }
+
+    it "must print a message about connecting to host:port, create a new Ronin::PostEx::Sesssions::BindShell session, set #session, then print a message about being connected to host:port" do
+      expect(subject).to receive(:print_info).with("Connecting to #{host}:#{port} ...")
+      expect(Ronin::PostEx::Sessions::BindShell).to receive(:connect).with(host,port).and_return(session)
+      expect(subject).to receive(:print_info).with("Connected to #{host}:#{port}!")
+
+      subject.perform_postlaunch
+
+      expect(subject.session).to be(session)
     end
   end
 end

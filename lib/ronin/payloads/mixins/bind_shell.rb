@@ -19,7 +19,8 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'socket'
+require 'ronin/payloads/mixins/post_ex'
+require 'ronin/post_ex/sessions/bind_shell'
 
 module Ronin
   module Payloads
@@ -28,6 +29,8 @@ module Ronin
       # Common params and methods for bind shell payloads.
       #
       module BindShell
+        include Mixins::PostEx
+
         #
         # Adds the `host` and `port` required options to the payload.
         #
@@ -68,23 +71,10 @@ module Ronin
         #
         def perform_postlaunch
           print_info "Connecting to #{host}:#{port} ..."
-          @socket = TCPSocket.new(host,port)
+          @session = Ronin::PostEx::Sessions::BindShell.connect(host,port)
           print_info "Connected to #{host}:#{port}!"
 
           super
-        end
-
-        #
-        # Performs additional cleanup steps and closes the connection to the
-        # remote bind shell.
-        #
-        def cleanup
-          super
-
-          if @socket
-            @socket.close
-            @socket = nil
-          end
         end
       end
     end
