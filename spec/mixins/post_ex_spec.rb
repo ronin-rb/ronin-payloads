@@ -28,10 +28,12 @@ describe Ronin::Payloads::Mixins::PostEx do
     context "when #session is set" do
       before { subject.session = session }
 
-      it "must call #session.close" do
+      it "must call #session.close and set #session to nil" do
         expect(session).to receive(:close)
 
         subject.perform_cleanup
+
+        expect(subject.session).to be(nil)
       end
     end
   end

@@ -35,7 +35,10 @@ module Ronin
         # Closes the {#session} if it has been set.
         #
         def perform_cleanup
-          @session.close if @session
+          if @session
+            @session.close
+            @session = nil
+          end
 
           super
         end
