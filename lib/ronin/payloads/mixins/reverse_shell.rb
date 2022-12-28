@@ -19,6 +19,9 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
+require 'ronin/payloads/mixins/post_ex'
+require 'ronin/post_ex/sessions/reverse_shell'
+
 require 'socket'
 
 module Ronin
@@ -28,6 +31,8 @@ module Ronin
       # Common params and methods for reverse shell payloads.
       #
       module ReverseShell
+        include Mixins::PostEx
+
         #
         # Adds the `host` and `port` required options to the payload.
         #
@@ -79,10 +84,8 @@ module Ronin
         #
         def perform_postlaunch
           print_info "Waiting for connection on #{host}:#{port} ..."
-          @socket = @server.accept
-
-          addrinfo = @socket.remote_address
-          print_info "Accepted connection from #{addrinfo.ip_address}:#{addrinfo.ip_port}!"
+          @session = Ronin::PostEx::Sessions::ReverseShell.new(@server.accept)
+          print_info "Accepted connection from #{@session.name}!"
 
           super
         end
@@ -93,11 +96,6 @@ module Ronin
         #
         def perform_cleanup
           super
-
-          if @socket
-            @socket.close
-            @socket = nil
-          end
 
           if @server
             @server.close
