@@ -20,8 +20,8 @@ gem 'jruby-openssl',	'~> 0.7', platforms: :jruby
 # gem 'ronin-post_ex',  '~> 0.1', github: "ronin-rb/ronin-post_ex",
 #                                 branch: 'main'
 
-gem 'ronin-core',     '~> 0.1', github: "ronin-rb/ronin-core",
-                                branch: 'main'
+# gem 'ronin-core',     '~> 0.1', github: "ronin-rb/ronin-core",
+#                                 branch: 'main'
 
 gem 'ronin-repos',    '~> 0.1', github: "ronin-rb/ronin-repos",
                                 branch: 'main'
