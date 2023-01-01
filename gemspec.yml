@@ -35,7 +35,7 @@ dependencies:
   # Ronin dependencies:
   ronin-support: ~> 1.0.0.beta1
   ronin-code-asm: ~> 1.0.0.beta1
-  ronin-post_ex: ~> 0.1
+  ronin-post_ex: ~> 0.1.0.beta1
   ronin-core: ~> 0.1
   ronin-repos: ~> 0.1
 
