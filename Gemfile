@@ -14,8 +14,8 @@ gem 'jruby-openssl',	'~> 0.7', platforms: :jruby
 # gem 'ronin-support',  '~> 1.0', github: "ronin-rb/ronin-support",
 #                                 branch: 'main'
 
-gem 'ronin-code-asm', '~> 1.0', github: "ronin-rb/ronin-code-asm",
-                                branch: '1.0.0'
+# gem 'ronin-code-asm', '~> 1.0', github: "ronin-rb/ronin-code-asm",
+#                                 branch: 'main'
 
 gem 'ronin-post_ex',  '~> 0.1', github: "ronin-rb/ronin-post_ex",
                                 branch: 'main'
