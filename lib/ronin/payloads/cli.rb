@@ -19,8 +19,11 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
+require 'ronin/payloads/version'
+
 require 'command_kit/commands'
 require 'command_kit/commands/auto_load'
+require 'command_kit/options/version'
 
 module Ronin
   module Payloads
@@ -36,8 +39,10 @@ module Ronin
         dir:       "#{__dir__}/cli/commands",
         namespace: "#{self}::Commands"
       )
+      include CommandKit::Options::Version
 
       command_name 'ronin-payloads'
+      version Ronin::Payloads::VERSION
 
       command_aliases['ls']   = 'list'
       command_aliases['info'] = 'show'
