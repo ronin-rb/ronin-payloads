@@ -2,6 +2,7 @@
 
 [![CI](https://github.com/ronin-rb/ronin-payloads/actions/workflows/ruby.yml/badge.svg)](https://github.com/ronin-rb/ronin-payloads/actions/workflows/ruby.yml)
 [![Code Climate](https://codeclimate.com/github/ronin-rb/ronin-payloads.svg)](https://codeclimate.com/github/ronin-rb/ronin-payloads)
+[![Gem Version](https://badge.fury.io/rb/ronin-payloads.svg)](https://badge.fury.io/rb/ronin-payloads)
 
 * [Website](https://ronin-rb.dev/)
 * [Source](https://github.com/ronin-rb/ronin-payloads)
