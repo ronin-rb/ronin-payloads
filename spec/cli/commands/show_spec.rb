@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'ronin/payloads/cli/commands/show'
+require_relative 'man_page_example'
 
 require 'ronin/payloads/binary_payload'
 require 'ronin/payloads/asm_payload'
@@ -18,4 +19,5 @@ require 'ronin/payloads/xml_payload'
 require 'ronin/payloads/mixins/typescript'
 
 describe Ronin::Payloads::CLI::Commands::Show do
+  include_examples "man_page"
 end
