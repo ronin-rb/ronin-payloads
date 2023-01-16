@@ -24,7 +24,7 @@ require 'ronin/payloads/payload'
 module Ronin
   module Payloads
     #
-    # Represents a payload which is hosted publically at a specified URL.
+    # Represents a payload which is hosted publicly at a specified URL.
     #
     # ## Example
     #

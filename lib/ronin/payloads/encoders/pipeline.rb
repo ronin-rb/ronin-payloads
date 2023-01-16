@@ -73,7 +73,7 @@ module Ronin
         # Enumerates over each encoder in the pipeline.
         #
         # @yield [encoder]
-        #   If a block is given, it will be passed each ecoder in the pipeline.
+        #   If a block is given, it will be passed each encoder in the pipeline.
         #
         # @yieldparam [Encoder] encoder
         #   An encoder in the pipeline.

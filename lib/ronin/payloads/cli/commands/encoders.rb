@@ -27,7 +27,7 @@ module Ronin
     class CLI
       module Commands
         #
-        # Lists available anecoders or a specific encoder.
+        # Lists available encoders or a specific encoder.
         #
         # ## Usage
         #

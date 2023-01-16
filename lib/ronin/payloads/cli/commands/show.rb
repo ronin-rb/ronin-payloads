@@ -77,7 +77,7 @@ module Ronin
           end
 
           #
-          # Prints the mdatadata for a payload class.
+          # Prints the metadata for a payload class.
           #
           # @param [Class<Payload>] payload
           #

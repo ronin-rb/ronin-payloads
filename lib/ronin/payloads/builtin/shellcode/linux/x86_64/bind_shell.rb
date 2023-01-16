@@ -27,7 +27,7 @@ module Ronin
       module Linux
         module X86_64
           #
-          # Linux x06-64 shellcode that binds a shell to a port.
+          # Linux x86-64 shellcode that binds a shell to a port.
           #
           class BindShell < BindShellPayload
 
