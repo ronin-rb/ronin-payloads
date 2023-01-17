@@ -187,7 +187,7 @@ $ ronin-payloads build -f FILE NAME
 Generate a boilerplate payload file, with some custom information:
 
 ```shell
-$ ronin-payloadss new example_payload.rb \
+$ ronin-payloads new example_payload.rb \
                       --name Example --arch i686 --os Linux \
                       --authors Postmodern --description "This is an example."
 ```
@@ -198,7 +198,7 @@ Generate a ronin repository of your own payloads (or exploits):
 $ ronin-repos new my-payloads
 $ cd my-payloads/
 $ mkdir payloads
-$ ronin-payloadss new payloads/my_payload.rb \
+$ ronin-payloads new payloads/my_payload.rb \
                       --name MyPayload --arch i686 --os Linux \
                       --authors You --description "This is my payload."
 $ vim payloads/my_payload.rb
