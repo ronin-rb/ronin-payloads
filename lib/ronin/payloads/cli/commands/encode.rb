@@ -71,7 +71,7 @@ module Ronin
                          },
                          desc: 'Sets a param on an encoder' do |str|
                            prefix, value = str.split('=',2)
-                           ecndoer, name = prefix.split('.',2)
+                           encoder, name = prefix.split('.',2)
 
                            @params[encoder][name] = value
                          end
