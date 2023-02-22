@@ -162,16 +162,14 @@ module Ronin
           # Builds the {#payload}.
           #
           def build_payload
-            begin
-              @payload.perform_build
-            rescue PayloadError => error
-              print_error "failed to build the payload #{@payload_class.id}: #{error.message}"
-              exit(-1)
-            rescue => error
-              print_exception(error)
-              print_error "an unhandled exception occurred while building the payload #{@payload.class_id}"
-              exit(-1)
-            end
+            @payload.perform_build
+          rescue PayloadError => error
+            print_error "failed to build the payload #{@payload_class.id}: #{error.message}"
+            exit(-1)
+          rescue => error
+            print_exception(error)
+            print_error "an unhandled exception occurred while building the payload #{@payload.class_id}"
+            exit(-1)
           end
 
           #
