@@ -40,7 +40,7 @@ module Ronin
 
             summary 'Linux ARM reverse shell shellcode'
             description <<~DESC
-            Linux ARM shellcode that spawns a connect back reverse shell.
+              Linux ARM shellcode that spawns a connect back reverse shell.
             DESC
 
             references [

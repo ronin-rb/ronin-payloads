@@ -40,7 +40,7 @@ module Ronin
 
             summary 'OpenBSD x86 bind shell shellcode'
             description <<~DESC
-            OpenBSD x86 shellcode that binds a shell to a port.
+              OpenBSD x86 shellcode that binds a shell to a port.
             DESC
 
             references [

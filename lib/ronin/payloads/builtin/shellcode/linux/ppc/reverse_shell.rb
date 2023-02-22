@@ -40,9 +40,9 @@ module Ronin
 
             summary 'Linux PPC reverse shell shellcode'
             description <<~DESC
-            Linux PPC shellcode that spawns a connect back reverse shell.
+              Linux PPC shellcode that spawns a connect back reverse shell.
 
-            Note: disabling with_stderr will save 16 bytes, but lose stderr.
+              Note: disabling with_stderr will save 16 bytes, but lose stderr.
             DESC
 
             references [

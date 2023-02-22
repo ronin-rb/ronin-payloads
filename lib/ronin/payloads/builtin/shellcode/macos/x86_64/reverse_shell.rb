@@ -41,7 +41,7 @@ module Ronin
 
             summary 'macOS x86-64 reverse shell shellcode'
             description <<~DESC
-            macOS x86-64 shellcode that spawns a connect back reverse shell.
+              macOS x86-64 shellcode that spawns a connect back reverse shell.
             DESC
 
             references [

@@ -41,7 +41,7 @@ module Ronin
 
             summary 'Linux ARM execve() shellcode'
             description <<~DESC
-            Linux ARM shellcode that calls execve() with "/bin/sh".
+              Linux ARM shellcode that calls execve() with "/bin/sh".
             DESC
 
             references [

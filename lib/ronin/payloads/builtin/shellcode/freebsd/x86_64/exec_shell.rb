@@ -40,7 +40,7 @@ module Ronin
 
             summary 'FreeBSD x86-64 execve() shellcode'
             description <<~DESC
-            FreeBSD x86-64 shellcode that calls execve() with "/bin/sh".
+              FreeBSD x86-64 shellcode that calls execve() with "/bin/sh".
             DESC
 
             references [

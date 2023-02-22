@@ -40,7 +40,7 @@ module Ronin
 
             summary 'Linux MIPS reverse shell shellcode'
             description <<~DESC
-            Linux MIPS shellcode that spawns a connect back reverse shell.
+              Linux MIPS shellcode that spawns a connect back reverse shell.
             DESC
 
             references [

@@ -40,7 +40,7 @@ module Ronin
 
             summary 'FreeBSD x86 reverse shell shellcode'
             description <<~DESC
-            FreeBSD x86 shellcode that spawns a connect back reverse shell.
+              FreeBSD x86 shellcode that spawns a connect back reverse shell.
             DESC
 
             references [

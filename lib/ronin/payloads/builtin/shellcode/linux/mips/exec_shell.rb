@@ -40,7 +40,7 @@ module Ronin
 
             summary 'Linux MIPS execve() shellcode'
             description <<~DESC
-            Linux MIPS shellcode that calls execve() with "/bin/sh".
+              Linux MIPS shellcode that calls execve() with "/bin/sh".
             DESC
 
             references [

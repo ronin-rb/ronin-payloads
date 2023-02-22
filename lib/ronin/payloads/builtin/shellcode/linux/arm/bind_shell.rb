@@ -40,7 +40,7 @@ module Ronin
 
             summary 'Linux ARM bind shell shellcode'
             description <<~DESC
-            Linux ARM shellcode that binds a shell to a port.
+              Linux ARM shellcode that binds a shell to a port.
             DESC
 
             references [

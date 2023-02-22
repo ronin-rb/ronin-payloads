@@ -40,7 +40,7 @@ module Ronin
 
             summary 'Linux PPC execve() shellcode'
             description <<~DESC
-            Linux PPC shellcode that calls execve() with "/bin/sh".
+              Linux PPC shellcode that calls execve() with "/bin/sh".
             DESC
 
             references [

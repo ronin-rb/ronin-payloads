@@ -40,7 +40,7 @@ module Ronin
 
             summary 'NetBSD x86 execve() shellcode'
             description <<~DESC
-            NetBSD x86 shellcode that calls execve() with "/bin/sh".
+              NetBSD x86 shellcode that calls execve() with "/bin/sh".
             DESC
 
             references [

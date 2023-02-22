@@ -41,7 +41,7 @@ module Ronin
 
             summary 'OpenBSD x86 execve() shellcode'
             description <<~DESC
-            OpenBSD x86 shellcode that calls execve() with "/bin/sh".
+              OpenBSD x86 shellcode that calls execve() with "/bin/sh".
             DESC
 
             references [

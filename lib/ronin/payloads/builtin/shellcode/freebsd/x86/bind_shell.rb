@@ -40,7 +40,7 @@ module Ronin
 
             summary 'FreeBSD x86 bind shell shellcode'
             description <<~DESC
-            FreeBSD x86 shellcode that binds a shell to a port.
+              FreeBSD x86 shellcode that binds a shell to a port.
             DESC
 
             references [

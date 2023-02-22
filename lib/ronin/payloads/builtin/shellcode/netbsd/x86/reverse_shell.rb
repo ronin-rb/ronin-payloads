@@ -41,7 +41,7 @@ module Ronin
 
             summary 'NetBSD x86 reverse shell shellcode'
             description <<~DESC
-            NetBSD x86 shellcode that spawns a connect back reverse shell.
+              NetBSD x86 shellcode that spawns a connect back reverse shell.
             DESC
 
             references [

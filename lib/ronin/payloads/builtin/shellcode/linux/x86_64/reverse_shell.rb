@@ -40,7 +40,7 @@ module Ronin
 
             summary 'Linux x86-64 reverse shell shellcode'
             description <<~DESC
-            Linux x86-64 shellcode that spawns a connect back reverse shell.
+              Linux x86-64 shellcode that spawns a connect back reverse shell.
             DESC
 
             references [

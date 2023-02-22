@@ -41,7 +41,7 @@ module Ronin
 
             summary 'macOS x86-64 execve() shellcode'
             description <<~DESC
-            macOS x86-64 shellcode that calls execve() with "/bin/sh".
+              macOS x86-64 shellcode that calls execve() with "/bin/sh".
             DESC
 
             references [

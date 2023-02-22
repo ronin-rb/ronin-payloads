@@ -41,7 +41,7 @@ module Ronin
 
             summary 'Linux x86 execve() shellcode'
             description <<~DESC
-            Linux x86 shellcode that calls execve() with "/bin/sh".
+              Linux x86 shellcode that calls execve() with "/bin/sh".
             DESC
 
             references [

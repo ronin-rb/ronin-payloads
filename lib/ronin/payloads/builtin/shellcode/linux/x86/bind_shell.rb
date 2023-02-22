@@ -41,7 +41,7 @@ module Ronin
 
             summary 'Linux x86 bind shell shellcode'
             description <<~DESC
-            Linux x86 shellcode that binds a shell to a port.
+              Linux x86 shellcode that binds a shell to a port.
             DESC
 
             references [
