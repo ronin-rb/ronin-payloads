@@ -82,7 +82,7 @@ module Ronin
                                    name, value              = str.split('=',2)
                                    encoder_name, param_name = name.split('.',2)
 
-                                   @encoder_params[encoder_name][param_name] = value
+                                   @encoder_params[encoder_name][param_name.to_sym] = value
                                  end
 
           option :debug, short: '-D',

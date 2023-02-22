@@ -73,7 +73,7 @@ module Ronin
                            prefix, value = str.split('=',2)
                            encoder, name = prefix.split('.',2)
 
-                           @params[encoder][name] = value
+                           @params[encoder][name.to_sym] = value
                          end
 
           option :string, short: '-s',

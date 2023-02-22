@@ -27,7 +27,7 @@ describe Ronin::Payloads::CLI::Commands::Build do
       it "must add the param name and value to the Hash for the encoder name within #encoder_params" do
         expect(subject.encoder_params).to eq(
           {
-            encoder => {param_name => param_value}
+            encoder => {param_name.to_sym => param_value}
           }
         )
       end
@@ -51,8 +51,8 @@ describe Ronin::Payloads::CLI::Commands::Build do
           expect(subject.encoder_params).to eq(
             {
               encoder => {
-                param_name1 => param_value1,
-                param_name2 => param_value2
+                param_name1.to_sym => param_value1,
+                param_name2.to_sym => param_value2
               }
             }
           )
