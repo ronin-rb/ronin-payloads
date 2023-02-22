@@ -39,6 +39,9 @@ Style/NumericLiterals: { Enabled: false }
 Style/RedundantInterpolation: { Enabled: false }
 Style/FormatString: { Enabled: false }
 Style/RedundantSelf: { Enabled: false }
+Style/FetchEnvVar: { Enabled: false }
+Style/FormatStringToken: { Enabled: false }
+Layout/LineContinuationSpacing: { Enabled: false }
 
 #
 # rules that are in flux
@@ -160,3 +163,14 @@ Gemspec/RequireMFA: { Enabled: false }
 Gemspec/DuplicatedAssignment:
   Exclude:
     - 'ronin-payloads.gemspec'
+
+Naming/ClassAndModuleCamelCase:
+  Exclude:
+    - 'lib/ronin/payloads/builtin/**/*.rb'
+
+# robucop mistakes :x86_64 for a "symbol number"
+Naming/VariableNumber:
+  Exclude:
+    - 'lib/ronin/payloads/builtin/**/x86_64/*.rb'
+    - 'spec/builtin/**/x86_64/*.rb'
+    - 'spec/metadata/arch_spec.rb'
