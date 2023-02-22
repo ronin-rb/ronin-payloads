@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'ronin/payloads/builtin/php/cmd_exec'
 
 describe Ronin::Payloads::PHP::CmdExec do
-  it "must inherit from Ronin::Payloads::JavaPayload" do
+  it "must inherit from Ronin::Payloads::PHPPayload" do
     expect(described_class).to be < Ronin::Payloads::PHPPayload
   end
 
