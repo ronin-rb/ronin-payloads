@@ -24,6 +24,9 @@ require 'ronin/repos/class_dir'
 
 module Ronin
   module Payloads
+    #
+    # Defines encoders for different types of payloads.
+    #
     module Encoders
       include Core::ClassRegistry
       include Repos::ClassDir
