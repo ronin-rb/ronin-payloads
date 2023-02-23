@@ -87,6 +87,7 @@ module Ronin
 
             indent do
               fields = {}
+
               fields['Type']    = payload_type(payload)
               fields['Summary'] = payload.summary if payload.summary
 
