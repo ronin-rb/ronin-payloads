@@ -23,6 +23,9 @@ require 'ronin/core/class_registry'
 require 'ronin/repos/class_dir'
 
 module Ronin
+  #
+  # Defines various payload classes.
+  #
   module Payloads
     include Core::ClassRegistry
     include Repos::ClassDir
