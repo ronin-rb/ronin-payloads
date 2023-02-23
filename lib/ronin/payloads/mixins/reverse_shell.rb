@@ -102,7 +102,6 @@ module Ronin
             @server = nil
           end
         end
-
       end
     end
   end

@@ -28,7 +28,6 @@ module Ronin
       # A mixin for compiling TypeScript into JavaScript.
       #
       module TypeScript
-
         #
         # The default `tsc` compiler.
         #

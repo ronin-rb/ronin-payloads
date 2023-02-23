@@ -42,7 +42,6 @@ module Ronin
 
           super
         end
-
       end
     end
   end
