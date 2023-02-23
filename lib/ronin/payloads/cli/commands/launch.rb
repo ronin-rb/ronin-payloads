@@ -36,7 +36,7 @@ module Ronin
         #     ronin-payloads launch [options] {-f FILE | NAME}
         #
         # ## Options
-        # 
+        #
         #     -f, --file FILE                  The payload file to load
         #     -p, --param NAME=VALUE           Sets a param
         #     -D, --debug                      Enables debugging messages

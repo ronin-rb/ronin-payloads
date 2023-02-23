@@ -18,7 +18,7 @@ describe Ronin::Payloads::GoPayload do
     end
 
     context "when the output: keyword is given" do
-      let(:output) { 'output' } 
+      let(:output) { 'output' }
 
       it "must call system with 'go build', the output, and source files" do
         expect(subject).to receive(:system).with(

@@ -49,7 +49,7 @@ describe Ronin::Payloads::CPayload do
 
   describe "#compile" do
     let(:source_files) { %w[foo.c bar.c baz.c] }
-    let(:output)       { 'output' } 
+    let(:output)       { 'output' }
 
     it "must call system with params[:cc], the output and source files" do
       expect(subject).to receive(:system).with(

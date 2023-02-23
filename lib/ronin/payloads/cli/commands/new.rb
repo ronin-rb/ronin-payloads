@@ -41,7 +41,7 @@ module Ronin
         #     ronin-payload new [options] FILE
         #
         # ## Options
-        # 
+        #
         #     -t asm|shellcode|c|go|rust|shell|powershell|html|javascript|typescript|java|sql|php|python|ruby|nodejs,
         #         --type                       The type for the new payload
         #     -a, --author NAME                The name of the author

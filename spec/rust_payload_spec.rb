@@ -18,7 +18,7 @@ describe Ronin::Payloads::RustPayload do
     end
 
     context "when the output: keyword is given" do
-      let(:output) { 'output' } 
+      let(:output) { 'output' }
 
       it "must call system with 'rustc', the output, and source files" do
         expect(subject).to receive(:system).with(
@@ -30,7 +30,7 @@ describe Ronin::Payloads::RustPayload do
     end
 
     context "when the target: keyword is given" do
-      let(:target) { 'aarch64-unknown-linux-gnu' } 
+      let(:target) { 'aarch64-unknown-linux-gnu' }
 
       it "must call system with 'rustc', the target, and source files" do
         expect(subject).to receive(:system).with(
@@ -88,7 +88,7 @@ describe Ronin::Payloads::RustPayload do
     end
 
     context "when system() returns false" do
-      let(:output)      { 'output' } 
+      let(:output)      { 'output' }
       let(:source_file) { 'foo.rs' }
 
       it do
@@ -101,7 +101,7 @@ describe Ronin::Payloads::RustPayload do
     end
 
     context "when system() returns nil" do
-      let(:output)      { 'output' } 
+      let(:output)      { 'output' }
       let(:source_file) { 'foo.rs' }
 
       it do

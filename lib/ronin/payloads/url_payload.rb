@@ -29,7 +29,7 @@ module Ronin
     # ## Example
     #
     #     class MyHostedPayload < URLPayload
-    #     
+    #
     #       url 'https://evil.com/downloads/my_payload'
     #
     #     end

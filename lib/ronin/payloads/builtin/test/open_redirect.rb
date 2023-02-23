@@ -36,7 +36,7 @@ module Ronin
           A non-malicious test payload for testing Open Redirect vulnerabilities.
           Simply redirects to https://google.com/.
         DESC
-        
+
         #
         # Builds the Open Redirect test payload.
         #

@@ -45,7 +45,7 @@ module Ronin
       #             def encode(data)
       #               return ...
       #             end
-      #             
+      #
       #           end
       #         end
       #       end

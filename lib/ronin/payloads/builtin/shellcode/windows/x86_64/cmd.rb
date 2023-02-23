@@ -37,7 +37,7 @@ module Ronin
             os :windows
             os_version '7'
 
-            author "agix" 
+            author "agix"
 
             summary 'Windows x86-64 cmd shellcode'
             description <<~DESC

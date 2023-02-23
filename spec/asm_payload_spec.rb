@@ -57,7 +57,7 @@ describe Ronin::Payloads::ASMPayload do
 
   describe "#assemble" do
     let(:source_files) { %w[foo.s bar.s baz.s] }
-    let(:output)       { 'output.o' } 
+    let(:output)       { 'output.o' }
 
     it "must call system with params[:assembler], the output and source files" do
       expect(subject).to receive(:system).with(

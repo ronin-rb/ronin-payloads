@@ -60,21 +60,21 @@ module Ronin
     #     module Ronin
     #       module Payloads
     #         class MyPayload < Payload
-    #     
+    #
     #           register 'my_payload'
-    #     
+    #
     #           summary 'My first payload'
     #           description <<~EOS
     #             This is my first payload.
     #             Bla bla bla bla.
     #           EOS
-    #     
+    #
     #           author 'John Smith'
     #           author 'John Smith', email: '...', twitter: '...'
-    #     
+    #
     #           param :foo, desc: 'Simple param'
     #           param :bar, Integer, desc: 'A param iwth a typo'
-    #     
+    #
     #           def build
     #             @payload = "..."
     #           end
@@ -90,7 +90,7 @@ module Ronin
     #           def cleanup
     #             # ...
     #           end
-    #     
+    #
     #         end
     #       end
     #     end

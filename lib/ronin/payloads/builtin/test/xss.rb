@@ -36,7 +36,7 @@ module Ronin
           A non-malicious test payload for testing Cross Site Scripting (XSS).
           Simply calls `alert(1)`.
         DESC
-        
+
         #
         # Builds the XSS test payload.
         #

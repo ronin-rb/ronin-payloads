@@ -47,7 +47,7 @@ describe Ronin::Payloads::Encoders::Pipeline do
   let(:encoders)  { [encoder_a, encoder_b] }
 
   subject { described_class.new(encoders) }
-  
+
   describe "#<<" do
     subject { described_class.new([encoder_a]) }
 
