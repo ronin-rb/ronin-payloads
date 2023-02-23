@@ -165,8 +165,8 @@ Gemspec/DuplicatedAssignment:
     - 'ronin-payloads.gemspec'
 
 Naming/ClassAndModuleCamelCase:
-  Exclude:
-    - 'lib/ronin/payloads/builtin/**/*.rb'
+  AllowedNames:
+    - X86_64
 
 # robucop mistakes :x86_64 for a "symbol number"
 Naming/VariableNumber:
