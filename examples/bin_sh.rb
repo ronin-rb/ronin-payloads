@@ -5,6 +5,9 @@ require 'ronin/payloads/shellcode_payload'
 
 module Ronin
   module Payloads
+    #
+    # An example `execve()` `/bin/sh` shellcode payload.
+    #
     class BinSh < ShellcodePayload
 
       register 'examples/bin_sh'
