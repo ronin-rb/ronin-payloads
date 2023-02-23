@@ -58,7 +58,7 @@ module Ronin
         args = ['go', 'build']
 
         if output
-          args << '-o' <<  output
+          args << '-o' << output
         end
 
         args.concat(source_files)

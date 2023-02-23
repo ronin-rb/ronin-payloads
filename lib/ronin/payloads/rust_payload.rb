@@ -67,7 +67,7 @@ module Ronin
         args = ['rustc']
 
         if output
-          args << '-o' <<  output
+          args << '-o' << output
         end
 
         if target

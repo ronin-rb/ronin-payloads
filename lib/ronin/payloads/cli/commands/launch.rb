@@ -90,7 +90,7 @@ module Ronin
             begin
               @payload.perform_prelaunch
               @payload.perform_postlaunch
-            rescue  PayloadError => error
+            rescue PayloadError => error
               print_error("failed to launch payload #{@payload.class_id}: #{error.message}")
               exit(1)
             rescue => error
