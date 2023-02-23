@@ -70,8 +70,8 @@ describe Ronin::Payloads::Shellcode::Linux::PPC::ReverseShell do
       subject do
         described_class.new(
           params: {
-            host: host,
-            port: port,
+            host:        host,
+            port:        port,
             with_stderr: false
           }
         )
