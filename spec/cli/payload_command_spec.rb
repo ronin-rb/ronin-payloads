@@ -50,7 +50,7 @@ describe Ronin::Payloads::CLI::PayloadCommand do
 
       expect(subject.payload_class).to be(payload_class)
     end
- end
+  end
 
   describe "#initialize_payload" do
     before { subject.load_payload(payload_class.id) }
