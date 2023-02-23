@@ -45,7 +45,7 @@ module Ronin
         #
         def self.included(payload_class)
           payload_class.param :tsc, required: true,
-                                    default:  ->{ tsc },
+                                    default:  -> { tsc },
                                     desc:     'The TypeScript compiler to use'
         end
 

@@ -52,7 +52,7 @@ module Ronin
       end
 
       param :javac, required: true,
-                    default:  ->{ javac },
+                    default:  -> { javac },
                     desc:     'The Java compiler to use'
 
       #

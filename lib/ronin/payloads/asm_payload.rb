@@ -61,7 +61,7 @@ module Ronin
       end
 
       param :assembler, required: true,
-                        default:  ->{ assembler },
+                        default:  -> { assembler },
                         desc:     'The assmebler command to use'
 
       #

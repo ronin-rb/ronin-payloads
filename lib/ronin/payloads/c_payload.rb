@@ -52,7 +52,7 @@ module Ronin
       end
 
       param :cc, required: true,
-                 default:  ->{ cc },
+                 default:  -> { cc },
                  desc:     'The C compiler to use'
 
       #
