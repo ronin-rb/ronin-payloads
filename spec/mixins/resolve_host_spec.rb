@@ -86,7 +86,7 @@ describe Ronin::Payloads::Mixins::ResolveHost do
     context "when the host has no addresses" do
       let(:host) { 'does.not.exist' }
 
-      it "must return nil "do
+      it "must return nil" do
         expect(subject.host_address).to be(nil)
       end
     end
@@ -150,7 +150,7 @@ describe Ronin::Payloads::Mixins::ResolveHost do
     context "when the host has no addresses" do
       let(:host) { 'does.not.exist' }
 
-      it "must return nil "do
+      it "must return nil" do
         expect(subject.host_ip_address).to be(nil)
       end
     end
@@ -234,7 +234,7 @@ describe Ronin::Payloads::Mixins::ResolveHost do
     context "when the host has no addresses" do
       let(:host) { 'does.not.exist' }
 
-      it "must return nil "do
+      it "must return nil" do
         expect(subject.host_ipv4_address).to be(nil)
       end
     end
@@ -314,7 +314,7 @@ describe Ronin::Payloads::Mixins::ResolveHost do
     context "when the host has no addresses" do
       let(:host) { 'does.not.exist' }
 
-      it "must return nil "do
+      it "must return nil" do
         expect(subject.host_ipv6_address).to be(nil)
       end
     end
