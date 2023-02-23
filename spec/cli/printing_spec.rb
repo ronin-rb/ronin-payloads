@@ -33,24 +33,24 @@ describe Ronin::Payloads::CLI::Printing do
 
   describe "#payload_type" do
     {
-      Ronin::Payloads::HTMLPayload         => 'HTML',
-      Ronin::Payloads::XMLPayload          => 'XML',
-      Ronin::Payloads::JavaScriptPayload   => 'JavaScript',
-      Ronin::Payloads::NodeJSPayload       => 'Node.js',
-      Ronin::Payloads::SQLPayload          => 'SQL',
-      Ronin::Payloads::CommandPayload      => 'Command',
-      Ronin::Payloads::ShellPayload        => 'Shell',
-      Ronin::Payloads::PowerShellPayload   => 'PowerShell',
-      Ronin::Payloads::CPayload            => 'C',
-      Ronin::Payloads::GoPayload           => 'Go',
-      Ronin::Payloads::RustPayload         => 'Rust',
-      Ronin::Payloads::JavaPayload         => 'Java',
-      Ronin::Payloads::ColdFusionPayload   => 'ColdFusion',
-      Ronin::Payloads::PHPPayload          => 'PHP',
-      Ronin::Payloads::ASMPayload          => 'ASM',
-      Ronin::Payloads::ShellcodePayload    => 'Shellcode',
-      Ronin::Payloads::BinaryPayload       => 'Binary',
-      Ronin::Payloads::Payload             => 'Custom'
+      Ronin::Payloads::HTMLPayload       => 'HTML',
+      Ronin::Payloads::XMLPayload        => 'XML',
+      Ronin::Payloads::JavaScriptPayload => 'JavaScript',
+      Ronin::Payloads::NodeJSPayload     => 'Node.js',
+      Ronin::Payloads::SQLPayload        => 'SQL',
+      Ronin::Payloads::CommandPayload    => 'Command',
+      Ronin::Payloads::ShellPayload      => 'Shell',
+      Ronin::Payloads::PowerShellPayload => 'PowerShell',
+      Ronin::Payloads::CPayload          => 'C',
+      Ronin::Payloads::GoPayload         => 'Go',
+      Ronin::Payloads::RustPayload       => 'Rust',
+      Ronin::Payloads::JavaPayload       => 'Java',
+      Ronin::Payloads::ColdFusionPayload => 'ColdFusion',
+      Ronin::Payloads::PHPPayload        => 'PHP',
+      Ronin::Payloads::ASMPayload        => 'ASM',
+      Ronin::Payloads::ShellcodePayload  => 'Shellcode',
+      Ronin::Payloads::BinaryPayload     => 'Binary',
+      Ronin::Payloads::Payload           => 'Custom'
     }.each do |payload_class,type|
       context "when the class inherits from #{payload_class}" do
         let(:klass) { Class.new(payload_class) }
