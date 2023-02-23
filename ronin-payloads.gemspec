@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'yaml'
 
 Gem::Specification.new do |gem|

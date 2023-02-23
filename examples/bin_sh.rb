@@ -1,4 +1,5 @@
 #!/usr/bin/env -S ronin-payloads build -f
+# frozen_string_literal: true
 
 require 'ronin/payloads/shellcode_payload'
 
