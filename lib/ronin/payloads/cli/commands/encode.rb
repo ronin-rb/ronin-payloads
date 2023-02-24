@@ -79,7 +79,7 @@ module Ronin
           option :string, short: '-s',
                           value: {
                             type:  String,
-                            usage: 'STRING',
+                            usage: 'STRING'
                           },
                           desc: 'The string to encode'
 
