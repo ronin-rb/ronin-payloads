@@ -178,7 +178,7 @@ module Ronin
       def initialize(encoders: nil, **kwargs)
         super(**kwargs)
 
-        @encoders = Encoders::Pipeline.new()
+        @encoders = Encoders::Pipeline.new
 
         if encoders
           encoders.each do |encoder|
