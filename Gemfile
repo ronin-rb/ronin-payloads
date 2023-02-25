@@ -45,4 +45,5 @@ group :development do
   gem 'sord',            require: false, platform: :mri
   gem 'stackprof',       require: false, platform: :mri
   gem 'rubocop',         require: false
+  gem 'rubocop-ronin',   require: false
 end
