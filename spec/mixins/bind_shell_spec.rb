@@ -21,7 +21,7 @@ describe Ronin::Payloads::Mixins::BindShell do
     it "must add a required 'host' param" do
       expect(subject.params[:host]).to_not be_nil
       expect(subject.params[:host].type).to be_kind_of(Ronin::Core::Params::Types::String)
-      expect(subject.params[:host].required?).to be(true)
+      expect(subject.params[:host].default).to eq('0.0.0.0')
       expect(subject.params[:host].desc).to eq('The host to connect to')
     end
 

@@ -40,8 +40,8 @@ module Ronin
         # @api private
         #
         def self.included(payload)
-          payload.param :host, String, required: true,
-                                       desc:     'The host to connect to'
+          payload.param :host, String, default: '0.0.0.0',
+                                       desc:    'The host to connect to'
 
           payload.param :port, Integer, required: true,
                                         desc:     'The port to listen on'
