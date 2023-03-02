@@ -11,11 +11,13 @@ inherit_gem:
 #
 Layout/ArgumentAlignment: { Exclude: ['spec/rust_payload_spec.rb'] }
 
+# the placeholder API methods are meant to be empty
 Style/EmptyMethod:
   Exclude:
     - 'lib/ronin/payloads/payload.rb'
     - 'spec/**/*'
 
+# rubocop does not support constants that contain multiple numbers
 Naming/ClassAndModuleCamelCase:
   AllowedNames:
     - X86_64
