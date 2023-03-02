@@ -1,3 +1,15 @@
+### 0.1.1 / 2023-03-01
+
+* Default the `host` param defined by {Ronin::Payloads::Mixins::BindShell} to
+  `0.0.0.0`.
+
+#### CLI
+
+* Fixed multiple bugs in the `--param` option of the `ronin-payloads encode`
+  comand.
+* Fixed multiple bugs in the `--encoder-param` option of
+  the `ronin-payloads build` command.
+
 ### 0.1.0 / 2023-02-01
 
 * Initial release:
