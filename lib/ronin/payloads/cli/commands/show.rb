@@ -103,7 +103,7 @@ module Ronin
                 end
               end
 
-              print_fields fields
+              print_fields(fields)
               puts
 
               print_authors(payload)
