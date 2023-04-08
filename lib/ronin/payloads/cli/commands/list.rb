@@ -31,7 +31,7 @@ module Ronin
         #
         # ## Usage
         #
-        #     ronin-payloads list [options] [NAME]
+        #     ronin-payloads list [options] [DIR]
         #
         # ## Options
         #
@@ -39,14 +39,14 @@ module Ronin
         #
         # ## Arguments
         #
-        #     [NAME]                           The optional payload name to list
+        #     [DIR]                            The optional payload directory to list
         #
         class List < Command
 
-          usage '[options] [NAME]'
+          usage '[options] [DIR]'
 
-          argument :name, required: false,
-                          desc:     'The optional payload name to list'
+          argument :dir, required: false,
+                         desc:     'The optional payload directory to list'
 
           description 'Lists the available payloads'
 
