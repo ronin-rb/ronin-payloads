@@ -79,6 +79,9 @@ module Ronin
         # @param [Hash{Symbol => Object}] kwargs
         #   Additional keyword arguments for {Payload#initialize}.
         #
+        # @return [Payload]
+        #   The initialized payload object.
+        #
         def initialize_payload(payload_class,**kwargs)
           payload_class.new(**kwargs)
         rescue Core::Params::ParamError => error

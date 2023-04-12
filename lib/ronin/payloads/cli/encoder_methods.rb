@@ -101,6 +101,9 @@ module Ronin
         # @param [Hash{Symbol => Object}] kwargs
         #   Additional keyword arguments for {Ronin::Payloads::Encoders::Encoder#initialize}.
         #
+        # @return [Encoders::Encoder]
+        #   The initialized encoder object.
+        #
         def initialize_encoder(encoder_class,**kwargs)
           encoder_class.new(**kwargs)
         rescue Core::Params::ParamError => error
