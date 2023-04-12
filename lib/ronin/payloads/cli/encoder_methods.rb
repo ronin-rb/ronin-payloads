@@ -64,11 +64,11 @@ module Ronin
         def load_encoder(name)
           Payloads::Encoders.load_class(name)
         rescue Payloads::ClassNotFound => error
-          print_error error.message
+          print_error(error.message)
           exit(1)
         rescue => error
           print_exception(error)
-          print_error "an unhandled exception occurred while loading encoder #{name}"
+          print_error("an unhandled exception occurred while loading encoder #{name}")
           exit(-1)
         end
 
@@ -84,11 +84,11 @@ module Ronin
         def load_encoder_from(file)
           Payloads::Encoders.load_class_from_file(file)
         rescue Payloads::ClassNotFound => error
-          print_error error.message
+          print_error(error.message)
           exit(1)
         rescue => error
           print_exception(error)
-          print_error "an unhandled exception occurred while loading encoder from file #{file}"
+          print_error("an unhandled exception occurred while loading encoder from file #{file}")
           exit(-1)
         end
 
@@ -104,11 +104,11 @@ module Ronin
         def initialize_encoder(encoder_class,**kwargs)
           encoder_class.new(**kwargs)
         rescue Core::Params::ParamError => error
-          print_error error.message
+          print_error(error.message)
           exit(1)
         rescue => error
           print_exception(error)
-          print_error "an unhandled exception occurred while initializing encoder #{encoder_class.id}"
+          print_error("an unhandled exception occurred while initializing encoder #{encoder_class.id}")
           exit(-1)
         end
 
@@ -127,11 +127,11 @@ module Ronin
         def validate_encoder(encoder)
           encoder.validate
         rescue Core::Params::ParamError, Encoders::ValidationError => error
-          print_error "failed to validate the encoder #{encoder.class_id}: #{error.message}"
+          print_error("failed to validate the encoder #{encoder.class_id}: #{error.message}")
           exit(1)
         rescue => error
           print_exception(error)
-          print_error "an unhandled exception occurred while validating the encoder #{encoder.class_id}"
+          print_error("an unhandled exception occurred while validating the encoder #{encoder.class_id}")
           exit(-1)
         end
       end

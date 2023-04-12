@@ -42,11 +42,11 @@ module Ronin
         def load_payload(name)
           Payloads.load_class(name)
         rescue Payloads::ClassNotFound => error
-          print_error error.message
+          print_error(error.message)
           exit(1)
         rescue => error
           print_exception(error)
-          print_error "an unhandled exception occurred while loading payload #{name}"
+          print_error("an unhandled exception occurred while loading payload #{name}")
           exit(-1)
         end
 
@@ -62,11 +62,11 @@ module Ronin
         def load_payload_from(file)
           Payloads.load_class_from_file(file)
         rescue Payloads::ClassNotFound => error
-          print_error error.message
+          print_error(error.message)
           exit(1)
         rescue => error
           print_exception(error)
-          print_error "an unhandled exception occurred while loading payload from file #{file}"
+          print_error("an unhandled exception occurred while loading payload from file #{file}")
           exit(-1)
         end
 
@@ -82,11 +82,11 @@ module Ronin
         def initialize_payload(payload_class,**kwargs)
           payload_class.new(**kwargs)
         rescue Core::Params::ParamError => error
-          print_error error.message
+          print_error(error.message)
           exit(1)
         rescue => error
           print_exception(error)
-          print_error "an unhandled exception occurred while initializing payload #{payload_class.id}"
+          print_error("an unhandled exception occurred while initializing payload #{payload_class.id}")
           exit(-1)
         end
 
@@ -105,11 +105,11 @@ module Ronin
         def validate_payload(payload)
           payload.perform_validate
         rescue Core::Params::ParamError, ValidationError => error
-          print_error "failed to validate the payload #{payload.class_id}: #{error.message}"
+          print_error("failed to validate the payload #{payload.class_id}: #{error.message}")
           exit(1)
         rescue => error
           print_exception(error)
-          print_error "an unhandled exception occurred while validating the payload #{payload.class_id}"
+          print_error("an unhandled exception occurred while validating the payload #{payload.class_id}")
           exit(-1)
         end
       end
