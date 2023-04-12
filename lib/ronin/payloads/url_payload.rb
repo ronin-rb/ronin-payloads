@@ -53,7 +53,7 @@ module Ronin
           @url = new_url
         else
           @url || if superclass < URLPayload
-                    superclass.url || \
+                    superclass.url ||
                       raise(NotImplementedError,"#{self} did not define a url")
                   end
         end
