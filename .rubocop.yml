@@ -34,5 +34,9 @@ Style/FormatStringToken:
     - 'spec/builtin/cmd/powershell/reverse_shell_spec.rb'
 
 # rubocop does not recognize empty-line continuations
-Style/RedundantLineContinuation: { Exclude: ['lib/ronin/payloads/builtin/shellcode/**/*.rb'] }
-Layout/LineContinuationSpacing: { Exclude: ['lib/ronin/payloads/builtin/shellcode/**/*.rb'] }
+Style/RedundantLineContinuation:
+  Exclude:
+    - 'lib/ronin/payloads/builtin/shellcode/**/*.rb'
+Layout/LineContinuationSpacing:
+  Exclude:
+    - 'lib/ronin/payloads/builtin/shellcode/**/*.rb'
