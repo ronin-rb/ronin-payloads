@@ -21,6 +21,7 @@
 
 require 'ronin/payloads/registry'
 require 'ronin/payloads/exceptions'
+require 'ronin/payloads/encoders/encoder'
 require 'ronin/payloads/encoders/pipeline'
 
 require 'ronin/core/metadata/id'
