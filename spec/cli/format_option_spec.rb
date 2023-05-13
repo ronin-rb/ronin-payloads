@@ -72,9 +72,9 @@ describe Ronin::Payloads::CLI::FormatOption do
     context "when given '--format xml'" do
       before { subject.parse_options(%w[--format xml]) }
 
-      it "must set #format to Ronin::Support::Encoding::XML.escape" do
+      it "must set #format to Ronin::Support::Encoding::XML.encode" do
         expect(subject.format).to eq(
-          Ronin::Support::Encoding::XML.method(:escape)
+          Ronin::Support::Encoding::XML.method(:encode)
         )
       end
     end
@@ -82,9 +82,9 @@ describe Ronin::Payloads::CLI::FormatOption do
     context "when given '--format html'" do
       before { subject.parse_options(%w[--format html]) }
 
-      it "must set #format to Ronin::Support::Encoding::HTML.escape" do
+      it "must set #format to Ronin::Support::Encoding::HTML.encode" do
         expect(subject.format).to eq(
-          Ronin::Support::Encoding::HTML.method(:escape)
+          Ronin::Support::Encoding::HTML.method(:encode)
         )
       end
     end
@@ -114,11 +114,11 @@ describe Ronin::Payloads::CLI::FormatOption do
     let(:data) { "hello world" }
 
     context "when #format is set" do
-      before { subject.parse_options(%w[--format html]) }
+      before { subject.parse_options(%w[--format c]) }
 
       it "must call #encode on the #format" do
         expect(subject.format_data(data)).to eq(
-          Ronin::Support::Encoding::HTML.escape(data)
+          Ronin::Support::Encoding::C.quote(data)
         )
       end
     end
@@ -146,7 +146,7 @@ describe Ronin::Payloads::CLI::FormatOption do
           subject.print_data(data)
 
           expect(stdout.string).to eq(
-            "#{Ronin::Support::Encoding::HTML.escape(data)}#{$/}"
+            "#{Ronin::Support::Encoding::HTML.encode(data)}#{$/}"
           )
         end
       end
@@ -170,7 +170,7 @@ describe Ronin::Payloads::CLI::FormatOption do
           subject.print_data(data)
 
           expect(stdout.string).to eq(
-            "#{Ronin::Support::Encoding::HTML.escape(data)}"
+            "#{Ronin::Support::Encoding::HTML.encode(data)}"
           )
         end
       end
