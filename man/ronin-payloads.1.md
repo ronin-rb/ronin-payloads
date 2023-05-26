@@ -20,25 +20,25 @@ Runs a `ronin-payloads` *COMMAND*.
 
 ## COMMANDS
 
-*build*
+`build`
   Builds a payload.
 
-*encode*
+`encode`
   Encodes a payload with one or more payload encoders.
 
-*encoders*
+`encoders`
   Lists available encoders.
 
-*irb*
+`irb`
   Starts ronin-payload's interactive Ruby shell.
 
-*launch*
+`launch`
   Launches a payload.
 
-*list*
+`list`
   Lists available payloads.
 
-*help*
+`help`
   Lists available commands or shows help about a specific command.
 
 ## AUTHOR
