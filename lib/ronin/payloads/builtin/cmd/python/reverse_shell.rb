@@ -36,6 +36,10 @@ module Ronin
 
           register 'cmd/python/reverse_shell'
 
+          description <<~DESC
+            A basic `python` reverse shell command.
+          DESC
+
           #
           # Builds the `python` reverse shell command.
           #

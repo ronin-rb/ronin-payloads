@@ -34,6 +34,9 @@ module Ronin
           include Mixins::ReverseShell
 
           register 'cmd/awk/reverse_shell'
+          description <<~DESC
+            A basic `awk` reverse shell command.
+          DESC
 
           #
           # Builds the `awk` reverse shell command.

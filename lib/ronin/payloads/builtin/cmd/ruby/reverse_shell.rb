@@ -35,6 +35,10 @@ module Ronin
 
           register 'cmd/ruby/reverse_shell'
 
+          description <<~DESC
+            A basic `ruby` reverse shell command.
+          DESC
+
           #
           # Builds the `ruby` reverse shell command.
           #

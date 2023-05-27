@@ -35,6 +35,10 @@ module Ronin
 
           register 'cmd/perl/reverse_shell'
 
+          description <<~DESC
+            A basic `perl` reverse shell command.
+          DESC
+
           #
           # Builds the `perl` reverse shell command.
           #

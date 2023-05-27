@@ -35,6 +35,10 @@ module Ronin
 
           register 'cmd/node/reverse_shell'
 
+          description <<~DESC
+            A basic `node` (Node.js) reverse shell command.
+          DESC
+
           #
           # Builds the `node` reverse shell command.
           #
