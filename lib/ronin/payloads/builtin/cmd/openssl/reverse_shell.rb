@@ -35,6 +35,10 @@ module Ronin
 
           register 'cmd/openssl/reverse_shell'
 
+          description <<~DESC
+            A basic `openssl` reverse shell command.
+          DESC
+
           #
           # Builds the `openssl` reverse shell command.
           #

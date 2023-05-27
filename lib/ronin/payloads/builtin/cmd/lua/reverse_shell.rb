@@ -35,6 +35,10 @@ module Ronin
 
           register 'cmd/lua/reverse_shell'
 
+          description <<~DESC
+            A basic `lua` reverse shell command.
+          DESC
+
           #
           # Builds the `lua` reverse shell command.
           #

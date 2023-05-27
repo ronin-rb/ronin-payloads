@@ -35,6 +35,10 @@ module Ronin
 
           register 'cmd/php/reverse_shell'
 
+          description <<~DESC
+            A basic `php` reverse shell command.
+          DESC
+
           #
           # Builds the `php` reverse shell command.
           #

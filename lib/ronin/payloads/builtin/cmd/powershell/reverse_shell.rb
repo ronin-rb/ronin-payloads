@@ -35,6 +35,10 @@ module Ronin
 
           register 'cmd/powershell/reverse_shell'
 
+          description <<~DESC
+            A basic `powershell` reverse shell command.
+          DESC
+
           #
           # Builds the `powershell` reverse shell command.
           #

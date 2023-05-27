@@ -40,6 +40,10 @@ module Ronin
 
         register 'java/reverse_shell'
 
+        description <<~DESC
+          A basic Java reverse shell.
+        DESC
+
         # Path to the `Payload.java.erb` ERB template file.
         TEMPLATE = File.join(__dir__,'reverse_shell','Payload.java.erb')
 

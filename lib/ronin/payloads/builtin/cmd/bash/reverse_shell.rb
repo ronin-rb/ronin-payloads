@@ -35,6 +35,10 @@ module Ronin
 
           register 'cmd/bash/reverse_shell'
 
+          description <<~DESC
+            A basic bash reverse shell command.
+          DESC
+
           #
           # Builds the bash reverse shell command.
           #
