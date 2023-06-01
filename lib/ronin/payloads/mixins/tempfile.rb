@@ -25,7 +25,7 @@ module Ronin
   module Payloads
     module Mixins
       #
-      # Adds support for building files.
+      # Adds support for temporary files.
       #
       # @api public
       #
