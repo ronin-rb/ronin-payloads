@@ -1,3 +1,14 @@
+### 0.1.2 / 2023-06-09
+
+* Add missing `require` for {Ronin::Payloads::Encoders::Encoder}.
+* Added missing descriptions to built-in payloads.
+* Documentation fixes and improvements.
+
+#### CLI
+
+* Fixed the placeholder `references` URLs in the `ronin-payloads new` template.
+* Fixed `--format html` and `--format xml` to encode every character.
+
 ### 0.1.1 / 2023-03-01
 
 * Default the `host` param defined by {Ronin::Payloads::Mixins::BindShell} to
