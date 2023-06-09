@@ -1,7 +1,7 @@
 ### 0.1.2 / 2023-06-09
 
 * Add missing `require` for {Ronin::Payloads::Encoders::Encoder}.
-* Added missing descriptions to built-in payloads.
+* Added missing descriptions to built-in payloads (@ervinismu).
 * Documentation fixes and improvements.
 
 #### CLI
