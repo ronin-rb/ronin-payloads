@@ -42,7 +42,7 @@ module Ronin
         #
         # ## Options
         #
-        #     -t asm|shellcode|c|go|rust|shell|powershell|html|javascript|typescript|java|sql|php|python|ruby|nodejs,
+        #     -t asm|shellcode|c|go|rust|command|shell|powershell|html|javascript|typescript|java|sql|php|python|ruby|nodejs,
         #         --type                       The type for the new payload
         #     -a, --author NAME                The name of the author
         #     -e, --author-email EMAIL         The email address of the author
