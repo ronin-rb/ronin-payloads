@@ -52,6 +52,11 @@ module Ronin
             class: 'RustPayload'
           },
 
+          command: {
+            file:  'command_payload',
+            class: 'CommandPayload'
+          },
+
           shell: {
             file:  'shell_payload',
             class: 'ShellPayload'
