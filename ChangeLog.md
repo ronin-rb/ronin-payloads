@@ -1,3 +1,10 @@
+### 0.1.3 / 2023-06-12
+
+#### CLI 
+
+* Fixed a bug where `ronin-payloads new --type command`  wasn't being accepted
+  as a valid payload type.
+
 ### 0.1.2 / 2023-06-09
 
 * Add missing `require` for {Ronin::Payloads::Encoders::Encoder}.
