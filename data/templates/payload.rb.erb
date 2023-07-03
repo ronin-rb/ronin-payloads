@@ -9,12 +9,12 @@ module Ronin
       register '<%= @file_name -%>'
 
       <%- if @author_email -%>
-      author '<%= @author_name %>', email: '<%= @author_email -%>'
+      author <%= @author_name.inspect %>, email: <%= @author_email.inspect %>
       <%- else -%>
-      author '<%= @author_name %>'
+      author <%= @author_name.inspect %>
       <%- end -%>
       <%- if @summary -%>
-      summary "<%= @summary %>"
+      summary <%= @summary.inspect %>
       <%- else -%>
       # summary "FIX ME"
       <%- end -%>
