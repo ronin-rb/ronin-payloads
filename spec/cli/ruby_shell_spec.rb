@@ -7,8 +7,9 @@ describe Ronin::Payloads::CLI::RubyShell do
       expect(subject.name).to eq('ronin-payloads')
     end
 
-    it "must default #context to Ronin::Payloads" do
-      expect(subject.context).to be(Ronin::Payloads)
+    it "must default context: to Ronin::Payloads" do
+      expect(subject.context).to be_a(Object)
+      expect(subject.context).to be_kind_of(Ronin::Payloads)
     end
   end
 end
