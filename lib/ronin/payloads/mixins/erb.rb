@@ -29,6 +29,8 @@ module Ronin
       #
       # [ERB]: https://docs.ruby-lang.org/en/3.1/ERB.html
       #
+      # @see https://ronin-rb.dev/docs/ronin-support/Ronin/Support/Text/ERB/Mixin.html
+      #
       # @api public
       #
       module ERB
