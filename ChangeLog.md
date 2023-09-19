@@ -1,3 +1,12 @@
+### 0.1.4 / 2023-09-19
+
+#### CLI
+
+* All newly generated payload files using `ronin-payloads new` should have a
+  `summary` and a `description`.
+* Fixed a bug where the `ronin-payloads new` options `--author`,
+  `--author-email`, or `--summary` were not properly escaping given values.
+
 ### 0.1.3 / 2023-06-12
 
 #### CLI 
