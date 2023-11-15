@@ -80,11 +80,6 @@ module Ronin
 
           man_page 'ronin-payloads-new.1'
 
-          # The references to add to the payload.
-          #
-          # @return [Array<String>]
-          attr_reader :references
-
           #
           # Initializes the `ronin-payloads new` command.
           #
