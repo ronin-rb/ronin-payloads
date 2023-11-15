@@ -194,8 +194,8 @@ $ ronin-payloads new example_payload.rb \
 Generate a ronin repository of your own payloads (or exploits):
 
 ```shell
-$ ronin-repos new my-payloads
-$ cd my-payloads/
+$ ronin-repos new my-repo
+$ cd my-repo/
 $ mkdir payloads
 $ ronin-payloads new payloads/my_payload.rb \
                       --name MyPayload --arch i686 --os Linux \
