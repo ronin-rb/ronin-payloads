@@ -2,7 +2,7 @@
 
 ## SYNOPSIS
 
-`ronin-payloads new` [*options*] *FILE*
+`ronin-payloads new` [*options*] *PATH*
 
 ## DESCRIPTION
 
@@ -10,7 +10,7 @@ Generates a new payload file.
 
 ## ARGUMENTS
 
-*FILE*
+*PATH*
   The path to the new payload file to generate.
 
 ## OPTIONS
