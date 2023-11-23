@@ -20,7 +20,7 @@ be installed with [ronin-repos].
 
 **tl;dr** It's like `msfvenom` but simpler and more modular.
 
-ronin-exploits is part of the [ronin-rb] project, a [Ruby] toolkit for security
+ronin-payloads is part of the [ronin-rb] project, a [Ruby] toolkit for security
 research and development.
 
 ## Features
