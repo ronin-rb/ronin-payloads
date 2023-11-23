@@ -6,6 +6,8 @@ description:
   classes. ronin-payloads can be distributed as Ruby files or in git
   repositories that can be installed with ronin-repos.
 
+  It's like `msfvenom` but simpler and more modular.
+
 license: LGPL-3.0
 authors: Postmodern
 email: postmodern.mod3@gmail.com

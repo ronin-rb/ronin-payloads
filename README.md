@@ -18,6 +18,8 @@ payloads. ronin-payloads allows one to write payloads as plain old Ruby classes.
 ronin-payloads can be distributed as Ruby files or in git repositories that can
 be installed with [ronin-repos].
 
+**tl;dr** It's like `msfvenom` but simpler and more modular.
+
 ronin-exploits is part of the [ronin-rb] project, a [Ruby] toolkit for security
 research and development.
 
