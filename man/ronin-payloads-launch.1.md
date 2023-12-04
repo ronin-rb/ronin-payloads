@@ -11,18 +11,18 @@ Launches a payload.
 ## ARGUMENTS
 
 *NAME*
-  The name of the payload to load.
+: The name of the payload to load.
 
 ## OPTIONS
 
 `-f`, `--file` *FILE*
-  Optionally loads the payload from the file.
+: Optionally loads the payload from the file.
 
 `-D`, `--debug`
-  Enables debugging messages.
+: Enables debugging messages.
 
 `-h`, `--help`
-  Print help information
+: Print help information
 
 ## AUTHOR
 
@@ -30,4 +30,4 @@ Postmodern <postmodern.mod3@gmail.com>
 
 ## SEE ALSO
 
-ronin-payloads-list(1) ronin-payloads-show(1) ronin-payloads-build(1)
+[ronin-payloads-list](ronin-payloads-list.1.md) [ronin-payloads-show](ronin-payloads-show.1.md) [ronin-payloads-build](ronin-payloads-build.1.md)
