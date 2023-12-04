@@ -11,15 +11,15 @@ Prints information about a particular payload encoder.
 ## ARGUMENTS
 
 *NAME*
-  The name of the payload encoder to load.
+: The name of the payload encoder to load.
 
 ## OPTIONS
 
 `-f`, `--file` *FILE*
-  The optional file to load the payload encoder from.
+: The optional file to load the payload encoder from.
 
 `-h`, `--help`
-  Print help information
+: Print help information
 
 ## AUTHOR
 
@@ -27,4 +27,4 @@ Postmodern <postmodern.mod3@gmail.com>
 
 ## SEE ALSO
 
-ronin-payloads-encoders(1) ronin-payloads-encode(1)
+[ronin-payloads-encoders](ronin-payloads-encoders.1.md) [ronin-payloads-encode](ronin-payloads-encode.1.md)

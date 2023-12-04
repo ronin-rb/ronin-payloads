@@ -11,7 +11,7 @@ Starts an interactive Ruby shell with `ronin/payloads` loaded.
 ## OPTIONS
 
 `-h`, `--help`
-  Print help information
+: Print help information
 
 ## AUTHOR
 
@@ -19,4 +19,4 @@ Postmodern <postmodern.mod3@gmail.com>
 
 ## SEE ALSO
 
-ronin-payloads(1)
+[ronin-payloads](ronin-payloads.1.md)
