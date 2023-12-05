@@ -1,5 +1,9 @@
 # ronin-payloads 1 "2023-02-01" Ronin "User Manuals"
 
+## NAME
+
+ronin-payloads - A Ruby micro-framework for writing and running exploit payloads
+
 ## SYNOPSIS
 
 `ronin-payloads` [*options*] [*COMMAND* [...]]

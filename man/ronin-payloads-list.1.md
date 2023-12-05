@@ -1,5 +1,9 @@
 # ronin-payloads-list 1 "2023-02-01" Ronin "User Manuals"
 
+## NAME
+
+ronin-payloads-list - Lists the available payloads
+
 ## SYNOPSIS
 
 `ronin-payloads list` [*options*] *DIR*

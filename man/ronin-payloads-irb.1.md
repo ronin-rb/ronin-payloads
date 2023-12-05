@@ -1,5 +1,9 @@
 # ronin-payloads-irb 1 "2023-02-01" Ronin "User Manuals"
 
+## NAME
+
+ronin-payloads-irb - Start an interactive Ruby shell
+
 ## SYNOPSIS
 
 `ronin-payloads irb` [*options*]
