@@ -1,5 +1,9 @@
 # ronin-payloads-encoders 1 "2023-02-01" Ronin "User Manuals"
 
+## NAME
+
+ronin-payloads-encoders - Lists available anecoders or a specific encoder
+
 ## SYNOPSIS
 
 `ronin-payloads encoders` [*options*] *DIR*

@@ -1,5 +1,9 @@
 # ronin-payloads-encoder 1 "2023-02-01" Ronin "User Manuals"
 
+## NAME
+
+ronin-payloads-encode - Encodes data using the encoder(s)
+
 ## SYNOPSIS
 
 `ronin-payloads encoder` [*options*] {`--string` *STRING* \| *FILE*}

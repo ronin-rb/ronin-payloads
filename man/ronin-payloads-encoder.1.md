@@ -1,5 +1,9 @@
 # ronin-payloads-encoder 1 "2023-02-01" Ronin "User Manuals"
 
+## NAME
+
+ronin-payloads-encoder - Prints information about an encoder
+
 ## SYNOPSIS
 
 `ronin-payloads encoder` [*options*] *NAME*
