@@ -1,5 +1,9 @@
 # ronin-payloads-show 1 "May 2022" Ronin "User Manuals"
 
+## NAME
+
+ronin-payloads-show - Prints information about a payload
+
 ## SYNOPSIS
 
 `ronin-payloads show` [*options*] {`--file` *FILE* \| *NAME*}

@@ -1,5 +1,9 @@
 # ronin-payloads-new 1 "May 2022" Ronin "User Manuals"
 
+## NAME
+
+ronin-payloads-new - Creates a new payload file
+
 ## SYNOPSIS
 
 `ronin-payloads new` [*options*] *PATH*

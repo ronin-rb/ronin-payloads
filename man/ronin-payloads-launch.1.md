@@ -1,5 +1,9 @@
 # ronin-payloads-launch 1 "2023-02-01" Ronin "User Manuals"
 
+## NAME
+
+ronin-payloads-launch - Launches a payload
+
 ## SYNOPSIS
 
 `ronin-payloads launch` [*options*] {`--file` *FILE* \| *NAME*}
