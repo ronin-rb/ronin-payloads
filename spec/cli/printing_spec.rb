@@ -9,6 +9,7 @@ require 'ronin/payloads/c_payload'
 require 'ronin/payloads/go_payload'
 require 'ronin/payloads/rust_payload'
 require 'ronin/payloads/java_payload'
+require 'ronin/payloads/groovy_payload'
 require 'ronin/payloads/javascript_payload'
 require 'ronin/payloads/node_js_payload'
 require 'ronin/payloads/command_payload'
@@ -45,6 +46,7 @@ describe Ronin::Payloads::CLI::Printing do
       Ronin::Payloads::GoPayload         => 'Go',
       Ronin::Payloads::RustPayload       => 'Rust',
       Ronin::Payloads::JavaPayload       => 'Java',
+      Ronin::Payloads::GroovyPayload     => 'Groovy',
       Ronin::Payloads::ColdFusionPayload => 'ColdFusion',
       Ronin::Payloads::PHPPayload        => 'PHP',
       Ronin::Payloads::ASMPayload        => 'ASM',
