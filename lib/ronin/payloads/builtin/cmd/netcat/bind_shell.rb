@@ -29,7 +29,7 @@ module Ronin
         #
         # A basic netcat bind shell command.
         #
-        # @sincee 0.2.0
+        # @since 0.2.0
         #
         class BindShell < CommandPayload
 
