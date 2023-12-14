@@ -119,6 +119,7 @@ $ ronin-payloads list
   cmd/powershell/reverse_shell
   cmd/python/reverse_shell
   cmd/ruby/reverse_shell
+  cmd/windows/download
   groovy/reverse_shell
   java/reverse_shell
   php/cmd_exec
