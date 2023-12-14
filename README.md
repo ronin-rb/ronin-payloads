@@ -45,6 +45,8 @@ research and development.
     * Ruby
   * Java
     * Reverse shell
+  * Groovy
+    * Reverse shell
   * PHP
     * Command exec.
   * Shellcode:
@@ -117,6 +119,7 @@ $ ronin-payloads list
   cmd/powershell/reverse_shell
   cmd/python/reverse_shell
   cmd/ruby/reverse_shell
+  groovy/reverse_shell
   java/reverse_shell
   php/cmd_exec
   php/download_exec
