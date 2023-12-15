@@ -47,7 +47,7 @@ describe Ronin::Payloads::CPayload do
     end
   end
 
-  describe "#compile" do
+  describe "#compile_c" do
     let(:source_files) { %w[foo.c bar.c baz.c] }
     let(:output)       { 'output' }
 
@@ -56,7 +56,7 @@ describe Ronin::Payloads::CPayload do
         subject.params[:cc],'-o',output,*source_files
       ).and_return(true)
 
-      subject.compile(*source_files, output: output)
+      subject.compile_c(*source_files, output: output)
     end
 
     context "when the defs: keyword argument is given" do
@@ -74,7 +74,7 @@ describe Ronin::Payloads::CPayload do
             *source_files
           ).and_return(true)
 
-          subject.compile(*source_files, output: output, defs: defs)
+          subject.compile_c(*source_files, output: output, defs: defs)
         end
       end
 
@@ -97,7 +97,7 @@ describe Ronin::Payloads::CPayload do
             *source_files
           ).and_return(true)
 
-          subject.compile(*source_files, output: output, defs: defs)
+          subject.compile_c(*source_files, output: output, defs: defs)
         end
       end
 
@@ -106,7 +106,7 @@ describe Ronin::Payloads::CPayload do
 
         it do
           expect {
-            subject.compile(*source_files, output: output, defs: defs)
+            subject.compile_c(*source_files, output: output, defs: defs)
           }.to raise_error(ArgumentError,"defs must be either an Array or a Hash: #{defs.inspect}")
         end
       end
@@ -119,7 +119,7 @@ describe Ronin::Payloads::CPayload do
         allow(subject).to receive(:system).and_return(false)
 
         expect {
-          subject.compile(source_file, output: output)
+          subject.compile_c(source_file, output: output)
         }.to raise_error(Ronin::Payloads::BuildFailed,"cc command failed: #{subject.params[:cc]} -o #{output} #{source_file}")
       end
     end
@@ -131,7 +131,7 @@ describe Ronin::Payloads::CPayload do
         allow(subject).to receive(:system).and_return(nil)
 
         expect {
-          subject.compile(source_file, output: output)
+          subject.compile_c(source_file, output: output)
         }.to raise_error(Ronin::Payloads::BuildFailed,"cc command not installed")
       end
     end
