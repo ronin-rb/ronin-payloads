@@ -73,7 +73,9 @@ module Ronin
       # @raise [BuildFailed]
       #   The `cc` command failed or is not installed.
       #
-      def compile(*source_files, output: , defs: nil)
+      # @since 0.2.0
+      #
+      def compile_c(*source_files, output: , defs: nil)
         args = [params[:cc], '-o', output]
 
         if defs
@@ -100,6 +102,8 @@ module Ronin
           raise(BuildFailed,"cc command not installed")
         end
       end
+
+      alias compile compile_c
 
     end
   end
