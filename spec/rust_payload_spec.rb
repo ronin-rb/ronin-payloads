@@ -6,7 +6,7 @@ describe Ronin::Payloads::RustPayload do
     expect(described_class.superclass).to be(Ronin::Payloads::BinaryPayload)
   end
 
-  describe "#compile" do
+  describe "#compile_rust" do
     let(:source_files) { %w[foo.rs bar.rs baz.rs] }
 
     it "must call system with `rustc` and source files" do
@@ -14,7 +14,7 @@ describe Ronin::Payloads::RustPayload do
         'rustc', *source_files
       ).and_return(true)
 
-      subject.compile(*source_files)
+      subject.compile_rust(*source_files)
     end
 
     context "when the output: keyword is given" do
@@ -25,7 +25,7 @@ describe Ronin::Payloads::RustPayload do
           'rustc','-o', output, *source_files
         ).and_return(true)
 
-        subject.compile(*source_files, output: output)
+        subject.compile_rust(*source_files, output: output)
       end
     end
 
@@ -37,7 +37,7 @@ describe Ronin::Payloads::RustPayload do
           'rustc','--target', target, *source_files
         ).and_return(true)
 
-        subject.compile(*source_files, target: target)
+        subject.compile_rust(*source_files, target: target)
       end
     end
 
@@ -58,7 +58,7 @@ describe Ronin::Payloads::RustPayload do
                      *source_files
           ).and_return(true)
 
-          subject.compile(*source_files, cfg: cfg)
+          subject.compile_rust(*source_files, cfg: cfg)
         end
       end
 
@@ -72,7 +72,7 @@ describe Ronin::Payloads::RustPayload do
             'rustc', '--cfg', value1.to_s, '--cfg', value2.to_s, *source_files
           ).and_return(true)
 
-          subject.compile(*source_files, cfg: cfg)
+          subject.compile_rust(*source_files, cfg: cfg)
         end
       end
 
@@ -81,7 +81,7 @@ describe Ronin::Payloads::RustPayload do
 
         it do
           expect {
-            subject.compile(*source_files, cfg: cfg)
+            subject.compile_rust(*source_files, cfg: cfg)
           }.to raise_error(ArgumentError,"cfg value must be either a Hash or an Array: #{cfg.inspect}")
         end
       end
@@ -95,7 +95,7 @@ describe Ronin::Payloads::RustPayload do
         allow(subject).to receive(:system).and_return(false)
 
         expect {
-          subject.compile(source_file, output: output)
+          subject.compile_rust(source_file, output: output)
         }.to raise_error(Ronin::Payloads::BuildFailed,"rustc command failed: rustc -o #{output} #{source_file}")
       end
     end
@@ -108,7 +108,7 @@ describe Ronin::Payloads::RustPayload do
         allow(subject).to receive(:system).and_return(nil)
 
         expect {
-          subject.compile(source_file, output: output)
+          subject.compile_rust(source_file, output: output)
         }.to raise_error(Ronin::Payloads::BuildFailed,"rustc command not installed")
       end
     end
