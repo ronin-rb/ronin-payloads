@@ -63,7 +63,9 @@ module Ronin
       # @raise [BuildFailed]
       #   The `rustc` command failed or is not installed.
       #
-      def compile(*source_files, output: nil, target: nil, cfg: nil)
+      # @since 0.2.0
+      #
+      def compile_rust(*source_files, output: nil, target: nil, cfg: nil)
         args = ['rustc']
 
         if output
@@ -98,6 +100,8 @@ module Ronin
           raise(BuildFailed,"rustc command not installed")
         end
       end
+
+      alias compile compile_rust
 
     end
   end
