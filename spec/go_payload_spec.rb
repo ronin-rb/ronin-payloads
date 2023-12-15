@@ -6,7 +6,7 @@ describe Ronin::Payloads::GoPayload do
     expect(described_class.superclass).to be(Ronin::Payloads::BinaryPayload)
   end
 
-  describe "#compile" do
+  describe "#compile_go" do
     let(:source_files) { %w[foo.go bar.go baz.go] }
 
     it "must call system with `go build` and source files" do
@@ -14,7 +14,7 @@ describe Ronin::Payloads::GoPayload do
         'go', 'build', *source_files
       ).and_return(true)
 
-      subject.compile(*source_files)
+      subject.compile_go(*source_files)
     end
 
     context "when the output: keyword is given" do
@@ -25,7 +25,7 @@ describe Ronin::Payloads::GoPayload do
           'go', 'build','-o', output, *source_files
         ).and_return(true)
 
-        subject.compile(*source_files, output: output)
+        subject.compile_go(*source_files, output: output)
       end
     end
 
@@ -36,7 +36,7 @@ describe Ronin::Payloads::GoPayload do
         allow(subject).to receive(:system).and_return(false)
 
         expect {
-          subject.compile(source_file)
+          subject.compile_go(source_file)
         }.to raise_error(Ronin::Payloads::BuildFailed,"go command failed: go build #{source_file}")
       end
     end
@@ -48,7 +48,7 @@ describe Ronin::Payloads::GoPayload do
         allow(subject).to receive(:system).and_return(nil)
 
         expect {
-          subject.compile(source_file)
+          subject.compile_go(source_file)
         }.to raise_error(Ronin::Payloads::BuildFailed,"go command not installed")
       end
     end
