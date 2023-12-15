@@ -54,7 +54,9 @@ module Ronin
       # @raise [BuildFailed]
       #   The `go build` command failed or is not installed.
       #
-      def compile(*source_files, output: nil)
+      # @since 0.2.0
+      #
+      def compile_go(*source_files, output: nil)
         args = ['go', 'build']
 
         if output
@@ -70,6 +72,8 @@ module Ronin
           raise(BuildFailed,"go command not installed")
         end
       end
+
+      alias compile compile_go
 
     end
   end
