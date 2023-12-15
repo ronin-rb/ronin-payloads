@@ -67,7 +67,9 @@ module Ronin
       # @raise [BuildFailed]
       #   The `javac` command failed or is not installed.
       #
-      def compile(*source_files, dest_dir: nil)
+      # @since 0.2.0
+      #
+      def compile_java(*source_files, dest_dir: nil)
         args = [params[:javac]]
         args << '-d' << dest_dir if dest_dir
         args.concat(source_files)
@@ -79,6 +81,8 @@ module Ronin
           raise(BuildFailed,"javac command not installed")
         end
       end
+
+      alias compile compile_java
 
     end
   end

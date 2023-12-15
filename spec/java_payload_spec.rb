@@ -47,7 +47,7 @@ describe Ronin::Payloads::JavaPayload do
     end
   end
 
-  describe "#compile" do
+  describe "#compile_java" do
     let(:source_files) { %w[foo.java bar.java baz.java] }
 
     it "must call system with params[:javac] and additional arguments" do
@@ -55,7 +55,7 @@ describe Ronin::Payloads::JavaPayload do
         subject.params[:javac], *source_files
       ).and_return(true)
 
-      subject.compile(*source_files)
+      subject.compile_java(*source_files)
     end
 
     context "when the dest_dir: keyword argument is given" do
@@ -66,7 +66,7 @@ describe Ronin::Payloads::JavaPayload do
           subject.params[:javac], '-d', dest_dir, *source_files
         ).and_return(true)
 
-        subject.compile(*source_files, dest_dir: dest_dir)
+        subject.compile_java(*source_files, dest_dir: dest_dir)
       end
     end
 
@@ -77,7 +77,7 @@ describe Ronin::Payloads::JavaPayload do
         allow(subject).to receive(:system).and_return(false)
 
         expect {
-          subject.compile(source_file)
+          subject.compile_java(source_file)
         }.to raise_error(Ronin::Payloads::BuildFailed,"javac command failed: #{subject.params[:javac]} #{source_file}")
       end
     end
@@ -89,7 +89,7 @@ describe Ronin::Payloads::JavaPayload do
         allow(subject).to receive(:system).and_return(nil)
 
         expect {
-          subject.compile(source_file)
+          subject.compile_java(source_file)
         }.to raise_error(Ronin::Payloads::BuildFailed,"javac command not installed")
       end
     end
