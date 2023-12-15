@@ -58,7 +58,9 @@ module Ronin
         # @raise [BuildFailed]
         #   The `tsc` command failed or is not installed.
         #
-        def compile(*source_files)
+        # @since 0.2.0
+        #
+        def compile_ts(*source_files)
           args = [params[:tsc]]
           args.concat(source_files)
 
@@ -69,6 +71,8 @@ module Ronin
             raise(BuildFailed,"tsc command not installed")
           end
         end
+
+        alias compile compile_ts
       end
     end
   end
