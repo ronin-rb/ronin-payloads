@@ -20,6 +20,7 @@
 #
 
 require 'ronin/payloads/binary_payload'
+require 'ronin/payloads/mixins/cc'
 
 module Ronin
   module Payloads
@@ -27,6 +28,8 @@ module Ronin
     # A {Payload} class that represents all C payloads.
     #
     class CPayload < BinaryPayload
+
+      include Mixins::CC
 
       #
       # Returns the type or kind of payload.
@@ -41,69 +44,6 @@ module Ronin
       def self.payload_type
         :c
       end
-
-      #
-      # The default C compiler.
-      #
-      # @return [String]
-      #
-      def self.cc
-        ENV['CC'] || 'cc'
-      end
-
-      param :cc, required: true,
-                 default:  -> { cc },
-                 desc:     'The C compiler to use'
-
-      #
-      # Compiles one or more source files using `cc`.
-      #
-      # @param [Array<String>] source_files
-      #   The source file(s) to compile.
-      #
-      # @param [String] output
-      #   The output file path.
-      #
-      # @param [Array<String>, Hash{Symbol,String => String}, nil] defs
-      #   Additional macro definitions to pass to the compiler.
-      #
-      # @raise [ArgumentError]
-      #   `defs` was not an Array or a Hash.
-      #
-      # @raise [BuildFailed]
-      #   The `cc` command failed or is not installed.
-      #
-      # @since 0.2.0
-      #
-      def compile_c(*source_files, output: , defs: nil)
-        args = [params[:cc], '-o', output]
-
-        if defs
-          case defs
-          when Array
-            defs.each do |value|
-              args << "-D#{value}"
-            end
-          when Hash
-            defs.each do |name,value|
-              args << "-D#{name}=#{value}"
-            end
-          else
-            raise(ArgumentError,"defs must be either an Array or a Hash: #{defs.inspect}")
-          end
-        end
-
-        args.concat(source_files)
-
-        case system(*args)
-        when false
-          raise(BuildFailed,"cc command failed: #{args.join(' ')}")
-        when nil
-          raise(BuildFailed,"cc command not installed")
-        end
-      end
-
-      alias compile compile_c
 
     end
   end
