@@ -20,6 +20,7 @@
 #
 
 require 'ronin/payloads/command_payload'
+require 'ronin/payloads/metadata/os'
 
 module Ronin
   module Payloads
@@ -31,6 +32,8 @@ module Ronin
         # @since 0.2.0
         #
         class Download < CommandPayload
+
+          include Metadata::OS
 
           register 'cmd/windows/download'
 
@@ -44,6 +47,8 @@ module Ronin
             system binaries, which can be used for alternative purposes, are
             known as "LOLbins".
           DESC
+
+          os :windows
 
           param :url, String, required: true,
                               desc:    'The URL to download'
