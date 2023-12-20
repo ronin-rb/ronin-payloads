@@ -43,6 +43,7 @@ research and development.
     * PowerShell
     * Python
     * Ruby
+    * Zsh
   * Java
     * Reverse shell
   * Groovy
@@ -120,6 +121,7 @@ $ ronin-payloads list
   cmd/python/reverse_shell
   cmd/ruby/reverse_shell
   cmd/windows/download
+  cmd/zsh/reverse_shell
   groovy/reverse_shell
   java/reverse_shell
   php/cmd_exec
