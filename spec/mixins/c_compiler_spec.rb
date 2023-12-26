@@ -406,10 +406,10 @@ describe Ronin::Payloads::Mixins::CCompiler do
       it "must append the values with '-l' flags" do
         expect(subject).to receive(:system).with(
           subject.cc,
-          "-l#{lib1}",
-          "-l#{lib2}",
           '-o', output,
-          *source_files
+          *source_files,
+          "-l#{lib1}",
+          "-l#{lib2}"
         ).and_return(true)
 
         subject.compile_c(*source_files, output: output, libs: libs)
