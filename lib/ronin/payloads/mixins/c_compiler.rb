@@ -181,13 +181,16 @@ module Ronin
         # @param [Array<String>, Hash{Symbol,String => String}, nil] defs
         #   Additional macro definitions to pass to the compiler.
         #
+        # @param [Array<String>] libs
+        #   Libraries to link to.
+        #
         # @raise [ArgumentError]
         #   `defs` was not an Array or a Hash.
         #
         # @raise [BuildFailed]
         #   The `cc` command failed or is not installed.
         #
-        def compile_c(*source_files, output: , defs: nil)
+        def compile_c(*source_files, output: , defs: nil, libs: nil)
           target = target_platform
           args   = [cc]
 
@@ -207,6 +210,12 @@ module Ronin
               end
             else
               raise(ArgumentError,"defs must be either an Array or a Hash: #{defs.inspect}")
+            end
+          end
+
+          if libs
+            libs.each do |lib|
+              args << "-l#{lib}"
             end
           end
 

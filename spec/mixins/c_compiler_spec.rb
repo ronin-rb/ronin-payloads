@@ -390,6 +390,24 @@ describe Ronin::Payloads::Mixins::CCompiler do
       end
     end
 
+    context "when the libs: keyword argument is given" do
+      let(:lib1) { 'foo' }
+      let(:lib2) { 'bar' }
+      let(:libs) { [lib1, lib2] }
+
+      it "must append the values with '-l' flags" do
+        expect(subject).to receive(:system).with(
+          subject.cc,
+          "-l#{lib1}",
+          "-l#{lib2}",
+          '-o', output,
+          *source_files
+        ).and_return(true)
+
+        subject.compile_c(*source_files, output: output, libs: libs)
+      end
+    end
+
     context "when system() returns false" do
       let(:source_file) { 'foo.go' }
 
