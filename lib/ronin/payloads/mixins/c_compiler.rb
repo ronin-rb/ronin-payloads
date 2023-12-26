@@ -34,7 +34,7 @@ module Ronin
       #
       # @since 0.2.0
       #
-      module CC
+      module CCompiler
         #
         # The default C compiler.
         #

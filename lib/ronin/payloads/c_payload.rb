@@ -20,7 +20,7 @@
 #
 
 require 'ronin/payloads/binary_payload'
-require 'ronin/payloads/mixins/cc'
+require 'ronin/payloads/mixins/c_compiler'
 
 module Ronin
   module Payloads
@@ -29,7 +29,7 @@ module Ronin
     #
     class CPayload < BinaryPayload
 
-      include Mixins::CC
+      include Mixins::CCompiler
 
       #
       # Returns the type or kind of payload.
