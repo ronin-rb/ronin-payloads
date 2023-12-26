@@ -77,6 +77,7 @@ module Ronin
 
           payload_class.param :os, Core::Params::Types::Enum[
                                      :linux,
+                                     :macos,
                                      :freebsd,
                                      :windows,
                                      :"windows-gnu",
