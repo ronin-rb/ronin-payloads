@@ -216,14 +216,14 @@ module Ronin
             end
           end
 
+          args << '-o' << output
+          args.concat(source_files)
+
           if libs
             libs.each do |lib|
               args << "-l#{lib}"
             end
           end
-
-          args << '-o' << output
-          args.concat(source_files)
 
           case system(*args)
           when false
