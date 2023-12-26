@@ -30,7 +30,7 @@ int main(void)
 
 	sa.sin_family = AF_INET;
 	sa.sin_port = htons(port);
-	sa.sin_addr.s_addr = inet_addr("CLIENT_IP");
+	sa.sin_addr.s_addr = inet_addr(CLIENT_IP);
 
 	SOCKET sockt = WSASocketA(AF_INET, SOCK_STREAM, IPPROTO_TCP, NULL, 0, 0);
 
