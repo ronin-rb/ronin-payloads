@@ -1,11 +1,11 @@
 require 'spec_helper'
-require 'ronin/payloads/mixins/cc'
+require 'ronin/payloads/mixins/c_compiler'
 require 'ronin/payloads/payload'
 
-describe Ronin::Payloads::Mixins::CC do
+describe Ronin::Payloads::Mixins::CCompiler do
   module TestCCMixin
     class TestPayload < Ronin::Payloads::Payload
-      include Ronin::Payloads::Mixins::CC
+      include Ronin::Payloads::Mixins::CCompiler
     end
   end
 
