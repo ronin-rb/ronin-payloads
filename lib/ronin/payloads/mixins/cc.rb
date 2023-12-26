@@ -25,22 +25,148 @@ module Ronin
       #
       # Mixin for using the C compiler.
       #
+      # ## Features
+      #
+      # * Supports `gcc` and `clang`.
+      # * Supports automatically switching to a cross compiler to cross compile
+      #   for different architectures and OSes.
+      # * Supports using `mingw32` to cross-compile for Windows.
+      #
       # @since 0.2.0
       #
       module CC
         #
         # The default C compiler.
         #
-        # @return [String]
+        # @return [String, nil]
+        #
+        # @api private
         #
         def self.cc
-          ENV['CC'] || 'cc'
+          ENV['CC']
         end
 
         def self.included(payload_class)
-          payload_class.param :cc, required: true,
-                                   default:  -> { cc },
-                                   desc:     'The C compiler to use'
+          payload_class.param :cc, default:  -> { cc },
+                                   desc:     'The C compiler command to use'
+
+          payload_class.param :c_compiler, Core::Params::Types::Enum[
+                                             :gcc,
+                                             :clang
+                                           ], default: :gcc,
+                                              desc:    'The C compiler to use'
+
+          payload_class.param :arch, Core::Params::Types::Enum[
+                                       :"x86-64",
+                                       :i686,
+                                       :aarch64,
+                                       :arm,
+                                       :arm64,
+                                       :armbe,
+                                       :armbe64,
+                                       :mips,
+                                       :mips64,
+                                       :ppc,
+                                       :ppc64
+                                     ], desc: 'The target architecture'
+
+          payload_class.param :vendor, Core::Params::Types::Enum[
+                                         :pc,
+                                         :unknown
+                                       ], desc: 'The target vendor'
+
+          payload_class.param :os, Core::Params::Types::Enum[
+                                     :linux,
+                                     :freebsd,
+                                     :windows,
+                                     :"windows-gnu",
+                                     :"windows-msvc"
+                                   ], desc: 'The target OS'
+        end
+
+        #
+        # The target architecture to compile for.
+        #
+        # @return [String]
+        #   The target architecture string.
+        #
+        # @api private
+        #
+        def target_arch
+          if params[:arch]
+            params[:arch].to_s
+          end
+        end
+
+        #
+        # The target vendor to compile for.
+        #
+        # @return [String]
+        #   The target vendor string.
+        #
+        # @api private
+        #
+        def target_vendor
+          if params[:os] == :windows
+            'w64'
+          else
+            params.fetch(:vendor,'unknown').to_s
+          end
+        end
+
+        #
+        # The target OS to compile for.
+        #
+        # @return [String]
+        #   The target OS string.
+        #
+        # @api private
+        #
+        def target_os
+          case params[:os]
+          when :linux   then 'linux-gnu'
+          when :windows then 'mingw32'
+          else               params[:os].to_s
+          end
+        end
+
+        #
+        # The target platform to compile for.
+        #
+        # @return [String, nil]
+        #   The target triple string, if the `arch` and `os` params are set.
+        #
+        # @api private
+        #
+        def target_platform
+          if params[:arch] && params[:os]
+            if params[:vendor]
+              "#{target_arch}-#{target_vendor}-#{target_os}"
+            else
+              "#{target_arch}-#{target_os}"
+            end
+          end
+        end
+
+        #
+        # The C compiler command to use.
+        #
+        # @return [String]
+        #   The command name.
+        #
+        # @api private
+        #
+        def cc
+          params[:cc] || case params[:c_compiler]
+                         when :gcc
+                           if (target = target_platform)
+                             "#{target}-gcc"
+                           else
+                             'gcc'
+                           end
+                         when :clang then 'clang'
+                         else             'cc'
+                         end
         end
 
         #
@@ -62,7 +188,12 @@ module Ronin
         #   The `cc` command failed or is not installed.
         #
         def compile_c(*source_files, output: , defs: nil)
-          args = [params[:cc], '-o', output]
+          target = target_platform
+          args   = [cc]
+
+          if target && params[:c_compiler] == :clang
+            args << '-target' << target
+          end
 
           if defs
             case defs
@@ -79,6 +210,7 @@ module Ronin
             end
           end
 
+          args << '-o' << output
           args.concat(source_files)
 
           case system(*args)
