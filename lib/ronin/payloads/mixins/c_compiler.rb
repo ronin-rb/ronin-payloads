@@ -46,6 +46,15 @@ module Ronin
           ENV['CC']
         end
 
+        #
+        # Adds the `cc`, `c_compiler`, `arch`, `vendor`, and `os` params
+        # to the payload class that included {Mixins::CCompiler}.
+        #
+        # @param [Class<Payload>] payload_class
+        #   The payload class including {Mixins::CCompiler}.
+        #
+        # @api private
+        #
         def self.included(payload_class)
           payload_class.param :cc, default:  -> { cc },
                                    desc:     'The C compiler command to use'
