@@ -63,7 +63,7 @@ describe Ronin::Payloads::Bin::UNIX::ReverseShell do
 
     it "must set #payload" do
       expect(subject.payload).to start_with(
-        "\x7f\x45\x4c\x46\x02\x01\x01\x00".b
+        "\x7fELF\x02\x01\x01\x00".b
       )
     end
 
