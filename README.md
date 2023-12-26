@@ -69,6 +69,7 @@ research and development.
   * C payloads:
     * reverse shell:
       * Windows (x86-64 and i686)
+      * UNIX (Linux, FreeBSD, OpenBSD, NetBSD, macOS)
 * Supports adding additional encoders to payloads for further obfuscation.
 * Integrates with the [Ronin Post-Exploitation][ronin-post_ex] library.
 * Provides a simple CLI for building, encoding, launching, and generating new
@@ -113,6 +114,7 @@ List available payloads:
 
 ```shell
 $ ronin-payloads list
+  bin/unix/reverse_shell
   bin/windows/reverse_shell
   cmd/awk/reverse_shell
   cmd/bash/reverse_shell
