@@ -94,7 +94,7 @@ module Ronin
         #
         def target_arch
           if params[:arch]
-            params[:arch].to_s
+            params[:arch].to_s.tr('-','_')
           end
         end
 
@@ -109,8 +109,8 @@ module Ronin
         def target_vendor
           if params[:os] == :windows
             'w64'
-          else
-            params.fetch(:vendor,'unknown').to_s
+          elsif params[:vendor]
+            params[:vendor].to_s
           end
         end
 
@@ -139,11 +139,14 @@ module Ronin
         # @api private
         #
         def target_platform
-          if params[:arch] && params[:os]
-            if params[:vendor]
-              "#{target_arch}-#{target_vendor}-#{target_os}"
+          arch = target_arch
+          os   = target_os
+
+          if arch && os
+            if (vendor = target_vendor)
+              "#{arch}-#{vendor}-#{os}"
             else
-              "#{target_arch}-#{target_os}"
+              "#{arch}-#{os}"
             end
           end
         end

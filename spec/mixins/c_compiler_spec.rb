@@ -72,7 +72,7 @@ describe Ronin::Payloads::Mixins::CCompiler do
 
   describe "#target_arch" do
     context "when the arch param is set" do
-      let(:arch) { 'x86-64' }
+      let(:arch) { 'arm' }
 
       subject do
         payload_class.new(params: {arch: arch})
@@ -80,6 +80,14 @@ describe Ronin::Payloads::Mixins::CCompiler do
 
       it "must return the arch param as a String" do
         expect(subject.target_arch).to eq(arch.to_s)
+      end
+
+      context "and it's :x86-64" do
+        let(:arch) { :"x86-64" }
+
+        it "must return 'x86_64'" do
+          expect(subject.target_arch).to eq('x86_64')
+        end
       end
     end
 
@@ -114,8 +122,8 @@ describe Ronin::Payloads::Mixins::CCompiler do
     end
 
     context "when the vendor param is not set" do
-      it "must return 'unknown'" do
-        expect(subject.target_vendor).to eq('unknown')
+      it "must return nil" do
+        expect(subject.target_vendor).to be(nil)
       end
     end
   end
@@ -160,7 +168,7 @@ describe Ronin::Payloads::Mixins::CCompiler do
       end
 
       it "must return a target triple of the format 'arch-os'" do
-        expect(subject.target_platform).to eq('x86-64-linux-gnu')
+        expect(subject.target_platform).to eq('x86_64-linux-gnu')
       end
     end
 
@@ -174,7 +182,7 @@ describe Ronin::Payloads::Mixins::CCompiler do
       end
 
       it "must return a target triple of the format 'arch-vendor-os'" do
-        expect(subject.target_platform).to eq('x86-64-pc-linux-gnu')
+        expect(subject.target_platform).to eq('x86_64-pc-linux-gnu')
       end
     end
 
@@ -226,7 +234,7 @@ describe Ronin::Payloads::Mixins::CCompiler do
           end
 
           it "must return the gcc command for the target platform" do
-            expect(subject.cc).to eq("x86-64-linux-gnu-gcc")
+            expect(subject.cc).to eq("x86_64-linux-gnu-gcc")
           end
         end
 
@@ -248,7 +256,7 @@ describe Ronin::Payloads::Mixins::CCompiler do
           end
 
           it "must return the gcc command for the target platform" do
-            expect(subject.cc).to eq("x86-64-pc-linux-gnu-gcc")
+            expect(subject.cc).to eq("x86_64-pc-linux-gnu-gcc")
           end
         end
       end
