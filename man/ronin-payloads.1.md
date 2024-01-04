@@ -27,6 +27,9 @@ Runs a `ronin-payloads` *COMMAND*.
 `build`
 : Builds a payload.
 
+`completion`
+: Manages the shell completion rules for `ronin-payloads`.
+
 `encode`
 : Encodes a payload with one or more payload encoders.
 
@@ -51,4 +54,4 @@ Postmodern <postmodern.mod3@gmail.com>
 
 ## SEE ALSO
 
-[ronin-payloads-irb](ronin-payloads-irb.1.md) [ronin-payloads-build](ronin-payloads-build.1.md) [ronin-payloads-encode](ronin-payloads-encode.1.md) [ronin-payloads-encoders](ronin-payloads-encoders.1.md) [ronin-payloads-launch](ronin-payloads-launch.1.md) [ronin-payloads-list](ronin-payloads-list.1.md)
+[ronin-payloads-irb](ronin-payloads-irb.1.md) [ronin-payloads-build](ronin-payloads-build.1.md) [ronin-payloads-completion](ronin-payloads-completion.1.md) [ronin-payloads-encode](ronin-payloads-encode.1.md) [ronin-payloads-encoders](ronin-payloads-encoders.1.md) [ronin-payloads-launch](ronin-payloads-launch.1.md) [ronin-payloads-list](ronin-payloads-list.1.md)
