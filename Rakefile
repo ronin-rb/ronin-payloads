@@ -32,3 +32,10 @@ task :docs => :yard
 
 require 'kramdown/man/task'
 Kramdown::Man::Task.new
+
+require 'command_kit/completion/task'
+CommandKit::Completion::Task.new(
+  class_file:  'ronin/payloads/cli',
+  class_name:  'Ronin::Payloads::CLI',
+  output_file: 'data/completions/ronin-payloads'
+)
