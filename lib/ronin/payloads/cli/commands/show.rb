@@ -110,7 +110,50 @@ module Ronin
               print_description(payload)
               print_references(payload)
               print_params(payload)
+              print_payload_usage(payload)
             end
+          end
+
+          #
+          # Prints an example `ronin-payloads build` command for the payload.
+          #
+          # @param [Class<Payload>] payload
+          #
+          # @since 0.2.0
+          #
+          def print_payload_usage(payload)
+            puts "Usage:"
+            puts
+            puts "  $ #{example_build_command(payload)}"
+            puts
+          end
+
+          #
+          # Builds an example `ronin-payloads build` command for the payload.
+          #
+          # @param [Class<Payload>] payload
+          #
+          # @return [String]
+          #   The example `ronin-payloads build` command.
+          #
+          # @since 0.2.0
+          #
+          def example_build_command(payload)
+            command = ['ronin-payloads', 'build']
+
+            if options[:file]
+              command << '-f' << options[:file]
+            else
+              command << payload.id
+            end
+
+            payload.params.each_value do |param|
+              if param.required? && !param.default
+                command << '-p' << "#{param.name}=#{param_usage(param)}"
+              end
+            end
+
+            return command.join(' ')
           end
 
         end
