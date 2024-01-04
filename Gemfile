@@ -8,7 +8,7 @@ gem 'jruby-openssl',	'~> 0.7', platforms: :jruby
 # gem 'fake_io', '~> 0.1', github: 'postmodern/fake_io.rb',
 #                          branch: 'main'
 
-# gem 'command_kit', '~> 0.4', github: 'postmodern/command_kit.rb',
+# gem 'command_kit', '~> 0.5', github: 'postmodern/command_kit.rb',
 #                              branch: 'main'
 
 # Ronin dependencies
@@ -21,8 +21,8 @@ gem 'jruby-openssl',	'~> 0.7', platforms: :jruby
 # gem 'ronin-post_ex',  '~> 0.1', github: 'ronin-rb/ronin-post_ex',
 #                                 branch: 'main'
 
-# gem 'ronin-core',     '~> 0.1', github: 'ronin-rb/ronin-core',
-#                                 branch: 'main'
+gem 'ronin-core', '~> 0.2', github: 'ronin-rb/ronin-core',
+                            branch: '0.2.0'
 
 # gem 'ronin-repos',    '~> 0.1', github: 'ronin-rb/ronin-repos',
 #                                 branch: 'main'

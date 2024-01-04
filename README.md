@@ -100,6 +100,7 @@ Arguments:
 
 Commands:
     build
+    completion
     encode
     encoder
     encoders
@@ -331,7 +332,7 @@ end
 * [ronin-support] ~> 1.0
 * [ronin-code-asm] ~> 1.0
 * [ronin-post_ex] ~> 0.1
-* [ronin-core] ~> 0.1
+* [ronin-core] ~> 0.2
 * [ronin-repos] ~> 0.1
 
 ## Install

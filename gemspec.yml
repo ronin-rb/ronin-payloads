@@ -25,6 +25,7 @@ generated_files:
   - data/completions/ronin-payloads
   - man/ronin-payloads.1
   - man/ronin-payloads-build.1
+  - man/ronin-payloads-completion.1
   - man/ronin-payloads-encode.1
   - man/ronin-payloads-encoder.1
   - man/ronin-payloads-encoders.1
@@ -40,7 +41,7 @@ dependencies:
   ronin-support: ~> 1.0
   ronin-code-asm: ~> 1.0
   ronin-post_ex: ~> 0.1
-  ronin-core: ~> 0.1
+  ronin-core: ~> 0.2
   ronin-repos: ~> 0.1
 
 development_dependencies:
