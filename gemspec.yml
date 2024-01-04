@@ -22,6 +22,7 @@ metadata:
   rubygems_mfa_required: 'true'
 
 generated_files:
+  - data/completions/ronin-payloads
   - man/ronin-payloads.1
   - man/ronin-payloads-build.1
   - man/ronin-payloads-encode.1
