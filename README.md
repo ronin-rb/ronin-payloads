@@ -374,7 +374,7 @@ malicious software (malware) or malicious in nature.
 
 ## License
 
-Copyright (c) 2007-2023 Hal Brodigan (postmodern.mod3 at gmail.com)
+Copyright (c) 2007-2024 Hal Brodigan (postmodern.mod3 at gmail.com)
 
 ronin-payloads is free software: you can redistribute it and/or modify
 it under the terms of the GNU Lesser General Public License as published
