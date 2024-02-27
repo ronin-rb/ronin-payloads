@@ -47,6 +47,9 @@ research and development.
     * Zsh
   * Java
     * Reverse shell
+  * JavaScript
+    * Nashorn
+      * Reverse shell
   * Groovy
     * Reverse shell
   * PHP
@@ -132,6 +135,7 @@ $ ronin-payloads list
   cmd/zsh/reverse_shell
   groovy/reverse_shell
   java/reverse_shell
+  js/nashorn/reverse_shell
   php/cmd_exec
   php/download_exec
   shellcode/freebsd/x86/bind_shell
