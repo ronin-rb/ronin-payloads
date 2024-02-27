@@ -53,6 +53,7 @@ module Ronin
 
           javascript: 'JavaScript',
           node_js:    'Node.js',
+          nashorn:    'Nashorn',
 
           sql:  'SQL',
           html: 'HTML',

@@ -30,7 +30,7 @@ research and development.
 * Supports defining Payloads as plain old Ruby classes.
 * Provides base classes for a variety of languages and payload types
   (ASM, Shellcode, C, Go, Rust, Java, Groovy, JSP, PHP, Python, Ruby, NodeJS,
-  Shell, PowerShell, SQL, XML, HTML, URL).
+  Nashorn, Shell, PowerShell, SQL, XML, HTML, URL).
 * Supports cross compiling C payloads to different architectures and OSes.
 * Provides built-in common payloads:
   * Command-line reverse shells:
