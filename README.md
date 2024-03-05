@@ -48,6 +48,8 @@ research and development.
   * Java
     * Reverse shell
   * JavaScript
+    * Node.js
+      * Reverse shell
     * Nashorn
       * Reverse shell
   * Groovy
@@ -136,6 +138,7 @@ $ ronin-payloads list
   groovy/reverse_shell
   java/reverse_shell
   js/nashorn/reverse_shell
+  js/node/reverse_shell
   php/cmd_exec
   php/download_exec
   shellcode/freebsd/x86/bind_shell
