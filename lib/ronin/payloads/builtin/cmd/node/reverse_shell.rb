@@ -25,7 +25,7 @@ require 'ronin/payloads/mixins/reverse_shell'
 module Ronin
   module Payloads
     module CMD
-      module NodeJS
+      module Node
         #
         # A basic `node` (Node.js) reverse shell command.
         #

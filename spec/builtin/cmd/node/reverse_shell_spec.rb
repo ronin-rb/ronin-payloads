@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'ronin/payloads/builtin/cmd/node/reverse_shell'
 
-describe Ronin::Payloads::CMD::NodeJS::ReverseShell do
+describe Ronin::Payloads::CMD::Node::ReverseShell do
   it "must inherit from Ronin::Payloads::CommandPayload" do
     expect(described_class).to be < Ronin::Payloads::CommandPayload
   end
