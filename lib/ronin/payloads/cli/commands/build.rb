@@ -42,7 +42,7 @@ module Ronin
         #         --format                     Formats the outputed data
         #     -p, --param NAME=VALUE           Sets a param
         #     -o, --output FILE                Output file to write the built payload to
-        #     -e, --encoder ENCODER            Adds the encoder to the payload
+        #     -E, --encoder ENCODER            Adds the encoder to the payload
         #         --encoder-param ENCODER.NAME=VALUE
         #                                      Sets a param for one of the encoders
         #     -D, --debug                      Enables debugging messages
@@ -65,7 +65,7 @@ module Ronin
                           },
                           desc: 'Output file to write the built payload to'
 
-          option :encoder, short: '-e',
+          option :encoder, short: '-E',
                            value: {
                              type:  String,
                              usage: 'ENCODER'

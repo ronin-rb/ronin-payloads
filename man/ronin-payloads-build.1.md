@@ -31,7 +31,7 @@ Loads and builds a payload.
 `-o`, `--output` *FILE*
 : Writes the built payload to the given file instead of printing it to stdout.
 
-`-e`, `--encoder` *ENCODER*
+`-E`, `--encoder` *ENCODER*
 : Adds the encoder to the payload's encoder pipeline.
 
 `--encoder-param` *ENCODER*`.`*NAME*`.`*VALUE*

@@ -5,7 +5,7 @@ ronin-payloads encode*-E:
   - $(ronin-payloads encoders)
 ronin-payloads encode*--encoder:
   - $(ronin-payloads encoders)
-ronin-payloads build*-e:
+ronin-payloads build*-E:
   - $(ronin-payloads encoders)
 ronin-payloads build*--encoder:
   - $(ronin-payloads encoders)
