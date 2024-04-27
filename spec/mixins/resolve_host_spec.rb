@@ -13,9 +13,9 @@ describe Ronin::Payloads::Mixins::ResolveHost do
     end
   end
 
-  let(:host) { 'example.com' }
-  let(:ipv4_addresses) { %w[93.184.216.34] }
-  let(:ipv6_addresses) { %w[2606:2800:220:1:248:1893:25c8:1946] }
+  let(:host)           { 'icann.org' }
+  let(:ipv4_addresses) { %w[192.0.43.7] }
+  let(:ipv6_addresses) { %w[2001:500:88:200::7] }
   let(:ip_addresses)   { ipv4_addresses + ipv6_addresses }
   let(:addresses)      { Resolv.getaddresses(host) }
 
