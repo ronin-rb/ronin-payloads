@@ -1,4 +1,14 @@
 ---
+ronin-payloads encoder:
+  - $(ronin-payloads encoders)
+ronin-payloads encode*-E:
+  - $(ronin-payloads encoders)
+ronin-payloads encode*--encoder:
+  - $(ronin-payloads encoders)
+ronin-payloads build*-e:
+  - $(ronin-payloads encoders)
+ronin-payloads build*--encoder:
+  - $(ronin-payloads encoders)
 ronin-payloads show:
   - $(ronin-payloads list)
 ronin-payloads info:
