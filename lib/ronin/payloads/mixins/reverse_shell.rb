@@ -43,9 +43,11 @@ module Ronin
         #
         def self.included(payload)
           payload.param :host, String, required: true,
+                                       default:  '0.0.0.0',
                                        desc:     'The host to connect back to'
 
           payload.param :port, Integer, required: true,
+                                        default:  4444,
                                         desc:     'The port to connect back to'
         end
 
