@@ -72,7 +72,7 @@ module Ronin
         # additional pre-launch steps.
         #
         def perform_prelaunch
-          @server = TCPServer.new(port,host)
+          @server = TCPServer.new(host,port)
           @server.listen(1)
 
           super

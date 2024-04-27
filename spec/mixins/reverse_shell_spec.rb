@@ -52,7 +52,7 @@ describe Ronin::Payloads::Mixins::ReverseShell do
     let(:server_socket) { double('TCPServer') }
 
     it "must create a new TCPServer that listens on #host and #port and set @server" do
-      expect(TCPServer).to receive(:new).with(port,host).and_return(server_socket)
+      expect(TCPServer).to receive(:new).with(host,port).and_return(server_socket)
       expect(server_socket).to receive(:listen).with(1)
 
       subject.perform_prelaunch
