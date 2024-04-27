@@ -18,6 +18,7 @@ describe Ronin::Payloads::Mixins::ReverseShell do
       expect(subject.params[:host]).to_not be_nil
       expect(subject.params[:host].type).to be_kind_of(Ronin::Core::Params::Types::String)
       expect(subject.params[:host].required?).to be(true)
+      expect(subject.params[:host].default).to eq('0.0.0.0')
       expect(subject.params[:host].desc).to eq('The host to connect back to')
     end
 
@@ -25,6 +26,7 @@ describe Ronin::Payloads::Mixins::ReverseShell do
       expect(subject.params[:port]).to_not be_nil
       expect(subject.params[:port].type).to be_kind_of(Ronin::Core::Params::Types::Integer)
       expect(subject.params[:port].required?).to be(true)
+      expect(subject.params[:port].default).to eq(4444)
       expect(subject.params[:port].desc).to eq('The port to connect back to')
     end
   end
@@ -40,11 +42,27 @@ describe Ronin::Payloads::Mixins::ReverseShell do
     it "must return the 'host' param value" do
       expect(subject.host).to eq(host)
     end
+
+    context "when no 'host' param value is given" do
+      subject { payload_class.new }
+
+      it "must default to '0.0.0.0'" do
+        expect(subject.host).to eq('0.0.0.0')
+      end
+    end
   end
 
   describe "#port" do
     it "must return the 'port' param value" do
       expect(subject.port).to eq(port)
+    end
+
+    context "when no 'port' param value is given" do
+      subject { payload_class.new }
+
+      it "must default to 4444" do
+        expect(subject.port).to eq(4444)
+      end
     end
   end
 
