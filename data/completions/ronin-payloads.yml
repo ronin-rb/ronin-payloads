@@ -1,0 +1,9 @@
+---
+ronin-payloads show:
+  - $(ronin-payloads list)
+ronin-payloads info:
+  - $(ronin-payloads list)
+ronin-payloads build:
+  - $(ronin-payloads list)
+ronin-payloads launch:
+  - $(ronin-payloads list)

@@ -37,5 +37,6 @@ require 'command_kit/completion/task'
 CommandKit::Completion::Task.new(
   class_file:  'ronin/payloads/cli',
   class_name:  'Ronin::Payloads::CLI',
+  input_file:  'data/completions/ronin-payloads.yml',
   output_file: 'data/completions/ronin-payloads'
 )
