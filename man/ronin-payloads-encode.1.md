@@ -18,7 +18,7 @@ Encodes data using one or more encoders.
 `-F`, `--format` `hex`\|`c`\|`shell`\|`powershell`\|`xml`\|`html`\|`js`\|`ruby`
   Formats the encoded data.
 
-`-E`, `--encode` *ENCODER*
+`-E`, `--encoder` *ENCODER*
   Loads the encoder with the given name.
 
 `-p`, `--param` *ENCODER*`.`*NAME*`=`*VALUE*
