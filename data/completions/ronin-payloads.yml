@@ -1,18 +1,15 @@
 ---
 ronin-payloads encoder:
   - $(ronin-payloads encoders)
-ronin-payloads encode*-E:
+ronin-payloads encode*--encoder: &encode_encoder
   - $(ronin-payloads encoders)
-ronin-payloads encode*--encoder:
+ronin-payloads encode*-E: *encode_encoder
+ronin-payloads build*--encoder: &build_encoder
   - $(ronin-payloads encoders)
-ronin-payloads build*-E:
-  - $(ronin-payloads encoders)
-ronin-payloads build*--encoder:
-  - $(ronin-payloads encoders)
-ronin-payloads show:
+ronin-payloads build*-E: *build_encoder
+ronin-payloads show: &show
   - $(ronin-payloads list)
-ronin-payloads info:
-  - $(ronin-payloads list)
+ronin-payloads info: *show
 ronin-payloads build:
   - $(ronin-payloads list)
 ronin-payloads launch:
