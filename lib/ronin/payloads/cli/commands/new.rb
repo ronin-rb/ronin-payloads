@@ -99,8 +99,11 @@ module Ronin
           #   The path to the new payload file.
           #
           def run(file)
+            @directory  = File.dirname(file)
             @file_name  = File.basename(file,File.extname(file))
             @class_name = CommandKit::Inflector.camelize(@file_name)
+
+            mkdir @directory unless @directory == '.'
 
             erb "payload.rb.erb", file
             chmod '+x', file
