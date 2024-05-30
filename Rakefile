@@ -40,3 +40,5 @@ CommandKit::Completion::Task.new(
   input_file:  'data/completions/ronin-payloads.yml',
   output_file: 'data/completions/ronin-payloads'
 )
+
+task :setup => %w[man command_kit:completion]
