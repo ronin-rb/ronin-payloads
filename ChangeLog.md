@@ -1,3 +1,20 @@
+### 0.1.5 / 2024-06-19
+
+* Fixed order of arguments passed to `TCPServer.new` in
+  {Ronin::Payloads::Mixins::ReverseShell#perform_prelaunch} which was preventing
+  reverse shells from opening a local TCP server socket.
+
+#### Payloads
+
+* Fixed the module namespace for the {Ronin::Payloads::CMD::Node::ReverseShell}
+  payload (aka `cmd/node/reverse_shell`).
+
+#### CLI
+
+* Automatically create the parent directory of the new payload file,
+  if it doesn't exist, when running `ronin-payloads new path/to/new_payload.rb`.
+* Fixed typo in `ronin-payloads encode` man-page for the `-E,--encoder` option.
+
 ### 0.1.4 / 2023-09-19
 
 #### CLI
