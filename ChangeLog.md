@@ -1,3 +1,48 @@
+### 0.2.0 / 2024-XX-XX
+
+* Added the {Ronin::Payloads::GroovyPayload} payload class.
+* Added the {Ronin::Payloads::NashornPayload} payload class.
+* Added the {Ronin::Payloads::Mixins::CCompiler} mixin module.
+* Added support for using cross-compilers to
+  {Ronin::Payloads::Mixins::CCompiler}.
+* Added the `libs:` keyword argument to
+  {Ronin::Payloads::Mixins::CCompiler#compile_c}.
+* Alias `compile` to {Ronin::Payloads::Mixins::TypeScript#compile_ts compile_ts}
+  in {Ronin::Payloads::Mixins::TypeScript}.
+* Alias `compile` to {Ronin::Payloads::JavaPayload#compile_java compile_java}
+  in {Ronin::Payloads::JavaPayload}
+* Alias `compile` to {Ronin::Payloads::Mixins::CCompiler#compile_c}.
+* Alias `compile` to {Ronin::Payloads::GoPayload#compile_go compile_go} in
+  {Ronin::Payloads::GoPayload#compile_go}.
+* Alias `compile` to {Ronin::Payloads::RustPayload#compile_rust compile_rust} in
+  {Ronin::Payloads::RustPayload#compile_rust}.
+* Default the `host` param to `0.0.0.0` and the `port` param to `4444` in
+  {Ronin::Payloads::Mixins::ReverseShell}.
+
+#### Payloads
+
+* Added the `php/download_exec` payload.
+* Added the `cmd/netcat/bindshell` payload.
+* Added the `cmd/ping` payload.
+* Added the `cmd/touch` payload.
+* Added the `test/cmd` payload.
+* Added the `test/url` payload.
+* Added the `groovy/reverse_shell` payload.
+* Added the `cmd/windows/download` payload.
+* Added the `cmd/zsh/reverse_shell` payload.
+* Added the `bin/windows/reverse_shell` payload.
+* Added the `bin/unix/reverse_shell` payload.
+* Added the `js/nashorn/reverse_shell` payload.
+* Added the `js/node/reverse_shell` payload.
+
+#### CLI
+
+* Added the `ronin-payloads completion` command to install shell completion
+  files for all `ronin-payloads` commands for Bash and Zsh shells.
+* The `ronin-payloads show` command can now display an example
+  `ronin-payloads build` command for the given payload.
+* Renamed the `-e` option flag to `-E` in `ronin-payloads build`.
+
 ### 0.1.6 / 2024-07-01
 
 #### Payloads
