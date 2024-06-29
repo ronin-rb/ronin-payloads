@@ -126,13 +126,17 @@ $ ronin-payloads list
   cmd/awk/reverse_shell
   cmd/bash/reverse_shell
   cmd/lua/reverse_shell
+  cmd/netcat/bind_shell
   cmd/node/reverse_shell
   cmd/openssl/reverse_shell
   cmd/perl/reverse_shell
   cmd/php/reverse_shell
+  cmd/ping
   cmd/powershell/reverse_shell
   cmd/python/reverse_shell
   cmd/ruby/reverse_shell
+  cmd/sleep
+  cmd/touch
   cmd/windows/download
   cmd/zsh/reverse_shell
   groovy/reverse_shell
@@ -142,31 +146,33 @@ $ ronin-payloads list
   php/cmd_exec
   php/download_exec
   shellcode/freebsd/x86/bind_shell
-  shellcode/freebsd/x86/execve
+  shellcode/freebsd/x86/exec_shell
   shellcode/freebsd/x86/reverse_shell
-  shellcode/freebsd/x86_64/execve
+  shellcode/freebsd/x86_64/exec_shell
   shellcode/linux/arm/bind_shell
-  shellcode/linux/arm/execve
+  shellcode/linux/arm/exec_shell
   shellcode/linux/arm/reverse_shell
   shellcode/linux/mips/bind_shell
-  shellcode/linux/mips/execve
+  shellcode/linux/mips/exec_shell
   shellcode/linux/mips/reverse_shell
-  shellcode/linux/ppc/execve
+  shellcode/linux/ppc/exec_shell
   shellcode/linux/ppc/reverse_shell
   shellcode/linux/x86/bind_shell
-  shellcode/linux/x86/execve
+  shellcode/linux/x86/exec_shell
   shellcode/linux/x86/reverse_shell
   shellcode/linux/x86_64/bind_shell
-  shellcode/linux/x86_64/execve
+  shellcode/linux/x86_64/exec_shell
   shellcode/linux/x86_64/reverse_shell
-  shellcode/macos/x86_64/execve
+  shellcode/macos/x86_64/exec_shell
   shellcode/macos/x86_64/reverse_shell
-  shellcode/netbsd/x86/execve
+  shellcode/netbsd/x86/exec_shell
   shellcode/netbsd/x86/reverse_shell
   shellcode/openbsd/x86/bind_shell
-  shellcode/openbsd/x86/execve
+  shellcode/openbsd/x86/exec_shell
   shellcode/windows/x86_64/cmd
+  test/cmd
   test/open_redirect
+  test/url
   test/xss
 ```
 
