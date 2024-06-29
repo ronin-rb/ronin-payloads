@@ -37,11 +37,14 @@ module Ronin
           Simply calls `alert(1)`.
         DESC
 
+        param :javascript, default: 'alert(1)',
+                           desc:    'The JavaScript to inject'
+
         #
         # Builds the XSS test payload.
         #
         def build
-          @payload = 'alert(1)'
+          @payload = params[:javascript]
         end
 
       end
