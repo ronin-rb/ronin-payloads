@@ -15,15 +15,25 @@ describe Ronin::Payloads::Test::CMD do
   end
 
   describe "#build" do
-    let(:command) { 'echo lol' }
+    context "when the command param is not set" do
+      before { subject.build }
 
-    before do
-      subject.params[:command] = command
-      subject.build
+      it "must set #payload to 'echo PWNED'" do
+        expect(subject.payload).to eq(%{echo PWNED})
+      end
     end
 
-    it "must set #payload to the command param" do
-      expect(subject.payload).to eq(command)
+    context "when the command param is set" do
+      let(:command) { 'echo lol' }
+
+      before do
+        subject.params[:command] = command
+        subject.build
+      end
+
+      it "must set #payload to the command param" do
+        expect(subject.payload).to eq(command)
+      end
     end
   end
 end

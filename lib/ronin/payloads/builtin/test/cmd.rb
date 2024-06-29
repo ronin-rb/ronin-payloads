@@ -40,7 +40,7 @@ module Ronin
           command payload.
         DESC
 
-        param :command, String, required: true,
+        param :command, String, default: %{echo PWNED},
                                 desc:    'The command to execute'
 
         def build
