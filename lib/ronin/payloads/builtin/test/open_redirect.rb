@@ -37,11 +37,14 @@ module Ronin
           Simply redirects to https://google.com/.
         DESC
 
+        param :url, default: 'https://google.com/',
+                    desc:    'The open redirect URL'
+
         #
         # Builds the Open Redirect test payload.
         #
         def build
-          @payload = 'https://google.com/'
+          @payload = params[:url]
         end
 
       end

@@ -15,10 +15,25 @@ describe Ronin::Payloads::Test::XSS do
   end
 
   describe "#build" do
-    before { subject.build }
+    context "when the javascript param is not set" do
+      before { subject.build }
 
-    it "must set #payload to 'alert(1)'" do
-      expect(subject.payload).to eq("alert(1)")
+      it "must set #payload to 'alert(1)'" do
+        expect(subject.payload).to eq("alert(1)")
+      end
+    end
+
+    context "when the javascript param is set" do
+      let(:javascript) { "alert('XSS');" }
+
+      before do
+        subject.params[:javascript] = javascript
+        subject.build
+      end
+
+      it "must set #payload to the javascript param" do
+        expect(subject.payload).to eq(javascript)
+      end
     end
   end
 end

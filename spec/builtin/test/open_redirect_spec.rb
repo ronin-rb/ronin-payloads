@@ -15,10 +15,25 @@ describe Ronin::Payloads::Test::OpenRedirect do
   end
 
   describe "#build" do
-    before { subject.build }
+    context "when the url param is not set" do
+      before { subject.build }
 
-    it "must set #payload to 'https://google.com/'" do
-      expect(subject.payload).to eq("https://google.com/")
+      it "must set #payload to 'https://google.com/'" do
+        expect(subject.payload).to eq("https://google.com/")
+      end
+    end
+
+    context "when the url param is set" do
+      let(:url) { 'https://example.com/' }
+
+      before do
+        subject.params[:url] = url
+        subject.build
+      end
+
+      it "must set #payload to the url param" do
+        expect(subject.payload).to eq(url)
+      end
     end
   end
 end
