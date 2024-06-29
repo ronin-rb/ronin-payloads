@@ -40,7 +40,7 @@ module Ronin
           URL payload.
         DESC
 
-        param :url, String, required: true,
+        param :url, String, default: 'http://google.com',
                             desc:    'The custom URL'
 
         def build
