@@ -1,3 +1,10 @@
+### 0.1.6 / 2024-07-01
+
+#### Built-in Payloads
+
+* Fixed `incompatible character encodings: UTF-8 and ASCII-8BIT` exceptions when
+  building shellcode payloads with certain IP addresses or port numbers.
+
 ### 0.1.5 / 2024-06-19
 
 * Fixed order of arguments passed to `TCPServer.new` in
