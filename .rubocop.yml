@@ -40,3 +40,6 @@ Style/RedundantLineContinuation:
 Layout/LineContinuationSpacing:
   Exclude:
     - 'lib/ronin/payloads/builtin/shellcode/**/*.rb'
+Style/StringConcatenation:
+  Exclude:
+    - 'lib/ronin/payloads/builtin/shellcode/**/*.rb'

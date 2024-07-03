@@ -213,6 +213,7 @@ $ git push
 Define a `/bin/sh` shellcode payload:
 
 ```ruby
+# encoding: ASCII-8BIT
 require 'ronin/payloads/shellcode_payload'
 
 module Ronin

