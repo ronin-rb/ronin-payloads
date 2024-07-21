@@ -1,4 +1,4 @@
-### 0.2.0 / 2024-XX-XX
+### 0.2.0 / 2024-07-22
 
 * Added the {Ronin::Payloads::GroovyPayload} payload class.
 * Added the {Ronin::Payloads::NashornPayload} payload class.
