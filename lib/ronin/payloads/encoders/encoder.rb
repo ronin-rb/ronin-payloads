@@ -112,6 +112,23 @@ module Ronin
           raise(NotImplementedError,"#{self.class}##{__method__} was not implemented")
         end
 
+        #
+        # Returns the type or kind of encoder payload.
+        #
+        # @return [Symbol]
+        #
+        # @note
+        #   This is used internally to map an encoder payload class to a
+        #   printable type.
+        #
+        # @api private
+        #
+        # @since 0.3.0
+        #
+        def self.encoder_type
+          :encoder
+        end
+
       end
     end
   end

@@ -28,6 +28,24 @@ module Ronin
       # Base-class for all PowerShell encoders.
       #
       class PowerShellEncoder < Encoder
+
+        #
+        # Returns the type or kind of encoder payload.
+        #
+        # @return [Symbol]
+        #
+        # @note
+        #   This is used internally to map an encoder payload class to a
+        #   printable type.
+        #
+        # @api private
+        #
+        # @since 0.3.0
+        #
+        def self.encoder_type
+          :powershell
+        end
+
       end
     end
   end
