@@ -59,4 +59,12 @@ describe Ronin::Payloads::Encoders::Encoder do
       }.to raise_error(NotImplementedError,"#{described_class}#encode was not implemented")
     end
   end
+
+  describe ".encoder_type" do
+    subject { described_class }
+
+    it "must return :encoder" do
+      expect(subject.encoder_type).to eq(:encoder)
+    end
+  end
 end
