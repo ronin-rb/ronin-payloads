@@ -19,7 +19,7 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/payloads/exceptions'
+require_relative '../exceptions'
 
 module Ronin
   module Payloads

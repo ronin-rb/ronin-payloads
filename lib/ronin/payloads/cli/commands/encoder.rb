@@ -19,10 +19,11 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/payloads/cli/command'
-require 'ronin/payloads/cli/encoder_methods'
-require 'ronin/payloads/metadata/arch'
-require 'ronin/payloads/metadata/os'
+require_relative '../command'
+require_relative '../encoder_methods'
+require_relative '../../metadata/arch'
+require_relative '../../metadata/os'
+
 require 'ronin/core/cli/printing/metadata'
 require 'ronin/core/cli/printing/arch'
 require 'ronin/core/cli/printing/os'

@@ -19,10 +19,10 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/payloads/shellcode_payload'
-require 'ronin/payloads/mixins/bind_shell'
-require 'ronin/payloads/mixins/resolve_host'
-require 'ronin/payloads/mixins/network'
+require_relative '../shellcode_payload'
+require_relative '../mixins/bind_shell'
+require_relative '../mixins/resolve_host'
+require_relative '../mixins/network'
 
 module Ronin
   module Payloads

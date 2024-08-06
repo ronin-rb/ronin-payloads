@@ -19,8 +19,8 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/payloads/cli/command'
-require 'ronin/payloads/cli/ruby_shell'
+require_relative '../command'
+require_relative '../ruby_shell'
 
 module Ronin
   module Payloads

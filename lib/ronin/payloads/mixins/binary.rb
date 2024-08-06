@@ -19,7 +19,8 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/payloads/exceptions'
+require_relative '../exceptions'
+
 require 'ronin/support/binary/ctypes'
 
 module Ronin

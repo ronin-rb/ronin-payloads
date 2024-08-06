@@ -19,8 +19,9 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/payloads/command_payload'
-require 'ronin/payloads/mixins/reverse_shell'
+require_relative '../../../command_payload'
+require_relative '../../../mixins/reverse_shell'
+
 require 'ronin/support/network/dns'
 
 module Ronin

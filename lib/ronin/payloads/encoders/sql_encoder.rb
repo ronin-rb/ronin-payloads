@@ -19,7 +19,7 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/payloads/encoders/encoder'
+require_relative 'encoder'
 
 module Ronin
   module Payloads

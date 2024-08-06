@@ -19,7 +19,7 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/payloads/shellcode_payload'
+require_relative '../shellcode_payload'
 
 module Ronin
   module Payloads

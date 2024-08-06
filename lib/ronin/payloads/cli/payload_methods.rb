@@ -19,8 +19,9 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/payloads/registry'
-require 'ronin/payloads/exceptions'
+require_relative '../registry'
+require_relative '../exceptions'
+
 require 'ronin/core/params/exceptions'
 
 module Ronin

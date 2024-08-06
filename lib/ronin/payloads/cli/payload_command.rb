@@ -19,8 +19,8 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/payloads/cli/command'
-require 'ronin/payloads/cli/payload_methods'
+require_relative 'command'
+require_relative 'payload_methods'
 
 module Ronin
   module Payloads

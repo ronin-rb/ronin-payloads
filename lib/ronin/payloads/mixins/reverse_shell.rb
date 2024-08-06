@@ -19,7 +19,8 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/payloads/mixins/post_ex'
+require_relative 'post_ex'
+
 require 'ronin/post_ex/sessions/reverse_shell'
 
 require 'socket'

@@ -19,9 +19,9 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/payloads/registry'
-require 'ronin/payloads/payload'
-require 'ronin/payloads/binary_payload'
-require 'ronin/payloads/asm_payload'
-require 'ronin/payloads/shellcode_payload'
-require 'ronin/payloads/version'
+require_relative 'payloads/registry'
+require_relative 'payloads/payload'
+require_relative 'payloads/binary_payload'
+require_relative 'payloads/asm_payload'
+require_relative 'payloads/shellcode_payload'
+require_relative 'payloads/version'

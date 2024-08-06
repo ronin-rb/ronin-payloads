@@ -19,9 +19,10 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/payloads/cli/payload_command'
-require 'ronin/payloads/cli/format_option'
-require 'ronin/payloads/cli/encoder_methods'
+require_relative '../payload_command'
+require_relative '../format_option'
+require_relative '../encoder_methods'
+
 require 'ronin/core/cli/options/param'
 
 module Ronin

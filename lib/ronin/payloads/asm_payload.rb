@@ -19,10 +19,10 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/payloads/binary_payload'
-require 'ronin/payloads/metadata/arch'
-require 'ronin/payloads/metadata/os'
-require 'ronin/payloads/exceptions'
+require_relative 'binary_payload'
+require_relative 'metadata/arch'
+require_relative 'metadata/os'
+require_relative 'exceptions'
 require 'ronin/code/asm/program'
 
 require 'tempfile'

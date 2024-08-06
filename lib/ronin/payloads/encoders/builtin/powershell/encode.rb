@@ -19,7 +19,8 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/payloads/encoders/powershell_encoder'
+require_relative '../../powershell_encoder'
+
 require 'ronin/support/encoding/powershell'
 
 module Ronin

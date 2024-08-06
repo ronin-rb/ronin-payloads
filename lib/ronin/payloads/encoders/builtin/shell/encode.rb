@@ -19,7 +19,8 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/payloads/encoders/shell_encoder'
+require_relative '../../shell_encoder'
+
 require 'ronin/support/encoding/shell'
 
 module Ronin

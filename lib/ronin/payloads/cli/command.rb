@@ -19,8 +19,9 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/payloads/root'
 require 'ronin/core/cli/command'
+
+require_relative '../root'
 
 module Ronin
   module Payloads

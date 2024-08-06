@@ -19,7 +19,8 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/payloads/encoders/registry'
+require_relative 'registry'
+
 require 'ronin/core/metadata/id'
 require 'ronin/core/metadata/authors'
 require 'ronin/core/metadata/summary'

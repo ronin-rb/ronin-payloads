@@ -19,13 +19,14 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/payloads/encoders/registry'
-require 'ronin/payloads/encoders/html_encoder'
-require 'ronin/payloads/encoders/javascript_encoder'
-require 'ronin/payloads/encoders/shell_encoder'
-require 'ronin/payloads/encoders/powershell_encoder'
-require 'ronin/payloads/encoders/sql_encoder'
-require 'ronin/payloads/encoders/exceptions'
+require_relative '../encoders/registry'
+require_relative '../encoders/html_encoder'
+require_relative '../encoders/javascript_encoder'
+require_relative '../encoders/shell_encoder'
+require_relative '../encoders/powershell_encoder'
+require_relative '../encoders/sql_encoder'
+require_relative '../encoders/exceptions'
+
 require 'ronin/core/params/exceptions'
 
 module Ronin

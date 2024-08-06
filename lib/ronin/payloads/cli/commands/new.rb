@@ -16,9 +16,9 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/payloads/cli/command'
-require 'ronin/payloads/cli/generator/payload_types'
-require 'ronin/payloads/root'
+require_relative '../command'
+require_relative '../generator/payload_types'
+require_relative '../../root'
 
 require 'ronin/core/cli/generator'
 require 'ronin/core/cli/generator/options/author'

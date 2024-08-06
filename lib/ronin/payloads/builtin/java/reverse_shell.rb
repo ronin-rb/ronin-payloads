@@ -19,10 +19,10 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/payloads/java_payload'
-require 'ronin/payloads/mixins/reverse_shell'
-require 'ronin/payloads/mixins/build_dir'
-require 'ronin/payloads/mixins/erb'
+require_relative '../../java_payload'
+require_relative '../../mixins/reverse_shell'
+require_relative '../../mixins/build_dir'
+require_relative '../../mixins/erb'
 
 require 'tmpdir'
 

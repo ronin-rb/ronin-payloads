@@ -19,8 +19,8 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/payloads/groovy_payload'
-require 'ronin/payloads/mixins/reverse_shell'
+require_relative '../../groovy_payload'
+require_relative '../../mixins/reverse_shell'
 
 module Ronin
   module Payloads
