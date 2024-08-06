@@ -20,12 +20,6 @@
 #
 
 require_relative '../encoders/registry'
-require_relative '../encoders/html_encoder'
-require_relative '../encoders/javascript_encoder'
-require_relative '../encoders/shell_encoder'
-require_relative '../encoders/powershell_encoder'
-require_relative '../encoders/sql_encoder'
-require_relative '../encoders/xml_encoder'
 require_relative '../encoders/exceptions'
 
 require 'ronin/core/params/exceptions'
@@ -37,22 +31,27 @@ module Ronin
       # Common methods for handling encoders.
       #
       module EncoderMethods
+        # Known payload encoder types and their printable names.
+        ENCODER_TYPES = {
+          encoder:    'Custom',
+          html:       'HTML',
+          javascript: 'JavaScript',
+          powershell: 'PowerShell',
+          shell:      'Shell',
+          sql:        'SQL',
+          xml:        'XML'
+        }
+
         #
         # Returns the encoder type for the encoder class.
         #
         # @param [Class<Encoders::Encoder>] encoder_class
         #   The encoder class.
         #
-        # @return [String, nil]
+        # @return [String]
         #
         def encoder_type(encoder_class)
-          if    encoder_class < Encoders::HTMLEncoder       then 'html'
-          elsif encoder_class < Encoders::JavaScriptEncoder then 'javascript'
-          elsif encoder_class < Encoders::ShellEncoder      then 'shell'
-          elsif encoder_class < Encoders::PowerShellEncoder then 'powershell'
-          elsif encoder_class < Encoders::SQLEncoder        then 'sql'
-          elsif encoder_class < Encoders::XMLEncoder        then 'xml'
-          end
+          ENCODER_TYPES.fetch(encoder_class.encoder_type,'Unknown')
         end
 
         #
