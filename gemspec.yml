@@ -8,7 +8,7 @@ description:
 
   It's like `msfvenom` but simpler and more modular.
 
-license: LGPL-3.0
+license: LGPL-3.0-or-later
 authors: Postmodern
 email: postmodern.mod3@gmail.com
 homepage: https://ronin-rb.dev/
