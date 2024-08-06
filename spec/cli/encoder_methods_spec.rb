@@ -2,6 +2,14 @@ require 'spec_helper'
 require 'ronin/payloads/cli/encoder_methods'
 require 'ronin/payloads/cli/command'
 
+require 'ronin/payloads/encoders/encoder'
+require 'ronin/payloads/encoders/html_encoder'
+require 'ronin/payloads/encoders/javascript_encoder'
+require 'ronin/payloads/encoders/powershell_encoder'
+require 'ronin/payloads/encoders/shell_encoder'
+require 'ronin/payloads/encoders/sql_encoder'
+require 'ronin/payloads/encoders/xml_encoder'
+
 describe Ronin::Payloads::CLI::EncoderMethods do
   module TestEncoderMethods
     class TestCommand < Ronin::Payloads::CLI::Command
@@ -13,6 +21,19 @@ describe Ronin::Payloads::CLI::EncoderMethods do
   subject { command_class.new }
 
   describe "#encoder_type" do
+    context "when given an Encoder class" do
+      module TestEncoderMethods
+        class TestEncoder < Ronin::Payloads::Encoders::Encoder
+        end
+      end
+
+      let(:klass) { TestEncoderMethods::TestEncoder }
+
+      it "must return 'Custom'" do
+        expect(subject.encoder_type(klass)).to eq('Custom')
+      end
+    end
+
     context "when given a HTMLEncoder class" do
       module TestEncoderMethods
         class TestHTMLEncoder < Ronin::Payloads::Encoders::HTMLEncoder
@@ -21,8 +42,8 @@ describe Ronin::Payloads::CLI::EncoderMethods do
 
       let(:klass) { TestEncoderMethods::TestHTMLEncoder }
 
-      it "must return 'html'" do
-        expect(subject.encoder_type(klass)).to eq('html')
+      it "must return 'HTML'" do
+        expect(subject.encoder_type(klass)).to eq('HTML')
       end
     end
 
@@ -34,8 +55,8 @@ describe Ronin::Payloads::CLI::EncoderMethods do
 
       let(:klass) { TestEncoderMethods::TestJavaScriptEncoder }
 
-      it "must return 'javascript'" do
-        expect(subject.encoder_type(klass)).to eq('javascript')
+      it "must return 'JavaScript'" do
+        expect(subject.encoder_type(klass)).to eq('JavaScript')
       end
     end
 
@@ -47,8 +68,8 @@ describe Ronin::Payloads::CLI::EncoderMethods do
 
       let(:klass) { TestEncoderMethods::TestShellEncoder }
 
-      it "must return 'shell'" do
-        expect(subject.encoder_type(klass)).to eq('shell')
+      it "must return 'Shell'" do
+        expect(subject.encoder_type(klass)).to eq('Shell')
       end
     end
 
@@ -60,8 +81,8 @@ describe Ronin::Payloads::CLI::EncoderMethods do
 
       let(:klass) { TestEncoderMethods::TestPowerShellEncoder }
 
-      it "must return 'powershell'" do
-        expect(subject.encoder_type(klass)).to eq('powershell')
+      it "must return 'PowerShell'" do
+        expect(subject.encoder_type(klass)).to eq('PowerShell')
       end
     end
 
@@ -73,8 +94,8 @@ describe Ronin::Payloads::CLI::EncoderMethods do
 
       let(:klass) { TestEncoderMethods::TestSQLEncoder }
 
-      it "must return 'sql'" do
-        expect(subject.encoder_type(klass)).to eq('sql')
+      it "must return 'SQL'" do
+        expect(subject.encoder_type(klass)).to eq('SQL')
       end
     end
 
@@ -86,8 +107,8 @@ describe Ronin::Payloads::CLI::EncoderMethods do
 
       let(:klass) { TestEncoderMethods::TestXMLEncoder }
 
-      it "must return 'xml'" do
-        expect(subject.encoder_type(klass)).to eq('xml')
+      it "must return 'XML'" do
+        expect(subject.encoder_type(klass)).to eq('XML')
       end
     end
   end
