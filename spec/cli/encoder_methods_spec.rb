@@ -65,13 +65,13 @@ describe Ronin::Payloads::CLI::EncoderMethods do
       end
     end
 
-    context "when given a SQLgEncoder class" do
+    context "when given a SQLEncoder class" do
       module TestEncoderMethods
-        class TestSQLgEncoder < Ronin::Payloads::Encoders::SQLEncoder
+        class TestSQLEncoder < Ronin::Payloads::Encoders::SQLEncoder
         end
       end
 
-      let(:klass) { TestEncoderMethods::TestSQLgEncoder }
+      let(:klass) { TestEncoderMethods::TestSQLEncoder }
 
       it "must return 'sql'" do
         expect(subject.encoder_type(klass)).to eq('sql')
