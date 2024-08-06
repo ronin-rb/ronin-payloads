@@ -77,6 +77,19 @@ describe Ronin::Payloads::CLI::EncoderMethods do
         expect(subject.encoder_type(klass)).to eq('sql')
       end
     end
+
+    context "when given a XMLEncoder class" do
+      module TestEncoderMethods
+        class TestXMLEncoder < Ronin::Payloads::Encoders::XMLEncoder
+        end
+      end
+
+      let(:klass) { TestEncoderMethods::TestXMLEncoder }
+
+      it "must return 'xml'" do
+        expect(subject.encoder_type(klass)).to eq('xml')
+      end
+    end
   end
 
   describe "#load_encoder" do
