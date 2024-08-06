@@ -134,7 +134,7 @@ describe Ronin::Payloads::CLI::EncoderMethods do
     context "when Ronin::Payloads::ClassNotfound is raised" do
       let(:message) { "class not found" }
       let(:exception) do
-        Ronin::Payloads::ClassNotFound.new(message)
+        Ronin::Payloads::Encoders::ClassNotFound.new(message)
       end
 
       it "must print an error message and exit with an error code" do

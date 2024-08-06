@@ -64,7 +64,7 @@ module Ronin
         #
         def load_encoder(name)
           Payloads::Encoders.load_class(name)
-        rescue Payloads::ClassNotFound => error
+        rescue Payloads::Encoders::ClassNotFound => error
           print_error(error.message)
           exit(1)
         rescue => error
@@ -84,7 +84,7 @@ module Ronin
         #
         def load_encoder_from(file)
           Payloads::Encoders.load_class_from_file(file)
-        rescue Payloads::ClassNotFound => error
+        rescue Payloads::Encoders::ClassNotFound => error
           print_error(error.message)
           exit(1)
         rescue => error
