@@ -19,8 +19,8 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require_relative '../../../command_payload'
-require_relative '../../../mixins/bind_shell'
+require 'ronin/payloads/command_payload'
+require 'ronin/payloads/mixins/bind_shell'
 
 module Ronin
   module Payloads

@@ -19,8 +19,8 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require_relative '../../php_payload'
-require_relative '../../mixins/erb'
+require 'ronin/payloads/php_payload'
+require 'ronin/payloads/mixins/erb'
 
 module Ronin
   module Payloads

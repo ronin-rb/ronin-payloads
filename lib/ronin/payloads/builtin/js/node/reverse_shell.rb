@@ -19,8 +19,8 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require_relative '../../../node_js_payload'
-require_relative '../../../mixins/reverse_shell'
+require 'ronin/payloads/node_js_payload'
+require 'ronin/payloads/mixins/reverse_shell'
 
 module Ronin
   module Payloads

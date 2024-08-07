@@ -19,8 +19,8 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require_relative '../../../command_payload'
-require_relative '../../../metadata/os'
+require 'ronin/payloads/command_payload'
+require 'ronin/payloads/metadata/os'
 
 module Ronin
   module Payloads

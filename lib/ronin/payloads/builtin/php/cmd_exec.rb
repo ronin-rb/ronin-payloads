@@ -19,7 +19,7 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require_relative '../../php_payload'
+require 'ronin/payloads/php_payload'
 
 module Ronin
   module Payloads

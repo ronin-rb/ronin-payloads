@@ -19,7 +19,7 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require_relative '../../javascript_payload'
+require 'ronin/payloads/javascript_payload'
 
 module Ronin
   module Payloads

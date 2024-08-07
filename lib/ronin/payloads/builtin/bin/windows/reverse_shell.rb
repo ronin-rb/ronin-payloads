@@ -19,10 +19,10 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require_relative '../../../c_payload'
-require_relative '../../../metadata/os'
-require_relative '../../../mixins/reverse_shell'
-require_relative '../../../mixins/tempfile'
+require 'ronin/payloads/c_payload'
+require 'ronin/payloads/metadata/os'
+require 'ronin/payloads/mixins/reverse_shell'
+require 'ronin/payloads/mixins/tempfile'
 
 module Ronin
   module Payloads
