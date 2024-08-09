@@ -20,6 +20,7 @@
 #
 
 require_relative 'payload'
+require_relative 'encoders/perl_encoder'
 
 module Ronin
   module Payloads
@@ -29,6 +30,8 @@ module Ronin
     # @since 0.3.0
     #
     class PerlPayload < Payload
+
+      encoder_class Encoders::PerlEncoder
 
       #
       # Returns the type or kind of payload.

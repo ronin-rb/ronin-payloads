@@ -36,6 +36,7 @@ module Ronin
           encoder:    'Custom',
           html:       'HTML',
           javascript: 'JavaScript',
+          perl:       'Perl',
           powershell: 'PowerShell',
           shell:      'Shell',
           sql:        'SQL',
