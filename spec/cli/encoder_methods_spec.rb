@@ -5,6 +5,7 @@ require 'ronin/payloads/cli/command'
 require 'ronin/payloads/encoders/encoder'
 require 'ronin/payloads/encoders/html_encoder'
 require 'ronin/payloads/encoders/javascript_encoder'
+require 'ronin/payloads/encoders/perl_encoder'
 require 'ronin/payloads/encoders/powershell_encoder'
 require 'ronin/payloads/encoders/shell_encoder'
 require 'ronin/payloads/encoders/sql_encoder'
@@ -70,6 +71,19 @@ describe Ronin::Payloads::CLI::EncoderMethods do
 
       it "must return 'Shell'" do
         expect(subject.encoder_type(klass)).to eq('Shell')
+      end
+    end
+
+    context "when given a PerlEncoder class" do
+      module TestEncoderMethods
+        class TestPerlEncoder < Ronin::Payloads::Encoders::PerlEncoder
+        end
+      end
+
+      let(:klass) { TestEncoderMethods::TestPerlEncoder }
+
+      it "must return 'Perl'" do
+        expect(subject.encoder_type(klass)).to eq('Perl')
       end
     end
 
