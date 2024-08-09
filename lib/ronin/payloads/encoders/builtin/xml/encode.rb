@@ -19,8 +19,7 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require_relative '../../xml_encoder'
-
+require 'ronin/payloads/encoders/xml_encoder'
 require 'ronin/support/encoding/xml'
 
 module Ronin

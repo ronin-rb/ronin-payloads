@@ -19,8 +19,7 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require_relative '../../javascript_encoder'
-
+require 'ronin/payloads/encoders/javascript_encoder'
 require 'ronin/support/encoding/js'
 
 module Ronin

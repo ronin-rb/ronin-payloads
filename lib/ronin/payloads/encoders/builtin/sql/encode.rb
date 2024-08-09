@@ -19,8 +19,7 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require_relative '../../sql_encoder'
-
+require 'ronin/payloads/encoders/sql_encoder'
 require 'ronin/support/encoding/sql'
 
 module Ronin
