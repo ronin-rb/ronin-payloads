@@ -21,3 +21,10 @@
 
 require 'ronin/payloads/encoders/registry'
 require 'ronin/payloads/encoders/encoder'
+require 'ronin/payloads/encoders/html_encoder'
+require 'ronin/payloads/encoders/javascript_encoder'
+require 'ronin/payloads/encoders/pipeline'
+require 'ronin/payloads/encoders/powershell_encoder'
+require 'ronin/payloads/encoders/shell_encoder'
+require 'ronin/payloads/encoders/sql_encoder'
+require 'ronin/payloads/encoders/xml_encoder'
