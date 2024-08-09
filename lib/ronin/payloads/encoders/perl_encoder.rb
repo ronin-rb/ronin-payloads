@@ -19,34 +19,34 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require_relative 'payload'
-require_relative 'encoders/perl_encoder'
+require_relative 'encoder'
 
 module Ronin
   module Payloads
-    #
-    # A {Payload} class that represents all Perl payloads.
-    #
-    # @since 0.3.0
-    #
-    class PerlPayload < Payload
+    module Encoders
+      #
+      # Base-class for all Perl encoders.
+      #
+      class PerlEncoder < Encoder
 
-      encoder_class Encoders::PerlEncoder
+        #
+        # Returns the type or kind of encoder payload.
+        #
+        # @return [Symbol]
+        #
+        # @note
+        #   This is used internally to map an encoder payload class to a
+        #   printable type.
+        #
+        # @api private
+        #
+        # @since 0.3.0
+        #
+        def self.encoder_type
+          :perl
+        end
 
-      #
-      # Returns the type or kind of payload.
-      #
-      # @return [Symbol]
-      #
-      # @note
-      #   This is used internally to map an payload class to a printable type.
-      #
-      # @api private
-      #
-      def self.payload_type
-        :perl
       end
-
     end
   end
 end
