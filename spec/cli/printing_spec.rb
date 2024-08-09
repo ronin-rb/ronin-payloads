@@ -17,6 +17,7 @@ require 'ronin/payloads/command_payload'
 require 'ronin/payloads/shell_payload'
 require 'ronin/payloads/powershell_payload'
 require 'ronin/payloads/coldfusion_payload'
+require 'ronin/payloads/perl_payload'
 require 'ronin/payloads/php_payload'
 require 'ronin/payloads/sql_payload'
 require 'ronin/payloads/html_payload'
@@ -50,6 +51,7 @@ describe Ronin::Payloads::CLI::Printing do
       Ronin::Payloads::JavaPayload       => 'Java',
       Ronin::Payloads::GroovyPayload     => 'Groovy',
       Ronin::Payloads::ColdFusionPayload => 'ColdFusion',
+      Ronin::Payloads::PerlPayload       => 'Perl',
       Ronin::Payloads::PHPPayload        => 'PHP',
       Ronin::Payloads::ASMPayload        => 'ASM',
       Ronin::Payloads::ShellcodePayload  => 'Shellcode',

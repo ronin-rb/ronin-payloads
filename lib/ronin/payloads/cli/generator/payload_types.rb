@@ -92,6 +92,11 @@ module Ronin
             class: 'SQLPayload'
           },
 
+          perl: {
+            file:  'perl_payload',
+            class: 'PerlPayload'
+          },
+
           php: {
             file:  'php_payload',
             class: 'PHPPayload'
