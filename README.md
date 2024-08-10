@@ -174,6 +174,7 @@ $ ronin-payloads list
   test/js
   test/open_redirect
   test/php
+  test/python
   test/ruby
   test/url
   test/xss
