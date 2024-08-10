@@ -171,6 +171,7 @@ $ ronin-payloads list
   shellcode/openbsd/x86/exec_shell
   shellcode/windows/x86_64/cmd
   test/cmd
+  test/js
   test/open_redirect
   test/url
   test/xss
