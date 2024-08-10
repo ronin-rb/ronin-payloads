@@ -173,6 +173,7 @@ $ ronin-payloads list
   test/cmd
   test/js
   test/open_redirect
+  test/php
   test/url
   test/xss
 ```
