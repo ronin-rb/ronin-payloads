@@ -56,7 +56,7 @@ module Ronin
                         },
                         desc: 'The optional file to load the encoder from'
 
-          argument :name, required: true,
+          argument :name, required: false,
                           desc:     'The optional encoder name to list'
 
           description 'Prints information about an encoder'
@@ -66,20 +66,20 @@ module Ronin
           #
           # Runs the `ronin-payloads encoder` command.
           #
-          # @param [String] name
+          # @param [String, nil] name
           #   The optional name of the encoder to load and print metadata about.
           #
-          def run(name)
-            print_encoder(load_encoder(name))
-          end
+          def run(name=nil)
+            encoder_class = if name
+                              load_encoder(name)
+                            elsif options[:file]
+                              load_encoder_from(options[:file])
+                            else
+                              print_error "must specify --file or a NAME"
+                              exit(-1)
+                            end
 
-          #
-          # Loads an encoder class.
-          #
-          # @return [Class<Encoders::Encoder>]
-          #
-          def load_encoder(name)
-            super(name,options[:file])
+            print_encoder(encoder_class)
           end
 
           #
