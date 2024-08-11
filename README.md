@@ -173,6 +173,7 @@ $ ronin-payloads list
   test/cmd
   test/js
   test/open_redirect
+  test/perl
   test/php
   test/powershell
   test/python
