@@ -178,6 +178,7 @@ $ ronin-payloads list
   test/powershell
   test/python
   test/ruby
+  test/sql
   test/url
   test/xss
 ```
