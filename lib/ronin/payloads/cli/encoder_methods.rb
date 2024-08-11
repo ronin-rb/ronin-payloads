@@ -34,6 +34,7 @@ module Ronin
         # Known payload encoder types and their printable names.
         ENCODER_TYPES = {
           encoder:    'Custom',
+          command:    'Command',
           html:       'HTML',
           javascript: 'JavaScript',
           perl:       'Perl',
