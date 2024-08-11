@@ -20,38 +20,53 @@
 #
 
 require 'ronin/payloads/encoders/shell_encoder'
-require 'ronin/support/encoding/shell'
+require 'ronin/support/encoding/hex'
 
 module Ronin
   module Payloads
     module Encoders
       module Shell
         #
-        # A shell encoder that encodes every character in the given String as
-        # an Shell special character.
+        # A shell encoder that encodes a given command String as a hex string
+        # then decodes it using `xxd -r -p` and then executes the decoded
+        # command String by piping it into a shell.
         #
-        class Encode < ShellEncoder
+        #     ls -la -> echo 6c73202d6c61|xxd -r -p|bash
+        #
+        # @since 0.3.0
+        #
+        class HexEncode < ShellEncoder
 
-          register 'shell/encode'
+          register 'shell/hex_encode'
 
-          summary 'Encodes every character as a Shell special character'
+          summary 'Encodes a command as a hex string'
 
           description <<~DESC
-            Encodes every character in the given String as an Shell special character:
+            Encodes the given command String as an hex string, then decodes it
+            by piping it through `xxd -r -p`, and then executes the command
+            decoded command String by piping it into a shell.
 
-              hello world -> \\x68\\x65\\x6c\\x6c\\x6f\\x20\\x77\\x6f\\x72\\x6c\\x64
+              ls -la -> echo 6c73202d6c61|xxd -r -p|bash
 
           DESC
 
+          param :shell, required: true,
+                        default:  'bash',
+                        desc:     'The shell to use'
+
           #
-          # Shell encodes the given data.
+          # Encodes the given command.
           #
-          # @param [String] data
+          # @param [String] command
+          #   The command to encode.
           #
           # @return [String]
           #
-          def encode(data)
-            Support::Encoding::Shell.encode(data)
+          def encode(command)
+            hex   = Support::Encoding::Hex.encode(command)
+            shell = params[:shell]
+
+            "echo #{hex}|xxd -r -p|#{shell}"
           end
 
         end
