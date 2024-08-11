@@ -21,6 +21,7 @@
 
 require_relative 'encoders/registry'
 require_relative 'encoders/encoder'
+require_relative 'encoders/command_encoder'
 require_relative 'encoders/html_encoder'
 require_relative 'encoders/javascript_encoder'
 require_relative 'encoders/perl_encoder'
