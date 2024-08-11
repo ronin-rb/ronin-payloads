@@ -3,6 +3,7 @@ require 'ronin/payloads/cli/encoder_methods'
 require 'ronin/payloads/cli/command'
 
 require 'ronin/payloads/encoders/encoder'
+require 'ronin/payloads/encoders/command_encoder'
 require 'ronin/payloads/encoders/html_encoder'
 require 'ronin/payloads/encoders/javascript_encoder'
 require 'ronin/payloads/encoders/perl_encoder'
@@ -32,6 +33,19 @@ describe Ronin::Payloads::CLI::EncoderMethods do
 
       it "must return 'Custom'" do
         expect(subject.encoder_type(klass)).to eq('Custom')
+      end
+    end
+
+    context "when given a CommandEncoder class" do
+      module TestEncoderMethods
+        class TestCommandEncoder < Ronin::Payloads::Encoders::CommandEncoder
+        end
+      end
+
+      let(:klass) { TestEncoderMethods::TestCommandEncoder }
+
+      it "must return 'Command'" do
+        expect(subject.encoder_type(klass)).to eq('Command')
       end
     end
 

@@ -20,6 +20,7 @@
 #
 
 require_relative 'payload'
+require_relative 'encoders/command_encoder'
 
 module Ronin
   module Payloads
@@ -28,6 +29,8 @@ module Ronin
     # PowerShell).
     #
     class CommandPayload < Payload
+
+      encoder_class Encoders::CommandEncoder
 
       #
       # Returns the type or kind of payload.
