@@ -56,7 +56,7 @@ module Ronin
           def encode(javascript)
             base64 = Support::Encoding::Base64.encode(javascript, mode: :strict)
 
-            "eval(window.btoa(\"#{base64}\"))"
+            %{eval(window.btoa("#{base64}"))}
           end
 
         end

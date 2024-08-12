@@ -8,7 +8,9 @@ describe Ronin::Payloads::Encoders::PowerShell::HexEncode do
 
   describe "#encode" do
     let(:data)    { "dir" }
-    let(:encoded) { "Invoke-Expression \"$([char]0x64)$([char]0x69)$([char]0x72)\"" }
+    let(:encoded) do
+      %{Invoke-Expression "$([char]0x64)$([char]0x69)$([char]0x72)"}
+    end
 
     it "must each character of the command as PowerShell '$([char]0xXX)' characters and evaluate the resulting string using 'Invoke-Expression'" do
       expect(subject.encode(data)).to eq(encoded)
