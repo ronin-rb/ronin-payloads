@@ -27,31 +27,38 @@ module Ronin
     module Encoders
       module PowerShell
         #
-        # A PowerShell encoder that encodes every character in the given String
-        # as an PowerShell special character.
+        # A PowerShell encoder that encodes every character in the given
+        # PowerShell command as PowerShell `$([char]0xXX)` characters and
+        # evaluates the resulting String using `Invoke-Expression`.
         #
-        class Encode < PowerShellEncoder
+        #     dir -> Invoke-Expression "$([char]0x64)$([char]0x69)$([char]0x72)"
+        #
+        class HexEncode < PowerShellEncoder
 
-          register 'powershell/encode'
+          register 'powershell/hex_encode'
 
           summary 'Encodes every character as a PowerShell special character'
 
           description <<~DESC
-            Encodes every character in the given String as an PowerShell special character:
+            Encodes every character in the given PowerShell command as
+            PowerShell `$([char]0xXX)` characters and evaluates the resulting
+            PowerShell String using `Invoke-Expression`:
 
-              hello world -> $([char]0x68)$([char]0x65)$([char]0x6c)$([char]0x6c)$([char]0x6f)$([char]0x20)$([char]0x77)$([char]0x6f)$([char]0x72)$([char]0x6c)$([char]0x64)
+                dir -> Invoke-Expression \\"$([char]0x64)$([char]0x69)$([char]0x72)\\"
 
           DESC
 
           #
-          # PowerShell encodes the given data.
+          # Encodes the given PowerShell command.
           #
-          # @param [String] data
+          # @param [String] command
           #
           # @return [String]
           #
-          def encode(data)
-            Support::Encoding::PowerShell.encode(data)
+          def encode(command)
+            hex_chars = Support::Encoding::PowerShell.encode(command)
+
+            "Invoke-Expression \"#{hex_chars}\""
           end
 
         end
