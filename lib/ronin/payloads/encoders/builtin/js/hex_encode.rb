@@ -28,30 +28,33 @@ module Ronin
       module JS
         #
         # A JavaScript encoder that encodes every character in the given String
-        # as an JavaScript special character.
+        # as an JavaScript special character and evaluates it using `eval()`.
         #
-        class Encode < JavaScriptEncoder
+        #     alert(1) -> eval("\\x61\\x6C\\x65\\x72\\x74\\x28\\x31\\x29")
+        #
+        class HexEncode < JavaScriptEncoder
 
-          register 'js/encode'
+          register 'js/hex_encode'
 
           summary 'Encodes every character as a JavaScript special character'
 
           description <<~DESC
-            Encodes every character in the given String as an JavaScript special character:
+            Encodes every character in the given String as an JavaScript
+            special character and evaluates it using `eval()`:
 
-              hello world -> \\x68\\x65\\x6C\\x6C\\x6F\\x20\\x77\\x6F\\x72\\x6C\\x64
+              alert(1) -> eval("\\x61\\x6C\\x65\\x72\\x74\\x28\\x31\\x29")
 
           DESC
 
           #
-          # JS encodes the given data.
+          # Encodes the given JavaScript code.
           #
-          # @param [String] data
+          # @param [String] javascript
           #
           # @return [String]
           #
-          def encode(data)
-            Support::Encoding::JS.encode(data)
+          def encode(javascript)
+            "eval(\"#{Support::Encoding::JS.encode(javascript)}\")"
           end
 
         end
