@@ -58,7 +58,7 @@ module Ronin
           def encode(command)
             hex_chars = Support::Encoding::PowerShell.encode(command)
 
-            "Invoke-Expression \"#{hex_chars}\""
+            %{Invoke-Expression "#{hex_chars}"}
           end
 
         end

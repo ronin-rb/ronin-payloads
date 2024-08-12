@@ -8,7 +8,7 @@ describe Ronin::Payloads::Encoders::JS::HexEncode do
 
   describe "#encode" do
     let(:command) { "alert(1)" }
-    let(:encoded) { "eval(\"\\x61\\x6C\\x65\\x72\\x74\\x28\\x31\\x29\")" }
+    let(:encoded) { %{eval("\\x61\\x6C\\x65\\x72\\x74\\x28\\x31\\x29")} }
 
     it "must encode each character of the given String as a hex escaped character and evaluate the resulting String using 'eval()'" do
       expect(subject.encode(command)).to eq(encoded)

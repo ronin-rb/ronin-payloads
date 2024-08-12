@@ -54,7 +54,7 @@ module Ronin
           # @return [String]
           #
           def encode(javascript)
-            "eval(\"#{Support::Encoding::JS.encode(javascript)}\")"
+            %{eval("#{Support::Encoding::JS.encode(javascript)}")}
           end
 
         end
