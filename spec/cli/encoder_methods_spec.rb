@@ -6,6 +6,7 @@ require 'ronin/payloads/encoders/encoder'
 require 'ronin/payloads/encoders/command_encoder'
 require 'ronin/payloads/encoders/html_encoder'
 require 'ronin/payloads/encoders/javascript_encoder'
+require 'ronin/payloads/encoders/node_js_encoder'
 require 'ronin/payloads/encoders/perl_encoder'
 require 'ronin/payloads/encoders/powershell_encoder'
 require 'ronin/payloads/encoders/shell_encoder'
@@ -72,6 +73,19 @@ describe Ronin::Payloads::CLI::EncoderMethods do
 
       it "must return 'JavaScript'" do
         expect(subject.encoder_type(klass)).to eq('JavaScript')
+      end
+    end
+
+    context "when given a NodeJSEncoder class" do
+      module TestEncoderMethods
+        class TestNodeJSEncoder < Ronin::Payloads::Encoders::NodeJSEncoder
+        end
+      end
+
+      let(:klass) { TestEncoderMethods::TestNodeJSEncoder }
+
+      it "must return 'Node.js'" do
+        expect(subject.encoder_type(klass)).to eq('Node.js')
       end
     end
 

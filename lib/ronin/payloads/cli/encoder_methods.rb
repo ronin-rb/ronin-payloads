@@ -37,6 +37,7 @@ module Ronin
           command:    'Command',
           html:       'HTML',
           javascript: 'JavaScript',
+          node_js:    'Node.js',
           perl:       'Perl',
           powershell: 'PowerShell',
           shell:      'Shell',
