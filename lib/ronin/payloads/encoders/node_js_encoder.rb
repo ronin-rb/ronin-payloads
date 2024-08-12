@@ -19,32 +19,34 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require_relative 'payload'
-require_relative 'encoders/node_js_encoder'
+require_relative 'encoder'
 
 module Ronin
   module Payloads
-    #
-    # A {Payload} class that represents all Node.js payloads.
-    #
-    class NodeJSPayload < Payload
+    module Encoders
+      #
+      # Base-class for all Node.js encoders.
+      #
+      # @since 0.3.0
+      #
+      class NodeJSEncoder < Encoder
 
-      encoder_class Encoders::NodeJSEncoder
+        #
+        # Returns the type or kind of encoder payload.
+        #
+        # @return [Symbol]
+        #
+        # @note
+        #   This is used internally to map an encoder payload class to a
+        #   printable type.
+        #
+        # @api private
+        #
+        def self.encoder_type
+          :node_js
+        end
 
-      #
-      # Returns the type or kind of payload.
-      #
-      # @return [Symbol]
-      #
-      # @note
-      #   This is used internally to map an payload class to a printable type.
-      #
-      # @api private
-      #
-      def self.payload_type
-        :node_js
       end
-
     end
   end
 end
