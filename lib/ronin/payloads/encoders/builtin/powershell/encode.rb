@@ -44,7 +44,7 @@ module Ronin
           DESC
 
           #
-          # HTML encodes the given data.
+          # PowerShell encodes the given data.
           #
           # @param [String] data
           #
