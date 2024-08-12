@@ -29,9 +29,9 @@ module Ronin
         #
         # A SQL encoder that encodes the given String as a SQL hex string.
         #
-        class Encode < SQLEncoder
+        class HexEncode < SQLEncoder
 
-          register 'sql/encode'
+          register 'sql/hex_encode'
 
           summary 'Encodes the data as a SQL hex string'
 
