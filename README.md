@@ -199,6 +199,16 @@ List available payload encoders:
 
 ```shell
 $ ronin-payloads encoders
+  html/encode
+  js/base64_encode
+  js/hex_encode
+  powershell/hex_encode
+  shell/base64_encode
+  shell/hex_encode
+  shell/hex_escape
+  shell/ifs
+  sql/hex_encode
+  xml/encode
 ```
 
 Print additional information about a specific encoder:
