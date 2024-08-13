@@ -6,6 +6,10 @@ describe Ronin::Payloads::CommandPayload do
     expect(described_class.superclass).to be(Ronin::Payloads::Payload)
   end
 
+  it "must include Ronin::Payloads::Metadata::OS" do
+    expect(described_class).to include(Ronin::Payloads::Metadata::OS)
+  end
+
   describe ".encoder_class" do
     subject { described_class }
 

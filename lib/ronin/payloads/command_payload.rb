@@ -20,6 +20,7 @@
 #
 
 require_relative 'payload'
+require_relative 'metadata/os'
 require_relative 'encoders/command_encoder'
 
 module Ronin
@@ -29,6 +30,8 @@ module Ronin
     # PowerShell).
     #
     class CommandPayload < Payload
+
+      include Metadata::OS
 
       encoder_class Encoders::CommandEncoder
 
