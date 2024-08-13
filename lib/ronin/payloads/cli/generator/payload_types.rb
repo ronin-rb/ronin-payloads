@@ -62,6 +62,11 @@ module Ronin
             class: 'ShellPayload'
           },
 
+          windows_command: {
+            file:  'windows_command_payload',
+            class: 'WindowsCommandPayload'
+          },
+
           powershell: {
             file:  'powershell_payload',
             class: 'PowerShellPayload'

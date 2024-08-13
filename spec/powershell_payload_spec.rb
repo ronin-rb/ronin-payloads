@@ -3,7 +3,7 @@ require 'ronin/payloads/powershell_payload'
 
 describe Ronin::Payloads::PowerShellPayload do
   it "must inherit from Ronin::Payloads::Payload" do
-    expect(described_class.superclass).to be(Ronin::Payloads::Payload)
+    expect(described_class.superclass).to be(Ronin::Payloads::WindowsCommandPayload)
   end
 
   describe ".encoder_class" do
