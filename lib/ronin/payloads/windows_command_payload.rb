@@ -3,7 +3,7 @@
 # ronin-payloads - A Ruby micro-framework for writing and running exploit
 # payloads.
 #
-# Copyright (c) 2007-2026 Hal Brodigan (postmodern.mod3 at gmail.com)
+# Copyright (c) 2007-2024 Hal Brodigan (postmodern.mod3 at gmail.com)
 #
 # ronin-payloads is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Lesser General Public License as published
@@ -19,17 +19,19 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require_relative 'windows_command_payload'
-require_relative 'encoders/powershell_encoder'
+require_relative 'command_payload'
 
 module Ronin
   module Payloads
     #
-    # A {Payload} class that represents PowerShell command payloads.
+    # A {Payload} base class that represents Windows commands (`cmd.exe` or
+    # PowerShell).
     #
-    class PowerShellPayload < WindowsCommandPayload
+    # @since 0.3.0
+    #
+    class WindowsCommandPayload < CommandPayload
 
-      encoder_class Encoders::PowerShellEncoder
+      os :windows
 
       #
       # Returns the type or kind of payload.
@@ -42,7 +44,7 @@ module Ronin
       # @api private
       #
       def self.payload_type
-        :powershell
+        :windows_command
       end
 
     end

@@ -41,9 +41,10 @@ module Ronin
           java:   'Java',
           groovy: 'Groovy',
 
-          command:    'Command',
-          shell:      'Shell',
-          powershell: 'PowerShell',
+          command:         'Command',
+          windows_command: 'Windows Command',
+          shell:           'Shell',
+          powershell:      'PowerShell',
 
           coldfusion: 'ColdFusion',
           jsp:        'JSP',
