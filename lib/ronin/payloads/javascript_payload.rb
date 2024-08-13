@@ -47,6 +47,20 @@ module Ronin
         :javascript
       end
 
+      #
+      # Wraps the built payload in an HTML
+      # `<script type="text/javascript">...</script>` element.
+      #
+      # @return [String]
+      #
+      # @api public
+      #
+      # @since 0.3.0
+      #
+      def to_html
+        %{<script type="text/javascript">#{self}</script>}
+      end
+
     end
   end
 end
