@@ -193,6 +193,28 @@ module Ronin
       end
 
       #
+      # Initializes and builds the payload.
+      #
+      # @param [Hash{Symbol => Object}] kwargs
+      #   Additional keyword arguments for {#initialize}.
+      #
+      # @return [String]
+      #   The built payload.
+      #
+      # @see #to_s
+      #
+      # @since 0.3.0
+      #
+      def self.build(**kwargs)
+        payload = new(**kwargs)
+        payload.perform_validate
+
+        return payload.to_s
+      ensure
+        payload.perform_cleanup
+      end
+
+      #
       # Validates that the payload is ready to be built.
       #
       # @raise [Ronin::Core::Params::RequiredParam]
