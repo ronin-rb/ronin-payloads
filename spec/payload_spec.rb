@@ -71,6 +71,17 @@ describe Ronin::Payloads::Payload do
       end
 
     end
+
+    class TestPayloadWithRequiredParam < Ronin::Payloads::Payload
+
+      param :foo, required: true,
+                  desc:     'Required param'
+
+      def build
+        @payload = "payload #{params[:foo]}"
+      end
+
+    end
   end
 
   let(:test_encoder_class) { TestPayload::TestEncoder }
@@ -88,6 +99,36 @@ describe Ronin::Payloads::Payload do
 
     it "must also set .id" do
       expect(subject.id).to eq('test_payload')
+    end
+  end
+
+  describe ".build" do
+    subject { test_class }
+
+    it "must return the built payload" do
+      expect(subject.build).to eq(test_class.new.to_s)
+    end
+
+    context "when the payload has a required param" do
+      let(:test_class) { TestPayload::TestPayloadWithRequiredParam }
+
+      context "and when params is given as a keyword argument" do
+        let(:params) do
+          {foo: 'foo-value'}
+        end
+
+        it "must initialize the payload with the params" do
+          expect(subject.build(params: params)).to include(params[:foo])
+        end
+      end
+
+      context "but the param is not given" do
+        it "must call #perform_validate before building the payload" do
+          expect {
+            subject.build
+          }.to raise_error(Ronin::Core::Params::RequiredParam)
+        end
+      end
     end
   end
 
