@@ -19,12 +19,13 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/payloads/version'
 require 'ronin/core/cli/help/banner'
 
 require 'command_kit/commands'
 require 'command_kit/commands/auto_load'
 require 'command_kit/options/version'
+
+require_relative 'version'
 
 module Ronin
   module Payloads

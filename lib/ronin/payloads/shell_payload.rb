@@ -19,8 +19,8 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/payloads/command_payload'
-require 'ronin/payloads/encoders/shell_encoder'
+require_relative 'command_payload'
+require_relative 'encoders/shell_encoder'
 
 module Ronin
   module Payloads

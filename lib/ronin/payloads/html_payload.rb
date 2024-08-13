@@ -19,8 +19,9 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/payloads/payload'
-require 'ronin/payloads/encoders/html_encoder'
+require_relative 'payload'
+require_relative 'encoders/html_encoder'
+
 require 'ronin/support/encoding/html'
 
 module Ronin

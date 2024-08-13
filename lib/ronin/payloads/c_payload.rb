@@ -19,8 +19,8 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/payloads/binary_payload'
-require 'ronin/payloads/mixins/c_compiler'
+require_relative 'binary_payload'
+require_relative 'mixins/c_compiler'
 
 module Ronin
   module Payloads

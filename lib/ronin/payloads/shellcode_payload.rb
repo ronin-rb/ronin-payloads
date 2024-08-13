@@ -19,7 +19,7 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/payloads/asm_payload'
+require_relative 'asm_payload'
 
 require 'ronin/code/asm/shellcode'
 

@@ -19,10 +19,10 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/payloads/registry'
-require 'ronin/payloads/exceptions'
-require 'ronin/payloads/encoders/encoder'
-require 'ronin/payloads/encoders/pipeline'
+require_relative 'registry'
+require_relative 'exceptions'
+require_relative 'encoders/encoder'
+require_relative 'encoders/pipeline'
 
 require 'ronin/core/metadata/id'
 require 'ronin/core/metadata/authors'

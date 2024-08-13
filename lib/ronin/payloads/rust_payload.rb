@@ -19,7 +19,7 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/payloads/binary_payload'
+require_relative 'binary_payload'
 
 module Ronin
   module Payloads
