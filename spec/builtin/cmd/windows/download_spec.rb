@@ -6,10 +6,6 @@ describe Ronin::Payloads::CMD::Windows::Download do
     expect(described_class).to be < Ronin::Payloads::CommandPayload
   end
 
-  it "must include Ronin::Payloads::Metadata::OS" do
-    expect(described_class).to include(Ronin::Payloads::Metadata::OS)
-  end
-
   describe ".os" do
     subject { described_class }
 

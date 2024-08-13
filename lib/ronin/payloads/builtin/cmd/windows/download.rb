@@ -20,7 +20,6 @@
 #
 
 require 'ronin/payloads/command_payload'
-require 'ronin/payloads/metadata/os'
 
 module Ronin
   module Payloads
@@ -32,8 +31,6 @@ module Ronin
         # @since 0.2.0
         #
         class Download < CommandPayload
-
-          include Metadata::OS
 
           register 'cmd/windows/download'
 
