@@ -14,6 +14,7 @@ require 'ronin/payloads/javascript_payload'
 require 'ronin/payloads/node_js_payload'
 require 'ronin/payloads/nashorn_payload'
 require 'ronin/payloads/command_payload'
+require 'ronin/payloads/windows_command_payload'
 require 'ronin/payloads/shell_payload'
 require 'ronin/payloads/powershell_payload'
 require 'ronin/payloads/coldfusion_payload'
@@ -36,27 +37,28 @@ describe Ronin::Payloads::CLI::Printing do
 
   describe "#payload_type" do
     {
-      Ronin::Payloads::HTMLPayload       => 'HTML',
-      Ronin::Payloads::XMLPayload        => 'XML',
-      Ronin::Payloads::JavaScriptPayload => 'JavaScript',
-      Ronin::Payloads::NodeJSPayload     => 'Node.js',
-      Ronin::Payloads::NashornPayload    => 'Nashorn',
-      Ronin::Payloads::SQLPayload        => 'SQL',
-      Ronin::Payloads::CommandPayload    => 'Command',
-      Ronin::Payloads::ShellPayload      => 'Shell',
-      Ronin::Payloads::PowerShellPayload => 'PowerShell',
-      Ronin::Payloads::CPayload          => 'C',
-      Ronin::Payloads::GoPayload         => 'Go',
-      Ronin::Payloads::RustPayload       => 'Rust',
-      Ronin::Payloads::JavaPayload       => 'Java',
-      Ronin::Payloads::GroovyPayload     => 'Groovy',
-      Ronin::Payloads::ColdFusionPayload => 'ColdFusion',
-      Ronin::Payloads::PerlPayload       => 'Perl',
-      Ronin::Payloads::PHPPayload        => 'PHP',
-      Ronin::Payloads::ASMPayload        => 'ASM',
-      Ronin::Payloads::ShellcodePayload  => 'Shellcode',
-      Ronin::Payloads::BinaryPayload     => 'Binary',
-      Ronin::Payloads::Payload           => 'Custom'
+      Ronin::Payloads::HTMLPayload           => 'HTML',
+      Ronin::Payloads::XMLPayload            => 'XML',
+      Ronin::Payloads::JavaScriptPayload     => 'JavaScript',
+      Ronin::Payloads::NodeJSPayload         => 'Node.js',
+      Ronin::Payloads::NashornPayload        => 'Nashorn',
+      Ronin::Payloads::SQLPayload            => 'SQL',
+      Ronin::Payloads::CommandPayload        => 'Command',
+      Ronin::Payloads::WindowsCommandPayload => 'Windows Command',
+      Ronin::Payloads::ShellPayload          => 'Shell',
+      Ronin::Payloads::PowerShellPayload     => 'PowerShell',
+      Ronin::Payloads::CPayload              => 'C',
+      Ronin::Payloads::GoPayload             => 'Go',
+      Ronin::Payloads::RustPayload           => 'Rust',
+      Ronin::Payloads::JavaPayload           => 'Java',
+      Ronin::Payloads::GroovyPayload         => 'Groovy',
+      Ronin::Payloads::ColdFusionPayload     => 'ColdFusion',
+      Ronin::Payloads::PerlPayload           => 'Perl',
+      Ronin::Payloads::PHPPayload            => 'PHP',
+      Ronin::Payloads::ASMPayload            => 'ASM',
+      Ronin::Payloads::ShellcodePayload      => 'Shellcode',
+      Ronin::Payloads::BinaryPayload         => 'Binary',
+      Ronin::Payloads::Payload               => 'Custom'
     }.each do |payload_class,type|
       context "when the class inherits from #{payload_class}" do
         let(:klass) { Class.new(payload_class) }
