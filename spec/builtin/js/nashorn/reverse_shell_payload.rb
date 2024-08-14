@@ -14,7 +14,7 @@ describe Ronin::Payloads::JS::Nashorn::ReverseShell do
     end
   end
 
-  let(:host) { 'hacker.com' }
+  let(:host) { 'example.com' }
   let(:port) { 1337 }
 
   subject do
