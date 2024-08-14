@@ -20,6 +20,7 @@
 #
 
 require_relative 'command_payload'
+require_relative 'encoders/windows_command_encoder'
 
 module Ronin
   module Payloads
@@ -30,6 +31,8 @@ module Ronin
     # @since 0.3.0
     #
     class WindowsCommandPayload < CommandPayload
+
+      encoder_class Encoders::WindowsCommandEncoder
 
       os :windows
 

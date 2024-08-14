@@ -33,16 +33,17 @@ module Ronin
       module EncoderMethods
         # Known payload encoder types and their printable names.
         ENCODER_TYPES = {
-          encoder:       'Custom',
-          command:       'Command',
-          shell_command: 'Shell Command',
-          html:          'HTML',
-          javascript:    'JavaScript',
-          node_js:       'Node.js',
-          perl:          'Perl',
-          powershell:    'PowerShell',
-          sql:           'SQL',
-          xml:           'XML'
+          encoder:         'Custom',
+          command:         'Command',
+          shell_command:   'Shell Command',
+          windows_command: 'Windows Command',
+          html:            'HTML',
+          javascript:      'JavaScript',
+          node_js:         'Node.js',
+          perl:            'Perl',
+          powershell:      'PowerShell',
+          sql:             'SQL',
+          xml:             'XML'
         }
 
         #
