@@ -41,6 +41,7 @@ module Ronin
           javascript:      'JavaScript',
           node_js:         'Node.js',
           perl:            'Perl',
+          php:             'PHP',
           ruby:            'Ruby',
           python:          'Python',
           powershell:      'PowerShell',
