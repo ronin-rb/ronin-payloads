@@ -123,22 +123,22 @@ List available payloads:
 $ ronin-payloads list
   bin/unix/reverse_shell
   bin/windows/reverse_shell
-  cmd/awk/reverse_shell
-  cmd/bash/reverse_shell
-  cmd/lua/reverse_shell
-  cmd/netcat/bind_shell
-  cmd/node/reverse_shell
-  cmd/openssl/reverse_shell
-  cmd/perl/reverse_shell
-  cmd/php/reverse_shell
-  cmd/ping
-  cmd/powershell/reverse_shell
-  cmd/python/reverse_shell
-  cmd/ruby/reverse_shell
-  cmd/sleep
-  cmd/touch
-  cmd/windows/download
-  cmd/zsh/reverse_shell
+  command/awk/reverse_shell
+  command/bash/reverse_shell
+  command/lua/reverse_shell
+  command/netcat/bind_shell
+  command/node/reverse_shell
+  command/openssl/reverse_shell
+  command/perl/reverse_shell
+  command/php/reverse_shell
+  command/ping
+  command/powershell/reverse_shell
+  command/python/reverse_shell
+  command/ruby/reverse_shell
+  command/sleep
+  command/touch
+  command/windows/download
+  command/zsh/reverse_shell
   groovy/reverse_shell
   java/reverse_shell
   js/nashorn/reverse_shell

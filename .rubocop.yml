@@ -30,8 +30,8 @@ Naming/VariableNumber:
 # this is a bug in rubocop
 Style/FormatStringToken:
   Exclude:
-    - 'lib/ronin/payloads/builtin/cmd/powershell/reverse_shell.rb'
-    - 'spec/builtin/cmd/powershell/reverse_shell_spec.rb'
+    - 'lib/ronin/payloads/builtin/command/powershell/reverse_shell.rb'
+    - 'spec/builtin/command/powershell/reverse_shell_spec.rb'
 
 # rubocop does not recognize empty-line continuations
 Style/RedundantLineContinuation:
