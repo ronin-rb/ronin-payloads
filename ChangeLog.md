@@ -58,7 +58,7 @@
 
 #### Payloads
 
-* Fixed the module namespace for the {Ronin::Payloads::CMD::Node::ReverseShell}
+* Fixed the module namespace for the `Ronin::Payloads::CMD::Node::ReverseShell`
   payload (aka `cmd/node/reverse_shell`).
 
 #### CLI
