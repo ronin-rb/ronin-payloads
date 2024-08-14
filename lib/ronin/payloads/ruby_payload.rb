@@ -21,6 +21,8 @@
 
 require_relative 'payload'
 
+require 'ronin/support/encoding/shell'
+
 module Ronin
   module Payloads
     #
@@ -40,6 +42,20 @@ module Ronin
       #
       def self.payload_type
         :ruby
+      end
+
+      #
+      # Converts the built Ruby payload into a `ruby -e "..."` command.
+      #
+      # @return [String]
+      #   The `ruby -e "..."` command containing the built Ruby payload.
+      #
+      # @api public
+      #
+      # @since 0.3.0
+      #
+      def to_command
+        "ruby -e #{Support::Encoding::Shell.quote(to_s)}"
       end
 
     end
