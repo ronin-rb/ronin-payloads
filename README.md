@@ -207,6 +207,7 @@ $ ronin-payloads encoders
   js/base64_encode
   js/hex_encode
   js/node/base64_encode
+  js/node/hex_encode
   perl/base64_encode
   perl/hex_encode
   php/base64_encode
