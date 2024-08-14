@@ -14,8 +14,8 @@ require 'ronin/payloads/javascript_payload'
 require 'ronin/payloads/node_js_payload'
 require 'ronin/payloads/nashorn_payload'
 require 'ronin/payloads/command_payload'
+require 'ronin/payloads/shell_command_payload'
 require 'ronin/payloads/windows_command_payload'
-require 'ronin/payloads/shell_payload'
 require 'ronin/payloads/powershell_payload'
 require 'ronin/payloads/coldfusion_payload'
 require 'ronin/payloads/perl_payload'
@@ -44,8 +44,8 @@ describe Ronin::Payloads::CLI::Printing do
       Ronin::Payloads::NashornPayload        => 'Nashorn',
       Ronin::Payloads::SQLPayload            => 'SQL',
       Ronin::Payloads::CommandPayload        => 'Command',
+      Ronin::Payloads::ShellCommandPayload   => 'Shell Command',
       Ronin::Payloads::WindowsCommandPayload => 'Windows Command',
-      Ronin::Payloads::ShellPayload          => 'Shell',
       Ronin::Payloads::PowerShellPayload     => 'PowerShell',
       Ronin::Payloads::CPayload              => 'C',
       Ronin::Payloads::GoPayload             => 'Go',
