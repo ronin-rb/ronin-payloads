@@ -20,6 +20,7 @@
 #
 
 require_relative 'payload'
+require_relative 'encoders/python_encoder'
 
 require 'ronin/support/encoding/shell'
 
@@ -29,6 +30,8 @@ module Ronin
     # A {Payload} class that represents all Python payloads.
     #
     class PythonPayload < Payload
+
+      encoder_class Encoders::PythonEncoder
 
       #
       # Returns the type or kind of payload.

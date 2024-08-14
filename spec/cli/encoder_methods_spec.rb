@@ -12,6 +12,7 @@ require 'ronin/payloads/encoders/javascript_encoder'
 require 'ronin/payloads/encoders/node_js_encoder'
 require 'ronin/payloads/encoders/perl_encoder'
 require 'ronin/payloads/encoders/ruby_encoder'
+require 'ronin/payloads/encoders/python_encoder'
 require 'ronin/payloads/encoders/sql_encoder'
 require 'ronin/payloads/encoders/xml_encoder'
 
@@ -153,6 +154,19 @@ describe Ronin::Payloads::CLI::EncoderMethods do
 
       it "must return 'Ruby'" do
         expect(subject.encoder_type(klass)).to eq('Ruby')
+      end
+    end
+
+    context "when given a PythonEncoder class" do
+      module TestEncoderMethods
+        class TestPythonEncoder < Ronin::Payloads::Encoders::PythonEncoder
+        end
+      end
+
+      let(:klass) { TestEncoderMethods::TestPythonEncoder }
+
+      it "must return 'Python'" do
+        expect(subject.encoder_type(klass)).to eq('Python')
       end
     end
 

@@ -6,6 +6,14 @@ describe Ronin::Payloads::PythonPayload do
     expect(described_class.superclass).to be(Ronin::Payloads::Payload)
   end
 
+  describe "encoder_class" do
+    subject { described_class }
+
+    it do
+      expect(subject.encoder_class).to be(Ronin::Payloads::Encoders::PythonEncoder)
+    end
+  end
+
   module TestPythonPayload
     class TestPayload < Ronin::Payloads::PythonPayload
 
