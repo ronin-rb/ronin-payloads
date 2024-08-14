@@ -3,7 +3,7 @@
 # ronin-payloads - A Ruby micro-framework for writing and running exploit
 # payloads.
 #
-# Copyright (c) 2007-2026 Hal Brodigan (postmodern.mod3 at gmail.com)
+# Copyright (c) 2007-2024 Hal Brodigan (postmodern.mod3 at gmail.com)
 #
 # ronin-payloads is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Lesser General Public License as published
@@ -19,17 +19,34 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require_relative 'encoders/registry'
-require_relative 'encoders/encoder'
-require_relative 'encoders/command_encoder'
-require_relative 'encoders/html_encoder'
-require_relative 'encoders/javascript_encoder'
-require_relative 'encoders/perl_encoder'
-require_relative 'encoders/ruby_encoder'
-require_relative 'encoders/python_encoder'
-require_relative 'encoders/pipeline'
-require_relative 'encoders/shell_command_encoder'
-require_relative 'encoders/windows_command_encoder'
-require_relative 'encoders/powershell_encoder'
-require_relative 'encoders/sql_encoder'
-require_relative 'encoders/xml_encoder'
+require_relative 'encoder'
+
+module Ronin
+  module Payloads
+    module Encoders
+      #
+      # Base-class for all Python encoders.
+      #
+      # @since 0.3.0
+      #
+      class PythonEncoder < Encoder
+
+        #
+        # Returns the type or kind of encoder payload.
+        #
+        # @return [Symbol]
+        #
+        # @note
+        #   This is used internally to map an encoder payload class to a
+        #   printable type.
+        #
+        # @api private
+        #
+        def self.encoder_type
+          :python
+        end
+
+      end
+    end
+  end
+end
