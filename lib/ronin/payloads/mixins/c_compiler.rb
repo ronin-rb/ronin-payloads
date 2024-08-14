@@ -237,9 +237,9 @@ module Ronin
 
           case system(*args)
           when false
-            raise(BuildFailed,"cc command failed: #{args.join(' ')}")
+            raise(BuildFailed,"#{cc} command failed: #{args.join(' ')}")
           when nil
-            raise(BuildFailed,"cc command not installed")
+            raise(BuildFailed,"#{cc} command not installed")
           end
         end
 

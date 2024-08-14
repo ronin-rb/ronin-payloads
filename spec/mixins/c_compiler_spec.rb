@@ -424,7 +424,7 @@ describe Ronin::Payloads::Mixins::CCompiler do
 
         expect {
           subject.compile_c(source_file, output: output)
-        }.to raise_error(Ronin::Payloads::BuildFailed,"cc command failed: #{subject.cc} -o #{output} #{source_file}")
+        }.to raise_error(Ronin::Payloads::BuildFailed,/\A(?:gcc|clang|cc) command failed: #{subject.cc} -o #{output} #{source_file}\z/)
       end
     end
 
@@ -436,7 +436,7 @@ describe Ronin::Payloads::Mixins::CCompiler do
 
         expect {
           subject.compile_c(source_file, output: output)
-        }.to raise_error(Ronin::Payloads::BuildFailed,"cc command not installed")
+        }.to raise_error(Ronin::Payloads::BuildFailed,/\A(?:gcc|clang|cc) command not installed\z/)
       end
     end
   end
