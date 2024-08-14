@@ -20,6 +20,7 @@
 #
 
 require_relative 'payload'
+require_relative 'encoders/ruby_encoder'
 
 require 'ronin/support/encoding/shell'
 
@@ -29,6 +30,8 @@ module Ronin
     # A {Payload} class that represents all Ruby payloads.
     #
     class RubyPayload < Payload
+
+      encoder_class Encoders::RubyEncoder
 
       #
       # Returns the type or kind of payload.
