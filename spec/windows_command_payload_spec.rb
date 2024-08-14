@@ -6,6 +6,14 @@ describe Ronin::Payloads::WindowsCommandPayload do
     expect(described_class.superclass).to be(Ronin::Payloads::CommandPayload)
   end
 
+  describe ".encoder_class" do
+    subject { described_class }
+
+    it do
+      expect(subject.encoder_class).to be(Ronin::Payloads::Encoders::WindowsCommandEncoder)
+    end
+  end
+
   describe ".os" do
     subject { described_class }
 

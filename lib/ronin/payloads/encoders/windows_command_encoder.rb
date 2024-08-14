@@ -19,37 +19,34 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require_relative 'command_payload'
-require_relative 'encoders/windows_command_encoder'
+require_relative 'encoder'
 
 module Ronin
   module Payloads
-    #
-    # A {Payload} base class that represents Windows commands (`cmd.exe` or
-    # PowerShell).
-    #
-    # @since 0.3.0
-    #
-    class WindowsCommandPayload < CommandPayload
+    module Encoders
+      #
+      # Base-class for all Windows shell command encoders.
+      #
+      # @since 0.3.0
+      #
+      class WindowsCommandEncoder < Encoder
 
-      encoder_class Encoders::WindowsCommandEncoder
+        #
+        # Returns the type or kind of encoder payload.
+        #
+        # @return [Symbol]
+        #
+        # @note
+        #   This is used internally to map an encoder payload class to a
+        #   printable type.
+        #
+        # @api private
+        #
+        def self.encoder_type
+          :windows_command
+        end
 
-      os :windows
-
-      #
-      # Returns the type or kind of payload.
-      #
-      # @return [Symbol]
-      #
-      # @note
-      #   This is used internally to map an payload class to a printable type.
-      #
-      # @api private
-      #
-      def self.payload_type
-        :windows_command
       end
-
     end
   end
 end

@@ -5,11 +5,12 @@ require 'ronin/payloads/cli/command'
 require 'ronin/payloads/encoders/encoder'
 require 'ronin/payloads/encoders/command_encoder'
 require 'ronin/payloads/encoders/shell_command_encoder'
+require 'ronin/payloads/encoders/windows_command_encoder'
+require 'ronin/payloads/encoders/powershell_encoder'
 require 'ronin/payloads/encoders/html_encoder'
 require 'ronin/payloads/encoders/javascript_encoder'
 require 'ronin/payloads/encoders/node_js_encoder'
 require 'ronin/payloads/encoders/perl_encoder'
-require 'ronin/payloads/encoders/powershell_encoder'
 require 'ronin/payloads/encoders/sql_encoder'
 require 'ronin/payloads/encoders/xml_encoder'
 
@@ -63,6 +64,32 @@ describe Ronin::Payloads::CLI::EncoderMethods do
       end
     end
 
+    context "when given a WindowsCommandEncoder class" do
+      module TestEncoderMethods
+        class TestWindowsCommandEncoder < Ronin::Payloads::Encoders::WindowsCommandEncoder
+        end
+      end
+
+      let(:klass) { TestEncoderMethods::TestWindowsCommandEncoder }
+
+      it "must return 'Windows Command'" do
+        expect(subject.encoder_type(klass)).to eq('Windows Command')
+      end
+    end
+
+    context "when given a PowerShellEncoder class" do
+      module TestEncoderMethods
+        class TestPowerShellEncoder < Ronin::Payloads::Encoders::PowerShellEncoder
+        end
+      end
+
+      let(:klass) { TestEncoderMethods::TestPowerShellEncoder }
+
+      it "must return 'PowerShell'" do
+        expect(subject.encoder_type(klass)).to eq('PowerShell')
+      end
+    end
+
     context "when given a HTMLEncoder class" do
       module TestEncoderMethods
         class TestHTMLEncoder < Ronin::Payloads::Encoders::HTMLEncoder
@@ -112,19 +139,6 @@ describe Ronin::Payloads::CLI::EncoderMethods do
 
       it "must return 'Perl'" do
         expect(subject.encoder_type(klass)).to eq('Perl')
-      end
-    end
-
-    context "when given a PowerShellEncoder class" do
-      module TestEncoderMethods
-        class TestPowerShellEncoder < Ronin::Payloads::Encoders::PowerShellEncoder
-        end
-      end
-
-      let(:klass) { TestEncoderMethods::TestPowerShellEncoder }
-
-      it "must return 'PowerShell'" do
-        expect(subject.encoder_type(klass)).to eq('PowerShell')
       end
     end
 
