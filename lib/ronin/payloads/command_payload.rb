@@ -65,6 +65,8 @@ module Ronin
         "system(#{Support::Encoding::Ruby.quote(to_s)})"
       end
 
+      alias to_command to_s
+
     end
   end
 end
