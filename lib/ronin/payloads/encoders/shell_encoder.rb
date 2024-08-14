@@ -19,34 +19,15 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require_relative 'encoder'
+require_relative 'shell_command_encoder'
 
 module Ronin
   module Payloads
     module Encoders
       #
-      # Base-class for all Shell encoders.
+      # Alias for {ShellCommandEncoder}.
       #
-      class ShellEncoder < Encoder
-
-        #
-        # Returns the type or kind of encoder payload.
-        #
-        # @return [Symbol]
-        #
-        # @note
-        #   This is used internally to map an encoder payload class to a
-        #   printable type.
-        #
-        # @api private
-        #
-        # @since 0.3.0
-        #
-        def self.encoder_type
-          :shell
-        end
-
-      end
+      ShellEncoder = ShellCommandEncoder
     end
   end
 end

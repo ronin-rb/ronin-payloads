@@ -4,12 +4,12 @@ require 'ronin/payloads/cli/command'
 
 require 'ronin/payloads/encoders/encoder'
 require 'ronin/payloads/encoders/command_encoder'
+require 'ronin/payloads/encoders/shell_command_encoder'
 require 'ronin/payloads/encoders/html_encoder'
 require 'ronin/payloads/encoders/javascript_encoder'
 require 'ronin/payloads/encoders/node_js_encoder'
 require 'ronin/payloads/encoders/perl_encoder'
 require 'ronin/payloads/encoders/powershell_encoder'
-require 'ronin/payloads/encoders/shell_encoder'
 require 'ronin/payloads/encoders/sql_encoder'
 require 'ronin/payloads/encoders/xml_encoder'
 
@@ -50,6 +50,19 @@ describe Ronin::Payloads::CLI::EncoderMethods do
       end
     end
 
+    context "when given a ShellCommandEncoder class" do
+      module TestEncoderMethods
+        class TestShellCommandEncoder < Ronin::Payloads::Encoders::ShellCommandEncoder
+        end
+      end
+
+      let(:klass) { TestEncoderMethods::TestShellCommandEncoder }
+
+      it "must return 'Shell Command'" do
+        expect(subject.encoder_type(klass)).to eq('Shell Command')
+      end
+    end
+
     context "when given a HTMLEncoder class" do
       module TestEncoderMethods
         class TestHTMLEncoder < Ronin::Payloads::Encoders::HTMLEncoder
@@ -86,19 +99,6 @@ describe Ronin::Payloads::CLI::EncoderMethods do
 
       it "must return 'Node.js'" do
         expect(subject.encoder_type(klass)).to eq('Node.js')
-      end
-    end
-
-    context "when given a ShellEncoder class" do
-      module TestEncoderMethods
-        class TestShellEncoder < Ronin::Payloads::Encoders::ShellEncoder
-        end
-      end
-
-      let(:klass) { TestEncoderMethods::TestShellEncoder }
-
-      it "must return 'Shell'" do
-        expect(subject.encoder_type(klass)).to eq('Shell')
       end
     end
 
