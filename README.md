@@ -132,6 +132,7 @@ $ ronin-payloads list
   command/perl/reverse_shell
   command/php/reverse_shell
   command/ping
+  command/powershell/ping
   command/powershell/reverse_shell
   command/powershell/touch
   command/python/reverse_shell
