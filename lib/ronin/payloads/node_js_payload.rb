@@ -22,6 +22,8 @@
 require_relative 'payload'
 require_relative 'encoders/node_js_encoder'
 
+require 'ronin/support/encoding/shell'
+
 module Ronin
   module Payloads
     #
@@ -43,6 +45,20 @@ module Ronin
       #
       def self.payload_type
         :node_js
+      end
+
+      #
+      # Converts the built Node.js payload into a `node -e "..."` command.
+      #
+      # @return [String]
+      #   The `node -e "..."` command containing the built Node.js payload.
+      #
+      # @api public
+      #
+      # @since 0.3.0
+      #
+      def to_command
+        "node -e #{Support::Encoding::Shell.quote(to_s)}"
       end
 
     end
