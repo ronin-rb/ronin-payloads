@@ -211,6 +211,7 @@ $ ronin-payloads encoders
   python/base64_encode
   python/hex_encode
   ruby/base64_encode
+  ruby/hex_encode
   shell/base64_encode
   shell/hex_encode
   shell/hex_escape
