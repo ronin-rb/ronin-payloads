@@ -6,7 +6,7 @@ ronin-payloads-encode - Encodes data using the encoder(s)
 
 ## SYNOPSIS
 
-`ronin-payloads encode` [*options*] {`--string` *STRING* \| *FILE*}
+`ronin-payloads encode` [*options*] {`--encoder` *ENCODER*} ... {`--string` *STRING* \| *FILE*}
 
 ## DESCRIPTION
 

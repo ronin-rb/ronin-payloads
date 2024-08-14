@@ -33,7 +33,7 @@ module Ronin
         #
         # ## Usage
         #
-        #     ronin-payloads encode [options] {--string STRING | FILE}
+        #     ronin-payloads encode [options] {--encoder ENCODER} ... {--string STRING | FILE}
         #
         # ## Options
         #
@@ -53,7 +53,7 @@ module Ronin
           include FormatOption
           include EncoderMethods
 
-          usage '[options] {--string STRING | FILE}'
+          usage '[options] {--encoder ENCODER} ... {--string STRING | FILE}'
 
           option :encoder, short: '-E',
                            value: {
