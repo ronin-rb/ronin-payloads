@@ -2,8 +2,8 @@ require 'spec_helper'
 require 'ronin/payloads/encoders/builtin/shell/hex_encode'
 
 describe Ronin::Payloads::Encoders::Shell::HexEncode do
-  it "must inherit from Ronin::Payloads::Encoders::ShellEncoder" do
-    expect(described_class).to be < Ronin::Payloads::Encoders::ShellEncoder
+  it "must inherit from Ronin::Payloads::Encoders::ShellCommandEncoder" do
+    expect(described_class).to be < Ronin::Payloads::Encoders::ShellCommandEncoder
   end
 
   describe "#encode" do

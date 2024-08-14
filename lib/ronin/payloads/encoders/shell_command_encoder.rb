@@ -19,49 +19,33 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/payloads/encoders/shell_command_encoder'
+require_relative 'encoder'
 
 module Ronin
   module Payloads
     module Encoders
-      module Shell
+      #
+      # Base-class for all UNIX shell command encoders.
+      #
+      # @since 0.3.0
+      #
+      class ShellCommandEncoder < Encoder
+
         #
-        # A shell encoder that replaces whitespace with the `${IFS}` shell
-        # variable.
+        # Returns the type or kind of encoder payload.
         #
-        #     ls -la   -> ls${IFS}-la
-        #     ls   -la -> ls${IFS}-la
-        #     ls\\t-la  -> ls${IFS}-la
+        # @return [Symbol]
         #
-        # @since 0.3.0
+        # @note
+        #   This is used internally to map an encoder payload class to a
+        #   printable type.
         #
-        class IFS < ShellCommandEncoder
-
-          register 'shell/ifs'
-
-          summary 'Replaces whitespace with ${IFS}'
-
-          description <<~DESC
-            Replaces whitespace with the `${IFS}` shell variable:
-
-              ls -la   -> ls${IFS}-la
-              ls   -la -> ls${IFS}-la
-              ls\\t-la  -> ls${IFS}-la
-
-          DESC
-
-          #
-          # Shell encodes the given data.
-          #
-          # @param [String] command
-          #
-          # @return [String]
-          #
-          def encode(command)
-            command.gsub(/\s+/,'${IFS}')
-          end
-
+        # @api private
+        #
+        def self.encoder_type
+          :shell_command
         end
+
       end
     end
   end

@@ -19,7 +19,7 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/payloads/encoders/shell_encoder'
+require 'ronin/payloads/encoders/shell_command_encoder'
 require 'ronin/support/encoding/hex'
 
 module Ronin
@@ -35,7 +35,7 @@ module Ronin
         #
         # @since 0.3.0
         #
-        class HexEncode < ShellEncoder
+        class HexEncode < ShellCommandEncoder
 
           register 'shell/hex_encode'
 
