@@ -209,6 +209,7 @@ $ ronin-payloads encoders
   js/node/base64_encode
   powershell/hex_encode
   python/base64_encode
+  python/hex_encode
   shell/base64_encode
   shell/hex_encode
   shell/hex_escape
