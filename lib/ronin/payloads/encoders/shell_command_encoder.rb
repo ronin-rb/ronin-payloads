@@ -19,7 +19,7 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require_relative 'encoder'
+require_relative 'command_encoder'
 
 module Ronin
   module Payloads
@@ -29,7 +29,7 @@ module Ronin
       #
       # @since 0.3.0
       #
-      class ShellCommandEncoder < Encoder
+      class ShellCommandEncoder < CommandEncoder
 
         #
         # Returns the type or kind of encoder payload.
