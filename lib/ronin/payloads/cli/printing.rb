@@ -42,6 +42,7 @@ module Ronin
           groovy: 'Groovy',
 
           command:         'Command',
+          shell_command:   'Shell Command',
           windows_command: 'Windows Command',
           shell:           'Shell',
           powershell:      'PowerShell',

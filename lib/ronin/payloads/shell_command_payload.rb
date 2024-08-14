@@ -19,13 +19,37 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require_relative 'shell_command_payload'
+require_relative 'command_payload'
+require_relative 'encoders/shell_command_encoder'
 
 module Ronin
   module Payloads
     #
-    # Alias for {ShellCommandPayload}.
+    # A {Payload} base class that represents a UNIX shell command
+    # (ex: `ls -la`).
     #
-    ShellPayload = ShellCommandPayload
+    # @since 0.3.0
+    #
+    class ShellCommandPayload < CommandPayload
+
+      encoder_class Encoders::ShellCommandEncoder
+
+      os :unix
+
+      #
+      # Returns the type or kind of payload.
+      #
+      # @return [Symbol]
+      #
+      # @note
+      #   This is used internally to map an payload class to a printable type.
+      #
+      # @api private
+      #
+      def self.payload_type
+        :shell_command
+      end
+
+    end
   end
 end
