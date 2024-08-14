@@ -133,6 +133,7 @@ $ ronin-payloads list
   command/php/reverse_shell
   command/ping
   command/powershell/reverse_shell
+  command/powershell/touch
   command/python/reverse_shell
   command/ruby/reverse_shell
   command/sleep
