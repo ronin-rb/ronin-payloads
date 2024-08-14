@@ -22,6 +22,8 @@
 require_relative 'windows_command_payload'
 require_relative 'encoders/powershell_encoder'
 
+require 'ronin/support/encoding/shell'
+
 module Ronin
   module Payloads
     #
@@ -43,6 +45,21 @@ module Ronin
       #
       def self.payload_type
         :powershell
+      end
+
+      #
+      # Converts the built PowerShell payload into a `pwsh -Command "..."`
+      # command.
+      #
+      # @return [String]
+      #   The `pwsh -C "..."` command containing the built PowerShell payload.
+      #
+      # @api public
+      #
+      # @since 0.3.0
+      #
+      def to_command
+        "pwsh -Command #{Support::Encoding::Shell.quote(to_s)}"
       end
 
     end
