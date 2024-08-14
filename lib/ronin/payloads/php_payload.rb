@@ -20,6 +20,7 @@
 #
 
 require_relative 'payload'
+require_relative 'encoders/php_encoder'
 
 require 'ronin/support/encoding/shell'
 
@@ -29,6 +30,8 @@ module Ronin
     # A {Payload} class that represents all PHP payloads.
     #
     class PHPPayload < Payload
+
+      encoder_class Encoders::PHPEncoder
 
       #
       # Returns the type or kind of payload.

@@ -11,6 +11,7 @@ require 'ronin/payloads/encoders/html_encoder'
 require 'ronin/payloads/encoders/javascript_encoder'
 require 'ronin/payloads/encoders/node_js_encoder'
 require 'ronin/payloads/encoders/perl_encoder'
+require 'ronin/payloads/encoders/php_encoder'
 require 'ronin/payloads/encoders/ruby_encoder'
 require 'ronin/payloads/encoders/python_encoder'
 require 'ronin/payloads/encoders/sql_encoder'
@@ -141,6 +142,19 @@ describe Ronin::Payloads::CLI::EncoderMethods do
 
       it "must return 'Perl'" do
         expect(subject.encoder_type(klass)).to eq('Perl')
+      end
+    end
+
+    context "when given a PHPEncoder class" do
+      module TestEncoderMethods
+        class TestPHPEncoder < Ronin::Payloads::Encoders::PHPEncoder
+        end
+      end
+
+      let(:klass) { TestEncoderMethods::TestPHPEncoder }
+
+      it "must return 'PHP'" do
+        expect(subject.encoder_type(klass)).to eq('PHP')
       end
     end
 
