@@ -23,6 +23,8 @@ require_relative 'payload'
 require_relative 'metadata/os'
 require_relative 'encoders/command_encoder'
 
+require 'ronin/support/encoding/ruby'
+
 module Ronin
   module Payloads
     #
@@ -47,6 +49,20 @@ module Ronin
       #
       def self.payload_type
         :command
+      end
+
+      #
+      # Converts the built command into Ruby code.
+      #
+      # @return [String]
+      #   The Ruby code which executes the command.
+      #
+      # @api public
+      #
+      # @since 0.3.0
+      #
+      def to_ruby
+        "system(#{Support::Encoding::Ruby.quote(to_s)})"
       end
 
     end
