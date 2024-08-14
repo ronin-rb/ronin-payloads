@@ -21,6 +21,8 @@
 
 require_relative 'payload'
 
+require 'ronin/support/encoding/shell'
+
 module Ronin
   module Payloads
     #
@@ -40,6 +42,20 @@ module Ronin
       #
       def self.payload_type
         :python
+      end
+
+      #
+      # Converts the built Python payload into a `python -c "..."` command.
+      #
+      # @return [String]
+      #   The `python -c "..."` command containing the built Python payload.
+      #
+      # @api public
+      #
+      # @since 0.3.0
+      #
+      def to_command
+        "python -c #{Support::Encoding::Shell.quote(to_s)}"
       end
 
     end
