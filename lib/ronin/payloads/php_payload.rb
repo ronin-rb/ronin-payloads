@@ -21,6 +21,8 @@
 
 require_relative 'payload'
 
+require 'ronin/support/encoding/shell'
+
 module Ronin
   module Payloads
     #
@@ -40,6 +42,20 @@ module Ronin
       #
       def self.payload_type
         :php
+      end
+
+      #
+      # Converts the built PHP payload into a `php -r "..."` command.
+      #
+      # @return [String]
+      #   The `php -r "..."` command containing the built PHP payload.
+      #
+      # @api public
+      #
+      # @since 0.3.0
+      #
+      def to_command
+        "php -r #{Support::Encoding::Shell.quote(to_s)}"
       end
 
     end
