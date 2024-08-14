@@ -38,4 +38,10 @@ describe Ronin::Payloads::CommandPayload do
       expect(subject.to_ruby).to eq("system(#{ruby_escaped_string})")
     end
   end
+
+  describe "#to_command" do
+    it "must return #to_s" do
+      expect(subject.to_command).to eq(subject.to_s)
+    end
+  end
 end
