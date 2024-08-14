@@ -19,48 +19,34 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require_relative 'payload'
-require_relative 'encoders/ruby_encoder'
-
-require 'ronin/support/encoding/shell'
+require_relative 'encoder'
 
 module Ronin
   module Payloads
-    #
-    # A {Payload} class that represents all Ruby payloads.
-    #
-    class RubyPayload < Payload
-
-      encoder_class Encoders::RubyEncoder
-
+    module Encoders
       #
-      # Returns the type or kind of payload.
-      #
-      # @return [Symbol]
-      #
-      # @note
-      #   This is used internally to map an payload class to a printable type.
-      #
-      # @api private
-      #
-      def self.payload_type
-        :ruby
-      end
-
-      #
-      # Converts the built Ruby payload into a `ruby -e "..."` command.
-      #
-      # @return [String]
-      #   The `ruby -e "..."` command containing the built Ruby payload.
-      #
-      # @api public
+      # Base-class for all Ruby encoders.
       #
       # @since 0.3.0
       #
-      def to_command
-        "ruby -e #{Support::Encoding::Shell.quote(to_s)}"
-      end
+      class RubyEncoder < Encoder
 
+        #
+        # Returns the type or kind of encoder payload.
+        #
+        # @return [Symbol]
+        #
+        # @note
+        #   This is used internally to map an encoder payload class to a
+        #   printable type.
+        #
+        # @api private
+        #
+        def self.encoder_type
+          :ruby
+        end
+
+      end
     end
   end
 end
