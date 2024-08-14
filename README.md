@@ -139,6 +139,7 @@ $ ronin-payloads list
   command/touch
   command/windows/download
   command/windows/ping
+  command/windows/touch
   command/zsh/reverse_shell
   groovy/reverse_shell
   java/reverse_shell
