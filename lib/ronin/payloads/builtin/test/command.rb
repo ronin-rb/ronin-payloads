@@ -30,9 +30,9 @@ module Ronin
       #
       # @since 0.2.0
       #
-      class CMD < CommandPayload
+      class Command < CommandPayload
 
-        register 'test/cmd'
+        register 'test/command'
 
         summary "A test command payload"
         description <<~DESC
