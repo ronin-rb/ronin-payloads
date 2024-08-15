@@ -6,6 +6,14 @@ describe Ronin::Payloads::Encoders::JS::Base64Encode do
     expect(described_class).to be < Ronin::Payloads::Encoders::JavaScriptEncoder
   end
 
+  describe ".id" do
+    subject { described_class }
+
+    it "must equal 'js/base64_encode'" do
+      expect(subject.id).to eq('js/base64_encode')
+    end
+  end
+
   describe "#encode" do
     let(:javascript) { "alert(1)" }
     let(:encoded)    { %{eval(window.btoa("YWxlcnQoMSk="))} }

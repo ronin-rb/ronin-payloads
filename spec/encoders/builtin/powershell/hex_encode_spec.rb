@@ -6,6 +6,14 @@ describe Ronin::Payloads::Encoders::PowerShell::HexEncode do
     expect(described_class).to be < Ronin::Payloads::Encoders::PowerShellEncoder
   end
 
+  describe ".id" do
+    subject { described_class }
+
+    it "must equal 'powershell/hex_encode'" do
+      expect(subject.id).to eq('powershell/hex_encode')
+    end
+  end
+
   describe "#encode" do
     let(:data)    { "dir" }
     let(:encoded) do
