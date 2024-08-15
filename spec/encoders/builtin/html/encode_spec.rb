@@ -6,6 +6,14 @@ describe Ronin::Payloads::Encoders::HTML::Encode do
     expect(described_class).to be < Ronin::Payloads::Encoders::HTMLEncoder
   end
 
+  describe ".id" do
+    subject { described_class }
+
+    it "must equal 'html/encode'" do
+      expect(subject.id).to eq('html/encode')
+    end
+  end
+
   describe "#encode" do
     let(:data)    { "hello world" }
     let(:encoded) { "&#104;&#101;&#108;&#108;&#111;&#32;&#119;&#111;&#114;&#108;&#100;" }

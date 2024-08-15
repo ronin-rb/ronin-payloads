@@ -6,6 +6,14 @@ describe Ronin::Payloads::Encoders::Shell::Base64Encode do
     expect(described_class).to be < Ronin::Payloads::Encoders::ShellCommandEncoder
   end
 
+  describe ".id" do
+    subject { described_class }
+
+    it "must equal 'shell/base64_encode'" do
+      expect(subject.id).to eq('shell/base64_encode')
+    end
+  end
+
   describe "#encode" do
     let(:command) { "ls -la" }
     let(:encoded) { "echo bHMgLWxh|base64 -d|bash" }
