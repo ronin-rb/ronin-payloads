@@ -212,6 +212,7 @@ $ ronin-payloads encoders
   perl/hex_encode
   php/base64_encode
   php/hex_encode
+  powershell/base64_encode
   powershell/hex_encode
   python/base64_encode
   python/hex_encode
