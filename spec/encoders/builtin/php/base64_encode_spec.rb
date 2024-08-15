@@ -6,6 +6,14 @@ describe Ronin::Payloads::Encoders::PHP::Base64Encode do
     expect(described_class).to be < Ronin::Payloads::Encoders::PHPEncoder
   end
 
+  describe ".id" do
+    subject { described_class }
+
+    it "must equal 'php/base64_encode'" do
+      expect(subject.id).to eq('php/base64_encode')
+    end
+  end
+
   describe "#encode" do
     let(:php)     { "echo 'PWNED';" }
     let(:encoded) { %{eval(base64_decode("ZWNobyAnUFdORUQnOw=="));} }

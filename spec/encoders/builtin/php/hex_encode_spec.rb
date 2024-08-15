@@ -6,6 +6,14 @@ describe Ronin::Payloads::Encoders::PHP::HexEncode do
     expect(described_class).to be < Ronin::Payloads::Encoders::PHPEncoder
   end
 
+  describe ".id" do
+    subject { described_class }
+
+    it "must equal 'php/hex_encode'" do
+      expect(subject.id).to eq('php/hex_encode')
+    end
+  end
+
   describe "#encode" do
     let(:php)     { "echo 'PWNED';" }
     let(:encoded) { %{eval(hex2bin("6563686f202750574e4544273b"));} }

@@ -6,6 +6,14 @@ describe Ronin::Payloads::Encoders::PowerShell::Base64Encode do
     expect(described_class).to be < Ronin::Payloads::Encoders::PowerShellEncoder
   end
 
+  describe ".id" do
+    subject { described_class }
+
+    it "must equal 'powershell/base64_encode'" do
+      expect(subject.id).to eq('powershell/base64_encode')
+    end
+  end
+
   describe "#encode" do
     let(:powershell)  { "Write-Output 'PWNED'" }
     let(:encoded)     { %{Invoke-Expression([System.Text.Encoding]::ASCII.GetString([System.Convert]::FromBase64String("V3JpdGUtT3V0cHV0ICdQV05FRCc=")))} }

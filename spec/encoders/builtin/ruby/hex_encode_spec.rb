@@ -6,6 +6,14 @@ describe Ronin::Payloads::Encoders::Ruby::HexEncode do
     expect(described_class).to be < Ronin::Payloads::Encoders::RubyEncoder
   end
 
+  describe ".id" do
+    subject { described_class }
+
+    it "must equal 'ruby/hex_encode'" do
+      expect(subject.id).to eq('ruby/hex_encode')
+    end
+  end
+
   describe "#encode" do
     let(:ruby)    { "puts('PWNED')" }
     let(:encoded) { %{eval("70757473282750574e45442729".scan(/../).map(&:hex).map(&:chr).join)} }

@@ -6,6 +6,14 @@ describe Ronin::Payloads::Encoders::Perl::HexEncode do
     expect(described_class).to be < Ronin::Payloads::Encoders::PerlEncoder
   end
 
+  describe ".id" do
+    subject { described_class }
+
+    it "must equal 'perl/hex_encode'" do
+      expect(subject.id).to eq('perl/hex_encode')
+    end
+  end
+
   describe "#encode" do
     let(:perl)    { 'print "PWNED\n"' }
     let(:encoded) { %{eval(pack("H*","7072696e74202250574e45445c6e22"))} }

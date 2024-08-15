@@ -6,6 +6,14 @@ describe Ronin::Payloads::Encoders::Shell::HexEscape do
     expect(described_class).to be < Ronin::Payloads::Encoders::ShellCommandEncoder
   end
 
+  describe ".id" do
+    subject { described_class }
+
+    it "must equal 'shell/hex_escape'" do
+      expect(subject.id).to eq('shell/hex_escape')
+    end
+  end
+
   describe "#encode" do
     let(:command) { "ls -la" }
     let(:encoded) { "$'\\x6c\\x73' $'\\x2d\\x6c\\x61'" }

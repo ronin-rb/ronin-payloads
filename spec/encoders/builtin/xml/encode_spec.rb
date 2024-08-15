@@ -6,6 +6,14 @@ describe Ronin::Payloads::Encoders::XML::Encode do
     expect(described_class).to be < Ronin::Payloads::Encoders::XMLEncoder
   end
 
+  describe ".id" do
+    subject { described_class }
+
+    it "must equal 'xml/encode'" do
+      expect(subject.id).to eq('xml/encode')
+    end
+  end
+
   describe "#encode" do
     let(:data)    { "hello world" }
     let(:encoded) { "&#104;&#101;&#108;&#108;&#111;&#32;&#119;&#111;&#114;&#108;&#100;" }

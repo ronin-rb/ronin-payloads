@@ -6,6 +6,14 @@ describe Ronin::Payloads::Encoders::Python::Base64Encode do
     expect(described_class).to be < Ronin::Payloads::Encoders::PythonEncoder
   end
 
+  describe ".id" do
+    subject { described_class }
+
+    it "must equal 'python/base64_encode'" do
+      expect(subject.id).to eq('python/base64_encode')
+    end
+  end
+
   describe "#encode" do
     let(:python)  { "print('PWNED')" }
     let(:encoded) { %{import base64; eval(base64.b64decode("cHJpbnQoJ1BXTkVEJyk="))} }

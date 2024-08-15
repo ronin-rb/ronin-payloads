@@ -6,6 +6,14 @@ describe Ronin::Payloads::Encoders::Perl::Base64Encode do
     expect(described_class).to be < Ronin::Payloads::Encoders::PerlEncoder
   end
 
+  describe ".id" do
+    subject { described_class }
+
+    it "must equal 'perl/base64_encode'" do
+      expect(subject.id).to eq('perl/base64_encode')
+    end
+  end
+
   describe "#encode" do
     let(:perl)    { 'print "PWNED\n"' }
     let(:encoded) { %{use MIME::Base64; eval(decode_base64("cHJpbnQgIlBXTkVEXG4i"))} }

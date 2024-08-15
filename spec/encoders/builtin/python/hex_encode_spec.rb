@@ -6,6 +6,14 @@ describe Ronin::Payloads::Encoders::Python::HexEncode do
     expect(described_class).to be < Ronin::Payloads::Encoders::PythonEncoder
   end
 
+  describe ".id" do
+    subject { described_class }
+
+    it "must equal 'python/hex_encode'" do
+      expect(subject.id).to eq('python/hex_encode')
+    end
+  end
+
   describe "#encode" do
     let(:python)  { "print('PWNED')" }
     let(:encoded) { %{import binascii; eval(binascii.unhexlify("7072696e74282750574e45442729"))} }
