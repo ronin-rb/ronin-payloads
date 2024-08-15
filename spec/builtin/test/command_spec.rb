@@ -1,7 +1,7 @@
 require 'spec_helper'
-require 'ronin/payloads/builtin/test/cmd'
+require 'ronin/payloads/builtin/test/command'
 
-describe Ronin::Payloads::Test::CMD do
+describe Ronin::Payloads::Test::Command do
   it "must inherit from Ronin::Payloads::CommandPayload" do
     expect(described_class).to be < Ronin::Payloads::CommandPayload
   end
@@ -9,8 +9,8 @@ describe Ronin::Payloads::Test::CMD do
   describe ".id" do
     subject { described_class }
 
-    it "must equal 'test/cmd'" do
-      expect(subject.id).to eq('test/cmd')
+    it "must equal 'test/command'" do
+      expect(subject.id).to eq('test/command')
     end
   end
 
