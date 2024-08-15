@@ -6,6 +6,14 @@ describe Ronin::Payloads::Encoders::Shell::IFS do
     expect(described_class).to be < Ronin::Payloads::Encoders::ShellCommandEncoder
   end
 
+  describe ".id" do
+    subject { described_class }
+
+    it "must equal 'shell/ifs'" do
+      expect(subject.id).to eq('shell/ifs')
+    end
+  end
+
   describe "#encode" do
     let(:command) { "ls -la" }
     let(:encoded) { "ls${IFS}-la" }
