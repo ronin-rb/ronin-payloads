@@ -58,7 +58,7 @@ describe Ronin::Payloads::Bin::UNIX::ReverseShell do
     )
   end
 
-  describe "#build" do
+  describe "#build", :integration do
     before { subject.build }
 
     it "must set #payload" do

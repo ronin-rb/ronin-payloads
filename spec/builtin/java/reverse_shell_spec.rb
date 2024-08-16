@@ -26,7 +26,7 @@ describe Ronin::Payloads::Java::ReverseShell do
     )
   end
 
-  describe "#build" do
+  describe "#build", :integration do
     before { subject.perform_build }
 
     it "must generate generate a new .java file containing the host and port" do
