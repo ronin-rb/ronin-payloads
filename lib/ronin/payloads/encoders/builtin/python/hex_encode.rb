@@ -28,10 +28,10 @@ module Ronin
       module Python
         #
         # A Python encoder that encodes the given Python code as an hex string,
-        # then decodes it using `binascii.unhexlify()`, and then evaluates the
-        # decoded Python code using `eval()`.
+        # then decodes it using `binascii.unhexlify()`, and then execuates the
+        # decoded Python code using `exec()`.
         #
-        #     print('PWNED') -> import binascii; eval(binascii.unhexlify("7072696e74282750574e45442729"))
+        #     print('PWNED') -> import binascii; exec(binascii.unhexlify("7072696e74282750574e45442729"))
         #
         # @since 0.3.0
         #
@@ -43,11 +43,12 @@ module Ronin
 
           description <<~DESC
             Encodes the given Python code as an hex string, then decodes it
-            using `binascii.unhexlify()`, and then evaluates the decoded Python
-            code using `eval()`.
+            using `binascii.unhexlify()`, and then execuates the decoded Python
+            code using `exec()`.
 
-              print('PWNED') -> import binascii; eval(binascii.unhexlify("7072696e74282750574e45442729"))
+              print('PWNED') -> import binascii; exec(binascii.unhexlify("7072696e74282750574e45442729"))
 
+            Note: supports Python 2 and 3.
           DESC
 
           #
@@ -61,7 +62,7 @@ module Ronin
           def encode(python)
             hex = Support::Encoding::Hex.encode(python)
 
-            %{import binascii; eval(binascii.unhexlify("#{hex}"))}
+            %{import binascii; exec(binascii.unhexlify("#{hex}"))}
           end
 
         end

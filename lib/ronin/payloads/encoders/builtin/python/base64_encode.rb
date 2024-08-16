@@ -28,10 +28,10 @@ module Ronin
       module Python
         #
         # A Python encoder that encodes the given Python code as a Base64
-        # string, then decodes it using `base64.b64decode()`, and then evaluates
-        # the decoded Python code using `eval()`.
+        # string, then decodes it using `base64.b64decode()`, and then execuates
+        # the decoded Python code using `exec()`.
         #
-        #    print('PWNED') -> import base64; eval(base64.b64decode("cHJpbnQoJ1BXTkVEJyk="))
+        #    print('PWNED') -> import base64; exec(base64.b64decode("cHJpbnQoJ1BXTkVEJyk="))
         #
         # @since 0.3.0
         #
@@ -43,11 +43,12 @@ module Ronin
 
           description <<~DESC
             Encodes the given Python code as a Base64 string, then decodes it
-            using `base64.b64decode()`, and then evaluates the decoded Python
-            code using `eval()`.
+            using `base64.b64decode()`, and then execuates the decoded Python
+            code using `exec()`.
 
-              print('PWNED') -> import base64; eval(base64.b64decode("cHJpbnQoJ1BXTkVEJyk="))
+              print('PWNED') -> import base64; exec(base64.b64decode("cHJpbnQoJ1BXTkVEJyk="))
 
+            Note: supports Python 2 and 3.
           DESC
 
           #
@@ -61,7 +62,7 @@ module Ronin
           def encode(python)
             base64 = Support::Encoding::Base64.encode(python, mode: :strict)
 
-            %{import base64; eval(base64.b64decode("#{base64}"))}
+            %{import base64; exec(base64.b64decode("#{base64}"))}
           end
 
         end
