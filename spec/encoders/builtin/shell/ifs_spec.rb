@@ -39,7 +39,7 @@ describe Ronin::Payloads::Encoders::Shell::IFS do
     end
 
     it "must return a valid shell command", :integration do
-      expect(`#{subject.encode(command)}`).to eq("PWNED#{$/}")
+      expect(`sh -c '#{subject.encode(command)}'`).to eq("PWNED#{$/}")
     end
   end
 end
