@@ -15,8 +15,8 @@ describe Ronin::Payloads::Encoders::Shell::Base64Encode do
   end
 
   describe "#encode" do
-    let(:command) { "ls -la" }
-    let(:encoded) { "echo bHMgLWxh|base64 -d|bash" }
+    let(:command) { "echo PWNED" }
+    let(:encoded) { "echo ZWNobyBQV05FRA==|base64 -d|bash" }
 
     it "must encode the given command String as Base64 and embed it into the `echo ...|base64 -d|bash` command" do
       expect(subject.encode(command)).to eq(encoded)
@@ -24,7 +24,7 @@ describe Ronin::Payloads::Encoders::Shell::Base64Encode do
 
     context "when the shell param is set" do
       let(:shell)   { 'zsh' }
-      let(:encoded) { "echo bHMgLWxh|base64 -d|#{shell}" }
+      let(:encoded) { "echo ZWNobyBQV05FRA==|base64 -d|#{shell}" }
 
       subject do
         described_class.new(params: {shell: shell})
@@ -33,6 +33,10 @@ describe Ronin::Payloads::Encoders::Shell::Base64Encode do
       it "must use the shell param in the command" do
         expect(subject.encode(command)).to eq(encoded)
       end
+    end
+
+    it "must return a valid shell command", :integration do
+      expect(`#{subject.encode(command)}`).to eq("PWNED#{$/}")
     end
   end
 end

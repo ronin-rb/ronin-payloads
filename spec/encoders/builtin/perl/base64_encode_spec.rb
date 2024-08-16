@@ -21,5 +21,9 @@ describe Ronin::Payloads::Encoders::Perl::Base64Encode do
     it "must encode the given Perl code as a Base64 string and embed it into the 'use MIME::Base64; eval(decode_base64(\"...\"))' string" do
       expect(subject.encode(perl)).to eq(encoded)
     end
+
+    it "must return valid Perl code", :integration do
+      expect(`perl -e '#{subject.encode(perl)}'`).to eq("PWNED#{$/}")
+    end
   end
 end

@@ -21,5 +21,9 @@ describe Ronin::Payloads::Encoders::Perl::HexEncode do
     it "must encode the given Perl code as a hex string and embed it into the 'eval(pack(\"H*\",\"...\"))' string" do
       expect(subject.encode(perl)).to eq(encoded)
     end
+
+    it "must return valid Perl code", :integration do
+      expect(`perl -e '#{subject.encode(perl)}'`).to eq("PWNED#{$/}")
+    end
   end
 end

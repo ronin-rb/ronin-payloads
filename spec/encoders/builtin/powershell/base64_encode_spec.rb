@@ -21,5 +21,9 @@ describe Ronin::Payloads::Encoders::PowerShell::Base64Encode do
     it "must encode the given PowerShell code as a Base64 string and embed it into the 'Invoke-Expression([System.Text.Encoding]::ASCII.GetString([System.Convert]::FromBase64String(\"...\")))' string" do
       expect(subject.encode(powershell)).to eq(encoded)
     end
+
+    it "must return valid PowerShell code", :integration do
+      expect(`pwsh -C '#{subject.encode(powershell)}'`).to eq("PWNED#{$/}")
+    end
   end
 end
