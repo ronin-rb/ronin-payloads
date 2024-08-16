@@ -23,6 +23,7 @@ require_relative 'payload'
 require_relative 'metadata/os'
 require_relative 'encoders/command_encoder'
 
+require 'ronin/support/encoding/php'
 require 'ronin/support/encoding/ruby'
 
 module Ronin
@@ -49,6 +50,20 @@ module Ronin
       #
       def self.payload_type
         :command
+      end
+
+      #
+      # Converts the built command into PHP code.
+      #
+      # @return [String]
+      #   The PHP code which executes the command.
+      #
+      # @api public
+      #
+      # @since 0.3.0
+      #
+      def to_php
+        "system(#{Support::Encoding::PHP.quote(to_s)})"
       end
 
       #
