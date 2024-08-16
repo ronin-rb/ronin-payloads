@@ -49,6 +49,8 @@ module Ronin
 
               ls -la -> $'\\x6c\\x73' $'\\x2d\\x6c\\x61'
 
+            Note: supports bash, zsh, mksh, but *not* the dash shell which is
+            the default system shell on Ubuntu and Debian.
           DESC
 
           #
