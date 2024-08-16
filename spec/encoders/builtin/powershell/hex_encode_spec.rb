@@ -15,13 +15,17 @@ describe Ronin::Payloads::Encoders::PowerShell::HexEncode do
   end
 
   describe "#encode" do
-    let(:data)    { "dir" }
+    let(:powershell) { "Write-Output 'PWNED'" }
     let(:encoded) do
-      %{Invoke-Expression "$([char]0x64)$([char]0x69)$([char]0x72)"}
+      %{Invoke-Expression "$([char]0x57)$([char]0x72)$([char]0x69)$([char]0x74)$([char]0x65)$([char]0x2d)$([char]0x4f)$([char]0x75)$([char]0x74)$([char]0x70)$([char]0x75)$([char]0x74)$([char]0x20)$([char]0x27)$([char]0x50)$([char]0x57)$([char]0x4e)$([char]0x45)$([char]0x44)$([char]0x27)"}
     end
 
     it "must each character of the command as PowerShell '$([char]0xXX)' characters and evaluate the resulting string using 'Invoke-Expression'" do
-      expect(subject.encode(data)).to eq(encoded)
+      expect(subject.encode(powershell)).to eq(encoded)
+    end
+
+    it "must return valid PowerShell code", :integration do
+      expect(`pwsh -C '#{subject.encode(powershell)}'`).to eq("PWNED#{$/}")
     end
   end
 end

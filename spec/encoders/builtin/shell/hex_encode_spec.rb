@@ -15,8 +15,8 @@ describe Ronin::Payloads::Encoders::Shell::HexEncode do
   end
 
   describe "#encode" do
-    let(:command) { "ls -la" }
-    let(:encoded) { "echo 6c73202d6c61|xxd -r -p|bash" }
+    let(:command) { "echo PWNED" }
+    let(:encoded) { "echo 6563686f2050574e4544|xxd -r -p|bash" }
 
     it "must encode the given command String into a hex string and embed it into the `xxd -r -ps|bash` command" do
       expect(subject.encode(command)).to eq(encoded)
@@ -24,7 +24,7 @@ describe Ronin::Payloads::Encoders::Shell::HexEncode do
 
     context "when the shell param is set" do
       let(:shell)   { 'zsh' }
-      let(:encoded) { "echo 6c73202d6c61|xxd -r -p|#{shell}" }
+      let(:encoded) { "echo 6563686f2050574e4544|xxd -r -p|#{shell}" }
 
       subject do
         described_class.new(params: {shell: shell})
@@ -33,6 +33,10 @@ describe Ronin::Payloads::Encoders::Shell::HexEncode do
       it "must use the shell param in the command" do
         expect(subject.encode(command)).to eq(encoded)
       end
+    end
+
+    it "must return a valid shell command", :integration do
+      expect(`#{subject.encode(command)}`).to eq("PWNED#{$/}")
     end
   end
 end

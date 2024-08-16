@@ -28,7 +28,8 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt update -y && \
-          sudo apt install -y --no-install-recommends --no-install-suggests yasm gcc-mingw-w64 default-jdk
+          sudo apt install -y --no-install-recommends --no-install-suggests yasm gcc-mingw-w64 default-jdk perl php-cli nodejs python2 python3 && \
+          echo /opt/microsoft/powershell/7 >> $GITHUB_PATH
       - name: Install dependencies
         run: bundle install --jobs 4 --retry 3
       - name: Run tests

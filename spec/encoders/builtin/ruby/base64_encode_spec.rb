@@ -21,5 +21,9 @@ describe Ronin::Payloads::Encoders::Ruby::Base64Encode do
     it "must encode the given Ruby code as a Base64 string and embed it into the 'eval(\"...\".unpack1(\"m0\")' string" do
       expect(subject.encode(ruby)).to eq(encoded)
     end
+
+    it "must return valid Ruby code", :integration do
+      expect(`ruby -e '#{subject.encode(ruby)}'`).to eq("PWNED#{$/}")
+    end
   end
 end
