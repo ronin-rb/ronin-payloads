@@ -21,5 +21,13 @@ describe Ronin::Payloads::Encoders::Python::HexEncode do
     it "must encode the given Python code as a hex string and embed it into the 'import binascii; exec(binascii.unhexlify(\"...\"))' string" do
       expect(subject.encode(python)).to eq(encoded)
     end
+
+    it "must return valid Python 2 code", :integration do
+      expect(`python2 -c '#{subject.encode(python)}'`).to eq("PWNED#{$/}")
+    end
+
+    it "must return valid Python 3 code", :integration do
+      expect(`python3 -c '#{subject.encode(python)}'`).to eq("PWNED#{$/}")
+    end
   end
 end

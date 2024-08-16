@@ -21,5 +21,9 @@ describe Ronin::Payloads::Encoders::PHP::HexEncode do
     it "must encode the given PHP code as a hex string and embed it into the 'eval(hex2bin(\"...\"));' string" do
       expect(subject.encode(php)).to eq(encoded)
     end
+
+    it "must return valid PHP code", :integration do
+      expect(`php -r '#{subject.encode(php)}'`).to eq("PWNED")
+    end
   end
 end

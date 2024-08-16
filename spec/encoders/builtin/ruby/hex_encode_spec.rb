@@ -15,11 +15,15 @@ describe Ronin::Payloads::Encoders::Ruby::HexEncode do
   end
 
   describe "#encode" do
-    let(:ruby)    { "puts('PWNED')" }
-    let(:encoded) { %{eval("70757473282750574e45442729".scan(/../).map(&:hex).map(&:chr).join)} }
+    let(:ruby)    { %{puts "PWNED"} }
+    let(:encoded) { %{eval("70757473202250574e454422".scan(/../).map(&:hex).map(&:chr).join)} }
 
     it "must encode the given Ruby code as a hex string and embed it into the 'eval(\"...\".scan(/../).map(&:hex).map(&:chr).join)' string" do
       expect(subject.encode(ruby)).to eq(encoded)
+    end
+
+    it "must return valid Ruby code", :integration do
+      expect(`ruby -e '#{subject.encode(ruby)}'`).to eq("PWNED#{$/}")
     end
   end
 end

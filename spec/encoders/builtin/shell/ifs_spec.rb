@@ -15,15 +15,15 @@ describe Ronin::Payloads::Encoders::Shell::IFS do
   end
 
   describe "#encode" do
-    let(:command) { "ls -la" }
-    let(:encoded) { "ls${IFS}-la" }
+    let(:command) { "echo PWNED" }
+    let(:encoded) { "echo${IFS}PWNED" }
 
     it "must replace spaces with '${IFS}'" do
       expect(subject.encode(command)).to eq(encoded)
     end
 
     context "when the input contains multiple consecutive spaces" do
-      let(:command) { "ls   -la" }
+      let(:command) { "echo   PWNED" }
 
       it "must replace multiple spaces with a single '${IFS}'" do
         expect(subject.encode(command)).to eq(encoded)
@@ -31,11 +31,15 @@ describe Ronin::Payloads::Encoders::Shell::IFS do
     end
 
     context "when the input contains other kinds of whitespace" do
-      let(:command) { "ls\t-la" }
+      let(:command) { "echo\tPWNED" }
 
       it "must replace other whitespace characters with '${IFS}'" do
         expect(subject.encode(command)).to eq(encoded)
       end
+    end
+
+    it "must return a valid shell command", :integration do
+      expect(`#{subject.encode(command)}`).to eq("PWNED#{$/}")
     end
   end
 end
