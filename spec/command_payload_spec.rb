@@ -31,6 +31,14 @@ describe Ronin::Payloads::CommandPayload do
   let(:payload_class) { TestCommandPayload::TestPayload }
   subject { payload_class.new }
 
+  describe "#to_php" do
+    it "must convert the built command into a PHP string that is passed to 'system(\"...\")'" do
+      php_escaped_string = Ronin::Support::Encoding::PHP.quote(subject.to_s)
+
+      expect(subject.to_php).to eq("system(#{php_escaped_string})")
+    end
+  end
+
   describe "#to_ruby" do
     it "must convert the built command into a Ruby string that is passed to 'system(\"...\")'" do
       ruby_escaped_string = Ronin::Support::Encoding::Ruby.quote(subject.to_s)
