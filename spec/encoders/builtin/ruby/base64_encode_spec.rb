@@ -16,7 +16,7 @@ describe Ronin::Payloads::Encoders::Ruby::Base64Encode do
 
   describe "#encode" do
     let(:ruby)    { "puts('PWNED')" }
-    let(:encoded) { %{eval("cHV0cygnUFdORUQnKQ==".unpack1("m0"))} }
+    let(:encoded) { %{eval("cHV0cygnUFdORUQnKQ==".unpack("m0").first)} }
 
     it "must encode the given Ruby code as a Base64 string and embed it into the 'eval(\"...\".unpack1(\"m0\")' string" do
       expect(subject.encode(ruby)).to eq(encoded)

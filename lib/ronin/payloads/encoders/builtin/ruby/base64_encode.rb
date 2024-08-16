@@ -43,10 +43,10 @@ module Ronin
 
           description <<~DESC
             Encodes the given Ruby code as a Base64 string, then decodes it
-            using `"...".unpack1('m0')`, and then evaluates the decoded Ruby
-            code using `eval()`.
+            using `"...".unpack('m0').first`, and then evaluates the decoded
+            Ruby code using `eval()`.
 
-              puts('PWNED') -> eval("cHV0cygnUFdORUQnKQ==".unpack1("m0"))
+              puts('PWNED') -> eval("cHV0cygnUFdORUQnKQ==".unpack("m0").first)
 
           DESC
 
@@ -61,7 +61,7 @@ module Ronin
           def encode(ruby)
             base64 = Support::Encoding::Base64.encode(ruby, mode: :strict)
 
-            %{eval("#{base64}".unpack1("m0"))}
+            %{eval("#{base64}".unpack("m0").first)}
           end
 
         end
