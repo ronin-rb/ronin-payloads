@@ -23,7 +23,7 @@ describe Ronin::Payloads::Encoders::Shell::HexEscape do
     end
 
     it "must return a valid shell command", :integration do
-      expect(`sh -c "#{subject.encode(command)}"`).to eq("PWNED#{$/}")
+      expect(`bash -c "#{subject.encode(command)}"`).to eq("PWNED#{$/}")
     end
   end
 end
