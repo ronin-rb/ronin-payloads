@@ -16,9 +16,9 @@ describe Ronin::Payloads::Encoders::Python::Base64Encode do
 
   describe "#encode" do
     let(:python)  { "print('PWNED')" }
-    let(:encoded) { %{import base64; eval(base64.b64decode("cHJpbnQoJ1BXTkVEJyk="))} }
+    let(:encoded) { %{import base64; exec(base64.b64decode("cHJpbnQoJ1BXTkVEJyk="))} }
 
-    it "must encode the given Python code as a Base64 string and embed it into the 'import base64; eval(base64.b64decode(\"...\"))' string" do
+    it "must encode the given Python code as a Base64 string and embed it into the 'import base64; exec(base64.b64decode(\"...\"))' string" do
       expect(subject.encode(python)).to eq(encoded)
     end
   end
