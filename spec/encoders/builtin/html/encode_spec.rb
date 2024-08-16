@@ -1,6 +1,8 @@
 require 'spec_helper'
 require 'ronin/payloads/encoders/builtin/html/encode'
 
+require 'nokogiri'
+
 describe Ronin::Payloads::Encoders::HTML::Encode do
   it "must inherit from Ronin::Payloads::Encoders::HTMLEncoder" do
     expect(described_class).to be < Ronin::Payloads::Encoders::HTMLEncoder
@@ -20,6 +22,10 @@ describe Ronin::Payloads::Encoders::HTML::Encode do
 
     it "must HTML encode each character" do
       expect(subject.encode(data)).to eq(encoded)
+    end
+
+    it "must return valid HTML" do
+      expect(Nokogiri::HTML.fragment(subject.encode(data)).inner_text).to eq(data)
     end
   end
 end
