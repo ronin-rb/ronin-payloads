@@ -33,7 +33,7 @@ module Ronin
         # as hex escaped shell strings then executes it as a command in a
         # sub-shell.
         #
-        #     ls -la -> $'\x6c\x73' $'\x2d\x6c\x61'
+        #     ls -la -> bash -c "$'\x6c\x73' $'\x2d\x6c\x61'"
         #
         # @since 0.3.0
         #
@@ -47,7 +47,7 @@ module Ronin
             Encodes the arguments of a given command String as hex escaped shell
             strings then executes it as a command in a sub-shell.
 
-              ls -la -> $'\\x6c\\x73' $'\\x2d\\x6c\\x61'
+              ls -la -> bash -c "$'\\x6c\\x73' $'\\x2d\\x6c\\x61'"
 
             Note: supports bash, zsh, mksh, but *not* the dash shell which is
             the default system shell on Ubuntu and Debian.
@@ -61,9 +61,11 @@ module Ronin
           # @return [String]
           #
           def encode(command)
-            Shellwords.shellsplit(command).map { |arg|
+            escaped_command = Shellwords.shellsplit(command).map { |arg|
               "$'#{Support::Encoding::Shell.encode(arg)}'"
             }.join(' ')
+
+            %{bash -c "#{escaped_command}"}
           end
 
         end
