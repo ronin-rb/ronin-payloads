@@ -25,6 +25,7 @@ require_relative 'encoders/command_encoder'
 
 require 'ronin/support/encoding/php'
 require 'ronin/support/encoding/ruby'
+require 'ronin/support/encoding/node_js'
 
 module Ronin
   module Payloads
@@ -78,6 +79,20 @@ module Ronin
       #
       def to_ruby
         "system(#{Support::Encoding::Ruby.quote(to_s)})"
+      end
+
+      #
+      # Converts the built command into Node.js code.
+      #
+      # @return [String]
+      #   The Node.js code which executes the command.
+      #
+      # @api public
+      #
+      # @since 0.3.0
+      #
+      def to_node_js
+        "exec(#{Support::Encoding::NodeJS.quote(to_s)},(error,stdout,stderr)=>{console.log(stdout);});"
       end
 
       alias to_command to_s

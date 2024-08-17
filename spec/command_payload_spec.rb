@@ -47,6 +47,14 @@ describe Ronin::Payloads::CommandPayload do
     end
   end
 
+  describe "#to_node_js" do
+    it "must convert the built command into a Node.js string that is passed to 'exec(\"...\",(error,stdout,stderr)=>{console.log(stdout);});'" do
+      node_js_escaped_string = Ronin::Support::Encoding::NodeJS.quote(subject.to_s)
+
+      expect(subject.to_node_js).to eq("exec(#{node_js_escaped_string},(error,stdout,stderr)=>{console.log(stdout);});")
+    end
+  end
+
   describe "#to_command" do
     it "must return #to_s" do
       expect(subject.to_command).to eq(subject.to_s)
