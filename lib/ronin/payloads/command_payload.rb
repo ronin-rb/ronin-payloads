@@ -24,6 +24,7 @@ require_relative 'metadata/os'
 require_relative 'encoders/command_encoder'
 
 require 'ronin/support/encoding/php'
+require 'ronin/support/encoding/python'
 require 'ronin/support/encoding/ruby'
 require 'ronin/support/encoding/node_js'
 
@@ -65,6 +66,20 @@ module Ronin
       #
       def to_php
         "system(#{Support::Encoding::PHP.quote(to_s)})"
+      end
+
+      #
+      # Converts the built command into Python code.
+      #
+      # @return [String]
+      #   The Python code which executes the command.
+      #
+      # @api public
+      #
+      # @since 0.3.0
+      #
+      def to_python
+        "import os; os.system(#{Support::Encoding::Python.quote(to_s)})"
       end
 
       #

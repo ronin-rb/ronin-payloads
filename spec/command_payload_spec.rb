@@ -39,6 +39,14 @@ describe Ronin::Payloads::CommandPayload do
     end
   end
 
+  describe "#to_python" do
+    it "must convert the built command into a Python string that is passed to 'import os; os.system(\"...\")'" do
+      python_escaped_string = Ronin::Support::Encoding::Python.quote(subject.to_s)
+
+      expect(subject.to_python).to eq("import os; os.system(#{python_escaped_string})")
+    end
+  end
+
   describe "#to_ruby" do
     it "must convert the built command into a Ruby string that is passed to 'system(\"...\")'" do
       ruby_escaped_string = Ronin::Support::Encoding::Ruby.quote(subject.to_s)
