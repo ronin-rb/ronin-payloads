@@ -32,4 +32,10 @@ describe Ronin::Payloads::PHPPayload do
       expect(subject.to_command).to eq(%{php -r "echo 'PWNED';"})
     end
   end
+
+  describe "#to_html" do
+    it "must embed the built payload into a '<?php ... ?>' HTML embed" do
+      expect(subject.to_html).to eq(%{<?php echo 'PWNED'; ?>})
+    end
+  end
 end
