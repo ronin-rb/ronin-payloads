@@ -22,6 +22,7 @@
 require_relative '../payload_command'
 require_relative '../format_option'
 require_relative '../encoder_methods'
+require_relative '../printing'
 
 require 'ronin/core/cli/options/param'
 
@@ -46,6 +47,8 @@ module Ronin
         #     -E, --encoder ENCODER            Adds the encoder to the payload
         #         --encoder-param ENCODER.NAME=VALUE
         #                                      Sets a param for one of the encoders
+        #     -C perl|php|python|ruby|nodejs|html|command,
+        #         --convert-to                 Optionally converts the payload into another payload type
         #     -D, --debug                      Enables debugging messages
         #     -h, --help                       Print help information
         #
@@ -58,6 +61,7 @@ module Ronin
           include FormatOption
           include EncoderMethods
           include Core::CLI::Options::Param
+          include Printing
 
           option :output, short: '-o',
                           value: {
@@ -85,6 +89,20 @@ module Ronin
 
                                    @encoder_params[encoder_name][param_name.to_sym] = value
                                  end
+
+          option :convert_to, short: '-C',
+                              value: {
+                                type: {
+                                  'perl'    => :perl,
+                                  'php'     => :php,
+                                  'python'  => :python,
+                                  'ruby'    => :ruby,
+                                  'nodejs'  => :node_js,
+                                  'html'    => :html,
+                                  'command' => :command
+                                }
+                              },
+                              desc: 'Optionally converts the payload into another payload type'
 
           option :debug, short: '-D',
                          desc: 'Enables debugging messages' do
@@ -131,6 +149,7 @@ module Ronin
             initialize_payload
             validate_payload
             build_payload
+            convert_payload if options[:convert_to]
 
             if options[:output] then write_payload
             else                     print_payload
@@ -174,35 +193,37 @@ module Ronin
           end
 
           #
-          # The built payload.
+          # Optionally converts the payload into a different payload type.
           #
-          # @return [String]
+          # @since 0.3.0
           #
-          def built_payload
-            @payload.built_payload
-          end
+          def convert_payload
+            convert_to = options[:convert_to]
+            to_method  = "to_#{convert_to}"
 
-          #
-          # The built and encoded payload.
-          #
-          # @return [String]
-          #
-          def encoded_payload
-            @payload.encoded_payload
+            unless @payload.respond_to?(to_method)
+              from_payload_type = payload_type(@payload_class)
+              to_payload_type   = PAYLOAD_TYPES.fetch(convert_to)
+
+              print_error "unable to convert payload #{@payload_class.id} of type #{from_payload_type} into a #{to_payload_type}"
+              exit(-1)
+            end
+
+            @payload = @payload.public_send(to_method)
           end
 
           #
           # Writes the built and optionally encoded payload to the output file.
           #
           def write_payload
-            File.binwrite(options[:output],format_data(encoded_payload))
+            File.binwrite(options[:output],format_data(@payload.to_s))
           end
 
           #
           # Prints the built and optionally encoded payload.
           #
           def print_payload
-            print_data(@payload.encode_payload)
+            print_data(@payload.to_s)
           end
 
         end
