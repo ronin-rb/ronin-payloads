@@ -37,6 +37,9 @@ Loads and builds a payload.
 `--encoder-param` *ENCODER*`.`*NAME*`.`*VALUE*
 : Sets a param on the given encoder.
 
+`-C`, `--convert-to` `perl`|`php`|`python`|`ruby`|`nodejs`|`html`|`command`
+: Optionally converts the payload into another payload type.
+
 `-D`, `--debug`
 : Enables debugging messages.
 
