@@ -71,5 +71,26 @@ describe Ronin::Payloads::CLI::Commands::Build do
         expect(subject.encoder_ids).to eq([encoder1, encoder2])
       end
     end
+
+    {
+      'perl'    => :perl,
+      'php'     => :php,
+      'python'  => :python,
+      'ruby'    => :ruby,
+      'nodejs'  => :node_js,
+      'html'    => :html,
+      'command' => :command
+    }.each do |arg,convert_to|
+      context "when parsing '--convert-to #{arg}' options" do
+        let(:argv)       { ['--convert-to', arg] }
+        let(:convert_to) { convert_to }
+
+        before { subject.option_parser.parse(argv) }
+
+        it "must set options[:convert_to] to #{convert_to.inspect}" do
+          expect(subject.options[:convert_to]).to eq(convert_to)
+        end
+      end
+    end
   end
 end
