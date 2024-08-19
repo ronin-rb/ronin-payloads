@@ -61,6 +61,20 @@ module Ronin
         "php -r #{Support::Encoding::Shell.quote(to_s)}"
       end
 
+      #
+      # Converts the built PHP payload into a `<?php ... ?>` HTML embed.
+      #
+      # @return [String]
+      #   The `<?php ... ?>` HTML embed containing the built PHP payload.
+      #
+      # @api public
+      #
+      # @since 0.3.0
+      #
+      def to_html
+        "<?php #{self} ?>"
+      end
+
     end
   end
 end
