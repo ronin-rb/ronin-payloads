@@ -23,6 +23,10 @@ describe Ronin::Payloads::Encoders::Python::Base64Encode do
     end
 
     it "must return valid Python 2 code", :integration do
+      unless system('command -v python2 >/dev/null')
+        skip("python2 not installed")
+      end
+
       expect(`python2 -c '#{subject.encode(python)}'`).to eq("PWNED#{$/}")
     end
 
