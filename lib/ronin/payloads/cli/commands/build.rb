@@ -22,7 +22,7 @@
 require_relative '../payload_command'
 require_relative '../format_option'
 require_relative '../encoder_methods'
-require_relative '../printing'
+require_relative '../text'
 
 require 'ronin/core/cli/options/param'
 
@@ -61,7 +61,7 @@ module Ronin
           include FormatOption
           include EncoderMethods
           include Core::CLI::Options::Param
-          include Printing
+          include Text
 
           option :output, short: '-o',
                           value: {

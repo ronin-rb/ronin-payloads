@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'ronin/payloads/cli/printing'
+require 'ronin/payloads/cli/text'
 require 'ronin/payloads/cli/command'
 
 require 'ronin/payloads/binary_payload'
@@ -25,14 +25,14 @@ require 'ronin/payloads/html_payload'
 require 'ronin/payloads/xml_payload'
 require 'ronin/payloads/mixins/typescript'
 
-describe Ronin::Payloads::CLI::Printing do
-  module TestCLIPrinting
+describe Ronin::Payloads::CLI::Text do
+  module TestCLIText
     class TestCommand < Ronin::Payloads::CLI::Command
-      include Ronin::Payloads::CLI::Printing
+      include Ronin::Payloads::CLI::Text
     end
   end
 
-  let(:command_class) { TestCLIPrinting::TestCommand }
+  let(:command_class) { TestCLIText::TestCommand }
   subject { command_class.new }
 
   describe "#payload_type" do
