@@ -23,10 +23,12 @@ module Ronin
   module Payloads
     class CLI
       #
-      # Common methods for printing payload metadata.
+      # Methods for generating display text.
       #
-      module Printing
-        # Known payload types and their printable names.
+      # @since 0.3.0
+      #
+      module Text
+        # Known payload types and their display names.
         PAYLOAD_TYPES = {
           payload: 'Custom',
 
@@ -64,13 +66,13 @@ module Ronin
         }
 
         #
-        # Returns the printable payload type for the payload class.
+        # Returns the payload type display name for the payload class.
         #
         # @param [Class<Payload>] payload_class
         #   The payload class.
         #
         # @return [String]
-        #   The printable payload type (ex: 'ASM' or 'shellcode').
+        #   The payload type display name (ex: 'ASM' or 'shellcode').
         #
         def payload_type(payload_class)
           PAYLOAD_TYPES.fetch(payload_class.payload_type,'Unknown')

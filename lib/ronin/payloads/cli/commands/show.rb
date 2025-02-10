@@ -20,7 +20,7 @@
 #
 
 require_relative '../payload_command'
-require_relative '../printing'
+require_relative '../text'
 require_relative '../../metadata/arch'
 require_relative '../../metadata/os'
 
@@ -59,7 +59,7 @@ module Ronin
           include Core::CLI::Printing::Metadata
           include Core::CLI::Printing::Params
           include CommandKit::Printing::Fields
-          include Printing
+          include Text
 
           description 'Prints information about a payload'
 
