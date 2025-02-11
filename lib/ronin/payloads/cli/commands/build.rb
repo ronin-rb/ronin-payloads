@@ -202,8 +202,8 @@ module Ronin
             to_method  = "to_#{convert_to}"
 
             unless @payload.respond_to?(to_method)
-              from_payload_type = payload_type(@payload_class)
-              to_payload_type   = PAYLOAD_TYPES.fetch(convert_to)
+              from_payload_type = payload_type_name(@payload_class)
+              to_payload_type   = PAYLOAD_TYPE_NAMES.fetch(convert_to)
 
               print_error "unable to convert payload #{@payload_class.id} of type #{from_payload_type} into a #{to_payload_type}"
               exit(-1)
