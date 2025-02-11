@@ -24,9 +24,9 @@ require_relative '../printing'
 require_relative '../../metadata/arch'
 require_relative '../../metadata/os'
 
+require 'ronin/core/cli/text/arch'
+require 'ronin/core/cli/text/os'
 require 'ronin/core/cli/printing/metadata'
-require 'ronin/core/cli/printing/arch'
-require 'ronin/core/cli/printing/os'
 require 'ronin/core/cli/printing/params'
 
 require 'command_kit/printing/fields'
@@ -54,9 +54,9 @@ module Ronin
         #
         class Show < PayloadCommand
 
+          include Core::CLI::Text::Arch
+          include Core::CLI::Text::OS
           include Core::CLI::Printing::Metadata
-          include Core::CLI::Printing::Arch
-          include Core::CLI::Printing::OS
           include Core::CLI::Printing::Params
           include CommandKit::Printing::Fields
           include Printing
