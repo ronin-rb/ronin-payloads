@@ -29,7 +29,7 @@ module Ronin
       #
       module Text
         # Known payload types and their display names.
-        PAYLOAD_TYPES = {
+        PAYLOAD_TYPE_NAMES = {
           payload: 'Custom',
 
           binary:    'Binary',
@@ -74,8 +74,8 @@ module Ronin
         # @return [String]
         #   The payload type display name (ex: 'ASM' or 'shellcode').
         #
-        def payload_type(payload_class)
-          PAYLOAD_TYPES.fetch(payload_class.payload_type,'Unknown')
+        def payload_type_name(payload_class)
+          PAYLOAD_TYPE_NAMES.fetch(payload_class.payload_type,'Unknown')
         end
       end
     end

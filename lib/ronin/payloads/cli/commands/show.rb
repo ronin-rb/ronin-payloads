@@ -89,7 +89,7 @@ module Ronin
             indent do
               fields = {}
 
-              fields['Type']    = payload_type(payload)
+              fields['Type']    = payload_type_name(payload)
               fields['Summary'] = payload.summary if payload.summary
 
               if payload.include?(Metadata::Arch)

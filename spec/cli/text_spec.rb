@@ -35,7 +35,7 @@ describe Ronin::Payloads::CLI::Text do
   let(:command_class) { TestCLIText::TestCommand }
   subject { command_class.new }
 
-  describe "#payload_type" do
+  describe "#payload_type_name" do
     {
       Ronin::Payloads::HTMLPayload           => 'HTML',
       Ronin::Payloads::XMLPayload            => 'XML',
@@ -65,7 +65,7 @@ describe Ronin::Payloads::CLI::Text do
         let(:type)  { type }
 
         it "must return '#{type}'" do
-          expect(subject.payload_type(klass)).to eq(type)
+          expect(subject.payload_type_name(klass)).to eq(type)
         end
       end
     end
