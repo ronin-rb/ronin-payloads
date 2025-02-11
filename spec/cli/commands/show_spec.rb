@@ -51,7 +51,7 @@ describe Ronin::Payloads::CLI::Commands::Show do
     end
   end
 
-  describe "#example_build_command" do
+  describe "#example_payload_command" do
     context "when given a payload class with no params" do
       module TestShowCommand
         class PayloadWithNoParams < Ronin::Payloads::Payload
@@ -64,7 +64,7 @@ describe Ronin::Payloads::CLI::Commands::Show do
       let(:payload_class) { TestShowCommand::PayloadWithNoParams }
 
       it "must return 'ronin-payloads build ...' with the payload class ID" do
-        expect(subject.example_build_command(payload_class)).to eq(
+        expect(subject.example_payload_command(payload_class)).to eq(
           "ronin-payloads build #{payload_class.id}"
         )
       end
@@ -86,7 +86,7 @@ describe Ronin::Payloads::CLI::Commands::Show do
         let(:payload_class) { TestShowCommand::PayloadWithOptionalParams }
 
         it "must not add any '-p' flags to the 'ronin-payloads build' command" do
-          expect(subject.example_build_command(payload_class)).to eq(
+          expect(subject.example_payload_command(payload_class)).to eq(
             "ronin-payloads build #{payload_class.id}"
           )
         end
@@ -110,7 +110,7 @@ describe Ronin::Payloads::CLI::Commands::Show do
         let(:payload_class) { TestShowCommand::PayloadWithDefaultParams }
 
         it "must not add any '-p' flags to the 'ronin-payloads build' command" do
-          expect(subject.example_build_command(payload_class)).to eq(
+          expect(subject.example_payload_command(payload_class)).to eq(
             "ronin-payloads build #{payload_class.id}"
           )
         end
@@ -137,7 +137,7 @@ describe Ronin::Payloads::CLI::Commands::Show do
           let(:payload_class) { TestShowCommand::PayloadWithRequiredAndDefaultParams }
 
           it "must not add any '-p' flags to the 'ronin-payloads build' command" do
-            expect(subject.example_build_command(payload_class)).to eq(
+            expect(subject.example_payload_command(payload_class)).to eq(
               "ronin-payloads build #{payload_class.id}"
             )
           end
@@ -159,7 +159,7 @@ describe Ronin::Payloads::CLI::Commands::Show do
           let(:payload_class) { TestShowCommand::PayloadWithRequiredParams }
 
           it "must add '-p' flags followed by the param name and usage to the 'ronin-payloads build' command" do
-            expect(subject.example_build_command(payload_class)).to eq(
+            expect(subject.example_payload_command(payload_class)).to eq(
               "ronin-payloads build #{payload_class.id} -p foo=FOO -p bar=NUM"
             )
           end
@@ -173,7 +173,7 @@ describe Ronin::Payloads::CLI::Commands::Show do
       before { subject.options[:file] = payload_file }
 
       it "must return a 'ronin-payloads build --file ...' command with the payload file" do
-        expect(subject.example_build_command(payload_class)).to eq(
+        expect(subject.example_payload_command(payload_class)).to eq(
           "ronin-payloads build -f #{payload_file} -p foo=FOO -p bar=NUM"
         )
       end

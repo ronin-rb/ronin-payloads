@@ -19,6 +19,8 @@
 # along with ronin-payloads.  If not, see <https://www.gnu.org/licenses/>.
 #
 
+require 'ronin/core/cli/text/params'
+
 module Ronin
   module Payloads
     class CLI
@@ -28,6 +30,8 @@ module Ronin
       # @since 0.3.0
       #
       module Text
+        include Core::CLI::Text::Params
+
         # Known payload types and their display names.
         PAYLOAD_TYPE_NAMES = {
           payload: 'Custom',
@@ -76,6 +80,36 @@ module Ronin
         #
         def payload_type_name(payload_class)
           PAYLOAD_TYPE_NAMES.fetch(payload_class.payload_type,'Unknown')
+        end
+
+        #
+        # Builds an example `ronin-payloads build` command for the payload.
+        #
+        # @param [Class<Payload>] payload_class
+        #   The payload class.
+        #
+        # @param [String, nil] file
+        #   The optional file that the payload was loaded from.
+        #
+        # @return [String]
+        #   The example `ronin-payloads build` command.
+        #
+        def example_payload_command(payload_class, file: nil)
+          command = ['ronin-payloads', 'build']
+
+          if file
+            command << '-f' << file
+          else
+            command << payload_class.id
+          end
+
+          payload_class.params.each_value do |param|
+            if param.required? && !param.default
+              command << '-p' << "#{param.name}=#{param_usage(param)}"
+            end
+          end
+
+          return command.join(' ')
         end
       end
     end
