@@ -377,7 +377,7 @@ end
 * [ronin-support] ~> 1.2
 * [ronin-code-asm] ~> 1.0
 * [ronin-post_ex] ~> 0.1
-* [ronin-core] ~> 0.2
+* [ronin-core] ~> 0.3
 * [ronin-repos] ~> 0.1
 
 ## Install
