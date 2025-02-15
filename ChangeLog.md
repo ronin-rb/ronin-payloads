@@ -1,3 +1,16 @@
+### 0.2.1 / 2025-02-14
+
+* Ensure that `ronin/payloads` requires all other Payload classes and Mixin
+  modules.
+* Use `require_relative` to improve load times.
+* Documentation fixes.
+
+#### CLI
+
+* Properly rescue the `Ronin::Payloads::Encoders::ClassNotFound` exception and
+  print an error message when a payload encoder cannot be found or loaded.
+* Fixed multiple bugs in the `ronin-payloads encoder` command.
+
 ### 0.2.0 / 2024-07-22
 
 * Added the {Ronin::Payloads::GroovyPayload} payload class.
