@@ -29,8 +29,6 @@ module Ronin
       #
       # @api semipublic
       #
-      # @since 1.0.0
-      #
       class Pipeline
 
         # The encoders in the pipeline.

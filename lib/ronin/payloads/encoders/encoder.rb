@@ -53,8 +53,6 @@ module Ronin
       #       end
       #     end
       #
-      # @since 1.0.0
-      #
       # @api public
       #
       class Encoder

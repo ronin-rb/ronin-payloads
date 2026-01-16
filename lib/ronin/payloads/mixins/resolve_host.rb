@@ -32,8 +32,6 @@ module Ronin
       #
       # @api public
       #
-      # @since 1.0.0
-      #
       module ResolveHost
         #
         # Resolves the `host` and returns it's IP addresses.
